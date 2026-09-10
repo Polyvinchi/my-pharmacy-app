@@ -1,0 +1,533 @@
+window.PART7_DATA = [
+  {
+    "id": 301,
+    "trade_name": "Spirazole Forte",
+    "name_ar": "سبيروزول فورت",
+    "active_ingredient": "Spiramycin 1.5M.I.U + Metronidazole 250mg",
+    "dosage_form": "Tablet",
+    "sub_form_type": "مضاد حيوي ومطهر لاهوائي للأسنان",
+    "is_fridge": false,
+    "system_category": "أسنان وفطريات",
+    "indications": "خراج الأسنان، التهابات اللثة الشديدة، وعدوى الجيوب الفكية",
+    "dosage_and_admin": "قرص مرتين إلى 3 مرات يومياً بعد الأكل لمدة 5 إلى 7 أيام",
+    "clinical_pearl": "الخيار الأول المفضل لأطباء الأسنان في مصر لخراج الضرس، يمنع شرب الكحول نهائياً أثناء استخدامه",
+    "critical_warnings": "يمنع للمرضى الذين يعانون من حساسية للميترونيدازول أو الماكروليد، حذر في الثلث الأول من الحمل",
+    "drug_interactions": "يزيد تأثير الوارفارين والماريفان بشكل ملحوظ مما يرفع خطر النزيف",
+    "special_populations": {
+      "pregnancy": "Caution",
+      "hypertension": "Safe",
+      "diabetic": "Safe"
+    },
+    "substitutes_same_active": [
+      "Rodogyl",
+      "Flagyl 500 (بمفرده جزئياً)"
+    ],
+    "substitutes_alternative_class": [
+      "Augmentin 1g"
+    ]
+  },
+  {
+    "id": 302,
+    "trade_name": "Rodogyl",
+    "name_ar": "رودوجيل",
+    "active_ingredient": "Spiramycin 750,000 I.U + Metronidazole 125mg",
+    "dosage_form": "Tablet",
+    "sub_form_type": "مضاد حيوي لالتهابات الفم والأسنان",
+    "is_fridge": false,
+    "system_category": "أسنان وفطريات",
+    "indications": "التهاب اللثة الحاد، وقاية ما بعد خلع الضرس، وخراج الفم والفك",
+    "dosage_and_admin": "قرصان إلى 3 أقراص يومياً مقسمة مع الوجبات",
+    "clinical_pearl": "يحتوي على نصف تركيز سبيروزول فورت، مناسب للالتهابات المتوسطة والوزن الخفيف",
+    "critical_warnings": "يسبب طعماً معدنياً غير مستحب في الفم وتغيراً في لون البول إلى البني الداكن",
+    "drug_interactions": "تفاعل حاد مع الكحول، يزيد سمية الليثيوم",
+    "special_populations": {
+      "pregnancy": "Caution",
+      "hypertension": "Safe",
+      "diabetic": "Safe"
+    },
+    "substitutes_same_active": [
+      "Spirazole Forte"
+    ],
+    "substitutes_alternative_class": [
+      "Flumox 1g"
+    ]
+  },
+  {
+    "id": 303,
+    "trade_name": "Daktarin Oral Gel",
+    "name_ar": "داكتارين أورال جل",
+    "active_ingredient": "Miconazole 20mg/g",
+    "dosage_form": "Gel",
+    "sub_form_type": "مضاد فطريات موضعي للفم واللسان",
+    "is_fridge": false,
+    "system_category": "أسنان وفطريات",
+    "indications": "فطريات الفم واللسان (Oral Candidiasis) للكبار والأطفال فوق 4 شهور",
+    "dosage_and_admin": "نصف ملعقة صغيرة توضع داخل الفم 4 مرات يومياً بعد الأكل، وتبقى أطول فترة ممكنة قبل البلع",
+    "clinical_pearl": "تحذير قاتل: ممنوع تماماً لمرضى القلب والجلطات الذين يتناولون Marivan/Warfarin لأنه يرفع السيولة ويسبب نزيفاً مميتاً",
+    "critical_warnings": "ممنوع للأطفال الرضع أقل من 4 أشهر لخطر الاختناق، ممنوع مع الوارفارين",
+    "drug_interactions": "تعارض حرج جداً مع مضادات التجلط الفموية (Warfarin)",
+    "special_populations": {
+      "pregnancy": "Caution",
+      "hypertension": "Safe",
+      "diabetic": "Safe"
+    },
+    "substitutes_same_active": [
+      "Miconaz Oral Gel"
+    ],
+    "substitutes_alternative_class": [
+      "Mycostatin Oral Drops"
+    ]
+  },
+  {
+    "id": 304,
+    "trade_name": "Mycostatin Drops",
+    "name_ar": "ميكوستاتين نقط فم",
+    "active_ingredient": "Nystatin 100,000 IU/ml",
+    "dosage_form": "Oral Drops",
+    "sub_form_type": "مضاد فطريات فموي للرضع",
+    "is_fridge": false,
+    "system_category": "أسنان وفطريات",
+    "indications": "فطريات اللسان والفم البيضاء (المونيليا) لحديثي الولادة والرضع",
+    "dosage_and_admin": "1 مل (قطارة كاملة) تقسم على جانبي الفم واللسان 4 مرات يومياً بعد الرضاعة",
+    "clinical_pearl": "الدواء لا يمتص من الأمعاء ويعمل موضعياً فقط، لذا فهو آمن بنسبة 100% لحديثي الولادة من أول يوم",
+    "critical_warnings": "يجب رج الزجاجة جيداً قبل كل جرعة، والاستمرار يومين بعد اختفاء البقع البيضاء",
+    "drug_interactions": "لا توجد تعارضات جهازية مسجلة",
+    "special_populations": {
+      "pregnancy": "Safe",
+      "hypertension": "Safe",
+      "diabetic": "Safe"
+    },
+    "substitutes_same_active": [
+      "Candistan Oral Drops",
+      "Nystatin generic"
+    ],
+    "substitutes_alternative_class": [
+      "Daktarin Oral Gel"
+    ]
+  },
+  {
+    "id": 305,
+    "trade_name": "BBC Mouth Spray",
+    "name_ar": "بي بي سي بخاخ فم",
+    "active_ingredient": "Benzocaine + Benzydamine + Cetylpyridinium",
+    "dosage_form": "Topical Solution",
+    "sub_form_type": "مسكن ومخدر ومطهر للفم والحلق",
+    "is_fridge": false,
+    "system_category": "أسنان وفطريات",
+    "indications": "قرح الفم، احتقان الحلق، آلام اللثة والأسنان، وآثار خلع الضروس",
+    "dosage_and_admin": "3 إلى 4 بخات في تجويف الفم أو الحلق 3 مرات يومياً قبل الأكل لتسهيل البلع",
+    "clinical_pearl": "يحتوي على مخدر موضعي ومسكن ومطهر؛ ينصح بالانتظار ربع ساعة بعد البخ قبل شرب السوائل الساخنة لتفادي حرق اللسان دون وعي",
+    "critical_warnings": "تجنب استنشاقه المباشر في الرئة، ولا يصرف للرضع أقل من سنتين",
+    "drug_interactions": "لا توجد تعارضات موضعية مؤثرة",
+    "special_populations": {
+      "pregnancy": "Caution",
+      "hypertension": "Safe",
+      "diabetic": "Safe"
+    },
+    "substitutes_same_active": [
+      "Orex Spray",
+      "Balsam Spray"
+    ],
+    "substitutes_alternative_class": [
+      "Hexitol Mouthwash"
+    ]
+  },
+  {
+    "id": 306,
+    "trade_name": "Hexitol Mouthwash",
+    "name_ar": "هيكسيتول مضمضة",
+    "active_ingredient": "Chlorhexidine Gluconate 0.12%",
+    "dosage_form": "Solution",
+    "sub_form_type": "مضمضة مطهرة للأسنان واللثة",
+    "is_fridge": false,
+    "system_category": "أسنان وفطريات",
+    "indications": "تطهير الفم بعد جراحات الأسنان، علاج نزيف اللثة والتهاباتها",
+    "dosage_and_admin": "مضمضة بـ 15 مل دون تخفيف لمدة 30 إلى 60 ثانية مرتين يومياً بعد تفريش الأسنان",
+    "clinical_pearl": "يمنع استخدامها بانتظام لأكثر من أسبوعين لأنها تسبب تصبغاً بنياً مؤقتاً للأسنان وتغيراً في حاسة التذوق",
+    "critical_warnings": "لا تبلع إطلاقاً، وتفصل عن معجون الأسنان بنصف ساعة لأن المعجون يبطل مفعول الكلورهيكسيدين",
+    "drug_interactions": "يتعطل بمركبات الصوديوم لوريل سلفات الموجودة في معاجين الأسنان",
+    "special_populations": {
+      "pregnancy": "Safe",
+      "hypertension": "Safe",
+      "diabetic": "Safe"
+    },
+    "substitutes_same_active": [
+      "Oravit Mouthwash",
+      "Peridex"
+    ],
+    "substitutes_alternative_class": [
+      "Listerine Zero"
+    ]
+  },
+  {
+    "id": 307,
+    "trade_name": "Gengigel Tube",
+    "name_ar": "جينجيجل جل",
+    "active_ingredient": "Hyaluronic Acid 0.2%",
+    "dosage_form": "Gel",
+    "sub_form_type": "جل مرمم للثة وقرح الفم",
+    "is_fridge": false,
+    "system_category": "أسنان وفطريات",
+    "indications": "قرح الفم (Aphthous Ulcers)، جروح تقويم الأسنان، والتئام اللثة بعد الخلع",
+    "dosage_and_admin": "تدلك طبقة رقيقة على اللثة أو القرحة بأصبع نظيف 3 إلى 4 مرات يومياً بعد الوجبات",
+    "clinical_pearl": "آمن تماماً للحوامل والأطفال ومرضى السكر، يعمل كضمادة بيولوجية سريعة الالتئام ومسكنة للألم",
+    "critical_warnings": "الامتناع عن الأكل والشرب لمدة 30 دقيقة على الأقل بعد دهان الجل",
+    "drug_interactions": "لا توجد تعارضات",
+    "special_populations": {
+      "pregnancy": "Safe",
+      "hypertension": "Safe",
+      "diabetic": "Safe"
+    },
+    "substitutes_same_active": [
+      "Elgydium Repair"
+    ],
+    "substitutes_alternative_class": [
+      "Mundisal Gel"
+    ]
+  },
+  {
+    "id": 308,
+    "trade_name": "Mundisal Gel",
+    "name_ar": "موند Similar جل",
+    "active_ingredient": "Choline Salicylate 8.7% + Cetalkonium Chloride",
+    "dosage_form": "Gel",
+    "sub_form_type": "مسكن ومطهر موضعي لقرح الفم",
+    "is_fridge": false,
+    "system_category": "أسنان وفطريات",
+    "indications": "قرح الفم المؤلمة، التهابات اللثة الناتجة عن أطقم الأسنان",
+    "dosage_and_admin": "توضع كمية بحجم حبة البازلاء على القرحة وتدلك برفق كل 3 إلى 4 ساعات عند اللزوم",
+    "clinical_pearl": "يبدأ التسكين في غضون 3 دقائق، لا يحتوي على سكر ومناسب لمرضى السكر",
+    "critical_warnings": "يمنع للأطفال والمراهقين المعافين حديثاً من عدوى فيروسية لتجنب مخاطر متلازمة راي (Reye's syndrome) لاحتوائه على ساليسيلات",
+    "drug_interactions": "لا توجد تعارضات عند الجرعات الموضعية المعتادة",
+    "special_populations": {
+      "pregnancy": "Caution",
+      "hypertension": "Safe",
+      "diabetic": "Safe"
+    },
+    "substitutes_same_active": [
+      "Bonjela Gel"
+    ],
+    "substitutes_alternative_class": [
+      "Gengigel Tube"
+    ]
+  },
+  {
+    "id": 309,
+    "trade_name": "Dentocalm Drops",
+    "name_ar": "دنتوكالم نقط عصب الضرس",
+    "active_ingredient": "Clove Oil (Eugenol) + Camphor + Menthol",
+    "dosage_form": "Drops",
+    "sub_form_type": "مسكن موضعي فوري لعصب الأسنان المكشوف",
+    "is_fridge": false,
+    "system_category": "أسنان وفطريات",
+    "indications": "ألم الأسنان الشديد الناتج عن تسوس عميق وعصب مكشوف كإسعاف طارئ",
+    "dosage_and_admin": "تبلل قطعة قطن صغيرة جداً بقطرتين وتوضع مباشرة داخل تجويف الضرس المصاب دون لمس اللثة",
+    "clinical_pearl": "حل إسعافي مؤقت لساعات الليل؛ ملامسته للثة المحيطة تسبب حرقاناً وتقرحاً شديداً للأنسجة الرخوة",
+    "critical_warnings": "ممنوع بلع النقط، وتجنب ملامسة اللثة أو الشفاه السليمة",
+    "drug_interactions": "لا توجد",
+    "special_populations": {
+      "pregnancy": "Caution",
+      "hypertension": "Safe",
+      "diabetic": "Safe"
+    },
+    "substitutes_same_active": [
+      "Clove Oil pure",
+      "Toothache drops"
+    ],
+    "substitutes_alternative_class": [
+      "Cataflam 50mg"
+    ]
+  },
+  {
+    "id": 310,
+    "trade_name": "Diflucan 150mg",
+    "name_ar": "ديفلوكان 150 مج كبسول",
+    "active_ingredient": "Fluconazole 150mg",
+    "dosage_form": "Capsule",
+    "sub_form_type": "مضاد فطريات جهازي واسع المجال",
+    "is_fridge": false,
+    "system_category": "أسنان وفطريات",
+    "indications": "فطريات المهبل المتكررة (Vaginal Candidiasis)، التينيا، والعدوى الفطرية الجهازية",
+    "dosage_and_admin": "كبسولة واحدة 150 ملغ جرعة واحدة بالفم لعدوى المهبل، أو كبسولة أسبوعياً للتينيا الجلدية",
+    "clinical_pearl": "ممنوع تماماً أثناء الحمل (Teratogenic)، وتؤخذ الجرعة مع أو بعد الأكل بكوب ماء كامل",
+    "critical_warnings": "ممنوع في الحمل والرضاعة، وممنوع مع مرضى القصور الكبدي الحاد وأدوية اضطراب كهربية القلب (QT prolongation)",
+    "drug_interactions": "تثبيط قوي لإنزيمات الكبد؛ يرفع تركيز أدوية السكر (السلفونيل يوريا) ومضادات التجلط والستاتينات بشكل خطير",
+    "special_populations": {
+      "pregnancy": "Contraindicated",
+      "hypertension": "Safe",
+      "diabetic": "Caution - يرفع مستويات أدوية السكر"
+    },
+    "substitutes_same_active": [
+      "Flucoral 150mg",
+      "Fungican 150mg",
+      "Treflucan"
+    ],
+    "substitutes_alternative_class": [
+      "Itraconazole (Sporanox)"
+    ]
+  },
+  {
+    "id": 311,
+    "trade_name": "Canditral 100mg",
+    "name_ar": "كانديترال 100 مج كبسول",
+    "active_ingredient": "Itraconazole 100mg",
+    "dosage_form": "Capsule",
+    "sub_form_type": "مضاد فطريات للأظافر وسعفة الجلد المقاومة",
+    "is_fridge": false,
+    "system_category": "أسنان وفطريات",
+    "indications": "فطريات الأظافر المزمنة (Onychomycosis)، سعفة الرأس، وتينيا الجلد واسعة الانتشار",
+    "dosage_and_admin": "100 إلى 200 ملغ يومياً مباشرة بعد وجبة دسمة لضمان أقصى امتصاص حمضي",
+    "clinical_pearl": "يتطلب بيئة معدية شديدة الحموضة للامتصاص؛ يمنع تناوله مع أدوية الحموضة (PPIs أو الفوارات) في نفس التوقيت",
+    "critical_warnings": "ممنوع لمرضى ضعف عضلة القلب الاحتقاني، يمنع في الحمل",
+    "drug_interactions": "أدوية الحموضة تمنع امتصاصه تماماً، يرفع تركيز أدوية الستاتين والديجوكسين",
+    "special_populations": {
+      "pregnancy": "Contraindicated",
+      "hypertension": "Caution",
+      "diabetic": "Safe"
+    },
+    "substitutes_same_active": [
+      "Sporanox 100mg",
+      "Itrapex 100mg"
+    ],
+    "substitutes_alternative_class": [
+      "Diflucan 150mg"
+    ]
+  },
+  {
+    "id": 312,
+    "trade_name": "Betaserc 16mg",
+    "name_ar": "بيتاسيرك 16 مج",
+    "active_ingredient": "Betahistine Dihydrochloride 16mg",
+    "dosage_form": "Tablet",
+    "sub_form_type": "محسن للدورة الدموية بالأذن الداخلية ومضاد دوار",
+    "is_fridge": false,
+    "system_category": "أنف وأذن وعيون",
+    "indications": "دوار الأذن الداخلية، مرض مينيير، الطنين المزمن، والدوخة وعدم الاتزان",
+    "dosage_and_admin": "قرص واحد مرتين إلى 3 مرات يومياً مع الوجبات لتقليل اضطراب المعدة",
+    "clinical_pearl": "نظير هيستاميني ضعيف؛ يعطى مع الأكل، ويحذر استخدامه لمرضى الربو الشعبي النشط وقرحة المعدة النشطة",
+    "critical_warnings": "حذر شديد مع مرضى الربو وقرحة المعدة الهضمية وورم القواتم (Pheochromocytoma)",
+    "drug_interactions": "تتعارض فعاليته مع مضادات الهيستامين (مثل مضادات الحساسية والحساسية الجلدية)",
+    "special_populations": {
+      "pregnancy": "Caution",
+      "hypertension": "Safe",
+      "diabetic": "Safe"
+    },
+    "substitutes_same_active": [
+      "Verserc 16mg",
+      "Histatec 16mg"
+    ],
+    "substitutes_alternative_class": [
+      "Stugeron 25mg"
+    ]
+  },
+  {
+    "id": 313,
+    "trade_name": "Stugeron 25mg",
+    "name_ar": "ستوجيرون 25 مج",
+    "active_ingredient": "Cinnarizine 25mg",
+    "dosage_form": "Tablet",
+    "sub_form_type": "مضاد هيستامين وموسع للأوعية الدموية المخية",
+    "is_fridge": false,
+    "system_category": "أنف وأذن وعيون",
+    "indications": "دوار السفر والحركة، التشنجات الوعائية الدماغية، طنين الأذن، والدوخة",
+    "dosage_and_admin": "قرص 25 ملغ 3 مرات يومياً بعد الوجبات، أو قرص قبل ركوب وسيلة السفر بساعتين",
+    "clinical_pearl": "يسبب نعاساً وتهدئة واضحة، ولا يوصف لمرضى الشلل الرعاش (Parkinson's) لأنه يفاقم الرعشة الحركية",
+    "critical_warnings": "ممنوع لمرضى الشلل الرعاش والاكتئاب الحاد، يحظر القيادة بعد تناوله",
+    "drug_interactions": "يزيد التأثير المهدئ للكحول والمنومات ومضادات الاكتئاب",
+    "special_populations": {
+      "pregnancy": "Caution",
+      "hypertension": "Safe",
+      "diabetic": "Safe"
+    },
+    "substitutes_same_active": [
+      "Cinnarizine generic"
+    ],
+    "substitutes_alternative_class": [
+      "Betaserc 16mg"
+    ]
+  },
+  {
+    "id": 314,
+    "trade_name": "Strepsils Lozenges Honey & Lemon",
+    "name_ar": "ستربسلس استحلاب عسل وليمون",
+    "active_ingredient": "2,4-Dichlorobenzyl alcohol + Amylmetacresol",
+    "dosage_form": "Tablet",
+    "sub_form_type": "أقراص استحلاب مطهرة للحلق",
+    "is_fridge": false,
+    "system_category": "جهاز تنفسي وبرد",
+    "indications": "احتقان وجفاف الحلق، بداية بحة الصوت، وصعوبة البلع الخفيفة",
+    "dosage_and_admin": "قرص واحد يستحلب ببطء في الفم كل ساعتين إلى 3 ساعات عند اللزوم (أقصى 8 أقراص يومياً)",
+    "clinical_pearl": "يستحلب ببطء ولا يمضغ أو يبلع كاملاً لضمان بقاء المادة المطهرة على الغشاء المخاطي للحلق",
+    "critical_warnings": "يحتوي على سكر الجلوكوز والسكروز؛ ينصح بنسخة خالية من السكر لمرضى السكري",
+    "drug_interactions": "لا توجد",
+    "special_populations": {
+      "pregnancy": "Safe",
+      "hypertension": "Safe",
+      "diabetic": "Caution - Contains Sugar"
+    },
+    "substitutes_same_active": [
+      "Larypro Lozenges",
+      "Strepsils Sugar-Free"
+    ],
+    "substitutes_alternative_class": [
+      "BBC Mouth Spray"
+    ]
+  },
+  {
+    "id": 315,
+    "trade_name": "Larypro Lozenges",
+    "name_ar": "لاريبرو أقراص استحلاب",
+    "active_ingredient": "Lysozyme HCl 20mg + Dequalinium Chloride 0.25mg",
+    "dosage_form": "Tablet",
+    "sub_form_type": "أقراص استحلاب مضادة للميكروبات والإنزيمات",
+    "is_fridge": false,
+    "system_category": "جهاز تنفسي وبرد",
+    "indications": "التهابات الحلق واللوزتين البسيطة، التهاب الفم واللثة واللسان",
+    "dosage_and_admin": "قرص يستحلب تحت اللسان أو بالفم كل 2 إلى 3 ساعات",
+    "clinical_pearl": "آمن جداً للحوامل والأطفال فوق 6 سنوات، يحتوي على إنزيم الليزوزيم الطبيعي المضاد للبكتيريا والموجود في اللعاب",
+    "critical_warnings": "ممنوع لمن لديهم حساسية شديدة من البيض لاحتوائه على مشتقات الليزوزيم المستخلصة من بياض البيض",
+    "drug_interactions": "لا توجد",
+    "special_populations": {
+      "pregnancy": "Safe",
+      "hypertension": "Safe",
+      "diabetic": "Safe"
+    },
+    "substitutes_same_active": [
+      "Bradoral Lozenges"
+    ],
+    "substitutes_alternative_class": [
+      "Strepsils Lozenges"
+    ]
+  },
+  {
+    "id": 316,
+    "trade_name": "Trosyd 28% Nail Solution",
+    "name_ar": "تروسيد 28% محلول للأظافر",
+    "active_ingredient": "Tioconazole 280mg/ml",
+    "dosage_form": "Topical Solution",
+    "sub_form_type": "محلول موضعي عالي التركيز لفطريات الأظافر",
+    "is_fridge": false,
+    "system_category": "أسنان وفطريات",
+    "indications": "فطريات أظافر اليدين والقدمين المتكلسة والمصفرة (Onychomycosis)",
+    "dosage_and_admin": "يدهن بالفرشاة المرفقة على الظفر المصاب والجلد المحيط مرتين يومياً كل 12 ساعة لمدة 6 إلى 12 شهراً",
+    "clinical_pearl": "يتطلب برداً سطحياً خفيفاً للظفر بمبرد طبي أسبوعياً قبل الدهان لتسهيل اختراق المحلول للطبقات العميقة",
+    "critical_warnings": "للاستخدام الموضعي على الأظافر فقط، يمنع ملامسة الأعين أو الأغشية المخاطية",
+    "drug_interactions": "لا توجد",
+    "special_populations": {
+      "pregnancy": "Caution",
+      "hypertension": "Safe",
+      "diabetic": "Safe"
+    },
+    "substitutes_same_active": [
+      "Loceryl Nail Lacquer (Amorolfine)"
+    ],
+    "substitutes_alternative_class": [
+      "Canditral 100mg"
+    ]
+  },
+  {
+    "id": 317,
+    "trade_name": "Canesten 500mg Vaginal Pessary",
+    "name_ar": "كانستن 500 مج لبوسة مهبلية واحدة",
+    "active_ingredient": "Clotrimazole 500mg",
+    "dosage_form": "Suppository (Vaginal)",
+    "sub_form_type": "لبوس مهبلي جرعة أحادية قوية",
+    "is_fridge": false,
+    "system_category": "نساء وتوليد",
+    "indications": "فطريات الكانديدا المهبلية الحادة المصحوبة بحكة وإفرازات بيضاء كالجبن",
+    "dosage_and_admin": "تحميلة مهبلية واحدة تدخل عميقاً في المهبل ليلاً قبل النوم مباشرة باستخدام الأداة المرفقة",
+    "clinical_pearl": "جرعة واحدة فقط تغني عن العلاج لأسبوع كامل، ويفضل الامتناع عن العلاقة الزوجية لمدة 48 ساعة بعد الاستخدام",
+    "critical_warnings": "قد تضعف المادة المكونة للتحميلة كفاءة الواقي الذكري اللاتكس وتسبب تمزقه",
+    "drug_interactions": "لا توجد تعارضات جهازية مسجلة",
+    "special_populations": {
+      "pregnancy": "Caution - تستخدم بدون أداة الإدخال في الحمل باليد فقط",
+      "hypertension": "Safe",
+      "diabetic": "Safe"
+    },
+    "substitutes_same_active": [
+      "Gyno-Trosyd Pessary",
+      "Gyno-Daktarin 400"
+    ],
+    "substitutes_alternative_class": [
+      "Diflucan 150mg"
+    ]
+  },
+  {
+    "id": 318,
+    "trade_name": "Gyno-Daktarin Vaginal Cream",
+    "name_ar": "جينو داكتارين كريم مهبلي",
+    "active_ingredient": "Miconazole Nitrate 2%",
+    "dosage_form": "Cream",
+    "sub_form_type": "كريم مهبلي مضاد للفطريات مع أدوات تطبيق",
+    "is_fridge": false,
+    "system_category": "نساء وتوليد",
+    "indications": "التهابات وفطريات المهبل والأعضاء التناسلية الخارجية المصحوبة بحكة شديدة",
+    "dosage_and_admin": "ملء أداة تطبيق واحدة (حوالي 5 جم) وتفريغها داخلياً قبل النوم لمدة 7 أيام متتالية، مع دهان خارجي",
+    "clinical_pearl": "يدهن خارجياً أيضاً للشريك في حال وجود حكة تناسلية لمنع تكرار نقل العدوى الترددية للزوجة",
+    "critical_warnings": "يوقف استخدامه مؤقتاً أثناء فترة نزول الدورة الشهرية لعدم جرف الكريم خارجاً",
+    "drug_interactions": "قد يزيد تأثير مضادات التجلط (ماريفان) عند حدوث امتصاص جهازي نادر",
+    "special_populations": {
+      "pregnancy": "Caution (T2, T3)",
+      "hypertension": "Safe",
+      "diabetic": "Safe"
+    },
+    "substitutes_same_active": [
+      "Gyno-Mikozal Cream"
+    ],
+    "substitutes_alternative_class": [
+      "Canesten Vaginal Cream"
+    ]
+  },
+  {
+    "id": 319,
+    "trade_name": "Urosolvine Effervescent",
+    "name_ar": "يوروسولفين فوار",
+    "active_ingredient": "Colchicine 0.3mg + Piperazine + Atropine Sulfate",
+    "dosage_form": "Effervescent Sachet",
+    "sub_form_type": "فوار مذيب لحصوات اليورات ومسكن لنوبات النقرس",
+    "is_fridge": false,
+    "system_category": "مسالك ومطهرات",
+    "indications": "نوبات النقرس الحادة، حصوات حمض اليوريك (أملاح اليورات المرتفعة بالبول)",
+    "dosage_and_admin": "كيس واحد يذاب في نصف كوب ماء 3 مرات يومياً بعد الوجبات مباشرة",
+    "clinical_pearl": "يحتوي على مادة الكولشيسين لتخفيف التهاب المفاصل النقرسي؛ في حال ظهور إسهال حاد يجب إيقاف الدواء فوراً",
+    "critical_warnings": "ممنوع لمرضى القصور الكلوي والكبدي الحاد والحوامل، وممنوع للأطفال",
+    "drug_interactions": "يزيد خطر التسمم العضلي إذا جمع مع أدوية الستاتين لخفض الكوليسترول أو مضادات الفطريات الآزولية",
+    "special_populations": {
+      "pregnancy": "Contraindicated",
+      "hypertension": "Caution - محتوى الصوديوم",
+      "diabetic": "Safe"
+    },
+    "substitutes_same_active": [
+      "Uricol Effervescent"
+    ],
+    "substitutes_alternative_class": [
+      "Zyloric Tab (Allopurinol)"
+    ]
+  },
+  {
+    "id": 320,
+    "trade_name": "Zyloric 100mg/300mg",
+    "name_ar": "زيلوريك أقراص",
+    "active_ingredient": "Allopurinol 100mg / 300mg",
+    "dosage_form": "Tablet",
+    "sub_form_type": "مثبط إنزيم الزانثين أوكسيديز لخفض حمض اليوريك",
+    "is_fridge": false,
+    "system_category": "مسالك ومطهرات",
+    "indications": "الوقاية طويلة الأمد من النقرس وتثبيط تكوين حصوات حمض اليوريك بالكلى",
+    "dosage_and_admin": "100 إلى 300 ملغ يومياً كجرعة واحدة بعد وجبة رئيسية مع شرب كميات كبيرة من السوائل",
+    "clinical_pearl": "قاعدة سريرية صارمة: يمنع البدء به أثناء نوبة النقرس الحادة لأنه يغير تركيز الأملاح ويزيد النوبة اشتعالاً، يبدأ به بعد هدوء النوبة بأسبوعين",
+    "critical_warnings": "يجب التوقف فوراً إذا ظهر طفح جلدي أو حكة (خطر متلازمة ستيفنز جونسون التحسسية النادرة الخطيرة)",
+    "drug_interactions": "يرفع تركيز دواء الآزاثيوبرين (Imuran) بشكل كارثي مما يتطلب خفض جرعة الإيموران بنسبة 75%",
+    "special_populations": {
+      "pregnancy": "Caution",
+      "hypertension": "Safe",
+      "diabetic": "Safe"
+    },
+    "substitutes_same_active": [
+      "No-Uric 100/300"
+    ],
+    "substitutes_alternative_class": [
+      "Feburic (Febuxostat)"
+    ]
+  }
+];

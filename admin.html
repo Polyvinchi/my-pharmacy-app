@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>لوحة التحكم | الإدارة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Alexandria', sans-serif; background-color: #050a15; color: white; }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 bg-[#050a15] relative overflow-x-hidden">
+    
+    <!-- Background Decor -->
+    <div class="absolute top-[-10%] left-[-10%] w-[300px] h-[300px] bg-blue-600/20 rounded-full blur-[100px] pointer-events-none"></div>
+    <div class="absolute bottom-[-10%] right-[-10%] w-[300px] h-[300px] bg-green-500/20 rounded-full blur-[100px] pointer-events-none"></div>
+
+    <!-- Login Section -->
+    <div id="loginSection" class="w-full max-w-sm bg-[#0E172F]/90 backdrop-blur-xl p-8 rounded-[24px] shadow-2xl border border-[#60a5fa]/30 relative z-10">
+        <div class="text-center mb-8">
+            <div class="w-16 h-16 bg-blue-600/20 text-blue-400 rounded-full flex items-center justify-center text-3xl mx-auto mb-4 border border-blue-500/50">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h2 class="text-2xl font-black text-white">تسجيل الدخول</h2>
+            <p class="text-gray-400 text-xs mt-2">نظام الحماية عبر GitHub API</p>
+        </div>
+
+        <div class="space-y-4">
+            <div>
+                <label class="block text-xs font-bold text-gray-300 mb-1.5">مفتاح الحماية (GitHub Token)</label>
+                <div class="relative">
+                    <input type="password" id="githubToken" placeholder="ghp_........................" class="w-full p-3 rounded-xl bg-[#151f38] border border-gray-600 text-white outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition text-left" dir="ltr">
+                </div>
+            </div>
+            
+            <p id="errorMsg" class="text-red-400 text-xs font-bold hidden text-center">التوكن غير صحيح أو لا يملك صلاحية!</p>
+
+            <button onclick="handleLogin()" id="loginBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl transition shadow-lg shadow-blue-900/50 mt-2">
+                دخول <i class="fa-solid fa-arrow-left mr-2"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Dashboard Section -->
+    <div id="dashboardSection" class="w-full max-w-2xl bg-[#0E172F]/95 backdrop-blur-xl rounded-[24px] shadow-2xl border border-[#60a5fa]/30 relative z-10 hidden flex flex-col max-h-[90vh]">
+        
+        <!-- Header -->
+        <div class="p-6 border-b border-gray-700/50 flex justify-between items-center shrink-0">
+            <div>
+                <h2 class="text-xl font-black text-[#FFD700]">الإعدادات والمحتوى</h2>
+                <p class="text-gray-400 text-[10px] mt-1">تعديل الروابط سيتم تحديثه فوراً في الموقع</p>
+            </div>
+            <button onclick="logout()" class="w-10 h-10 rounded-full bg-red-500/10 text-red-400 flex items-center justify-center hover:bg-red-500/20 transition">
+                <i class="fa-solid fa-right-from-bracket"></i>
+            </button>
+        </div>
+
+        <!-- Scrollable Content -->
+        <div class="p-6 overflow-y-auto space-y-6 flex-1 no-scrollbar">
+            
+            <!-- Section 1: Images -->
+            <div class="bg-[#151f38] p-5 rounded-2xl border border-gray-700/50">
+                <h3 class="text-sm font-bold text-blue-400 mb-4 flex items-center gap-2"><i class="fa-solid fa-image"></i> صورة اليافطة</h3>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs text-gray-300 mb-1.5">رابط واسم الصورة</label>
+                        <input type="text" id="inp-main-banner" class="w-full p-2.5 rounded-xl bg-[#050a15] border border-gray-600 text-white text-xs outline-none focus:border-blue-500 text-left" dir="ltr">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Services Grid -->
+            <div class="bg-[#151f38] p-5 rounded-2xl border border-gray-700/50">
+                <h3 class="text-sm font-bold text-green-400 mb-4 flex items-center gap-2"><i class="fa-solid fa-table-cells-large"></i> الروابط الرئيسية</h3>
+                
+                <div class="space-y-3">
+                    <div class="flex items-center gap-3 bg-[#050a15] p-3 rounded-xl border border-gray-700">
+                        <img src="talabat.png" class="w-8 h-8 rounded-full object-cover">
+                        <div class="flex-1">
+                            <span class="block text-sm font-bold text-white mb-1">تطبيق طلبات</span>
+                            <input type="text" id="inp-talabat" class="w-full bg-[#151f38] p-2 rounded text-xs text-blue-400 outline-none text-left" dir="ltr">
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center gap-3 bg-[#050a15] p-3 rounded-xl border border-gray-700">
+                        <img src="visa.png" class="w-8 h-8 rounded-full object-contain bg-white">
+                        <div class="flex-1">
+                            <span class="block text-sm font-bold text-white mb-1">دفع فيزا</span>
+                            <input type="text" id="inp-visa" class="w-full bg-[#151f38] p-2 rounded text-xs text-blue-400 outline-none text-left" dir="ltr">
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3 bg-[#050a15] p-3 rounded-xl border border-gray-700">
+                        <div class="w-8 h-8 rounded-full bg-red-500 text-white flex items-center justify-center"><i class="fa-solid fa-map-location-dot"></i></div>
+                        <div class="flex-1">
+                            <span class="block text-sm font-bold text-white mb-1">زر اللوكيشن</span>
+                            <input type="text" id="inp-location" class="w-full bg-[#151f38] p-2 rounded text-xs text-blue-400 outline-none text-left" dir="ltr">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: Links & Social -->
+            <div class="bg-[#151f38] p-5 rounded-2xl border border-gray-700/50">
+                <h3 class="text-sm font-bold text-pink-400 mb-4 flex items-center gap-2"><i class="fa-solid fa-link"></i> أرقام التواصل والسوشيال</h3>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs text-gray-300 mb-1.5">رابط الواتساب (https://wa.me/رقم)</label>
+                        <input type="text" id="inp-whatsapp" class="w-full p-2.5 rounded-xl bg-[#050a15] border border-gray-600 text-white text-xs outline-none focus:border-pink-500 text-left" dir="ltr">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-gray-300 mb-1.5">رابط الموبايل (tel:رقم)</label>
+                        <input type="text" id="inp-mobile" class="w-full p-2.5 rounded-xl bg-[#050a15] border border-gray-600 text-white text-xs outline-none focus:border-pink-500 text-left" dir="ltr">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-gray-300 mb-1.5">رابط الأرضي (tel:رقم)</label>
+                        <input type="text" id="inp-phone" class="w-full p-2.5 rounded-xl bg-[#050a15] border border-gray-600 text-white text-xs outline-none focus:border-pink-500 text-left" dir="ltr">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-gray-300 mb-1.5">رابط الفيسبوك</label>
+                        <input type="text" id="inp-facebook" class="w-full p-2.5 rounded-xl bg-[#050a15] border border-gray-600 text-white text-xs outline-none focus:border-pink-500 text-left" dir="ltr">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-gray-300 mb-1.5">رابط إنستجرام</label>
+                        <input type="text" id="inp-instagram" class="w-full p-2.5 rounded-xl bg-[#050a15] border border-gray-600 text-white text-xs outline-none focus:border-pink-500 text-left" dir="ltr">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer / Save -->
+        <div class="p-6 border-t border-gray-700/50 bg-[#151f38]/50 rounded-b-[24px] shrink-0">
+            <button onclick="saveChanges()" id="saveBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl transition shadow-lg shadow-blue-900/50 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-cloud-arrow-up"></i> حفظ ونشر التعديلات فوراً
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const REPO = 'Polyvinchi/my-pharmacy-app';
+        let currentToken = '';
+        let fileSha = '';
+        let parsedDoc = null;
+
+        async function handleLogin() {
+            const token = document.getElementById('githubToken').value.trim();
+            const err = document.getElementById('errorMsg');
+            const btn = document.getElementById('loginBtn');
+            
+            if(!token) return;
+
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> جاري التحقق...';
+            
+            try {
+                // Fetch index.html from github
+                const res = await fetch(`https://api.github.com/repos/${REPO}/contents/index.html`, {
+                    headers: { 'Authorization': `token ${token}` }
+                });
+                
+                if(!res.ok) throw new Error('Invalid Token');
+                
+                const data = await res.json();
+                fileSha = data.sha;
+                
+                // Decode base64 utf-8
+                const content = decodeURIComponent(escape(atob(data.content)));
+                
+                // Parse HTML to populate inputs
+                const parser = new DOMParser();
+                parsedDoc = parser.parseFromString(content, "text/html");
+                
+                // Populate inputs
+                document.getElementById('inp-main-banner').value = parsedDoc.getElementById('main-banner-img')?.src?.split('/').pop() || '';
+                document.getElementById('inp-talabat').value = parsedDoc.getElementById('link-talabat')?.href || '';
+                document.getElementById('inp-visa').value = parsedDoc.getElementById('link-visa')?.href || '';
+                document.getElementById('inp-location').value = parsedDoc.getElementById('link-location')?.href || '';
+                document.getElementById('inp-whatsapp').value = parsedDoc.getElementById('link-whatsapp')?.href || '';
+                document.getElementById('inp-mobile').value = parsedDoc.getElementById('link-mobile')?.href || '';
+                document.getElementById('inp-phone').value = parsedDoc.getElementById('link-phone')?.href || '';
+                document.getElementById('inp-facebook').value = parsedDoc.getElementById('link-facebook')?.href || '';
+                document.getElementById('inp-instagram').value = parsedDoc.getElementById('link-instagram')?.href || '';
+
+                currentToken = token;
+                err.classList.add('hidden');
+                document.getElementById('loginSection').classList.add('hidden');
+                document.getElementById('dashboardSection').classList.remove('hidden');
+
+            } catch(e) {
+                err.classList.remove('hidden');
+            } finally {
+                btn.innerHTML = 'دخول <i class="fa-solid fa-arrow-left mr-2"></i>';
+            }
+        }
+
+        async function saveChanges() {
+            const btn = document.getElementById('saveBtn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> جاري النشر...';
+            btn.classList.replace('bg-blue-600', 'bg-yellow-600');
+            
+            try {
+                // Update the parsed document with new values
+                if(parsedDoc.getElementById('main-banner-img')) parsedDoc.getElementById('main-banner-img').src = document.getElementById('inp-main-banner').value;
+                if(parsedDoc.getElementById('link-talabat')) parsedDoc.getElementById('link-talabat').href = document.getElementById('inp-talabat').value;
+                if(parsedDoc.getElementById('link-visa')) parsedDoc.getElementById('link-visa').href = document.getElementById('inp-visa').value;
+                if(parsedDoc.getElementById('link-location')) parsedDoc.getElementById('link-location').href = document.getElementById('inp-location').value;
+                if(parsedDoc.getElementById('link-whatsapp')) parsedDoc.getElementById('link-whatsapp').href = document.getElementById('inp-whatsapp').value;
+                if(parsedDoc.getElementById('link-mobile')) parsedDoc.getElementById('link-mobile').href = document.getElementById('inp-mobile').value;
+                if(parsedDoc.getElementById('link-phone')) parsedDoc.getElementById('link-phone').href = document.getElementById('inp-phone').value;
+                if(parsedDoc.getElementById('link-facebook')) parsedDoc.getElementById('link-facebook').href = document.getElementById('inp-facebook').value;
+                if(parsedDoc.getElementById('link-instagram')) parsedDoc.getElementById('link-instagram').href = document.getElementById('inp-instagram').value;
+
+                const newHtml = "<!DOCTYPE html>\n" + parsedDoc.documentElement.outerHTML;
+                
+                // Encode to Base64 (utf8 safe)
+                const encodedContent = btoa(unescape(encodeURIComponent(newHtml)));
+
+                // Push to Github
+                const res = await fetch(`https://api.github.com/repos/${REPO}/contents/index.html`, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${currentToken}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: 'Admin Panel Update',
+                        content: encodedContent,
+                        sha: fileSha
+                    })
+                });
+
+                if(!res.ok) throw new Error('Failed to save');
+                
+                const data = await res.json();
+                fileSha = data.content.sha; // update SHA for next edit
+                
+                btn.innerHTML = '<i class="fa-solid fa-check"></i> تم الحفظ والنشر!';
+                btn.classList.replace('bg-yellow-600', 'bg-green-600');
+
+            } catch(e) {
+                alert('حدث خطأ أثناء الحفظ. تأكد من صحة التوكن.');
+            } finally {
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.classList.remove('bg-green-600', 'bg-yellow-600');
+                    btn.classList.add('bg-blue-600');
+                }, 3000);
+            }
+        }
+
+        function logout() {
+            currentToken = '';
+            document.getElementById('githubToken').value = '';
+            document.getElementById('dashboardSection').classList.add('hidden');
+            document.getElementById('loginSection').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

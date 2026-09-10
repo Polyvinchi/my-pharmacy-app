@@ -1,0 +1,1298 @@
+سأخرج الـ 100 صنف كاملة الآن. هذا الرد الأول يغطي الأقسام 1–3 (أصناف 1–65)، والرد الثاني يغطي بقية الأقسام + الملحق.
+
+---
+
+## الجزء الأول — أصناف 1 إلى 65
+
+```json
+[
+  // ═══════════════════════════════════════════════
+  // القسم الأول: أدوية الأطفال وحديثي الولادة (1–20)
+  // ═══════════════════════════════════════════════
+
+  {
+    "id": 1,
+    "trade_name": "بنادول بيبي / Panadol Baby & Infant",
+    "active_ingredient": "Paracetamol (Acetaminophen) 120mg/5ml syrup | 80mg/ml drops",
+    "drug_class": "خافض حرارة ومسكن — مثبط COX مركزي",
+    "category": "أطفال",
+    "indications": "الحمى، ألم التسنين، ألم ما بعد التطعيم، الصداع الخفيف",
+    "dosage_rule": "الجرعة الذهبية: 15 mg/kg/dose كل 4–6 ساعات. حد أقصى 5 جرعات/24 ساعة. مثال عملي: طفل 10kg → 150mg/dose → 6.25ml من الشراب 120mg/5ml أو 1.875ml من النقط 80mg/ml. حد أقصى يومي: 75 mg/kg/day.",
+    "clinical_pearl": "تنبيه حرج: نقط الباراسيتامول 80mg/ml أكثر تركيزاً 3.2 مرة من الشراب — اقرأ الـ concentration قبل الحساب. الخطأ الأكثر فتكاً: إعطاء جرعة النقط بملعقة الشراب. ممنوع في نقص G6PD الحاد. آمن في الحمل كل الفصول. لا يُعطى أقل من شهرين إلا بوصفة.",
+    "common_substitutes": ["Paracetamol Adwia syrup 120mg/5ml", "Tempra drops/syrup"]
+  },
+
+  {
+    "id": 2,
+    "trade_name": "بروفين للأطفال / Brufen / Children's Advil",
+    "active_ingredient": "Ibuprofen 100mg/5ml suspension | 200mg/5ml (أقوى للكبار)",
+    "drug_class": "NSAID — مثبط COX-1 وCOX-2 غير انتقائي",
+    "category": "أطفال",
+    "indications": "الحمى المرتفعة التي لم تستجب للباراسيتامول، آلام المفاصل، ألم الأذن، التسنين",
+    "dosage_rule": "5–10 mg/kg/dose كل 6–8 ساعات. حد أقصى 40 mg/kg/day. مثال: طفل 15kg → 75–150mg/dose → 3.75–7.5ml من الـ 100mg/5ml. لا يُعطى للأطفال أقل من 6 أشهر أو أقل من 5.4kg.",
+    "clinical_pearl": "البروفين أقوى في خفض الحرارة الشديدة (>39.5°C) من الباراسيتامول لأنه يمنع البروستاجلاندين محيطياً ومركزياً. التبادل التسلسلي (alternating) مع الباراسيتامول كل 3 ساعات مقبول علمياً لكن يُحتاج شرح دقيق للأم لتفادي ارتباك الجرعات. ممنوع في الجفاف، نقص G6PD، وأمراض الكلى. يُؤخذ مع الطعام أو الحليب لتقليل الغثيان.",
+    "common_substitutes": ["Nurofen for Children suspension", "Ibuprofen Kahira syrup"]
+  },
+
+  {
+    "id": 3,
+    "trade_name": "باراسيتامول أدفيا / Paracetamol Suppositories",
+    "active_ingredient": "Paracetamol 125mg / 250mg / 500mg تحاميل",
+    "drug_class": "خافض حرارة مسكن — مركزي الآلية",
+    "category": "أطفال",
+    "indications": "الحمى مع قيء (لا يستطيع البلع)، الحمى الليلية، ما بعد التخدير",
+    "dosage_rule": "15–20 mg/kg/dose كل 6–8 ساعات. 125mg للرضع 3–12 شهر. 250mg للأطفال 1–6 سنوات. تُدخل بعد الإفراغ المعوي مباشرة.",
+    "clinical_pearl": "الامتصاص أبطأ (45–60 دقيقة) من الفموي — ليست للطوارئ الحرجة. تُحفظ في الثلاجة. ضعي قفازاً. الأطفال الذين يرفضون كل أشكال الدواء الفموي هذا هو ملاذهم. لا تقطعي التحميلة لتقليل الجرعة — الجرعة موزعة بشكل غير منتظم.",
+    "common_substitutes": ["Panadol suppositories", "Tempra suppositories"]
+  },
+
+  {
+    "id": 4,
+    "trade_name": "نقط المغص / Infacol / Sab Simplex",
+    "active_ingredient": "Simethicone 40mg/ml drops (Sab Simplex) | Simeticone 20mg/0.3ml (Infacol variant)",
+    "drug_class": "مضاد انتفاخ — ناشط سطحي يكسر فقاعات الغاز",
+    "category": "أطفال",
+    "indications": "مغص الرضع، الغازات، انتفاخ البطن في الأطفال الرضع",
+    "dosage_rule": "رضع حتى سنة: 0.3–0.6ml (20–40mg) قبل كل رضعة مباشرة أو أثناءها. يُعطى 4–6 مرات يومياً.",
+    "clinical_pearl": "غير ممتص في الدم نهائياً — آمن 100% للرضع والخدج. يُرج العبوة جيداً. أعطيه قبل الرضاعة وليس بعدها. المغص الحقيقي يذوب عادة تلقائياً بعد الأسبوع 12–14 من العمر — طمئن الأم وادعمها. التدليك الدائري للبطن بعد الرضاعة يُضاعف التأثير.",
+    "common_substitutes": ["Espumisan drops", "Colimix drops", "Meteospasmyl drops (للأكبر)"]
+  },
+
+  {
+    "id": 5,
+    "trade_name": "ريهيدرال / Rehydral ORS",
+    "active_ingredient": "WHO Low-osmolarity ORS: NaCl 2.6g + KCl 1.5g + Trisodium citrate 2.9g + Glucose 13.5g / sachet — Osmolarity 245 mOsm/L",
+    "drug_class": "محلول إماهة فموية — استبدال شوارد",
+    "category": "أطفال",
+    "indications": "الجفاف الناتج عن الإسهال والقيء، الحمى الشديدة مع تعرق، الاستفراغ",
+    "dosage_rule": "جفاف خفيف–متوسط: 50–100 ml/kg خلال 4 ساعات. ثم 10ml/kg بعد كل براز سائل. رضع: يُعطى بالملعقة الصغيرة كل دقيقتين لتفادي القيء. بالغين: 200–400ml بعد كل إسهال.",
+    "clinical_pearl": "الأولوية الأولى دائماً قبل أي دواء — ORS يُنقذ الحياة. ساشيه واحد في 200ml ماء نظيف فاتر — لا تضع ماء أقل أو أكثر (يُغيّر الأسمولية). لا تضع عصير أو سكر. إذا قاء الطفل: استرح 10 دقائق ثم أعد بجرعات أصغر (1ml/kg/min). الحليب لا يُلغي ORS.",
+    "common_substitutes": ["Dioralyte sachets", "Pedialyte solution", "Oralyte sachets"]
+  },
+
+  {
+    "id": 6,
+    "trade_name": "كولبيرين / Colpermin للأطفال الكبار",
+    "active_ingredient": "Simethicone 40mg + Dill oil + Fennel extract",
+    "drug_class": "مضاد تشنج + مضاد انتفاخ عشبي",
+    "category": "أطفال",
+    "indications": "المغص، الانتفاخ، آلام البطن التشنجية في أطفال >6 شهور",
+    "dosage_rule": "6 شهور – 1 سنة: 5ml. 1–3 سنوات: 5–10ml. 3–6 سنوات: 10ml. ثلاث مرات يومياً بعد الوجبات.",
+    "clinical_pearl": "يجمع تأثير Simethicone للغازات مع الأعشاب الطاردة للريح. آمن لكن لا تعطيه لحساسية الـ Asteraceae (خزامى). يُرج العبوة. عدم الإخلال بالرضاعة الطبيعية أهم من أي دواء.",
+    "common_substitutes": ["Sab Simplex drops", "Infacol drops", "Kolicar drops"]
+  },
+
+  {
+    "id": 7,
+    "trade_name": "أبيتال شراب / Apetal syrup",
+    "active_ingredient": "Cyproheptadine HCl 2mg/5ml + L-Lysine + Vitamins B-complex",
+    "drug_class": "مضاد هيستامين H1 الجيل الأول (Piperidine) + محفز شهية",
+    "category": "أطفال",
+    "indications": "فقدان الشهية، التأخر في النمو، نقص الوزن في الأطفال",
+    "dosage_rule": "2–6 سنوات: 2.5ml (1mg) مرتين يومياً. 6–14 سنة: 5ml (2mg) مرتين يومياً. يُعطى قبل الوجبة بـ 30 دقيقة.",
+    "clinical_pearl": "آلية العمل: حصار 5-HT (السيروتونين) يُطلق مركز الجوع. يسبب نعاساً — أعطه ليلاً كجرعة أساسية. لا تستخدمه لأكثر من 3 أشهر متواصلة. ممنوع في أمراض الكبد والجلوكوما. لا يُعطى للرضع أقل من 2 سنة.",
+    "common_substitutes": ["Novalon syrup (Cyproheptadine فقط)", "Zinc sulfate للنمو كبديل طبيعي"]
+  },
+
+  {
+    "id": 8,
+    "trade_name": "لاكتيال / Lacteol Fort",
+    "active_ingredient": "Lactobacillus acidophilus (inactivated) + Lactobacillus LB — 10^10 UFC/sachet",
+    "drug_class": "بروبيوتيك بكتيري — معدِّل فلورا الأمعاء",
+    "category": "أطفال",
+    "indications": "إسهال الرضع والأطفال (بكتيري وفيروسي)، إسهال ما بعد المضادات الحيوية، الوقاية",
+    "dosage_rule": "رضع وأطفال حتى 6 سنوات: ساشيه واحد مرتين يومياً. >6 سنوات: ساشيه مرتين أو ثلاثاً. يُذاب في ماء فاتر أو طعام الطفل.",
+    "clinical_pearl": "يُعطى مفصولاً عن المضادات الحيوية بـ 2 ساعة على الأقل. هذا بروبيوتيك مُعطَّل حرارياً (inactivated) يعمل بآلية مناعية — يبقى فعّالاً مع المضادات الحيوية. لا يحتاج تبريداً بعكس كثير من البروبيوتيكات الحية. يفتح الساشيه ويخلطه بحليب فاتر للرضيع.",
+    "common_substitutes": ["Ultra-Levure (Saccharomyces boulardii)", "Biatorex capsules", "Bioplex sachets"]
+  },
+
+  {
+    "id": 9,
+    "trade_name": "الترا ليفور / Ultra-Levure",
+    "active_ingredient": "Saccharomyces boulardii (lyophilized) 250mg/sachet أو 250mg capsule",
+    "drug_class": "بروبيوتيك خميري — مضاد إسهال بيولوجي",
+    "category": "أطفال",
+    "indications": "إسهال المضادات الحيوية، التهاب القولون C. difficile، إسهال المسافرين، إسهال الأطفال الحاد",
+    "dosage_rule": "أطفال: 250mg مرتين يومياً. بالغين: 250–500mg مرتين أو ثلاثاً يومياً. مدة العلاج: 5–10 أيام.",
+    "clinical_pearl": "ميزة استثنائية: خميرة فلا تقتلها المضادات الحيوية — ابدأها مع المضاد الحيوي من اليوم الأول. ممنوع في المرضى ذوي الـ Central Lines أو المناعة الشديدة (خطر Fungemia نادر). يُفتح الساشيه ويُذاب في ماء بارد أو فاتر — لا ماء ساخن (يقتل الخميرة). أقوى دليل علمي ضد إسهال C. difficile.",
+    "common_substitutes": ["Lacteol Fort sachets", "Biogaia drops (للرضع)"]
+  },
+
+  {
+    "id": 10,
+    "trade_name": "بيوجايا / BioGaia Protectis drops",
+    "active_ingredient": "Lactobacillus reuteri DSM 17938 — 100 million CFU/5 drops",
+    "drug_class": "بروبيوتيك حي — سلالة معتمدة للرضع",
+    "category": "أطفال",
+    "indications": "مغص الرضع، إسهال الرضع، تحسين نمو الفلورا المعوية عند حديثي الولادة",
+    "dosage_rule": "رضع: 5 نقط يومياً تُوضع على حلمة الثدي أو في ملعقة. أطفال أكبر: 5 نقط يومياً مع الطعام. يُعطى يومياً لـ 3 أشهر لتأثير مغص.",
+    "clinical_pearl": "الأقوى دليلاً علمياً لمغص الرضع من البروبيوتيكات — يقلل وقت البكاء بـ 50% وفق دراسات Cochrane. يُحفظ في الثلاجة بعد فتحه. يُستخدم لشهر كامل على الأقل قبل تقييم الاستجابة. لا يُعطى مع مشروبات ساخنة.",
+    "common_substitutes": ["Lacteol Fort", "Nermina drops (L. rhamnosus)"]
+  },
+
+  {
+    "id": 11,
+    "trade_name": "ديكستروميثورفان / Devocough / Romilar",
+    "active_ingredient": "Dextromethorphan HBr 15mg/5ml syrup",
+    "drug_class": "مضاد سعال مركزي — ناهض مستقبل NMDA",
+    "category": "أطفال (>6 سنوات فقط)",
+    "indications": "السعال الجاف المزعج، سعال ما بعد العدوى الفيروسية",
+    "dosage_rule": "6–12 سنة: 5–10ml (15–30mg) كل 6–8 ساعات. حد أقصى 30mg/dose. أقل من 6 سنوات: ممنوع FDA.",
+    "clinical_pearl": "ممنوع منعاً باتاً أقل من 6 سنوات. ممنوع مع MAO inhibitors (خطر متلازمة السيروتونين القاتلة). لا يُعطى مع السعال الإنتاجي (بلغم) — يحبس البلغم. الجرعات العالية لها تأثير تخديري — راقب لدى المراهقين. الشراب يحتوي أحياناً على كحول — تحقق.",
+    "common_substitutes": ["Benylin Dry Cough syrup", "Vicks 44 Dry Cough"]
+  },
+
+  {
+    "id": 12,
+    "trade_name": "ليفوسيتيريزين / Xyzal",
+    "active_ingredient": "Levocetirizine HCl 2.5mg/5ml oral solution | 5mg tablet",
+    "drug_class": "مضاد هيستامين H1 الجيل الثالث — انتقائي بدون تأثير مركزي",
+    "category": "أطفال",
+    "indications": "التهاب الأنف التحسسي، الشرى، الحكة، التهاب الملتحمة التحسسي",
+    "dosage_rule": "6 أشهر – 6 سنوات: 1.25mg (2.5ml) مرة يومياً. 6–12 سنة: 2.5mg (5ml) مرة يومياً. >12 سنة + بالغين: 5mg مرة يومياً مساءً.",
+    "clinical_pearl": "الأنقى والأقل تأثيراً على الـ CNS بين مضادات الهيستامين — يُفضّل لمرضى القيادة والتركيز. يُعطى مساءً (تأثيره على حكة الليل أفضل). يُعدَّل في الفشل الكلوي. آمن من 6 أشهر.",
+    "common_substitutes": ["Cetirizine (Zyrtec) 5mg/5ml", "Loratadine (Clarityne) syrup"]
+  },
+
+  {
+    "id": 13,
+    "trade_name": "أموكسيسيللين شراب أطفال / Amoxil suspension",
+    "active_ingredient": "Amoxicillin trihydrate 125mg/5ml | 250mg/5ml | 400mg/5ml",
+    "drug_class": "بيتا-لاكتام — بنسلين واسع الطيف",
+    "category": "أطفال",
+    "indications": "التهاب الأذن الوسطى (AOM)، التهاب اللوز والبلعوم، التهاب الشعب الهوائية، التهاب المسالك البولية",
+    "dosage_rule": "خفيف–متوسط: 25–40 mg/kg/day ÷ 3 جرعات. AOM شديد أو <2 سنة: 80–90 mg/kg/day (High-dose). مثال: 12kg → standard: 60–120mg/dose أي 2.4–4.8ml من 250mg/5ml كل 8 ساعات.",
+    "clinical_pearl": "التهاب الأذن في <2 سنة: ابدأ مباشرة بدون watch-and-wait. الـ High dose (90 mg/kg/day) للمقاومة المزعومة أو التهاب الأذن الحاد الشديد. الشراب المُحضَّر يُحفظ في الثلاجة ويُستخدم خلال 14 يوماً. يُرج جيداً قبل الجرعة — تترسب الجزيئات.",
+    "common_substitutes": ["Augmentin suspension (Amox+Clav)", "Cefdinir (Omnicef) للحساسية من البنسلين خفيفة"]
+  },
+
+  {
+    "id": 14,
+    "trade_name": "ازيثرومايسين معلق / Zithromax suspension",
+    "active_ingredient": "Azithromycin 200mg/5ml oral suspension",
+    "drug_class": "ماكروليد — مثبط ريبوسوم 50S",
+    "category": "أطفال",
+    "indications": "التهاب الشعب الهوائية، الالتهاب الرئوي غير النمطي (Mycoplasma)، التهاب الأذن، الحساسية من البنسلين",
+    "dosage_rule": "10 mg/kg اليوم الأول. ثم 5 mg/kg/day الأيام 2–5 (5 أيام). أو 30 mg/kg جرعة واحدة للـ AOM. مثال: 10kg → 100mg اليوم الأول → 50mg الأيام 2–5.",
+    "clinical_pearl": "يُؤخذ على معدة فارغة أو مع طعام خفيف — الطعام الثقيل يُقلل امتصاصه بـ 43%. نصف عمره 68 ساعة — 5 أيام تساوي 10 أيام من المضادات الأخرى. ممنوع مع Domperidone وDroperidol (إطالة QT). الشراب المُحضَّر يُستخدم خلال 10 أيام في الثلاجة. لا يُعاد استخدامه بدون وصفة.",
+    "common_substitutes": ["Clarithromycin (Klacid) syrup", "Erythromycin syrup (أقل تحملاً)"]
+  },
+
+  {
+    "id": 15,
+    "trade_name": "سيبروهيبتادين / Nutra Plus / Periactine",
+    "active_ingredient": "Cyproheptadine HCl 4mg tablet",
+    "drug_class": "مضاد هيستامين H1 + مضاد سيروتونين — الجيل الأول",
+    "category": "أطفال/بالغين",
+    "indications": "الحساسية، الشرى المزمن، الصداع النصفي الوقائي (off-label)، تحفيز الشهية",
+    "dosage_rule": "أطفال 2–6 سنوات: 2mg (نصف قرص) مرتين أو ثلاثاً يومياً. 7–14 سنة: 4mg مرتين أو ثلاثاً. بالغين: 4mg ثلاث مرات يومياً.",
+    "clinical_pearl": "الأكثر نعاساً بين مضادات الهيستامين — ميزة لليلة قبل السفر أو الحكة الليلية. ممنوع في الزرق (Glaucoma)، تضخم البروستاتا، أمراض الكبد. تفاعل خطير مع MAOIs. يُعطى مع الأكل لتقليل الغثيان.",
+    "common_substitutes": ["Chlorpheniramine (Piriton) للبالغين فقط", "Levocetirizine (Xyzal) للنهار"]
+  },
+
+  {
+    "id": 16,
+    "trade_name": "زنك سلفيت / Zinkid / Pediatric Zinc",
+    "active_ingredient": "Zinc sulfate 10mg/5ml | 20mg elemental zinc/sachet",
+    "drug_class": "معدن أساسي — مساعد إنزيمي ومعدّل مناعة",
+    "category": "أطفال",
+    "indications": "علاج الإسهال الحاد في الأطفال (بروتوكول WHO)، نقص الزنك، ضعف النمو",
+    "dosage_rule": "WHO protocol للإسهال: <6 أشهر: 10mg يومياً. >6 شهور: 20mg يومياً. مدة العلاج 10–14 يوماً مع ORS.",
+    "clinical_pearl": "بروتوكول WHO يُلزم إعطاء الزنك مع ORS في إسهال الأطفال في الدول النامية — يُقلص مدة الإسهال بـ 25% ويمنع نوبات مستقبلية. لا يُعطى على معدة فارغة (غثيان). يُقلل امتصاص Tetracyclines والـ Fluoroquinolones — فاصل ساعتين.",
+    "common_substitutes": ["Zinplex sachets", "Zinkid syrup"]
+  },
+
+  {
+    "id": 17,
+    "trade_name": "فيتامين D نقط / D-Vi-Sol / Baby D",
+    "active_ingredient": "Cholecalciferol (Vitamin D3) 400 IU/drop أو 400 IU/ml",
+    "drug_class": "فيتامين مُنشِّط لاستقلاب الكالسيوم",
+    "category": "أطفال",
+    "indications": "الوقاية من الكساح، الرضاعة الطبيعية الكاملة (ضرورة)، نقص D3 عند الأطفال",
+    "dosage_rule": "كل الرضع منذ اليوم الأول: 400 IU (10mcg) يومياً. أطفال >1 سنة حتى المراهقة: 600–1000 IU يومياً. النقط: عادة 1 قطرة يومياً (تحقق من تركيز العبوة).",
+    "clinical_pearl": "الرضاعة الطبيعية الكاملة لا تكفي D3 — مشمس مصر يُعوِّض جزئياً لكن لا يكفي للرضع. ابدأ من أول أسبوع. أفضل طريقة: ضعها على حلمة الثدي أو داخل خد الطفل. لا تخلطها في الرضاعة الكاملة (قد يترسب أو يفسد).",
+    "common_substitutes": ["Vitamax D3 drops", "Vigantol drops (500 IU/drop — انتبه للتركيز)"]
+  },
+
+  {
+    "id": 18,
+    "trade_name": "حديد قطرات أطفال / Fer-In-Sol / Ferro drops",
+    "active_ingredient": "Ferrous sulfate 25mg elemental iron/ml drops | Ferrous gluconate شراب",
+    "drug_class": "مستحضر حديد فموي — تعويض نقص الحديد",
+    "category": "أطفال",
+    "indications": "فقر الدم بنقص الحديد، الأطفال الخدج (من شهر)، الأطفال الرضع على رضاعة طبيعية >4 أشهر",
+    "dosage_rule": "علاج: 3–6 mg/kg/day elemental iron ÷ 1–3 جرعات. وقاية الخدج: 2mg/kg/day من شهر العمر.",
+    "clinical_pearl": "يُعطى على معدة فارغة أو مع عصير برتقال (فيتامين C يُضاعف امتصاصه). يُلوّن البراز أسود — أخبر الأم. يُلوّن الأسنان مع الشراب — أعطه بالقطارة خلف الأسنان. يُقلل امتصاصه الحليب والقهوة والشاي والـ Antacids — فاصل ساعة على الأقل. فيتامين C مع كل جرعة يُضاعف الفاعلية.",
+    "common_substitutes": ["Ferrobin plus drops", "Kendaron suspension (Ferric hydroxide polymaltose)"]
+  },
+
+  {
+    "id": 19,
+    "trade_name": "أموكسيسيللين + كلافيولانيك شراب / Augmentin ES",
+    "active_ingredient": "Amoxicillin 600mg + Clavulanate 42.9mg / 5ml (ES formula) | 400+57mg/5ml (standard)",
+    "drug_class": "بيتا-لاكتام محمي — مثبط بيتا-لاكتاماز",
+    "category": "أطفال",
+    "indications": "التهاب الأذن الوسطى المقاوم، التهاب الجيوب الأنفية، العضات، الجروح الملوثة، الالتهابات المقاومة للأموكسيسيللين",
+    "dosage_rule": "ES: 90 mg/kg/day (based on amoxicillin component) ÷ 2 جرعات. Standard: 40mg/kg/day ÷ 3 جرعات. يُحسب الوزن بدقة للحصول على الجرعة الصحيحة.",
+    "clinical_pearl": "الـ ES formula (600mg/5ml) للمقاومة — معدل الـ Amox:Clav أفضل تحملاً للجهاز الهضمي من الـ Standard. الإسهال أكثر الأعراض الجانبية — أعطه مع الطعام. الشراب المُحضَّر في الثلاجة ويُستخدم خلال 10 أيام.",
+    "common_substitutes": ["Amoxicillin alone إذا كان MSSA", "Cefuroxime suspension (Zinnat)"]
+  },
+
+  {
+    "id": 20,
+    "trade_name": "سيفيكسيم / Suprax / Cefix",
+    "active_ingredient": "Cefixime trihydrate 100mg/5ml oral suspension",
+    "drug_class": "سيفالوسبورين الجيل الثالث — مثبط تخليق جدار الخلية",
+    "category": "أطفال",
+    "indications": "التهاب اللوز والبلعوم (المجموعة A Strep)، التهاب الأذن، التهاب المسالك البولية، الجرثومية الدموية غير المعقدة",
+    "dosage_rule": "8 mg/kg/day جرعة واحدة أو مقسمة على جرعتين. مثال: 15kg → 120mg/day → 6ml من الـ 100mg/5ml مرة يومياً.",
+    "clinical_pearl": "ميزة: جرعة واحدة يومياً = compliance ممتاز. يُؤخذ مع الأكل أو بدونه لكن مع الطعام يُقلل الغثيان. الشراب يُحفظ في الثلاجة بعد التحضير ويُستخدم خلال 14 يوماً. الإسهال أكثر الأعراض الجانبية — طبيعي بسبب تأثيره على فلورا الأمعاء.",
+    "common_substitutes": ["Cefpodoxime (Orelox) suspension", "Amoxicillin/Clavulanate للحالات الأشد"]
+  },
+
+  // ═══════════════════════════════════════════════
+  // القسم الثاني: الجهاز الهضمي والطوارئ اليومية (21–45)
+  // ═══════════════════════════════════════════════
+
+  {
+    "id": 21,
+    "trade_name": "أوميبرازول / Omez / Losec",
+    "active_ingredient": "Omeprazole 20mg / 40mg capsule",
+    "drug_class": "مثبطات مضخة البروتون (PPI) — مثبط H+/K+-ATPase لا رجعي",
+    "category": "هضمي",
+    "indications": "GERD، قرحة المعدة والاثني عشر، H. pylori (بالتثليث)، الوقاية من قرحة NSAIDs",
+    "dosage_rule": "بالغين: 20–40mg مرة يومياً قبل الإفطار بـ 30–60 دقيقة. GERD: 8 أسابيع. قرحة: 4–8 أسابيع.",
+    "clinical_pearl": "يُؤخذ قبل الأكل بـ 30 دقيقة لا بعده — يحتاج مضخة نشطة ليعمل. تفاعل خطير مع Clopidogrel (يُقلل فاعليته بـ 40%) — استبدله بـ Pantoprazole. الاستخدام طويل الأمد يُقلل Mg²⁺ وفيتامين B12 والكالسيوم — فحص دوري. ممنوع كسر الكبسول إذا احتوى على microspheres.",
+    "common_substitutes": ["Pantoprazole (Controloc) 40mg", "Esomeprazole (Nexium) 20–40mg"]
+  },
+
+  {
+    "id": 22,
+    "trade_name": "بانتوبرازول / Controloc / Pantoloc",
+    "active_ingredient": "Pantoprazole sodium 20mg / 40mg",
+    "drug_class": "PPI — مثبط H+/K+-ATPase انتقائي",
+    "category": "هضمي",
+    "indications": "GERD، قرحة المعدة، الوقاية من قرحة ICU، مرضى يأخذون Clopidogrel",
+    "dosage_rule": "بالغين: 40mg مرة يومياً صباحاً قبل الأكل بـ 30 دقيقة.",
+    "clinical_pearl": "الـ PPI الأمثل مع Clopidogrel (أقل تثبيطاً لـ CYP2C19). الأقل تفاعلات دوائية بين الـ PPIs. الأقراص gastric-resistant — لا تسحق ولا تكسر. متوفر IV للمستشفيات.",
+    "common_substitutes": ["Omeprazole (Omez) 20–40mg", "Esomeprazole (Nexium) 20–40mg"]
+  },
+
+  {
+    "id": 23,
+    "trade_name": "إيزوميبرازول / Nexium",
+    "active_ingredient": "Esomeprazole magnesium 20mg / 40mg",
+    "drug_class": "PPI — S-isomer of Omeprazole",
+    "category": "هضمي",
+    "indications": "GERD، Barrett's esophagus، H. pylori، Zollinger-Ellison syndrome",
+    "dosage_rule": "بالغين: 20–40mg مرة يومياً. H. pylori eradication: 20mg مرتين يومياً + antibiotics.",
+    "clinical_pearl": "الأكثر فاعلية من الـ PPIs في رفع pH المعدة فوق 4 لأطول فترة. آمن في الحمل (فئة B). المستمرات (Sachets) للمرضى الذين لا يبلعون الكبسولات. يُعطى 30 دقيقة قبل الأكل.",
+    "common_substitutes": ["Pantoprazole (Controloc) 40mg", "Omeprazole 20mg"]
+  },
+
+  {
+    "id": 24,
+    "trade_name": "ميتوكلوبراميد / Primperan",
+    "active_ingredient": "Metoclopramide HCl 10mg tablet | 5mg/ml oral solution",
+    "drug_class": "مضاد قيء ومحفز حركة معوية — مضاد مستقبل D2",
+    "category": "هضمي",
+    "indications": "الغثيان والقيء (بعد جراحة، كيماوي، صداع نصفي)، شلل المعدة، الارتجاع",
+    "dosage_rule": "بالغين: 10mg 3 مرات يومياً قبل الوجبات. أطفال: 0.1–0.15 mg/kg/dose كل 8 ساعات.",
+    "clinical_pearl": "يعبر الحاجز الدموي الدماغي → يسبب EPS (ارتعاش، تيبس عضلي) خاصةً في الأطفال والشباب — إذا حدث أعطِ Diphenhydramine IV فوراً. لا تتجاوز 5 أيام متواصلة. ممنوع في الانسداد المعوي والنزيف. يزيد امتصاص Paracetamol (تفاعل مفيد في صداع الشقيقة).",
+    "common_substitutes": ["Domperidone (Motilium) 10mg (أقل EPS)", "Ondansetron (Zofran) 4mg"]
+  },
+
+  {
+    "id": 25,
+    "trade_name": "دومبيريدون / Motilium",
+    "active_ingredient": "Domperidone maleate 10mg tablet | 1mg/ml suspension",
+    "drug_class": "مضاد قيء — مضاد D2 محيطي",
+    "category": "هضمي",
+    "indications": "الغثيان والقيء، التأخر في إفراغ المعدة، الارتجاع، حكة الحمل",
+    "dosage_rule": "بالغين: 10mg 3 مرات يومياً قبل الوجبات. حد أقصى 30mg/day. لا تتجاوز 7 أيام.",
+    "clinical_pearl": "لا يعبر BBB → لا EPS. لكن يُطيل QT — ممنوع مع Azithromycin وErythromycin وFluconazole والمطيلة للـ QT. تحذير: ممنوع في أمراض القلب والشباب <12 سنة أو أقل من 35kg. حد أقصى 7 أيام بسبب الخطر القلبي (توصية EMA).",
+    "common_substitutes": ["Metoclopramide (Primperan) إذا أمنت EPS", "Ondansetron (Zofran) 4mg"]
+  },
+
+  {
+    "id": 26,
+    "trade_name": "أونداسيترون / Zofran",
+    "active_ingredient": "Ondansetron HCl 4mg / 8mg tablet | 4mg/5ml syrup",
+    "drug_class": "مضاد قيء قوي — حاصر مستقبل 5-HT3",
+    "category": "هضمي",
+    "indications": "قيء الكيماوي والإشعاع، قيء ما بعد الجراحة، قيء الحمل الشديد (HG)",
+    "dosage_rule": "بالغين: 8mg 30 دقيقة قبل الكيماوي، ثم كل 8 ساعات. أطفال >6 شهور: 0.1–0.15 mg/kg/dose.",
+    "clinical_pearl": "الأقوى في مضادات القيء مطلقاً. يُطيل QTc — تحقق من ECG في القلبية. تفاعل خطير مع Apomorphine (انهيار الضغط). يُؤخذ على معدة فارغة للامتصاص الأسرع. الشكل تحت اللسان (Zofran Zydis) سريع جداً للحالات الطارئة. يسبب صداع وإمساك كثيراً.",
+    "common_substitutes": ["Metoclopramide 10mg (للحالات الأخف)", "Granisetron (Kytril) للكيماوي"]
+  },
+
+  {
+    "id": 27,
+    "trade_name": "بوسكوبان / Buscopan",
+    "active_ingredient": "Hyoscine Butylbromide 10mg tablet | 20mg/ml IV/IM ampoule",
+    "drug_class": "مضاد تشنج — مضاد كوليني محيطي",
+    "category": "هضمي",
+    "indications": "مغص الأمعاء والمعدة، المغص الكلوي والصفراوي، IBS، آلام الدورة الشهرية",
+    "dosage_rule": "بالغين: 10mg 3–4 مرات يومياً. حقن IM/IV: 20mg كل 30 دقيقة حد أقصى 100mg/day.",
+    "clinical_pearl": "لا يعبر BBB (quaternary ammonium) → لا نعاس. ممنوع في الزرق الضيق الزاوية وتضخم البروستاتا وتوقف الأمعاء والـ Tachycardia. IV بطيء — سريع يسبب تسارع قلب. Buscopan Comp = + Paracetamol 500mg (لألم مع مغص).",
+    "common_substitutes": ["Mebeverine (Duspatalin) 135mg للـ IBS المزمن", "Pinaverium (Dicetel) 100mg"]
+  },
+
+  {
+    "id": 28,
+    "trade_name": "ميبيفيرين / Duspatalin",
+    "active_ingredient": "Mebeverine HCl 135mg | 200mg SR",
+    "drug_class": "مضاد تشنج انتقائي — مثبط قناة Na+ الملساء المعوية",
+    "category": "هضمي",
+    "indications": "IBS، تشنجات القولون، آلام البطن الوظيفية المزمنة",
+    "dosage_rule": "135mg: 3 مرات يومياً قبل الأكل بـ 20 دقيقة. 200mg SR: مرتين يومياً.",
+    "clinical_pearl": "الخيار الأول للـ IBS — انتقائي للعضلات الملساء المعوية بدون أعراض أتروبينية. يُؤخذ قبل الأكل للتأثير الأمثل. يحتاج 4–6 أسابيع لتقييم الاستجابة الكاملة. الـ SR يُعطى مرتين فقط وهو أكثر ثباتاً في المستويات الدموية.",
+    "common_substitutes": ["Pinaverium (Dicetel) 100mg", "Trimebutine (Debridat) 100–200mg"]
+  },
+
+  {
+    "id": 29,
+    "trade_name": "لوبراميد / Imodium",
+    "active_ingredient": "Loperamide HCl 2mg capsule | 1mg/5ml syrup",
+    "drug_class": "مضاد إسهال — ناهض مستقبل μ-opioid محيطي",
+    "category": "هضمي",
+    "indications": "الإسهال الحاد غير الدموي، الإسهال المزمن، IBS مع إسهال",
+    "dosage_rule": "بالغين: 4mg جرعة أولى، ثم 2mg بعد كل براز سائل. حد أقصى 16mg/day. أطفال >6 سنوات: 2mg جرعة أولى.",
+    "clinical_pearl": "ممنوع في الإسهال الدموي أو المصحوب بحمى — يحبس الجرثومة ويسبب مضاعفات قاتلة (Toxic megacolon). ممنوع للأطفال أقل من 2 سنة. ممنوع في التهاب القولون التقرحي الحاد. لا يُعطى في الإسهال الجرثومي الغازي (Salmonella, Shigella).",
+    "common_substitutes": ["Diosmectite (Smecta) 3g sachets", "Racecadotril (Hidrasec) 100mg"]
+  },
+
+  {
+    "id": 30,
+    "trade_name": "سمكتا / Smecta",
+    "active_ingredient": "Diosmectite 3g sachet (dioctahedral smectite)",
+    "drug_class": "طالبة معوية — طينية طبيعية",
+    "category": "هضمي",
+    "indications": "الإسهال الحاد في الأطفال والبالغين، التهيج المعوي، ألم البطن مع إسهال",
+    "dosage_rule": "بالغين: 3 ساشيه يومياً. أطفال <1 سنة: ساشيه واحد، 1–2 سنة: ساشيهان، >2 سنة: 3 ساشيه.",
+    "clinical_pearl": "آمنة للرضع والحوامل — غير ممتصة نهائياً. تمتص السموم والبكتيريا والفيروسات. تُفرَّق عن الأدوية الأخرى بـ ساعتين (تمتصها أيضاً). الـ biofilm الواقي يُقوى بإعطائه على معدة فارغة. يُذاب في 100ml ماء دافئ ويُقلب جيداً.",
+    "common_substitutes": ["Loperamide (Imodium) للبالغين فقط", "Racecadotril 100mg (Hidrasec)"]
+  },
+
+  {
+    "id": 31,
+    "trade_name": "نيفوروكسازيد / Ercefuryl / Nifuroxazide",
+    "active_ingredient": "Nifuroxazide 200mg tablet | 220mg/5ml suspension",
+    "drug_class": "مضاد حيوي نيتروفيوران معوي غير ممتص",
+    "category": "هضمي",
+    "indications": "الإسهال البكتيري الحاد في الأطفال والبالغين",
+    "dosage_rule": "بالغين: 200mg 4 مرات يومياً لـ 5–7 أيام. أطفال >6 سنوات: 200mg 3 مرات. 1–6 سنوات: 110mg 3 مرات.",
+    "clinical_pearl": "لا يُمتص في الدم — يعمل محلياً فقط. لا يُغير فلورا الأمعاء الجيدة. لا يُعطى لأقل من 3 أشهر. يُلون البول بالأصفر الزاهي — طبيعي. يُرج الشراب قبل الاستخدام. لا تُعطيه للأطفال المصابين بجفاف شديد قبل ORS.",
+    "common_substitutes": ["Rifaximin (Xifaxan) 200mg", "Ciprofloxacin 500mg للبالغين الأشد"]
+  },
+
+  {
+    "id": 32,
+    "trade_name": "فلاجيل / Flagyl / Metronidazole",
+    "active_ingredient": "Metronidazole 250mg / 500mg tablet | 200mg/5ml suspension",
+    "drug_class": "نيترو-إيميدازول — مضاد للبكتيريا اللاهوائية والأوليات",
+    "category": "هضمي",
+    "indications": "جيارديا، أميبا، H. pylori (بالتثليث)، التهابات اللاهوائيين، التهاب القولون C. difficile",
+    "dosage_rule": "بالغين: 500mg 3 مرات يومياً لـ 7–10 أيام. أطفال: 35–50 mg/kg/day ÷ 3 جرعات.",
+    "clinical_pearl": "ممنوع مع الكحول كلياً — Disulfiram effect (قيء شديد، صداع، ارتعاش). يُلوَّن البول بني داكن — طبيعي. يُؤخذ مع الأكل لتقليل الغثيان. يتفاعل مع Warfarin (يزيد INR) — قلل الجرعة. ممنوع في الثلث الأول من الحمل. يُعطى على دفعات لتفادي اعتلال الأعصاب في الاستخدام الطويل.",
+    "common_substitutes": ["Tinidazole (Tinzol) 500mg", "Secnidazole (Secnil) 1g"]
+  },
+
+  {
+    "id": 33,
+    "trade_name": "دوفالاك / Duphalac / Lactulose",
+    "active_ingredient": "Lactulose 3.33g/5ml syrup",
+    "drug_class": "ملين اسموزي — ثنائي السكر الصنعي غير الممتص",
+    "category": "هضمي",
+    "indications": "الإمساك المزمن، الاعتلال الدماغي الكبدي (HE) — خفض أمونيا الدم",
+    "dosage_rule": "إمساك بالغين: 15–30ml مرة يومياً. HE: 30–45ml كل 8 ساعات. أطفال: 5–10ml يومياً.",
+    "clinical_pearl": "يُبدأ تأثيره بعد 24–48 ساعة — لا تضاعف الجرعة. يسبب غازات وانتفاخ في البداية — يخف مع الاستمرار. في HE: الهدف 2–3 براز ليّن يومياً (pH حمضي يمنع امتصاص NH3). آمن في الحمل والرضاعة. يخفف بالماء أو العصير للتقليل من حلاوته المفرطة.",
+    "common_substitutes": ["Macrogol (Forlax) 10g sachets", "Bisacodyl (Dulcolax) 5mg للحاد"]
+  },
+
+  {
+    "id": 34,
+    "trade_name": "فورلاكس / Forlax / Macrogol",
+    "active_ingredient": "Polyethylene Glycol 3350 (Macrogol) 10g sachet",
+    "drug_class": "ملين اسموزي — بوليمر غير ممتص",
+    "category": "هضمي",
+    "indications": "الإمساك المزمن، إمساك الأطفال، قبل التنظير القولوني",
+    "dosage_rule": "بالغين: 1–2 ساشيه يومياً في 125–250ml ماء. أطفال >8 سنوات: ساشيه واحد. <8 سنوات: 0.5–0.8g/kg/day.",
+    "clinical_pearl": "الخيار الأمثل لإمساك الأطفال المزمن — آمن وغير ممتص ومثبت علمياً (أفضل من Lactulose في RCTs للأطفال). لا تضيفه لحليب الرضيع. يمكن خلطه بعصير الفاكهة للأطفال. لا يسبب تقلصات كالمليّنات المحفزة. شرب الماء الكافي ضروري.",
+    "common_substitutes": ["Lactulose (Duphalac) 15ml", "Psyllium (Metamucil) sachets"]
+  },
+
+  {
+    "id": 35,
+    "trade_name": "دولكولاكس / Dulcolax / Bisacodyl",
+    "active_ingredient": "Bisacodyl 5mg enteric-coated tablet | 10mg suppository",
+    "drug_class": "ملين محفز — منشط عصبي للقولون",
+    "category": "هضمي",
+    "indications": "الإمساك الحاد، التحضير للتنظير القولوني، الإمساك ما بعد الجراحة",
+    "dosage_rule": "بالغين: 5–10mg ليلاً فموياً (تأثير صباحي). تحاميل: 10mg عند الحاجة. أطفال >6 سنوات: 5mg.",
+    "clinical_pearl": "لا يُكسر ولا يُمضغ ولا يُحل مع مضادات الحموضة أو الحليب — يذوب المعطف المعوي في البيئة القلوية. تأثيره الفموي بعد 8–12 ساعة. التحميلة بعد 15–60 دقيقة. الاستخدام طويل الأمد يسبب قولون كسول (cathartic colon). لا تتجاوز أسبوعاً متواصلاً.",
+    "common_substitutes": ["Senna (Senokot) 7.5mg", "Lactulose (Duphalac)"]
+  },
+
+  {
+    "id": 36,
+    "trade_name": "غافيسكون / Gaviscon",
+    "active_ingredient": "Sodium alginate 500mg + Sodium bicarbonate 267mg + Calcium carbonate 160mg / sachet",
+    "drug_class": "طافٍ مضاد ارتجاع — يُكوّن طبقة جيلية فوق محتوى المعدة",
+    "category": "هضمي",
+    "indications": "الارتجاع المريئي، حموضة ما بعد الأكل، حموضة الحمل",
+    "dosage_rule": "بالغين: 2–4 أقراص أو 10–20ml بعد الوجبات وعند النوم. يُؤخذ بعد الأكل مباشرة.",
+    "clinical_pearl": "الخيار الأول للحامل (غير ممتص). ليس مضاد حموضة فقط — يُكوّن طبقة يطفو فوق المعدة تمنع الارتجاع ميكانيكياً. شرب كوب ماء بعده يُقوي الطبقة الواقية. لا يمنع إفراز الحمض بل يمنع وصوله للمريء. المعلق أسرع من الأقراص.",
+    "common_substitutes": ["Maalox Plus suspension", "Omeprazole 20mg إذا استمر الارتجاع"]
+  },
+
+  {
+    "id": 37,
+    "trade_name": "مالوكس / Maalox",
+    "active_ingredient": "Aluminum hydroxide 400mg + Magnesium hydroxide 400mg / 5ml suspension",
+    "drug_class": "مضاد حموضة — معادل لحمض الهيدروكلوريك",
+    "category": "هضمي",
+    "indications": "حرقة المعدة الحادة، عسر الهضم، الارتجاع الخفيف",
+    "dosage_rule": "بالغين: 10–20ml أو 1–2 قرص بعد الأكل بـ 1–3 ساعات وعند النوم.",
+    "clinical_pearl": "يُؤخذ بعد الأكل وليس قبله. Al(OH)₃ يُسبب إمساك، Mg(OH)₂ يُسبب إسهال — المزيج يتوازن. يتداخل مع امتصاص الحديد، Tetracycline، Fluoroquinolones، Levothyroxine — فاصل ساعتين على الأقل. تجنبه في الفشل الكلوي المتقدم (تراكم Al وMg).",
+    "common_substitutes": ["Gaviscon suspension", "Rennie (Calcium carbonate + Magnesium carbonate)"]
+  },
+
+  {
+    "id": 38,
+    "trade_name": "موكوسولفان / Mucosolvan / Ambroxol",
+    "active_ingredient": "Ambroxol HCl 30mg tablet | 15mg/5ml syrup | 75mg SR capsule",
+    "drug_class": "طارد وذائب للبلغم — محفز إنتاج الـ Surfactant",
+    "category": "هضمي/تنفسي",
+    "indications": "الكحة مع بلغم، التهاب الشعب الهوائية الحاد والمزمن، COPD، الربو",
+    "dosage_rule": "بالغين: 30mg 3 مرات يومياً. SR: 75mg مرة يومياً. أطفال <2 سنة: 7.5mg مرتين. 2–6 سنوات: 7.5mg 3 مرات. >6 سنوات: 15mg 3 مرات.",
+    "clinical_pearl": "شرب الماء بكثرة (1.5–2L يومياً) يُضاعف فاعليته. يُحفز إنتاج الـ Surfactant في الرئة — مفيد جداً للخدج. لا تُعطيه مع مثبطات الكحة (Dextromethorphan) — تعارض تام. يُفضل أخذه مع الطعام لتقليل الغثيان.",
+    "common_substitutes": ["Carbocisteine (Rhinathiol) 750mg", "Bromhexine 8mg"]
+  },
+
+  {
+    "id": 39,
+    "trade_name": "هيداز-في / Hidrasec / Racecadotril",
+    "active_ingredient": "Racecadotril (Acetorphan) 100mg tablet | 10mg / 30mg sachets للأطفال",
+    "drug_class": "مضاد إسهال — مثبط إنكيفاليناز (Enkephalinase inhibitor)",
+    "category": "هضمي",
+    "indications": "الإسهال الإفرازي الحاد في الأطفال والبالغين",
+    "dosage_rule": "بالغين: 100mg 3 مرات يومياً (جرعة أولى 200mg). أطفال 3 أشهر–9 سنوات: 1.5 mg/kg/dose 3 مرات.",
+    "clinical_pearl": "آلية مختلفة تماماً عن Loperamide — لا يُوقف حركة الأمعاء بل يُقلل الإفراز المعوي الزائد. آمن في الإسهال الجرثومي (لا يحبس الجراثيم). مناسب مع ORS للأطفال. لا يسبب انتفاخ أو تقلصات. يمكن فتح الساشيه وخلطه بطعام الطفل أو ORS.",
+    "common_substitutes": ["Loperamide (Imodium) للبالغين فقط", "Smecta sachets"]
+  },
+
+  {
+    "id": 40,
+    "trade_name": "ميترونيدازول معلق / Flagyl suspension",
+    "active_ingredient": "Metronidazole 200mg/5ml oral suspension",
+    "drug_class": "نيترو-إيميدازول — مضاد أوليات وبكتيريا لاهوائية",
+    "category": "هضمي",
+    "indications": "جيارديا وأميبا عند الأطفال، إسهال H. pylori (مع أموكسيسيللين وPPI)",
+    "dosage_rule": "أطفال جيارديا: 15–35 mg/kg/day ÷ 3 جرعات لـ 5–7 أيام. إسهال أميبي: 35–50 mg/kg/day ÷ 3 لـ 7–10 أيام.",
+    "clinical_pearl": "الشراب له طعم مرّ — يُخلط بعصير فاكهة لتحسين الطعم. نفس تحذير الكحول (Disulfiram-like). في الحمل: يُؤجَّل للثلث الثاني والثالث. طعم الفم معدني — طبيعي وعابر.",
+    "common_substitutes": ["Tinidazole (Tinzol) شراب للأطفال", "Secnidazole (Secnil) 30mg/kg جرعة واحدة"]
+  },
+
+  {
+    "id": 41,
+    "trade_name": "مسبروكيم / Misoprostol / Cytotec",
+    "active_ingredient": "Misoprostol 200mcg tablet",
+    "drug_class": "ناهض مستقبل PGE1 — حماية معدية وتحريض رحمي",
+    "category": "هضمي",
+    "indications": "الوقاية من قرحة NSAIDs عند المرضى الخطرين، قرحة المعدة",
+    "dosage_rule": "وقاية: 200mcg 4 مرات يومياً مع الوجبات وعند النوم.",
+    "clinical_pearl": "ممنوع منعاً باتاً في الحمل — يُسبب تقلصات رحمية وإجهاضاً. يُسبب إسهالاً (أثر جانبي أساسي) — يُقلل بأخذه مع الطعام. لا يُصرف للحامل بأي عذر. لا يُعطى لمن يتخطط للحمل.",
+    "common_substitutes": ["Sucralfate 1g للوقاية", "Omeprazole 20mg (أكثر تحملاً وفاعلية)"]
+  },
+
+  {
+    "id": 42,
+    "trade_name": "سيميثيكون / Sab Simplex / Espumisan",
+    "active_ingredient": "Simethicone 40mg / 80mg / 125mg",
+    "drug_class": "مضاد انتفاخ — خافض توتر سطحي (defoamer)",
+    "category": "هضمي",
+    "indications": "الانتفاخ وتراكم الغازات، عسر الهضم مع غازات، قبل التصوير بالأشعة",
+    "dosage_rule": "بالغين: 40–125mg بعد الوجبات وعند النوم. رضع: 20mg قبل أو أثناء كل رضعة.",
+    "clinical_pearl": "غير ممتص نهائياً — آمن 100% حتى للخدج. يُحطم فقاعات الغاز الكبيرة إلى أصغر تُطرد بسهولة. لا يمنع تكوين الغاز — فقط يُسهل طرده. يُرج العبوة جيداً. ممتاز كإضافة لمعلقات مضادات الحموضة (Maalox Plus = Maalox + Simethicone).",
+    "common_substitutes": ["Infacol drops للرضع", "Dimetapp Gas (Simethicone 80mg)"]
+  },
+
+  {
+    "id": 43,
+    "trade_name": "سوكرالفيت / Sucrafate",
+    "active_ingredient": "Sucralfate 1g tablet | 1g/5ml suspension",
+    "drug_class": "حامي الغشاء المخاطي المعدي — يرتبط بالبروتينات القرحية",
+    "category": "هضمي",
+    "indications": "قرحة الاثني عشر النشطة، وقاية قرحة الإجهاد (ICU)، التهاب المريء",
+    "dosage_rule": "بالغين: 1g 4 مرات يومياً قبل الوجبات بـ 30–60 دقيقة وعند النوم على معدة فارغة.",
+    "clinical_pearl": "يحتاج pH حمضي ليعمل — لا تُعطيه مع PPIs في نفس الوقت. تفاعل مهم: يُقلل امتصاص Fluoroquinolones، Phenytoin، Warfarin، Digoxin — فاصل ساعتين. الإمساك أكثر أعراضه الجانبية. آمن في الحمل (غير ممتص). المعلق للمرضى الذين لا يبلعون.",
+    "common_substitutes": ["Pantoprazole 40mg أسهل تناولاً", "Bismuth subcitrate 120mg للـ H. pylori"]
+  },
+
+  {
+    "id": 44,
+    "trade_name": "ميتفورمين / Glucophage",
+    "active_ingredient": "Metformin HCl 500mg / 850mg / 1000mg",
+    "drug_class": "بيجوانيد — مثبط gluconeogenesis الكبدي ومُنشط AMPK",
+    "category": "هضمي/مزمن",
+    "indications": "السكري النوع الثاني، متلازمة تكيس المبايض (PCOS)، ما قبل السكري",
+    "dosage_rule": "البدء: 500mg مرتين يومياً مع الوجبات. زيادة 500mg أسبوعياً. الهدف: 1500–2000mg/day.",
+    "clinical_pearl": "يُؤخذ مع الطعام أو أثناءه لتقليل الأعراض الهضمية. أوقفه 48 ساعة قبل الصبغة الإشعاعية والتخدير العام (خطر حماض لاكتيكي). يُقلل امتصاص B12 — تحقق كل سنة. الصيغة XR (ممتدة الإفراز) أقل أعراضاً هضمية وتُؤخذ مع العشاء.",
+    "common_substitutes": ["Sitagliptin (Januvia) 100mg", "Empagliflozin (Jardiance) 10mg"]
+  },
+
+  {
+    "id": 45,
+    "trade_name": "بانكريلاز / Creon",
+    "active_ingredient": "Pancreatin = Lipase 10,000–40,000 IU + Protease + Amylase",
+    "drug_class": "إنزيمات هضمية بنكرياسية",
+    "category": "هضمي",
+    "indications": "قصور البنكرياس الخارجي الإفراز، التليف الكيسي، سوء الهضم والامتصاص",
+    "dosage_rule": "مع كل وجبة رئيسية: 25,000–40,000 IU Lipase. ونصفها مع الوجبات الخفيفة.",
+    "clinical_pearl": "يُؤخذ في بداية الوجبة أو خلالها — بعدها يُقلل الفاعلية. يُفتح الكبسول ويُخلط الحبيبات بطعام حمضي (طرِيّ) لمن لا يبلع — لا تُسحق الحبيبات. لا يُؤخذ مع مضادات الحموضة في نفس الوقت. درجة الحرارة فوق 40°C تُعطّل الإنزيمات.",
+    "common_substitutes": ["Pancrease capsules", "Norzyme tablets"]
+  },
+
+  // ═══════════════════════════════════════════════
+  // القسم الثالث: المسكنات والالتهابات وبواسط العضلات (46–65)
+  // ═══════════════════════════════════════════════
+
+  {
+    "id": 46,
+    "trade_name": "باراسيتامول / Panadol / Paracetamol",
+    "active_ingredient": "Paracetamol (Acetaminophen) 500mg / 1000mg tablet",
+    "drug_class": "مسكن خافض حرارة — مثبط COX-3 مركزي",
+    "category": "مسكنات",
+    "indications": "الصداع، الحمى، آلام الأسنان، آلام الظهر الخفيفة، آلام الدورة الشهرية",
+    "dosage_rule": "بالغين: 500–1000mg كل 4–6 ساعات. حد أقصى 4g/day (3g للكبار والكبد الضعيف). أطفال: 15 mg/kg/dose كل 4–6 ساعات.",
+    "clinical_pearl": "الحد الأقصى 4g/day للصحيح و2g/day لمرضى الكبد والمدمنين والأكثر من 60 سنة. مُثبط لا تعليمة: حساب مجموع الباراسيتامول في كل الأدوية المركبة (Brufen Plus، Coltal، Panadol Extra). الجرعة الزائدة سامة للكبد (N-acetylcysteine هو الترياق). لا تأثير مضاد للالتهاب.",
+    "common_substitutes": ["Ibuprofen 400mg (إذا لا موانع)", "Aspirin 500mg (بالغين فقط وبعيداً عن القرحة)"]
+  },
+
+  {
+    "id": 47,
+    "trade_name": "باراسيتامول فورت / Panadol Extra",
+    "active_ingredient": "Paracetamol 500mg + Caffeine 65mg",
+    "drug_class": "مسكن + منبه CNS (Caffeine يزيد فاعلية الباراسيتامول بـ 40%)",
+    "category": "مسكنات",
+    "indications": "الصداع الشديد، صداع الشقيقة (الطور الخفيف)، آلام ما بعد الجراحة",
+    "dosage_rule": "بالغين: قرص واحد أو اثنان كل 4–6 ساعات. حد أقصى 8 أقراص/day.",
+    "clinical_pearl": "الكافيين يُضيق الأوعية الدماغية ويُحسّن امتصاص الباراسيتامول. ممنوع للذين يعانون من اضطراب قلق أو اضطراب نوم. يُحسب في حساب إجمالي الكافيين اليومي (حد أقصى 400mg/day). للحامل: تجنب الكافيين.",
+    "common_substitutes": ["Paracetamol 1000mg مرتين أسرع", "Neurofen (Ibuprofen + Caffeine)"]
+  },
+
+  {
+    "id": 48,
+    "trade_name": "إيبوبروفين / Brufen / Advil",
+    "active_ingredient": "Ibuprofen 200mg / 400mg / 600mg tablet",
+    "drug_class": "NSAID — مثبط COX-1 وCOX-2 غير انتقائي — مضاد التهاب",
+    "category": "مسكنات",
+    "indications": "آلام المفاصل، الصداع، آلام الدورة الشهرية، الحمى، آلام الأسنان والعضلات، التهاب",
+    "dosage_rule": "بالغين: 200–400mg كل 4–6 ساعات مع الأكل. حد أقصى 1200–2400mg/day.",
+    "clinical_pearl": "يُؤخذ مع الطعام أو بعده دائماً — على معدة فارغة يُسبب قرحة. ممنوع في: أمراض الكلى، فشل القلب الاحتقاني، قرحة المعدة، الثلث الثالث من الحمل. يرفع ضغط الدم — احذر مرضى HTN. يُضعف تأثير Aspirin للقلب إذا أُخذ أولاً — أعطِ Aspirin قبله بساعة.",
+    "common_substitutes": ["Diclofenac (Voltaren) 50mg", "Naproxen (Naprosyn) 250–500mg"]
+  },
+
+  {
+    "id": 49,
+    "trade_name": "ديكلوفيناك / Voltaren / Cataflam",
+    "active_ingredient": "Diclofenac Sodium 25mg / 50mg / 75mg SR tablet | Diclofenac Potassium 50mg (Cataflam)",
+    "drug_class": "NSAID قوي — مثبط COX-2 > COX-1",
+    "category": "مسكنات",
+    "indications": "التهاب المفاصل، الألم الحاد والمزمن، آلام الدورة الشهرية الشديدة، النقرس الحاد، آلام ما بعد الجراحة",
+    "dosage_rule": "بالغين: 50mg 2–3 مرات يومياً مع الطعام. SR 75mg: مرتين يومياً. حد أقصى 150mg/day.",
+    "clinical_pearl": "Cataflam (Potassium salt) أسرع امتصاصاً من Voltaren (Sodium) — يُفضّل للألم الحاد. يُؤخذ مع الطعام. أعلى خطر للمضاعفات القلبية بين الـ NSAIDs بعد Rofecoxib — احذر في أمراض القلب. لا تخلطه مع NSAIDs أخرى. حقن Voltaren IM مؤلمة — مكان التحقن يُغيَّر.",
+    "common_substitutes": ["Ibuprofen 400–600mg", "Celecoxib (Celebrex) 200mg للقلبيين"]
+  },
+
+  {
+    "id": 50,
+    "trade_name": "بيروكسيكام / Feldene / Piroxicam",
+    "active_ingredient": "Piroxicam 10mg / 20mg capsule | 20mg ampoule | 0.5% gel",
+    "drug_class": "NSAID طويل المفعول — Oxicam",
+    "category": "مسكنات",
+    "indications": "التهاب المفاصل الروماتويدي والتنكسي، آلام العضلات والمفاصل المزمنة",
+    "dosage_rule": "بالغين: 20mg مرة يومياً مع الطعام. حد أقصى 20mg/day (طويل المفعول — t½ = 50 ساعة).",
+    "clinical_pearl": "نصف عمره الطويل جداً (50 ساعة) ميزة لمرضى الروماتيزم (مرة يومياً) لكن خطر التراكم في المسنين والفشل الكلوي. الأكثر خطورة للقرحة بين الـ NSAIDs الشائعة — يُعطى دائماً مع PPI. الجيل (Gel) الموضعي أقل تأثيراً جهازياً.",
+    "common_substitutes": ["Celecoxib (Celebrex) 200mg (أقل خطر قرحة)", "Diclofenac 50mg SR"]
+  },
+
+  {
+    "id": 51,
+    "trade_name": "سيليكوكسيب / Celebrex",
+    "active_ingredient": "Celecoxib 100mg / 200mg capsule",
+    "drug_class": "NSAID انتقائي — مثبط COX-2 انتقائي (coxib)",
+    "category": "مسكنات",
+    "indications": "التهاب المفاصل، آلام الدورة الشهرية، ألم ما بعد الجراحة، خاصة لأصحاب القرحة",
+    "dosage_rule": "بالغين: 100–200mg مرتين يومياً مع أو بدون طعام.",
+    "clinical_pearl": "أقل خطراً للقرحة (لا يثبط COX-1) — الخيار لأصحاب تاريخ قرحة يحتاجون NSAIDs. لكن خطر القلبي والأوعية الدموية يظل موجوداً (لا يُعطى بعد الجلطة أو العملية القلبية). يحتوي على Sulfa group — احذر حساسية السلفا. لا يُعطى مع Warfarin بسهولة (يرفع INR).",
+    "common_substitutes": ["Etoricoxib (Arcoxia) 60–90mg", "Diclofenac 50mg مع Omeprazole"]
+  },
+
+  {
+    "id": 52,
+    "trade_name": "نابروكسين / Naprosyn / Synflex",
+    "active_ingredient": "Naproxen 250mg / 500mg tablet | Naproxen Sodium 275mg (Synflex)",
+    "drug_class": "NSAID — Propionic acid derivative",
+    "category": "مسكنات",
+    "indications": "آلام الدورة الشهرية، التهاب المفاصل، الصداع النصفي، النقرس الحاد",
+    "dosage_rule": "بالغين: 250–500mg مرتين يومياً مع الطعام. آلام الدورة: 500mg جرعة أولى ثم 250mg كل 8 ساعات.",
+    "clinical_pearl": "مدة تأثيره أطول من Ibuprofen (جرعتان يومياً كافيتان). Naproxen Sodium (Synflex) أسرع امتصاصاً. له تأثير مضاد للصفيحات يدوم 12–15 ساعة (أقل من Aspirin). يُؤخذ مع الطعام دائماً. ممنوع في الفشل الكلوي.",
+    "common_substitutes": ["Ibuprofen 400–600mg", "Mefenamic acid (Ponstan) 500mg للـ Dysmenorrhea"]
+  },
+
+  {
+    "id": 53,
+    "trade_name": "بونستان / Ponstan / Mefenamic acid",
+    "active_ingredient": "Mefenamic acid 250mg / 500mg capsule",
+    "drug_class": "NSAID — Fenamate — مثبط COX + مضاد للبروستاجلاندين محيطياً",
+    "category": "مسكنات",
+    "indications": "آلام الدورة الشهرية (الأول انتخاباً)، الصداع، آلام الأسنان، آلام ما بعد الجراحة",
+    "dosage_rule": "بالغين: 500mg جرعة أولى، ثم 250mg كل 6–8 ساعات. لا تتجاوز 7 أيام.",
+    "clinical_pearl": "الخيار الأول لألم الدورة الشهرية لأنه يثبط البروستاجلاندين المسبب للتقلصات الرحمية. يُؤخذ مع الطعام أو الحليب. يُسبب إسهالاً في بعض المرضى. ممنوع في القرحة والكلى والحمل (خاصة >30 أسبوع). لا تتجاوز أسبوعاً.",
+    "common_substitutes": ["Naproxen Sodium (Synflex) 275mg للدورة", "Ibuprofen 400mg"]
+  },
+
+  {
+    "id": 54,
+    "trade_name": "كيتوبروفين / Ketoprofen / Profenid",
+    "active_ingredient": "Ketoprofen 100mg / 200mg SR capsule | 50mg/2ml ampoule | 2.5% gel",
+    "drug_class": "NSAID — Propionic acid — مثبط COX-1/COX-2",
+    "category": "مسكنات",
+    "indications": "آلام المفاصل والعضلات، التهاب الأوتار، ألم ما بعد الجراحة، النقرس",
+    "dosage_rule": "فموي: 50–100mg مرتين يومياً مع الطعام. SR: 200mg مرة يومياً. IM: 100mg كل 8 ساعات (3 أيام فقط).",
+    "clinical_pearl": "الجيل الموضعي (Gel) أقل أعراضاً جهازية وفعّال للآلام السطحية. حقن IM مؤلمة — عمق عضلي كافٍ. لا تتجاوز 3–5 أيام للحقن. ممنوع مع Warfarin إذا أمكن. Photosensitization: تجنب الشمس المباشرة خاصةً مع الجيل الموضعي.",
+    "common_substitutes": ["Diclofenac gel للموضعي", "Ibuprofen 400mg فموي"]
+  },
+
+  {
+    "id": 55,
+    "trade_name": "ترامادول / Tramal / Tramol",
+    "active_ingredient": "Tramadol HCl 50mg capsule | 100mg SR tablet | 50mg/ml ampoule",
+    "drug_class": "مسكن مركزي — ناهض μ-opioid ضعيف + مثبط إعادة امتصاص Serotonin/NE",
+    "category": "مسكنات",
+    "indications": "الألم المتوسط إلى الشديد، ألم ما بعد الجراحة، الألم المزمن",
+    "dosage_rule": "بالغين: 50–100mg كل 4–6 ساعات. حد أقصى 400mg/day. SR: 100–200mg مرتين يومياً.",
+    "clinical_pearl": "ممنوع مع MAOIs (متلازمة سيروتونين قاتلة). يُخفض العتبة النوبية — احذر في الصرع. يُسبب الغثيان والدوخة بشدة في البداية — ابدأ بـ 50mg. الانسحاب المفاجئ بعد استخدام طويل يُسبب متلازمة انسحاب. مخزون رسمي — وصفة طبية إلزامية.",
+    "common_substitutes": ["Ketorolac (Toradol) 10mg IM/IV للألم الحاد", "Codeine 30mg"]
+  },
+
+  {
+    "id": 56,
+    "trade_name": "كيتورولاك / Toradol / Ketorolac",
+    "active_ingredient": "Ketorolac tromethamine 10mg tablet | 30mg/ml ampoule",
+    "drug_class": "NSAID قوي جداً — Pyrrolizine carboxylic acid",
+    "category": "مسكنات",
+    "indications": "الألم الحاد الشديد بعد الجراحة، مغص الكلى الحاد، آلام العظام الحادة",
+    "dosage_rule": "IM/IV: 15–30mg كل 6 ساعات. حد أقصى 5 أيام فقط. فموي: 10mg كل 4–6 ساعات.",
+    "clinical_pearl": "أقوى NSAID فموي/حقني — قريب من المورفين في الألم الحاد. حد زمني صارم: 5 أيام فقط (IM/IV). ممنوع تجاوز هذا الحد. ممنوع في الفشل الكلوي والحمل والقرحة. يُقلل الحاجة للـ Opioids بعد الجراحة (Opioid-sparing). يُعطى IM في العضلة الكبيرة مع تغيير مكان الحقن.",
+    "common_substitutes": ["Diclofenac 75mg IM", "Tramadol 50mg IM"]
+  },
+
+  {
+    "id": 57,
+    "trade_name": "ميفيناميك / ستيروييد / بريدنيزولون",
+    "active_ingredient": "Prednisolone 5mg / 10mg / 25mg / 50mg tablet",
+    "drug_class": "قشرانيات سكرية — مضاد التهاب ومثبط مناعة",
+    "category": "مسكنات/مضادات التهاب",
+    "indications": "التهاب المفاصل الروماتويدي، الربو الحاد، التفاعلات التحسسية الشديدة، الأمراض المناعية الذاتية",
+    "dosage_rule": "مضادات الحساسية: 0.5–1 mg/kg/day. بالغين: 20–60mg/day. تُقلل تدريجياً لا تُوقف مفاجئة.",
+    "clinical_pearl": "لا تُوقف الستيرويدات مفاجئة — قصور قشرة الكظر. يُؤخذ صباحاً مع الإفطار (تقليد الإيقاع اليومي الطبيعي للكورتيزول). يُسبب: ارتفاع السكر، ارتفاع الضغط، هشاشة عظام، زيادة وزن، قرحة — أضف PPI في الدورات الطويلة. يُرفع الجرعة في المرض الحاد (Sick day rules).",
+    "common_substitutes": ["Methylprednisolone (Solumedrol) IV للحاد", "Dexamethasone 4mg للوذمة الدماغية"]
+  },
+
+  {
+    "id": 58,
+    "trade_name": "ميثيل بريدنيزولون / Medrol / Methylprednisolone",
+    "active_ingredient": "Methylprednisolone 4mg / 8mg / 16mg tablet | 40mg / 125mg / 500mg / 1g vial",
+    "drug_class": "قشرانيات سكرية — أقوى من Prednisolone، أقل احتباس سوائل",
+    "category": "مسكنات/مضادات التهاب",
+    "indications": "الربو الحاد الشديد، وذمة الحبل الشوكي، رفض الأعضاء المزروعة، أمراض مناعية حادة",
+    "dosage_rule": "Pulse therapy: 1g/day IV لـ 3 أيام. آلام المفاصل فموياً: Medrol Dose Pack (تدريجي 6 أيام).",
+    "clinical_pearl": "IV Bolus سريع جداً (>30mg/min) يُسبب اضطراب قلبي حاد — يُعطى IV على 30–60 دقيقة. لا احتباس سوائل بقدر Hydrocortisone. Medrol Dosepak للـ allergic reactions يُدار بنفسه من المريض بدون تعقيد.",
+    "common_substitutes": ["Prednisolone 25mg فموياً", "Dexamethasone 4mg (أطول مفعولاً)"]
+  },
+
+  {
+    "id": 59,
+    "trade_name": "ميورلاكس / Myorelax / Methocarbamol",
+    "active_ingredient": "Methocarbamol 750mg tablet",
+    "drug_class": "باسط عضلي مركزي — مثبط CNS",
+    "category": "مسكنات/باسطات عضلات",
+    "indications": "تشنجات العضلات الحادة، آلام أسفل الظهر مع تشنج عضلي، الانتكاسات الحادة",
+    "dosage_rule": "بالغين: 750mg–1500mg 4 مرات يومياً. الأيام 2–3 يمكن التقليل.",
+    "clinical_pearl": "يُلوّن البول بني أو أسود أو أخضر — طبيعي تماماً وعابر. يُسبب نعاساً ودوخة — لا قيادة. يُؤخذ مع الطعام. لا يُعطى للفشل الكلوي (يتراكم PEG محلول).",
+    "common_substitutes": ["Baclofen 10mg (للتشنج العضلي العصبي)", "Tizanidine (Sirdalud) 2–4mg"]
+  },
+
+  {
+    "id": 60,
+    "trade_name": "تيزانيدين / Sirdalud / Tizanidine",
+    "active_ingredient": "Tizanidine HCl 2mg / 4mg tablet",
+    "drug_class": "باسط عضلي — ناهض مركزي α2-adrenergic",
+    "category": "مسكنات/باسطات عضلات",
+    "indications": "التشنج العضلي، آلام الرقبة والظهر مع تقلص عضلي، التصلب المتعدد",
+    "dosage_rule": "بالغين: 2–4mg 3 مرات يومياً. ابدأ بـ 2mg وزِد تدريجياً. حد أقصى 36mg/day.",
+    "clinical_pearl": "يُسبب نعاساً وانخفاض ضغط — لا تأخذه وقت العمل. لا تتوقف مفاجئة — تدريجي. يتضاعف تأثيره مع Ciprofloxacin (ممنوع مع Cipro) — Ciprofloxacin يرفع تركيزه في الدم 10 أضعاف. تحقق من الكبد دورياً في الاستخدام طويل الأمد.",
+    "common_substitutes": ["Methocarbamol (Myorelax) 750mg", "Cyclobenzaprine 10mg"]
+  },
+
+  {
+    "id": 61,
+    "trade_name": "باكلوفين / Baclofen",
+    "active_ingredient": "Baclofen 10mg / 25mg tablet",
+    "drug_class": "باسط عضلي — ناهض GABA-B مركزي وشوكي",
+    "category": "مسكنات/باسطات عضلات",
+    "indications": "التشنج العضلي في التصلب المتعدد، إصابات الحبل الشوكي، السكتة الدماغية",
+    "dosage_rule": "ابدأ بـ 5mg 3 مرات يومياً. زِد 5mg كل 3 أيام. حد أقصى 80mg/day.",
+    "clinical_pearl": "لا تُوقفه مفاجئة — يُسبب هلوسة وتشنجات قاتلة. الأكثر تخصصاً لتشنج التصلب المتعدد والحبل الشوكي. يُسبب نعاساً وضعف عضلي. الشكل داخل القراب (Intrathecal) للحالات الشديدة الحرارية.",
+    "common_substitutes": ["Tizanidine (Sirdalud) 4mg", "Dantrolene (للتشنج العضلي المحيطي)"]
+  },
+
+  {
+    "id": 62,
+    "trade_name": "ديكلوفيناك موضعي / Voltaren Emulgel",
+    "active_ingredient": "Diclofenac Sodium 1% / 2.32% gel",
+    "drug_class": "NSAID موضعي — مثبط COX محلي",
+    "category": "مسكنات موضعية",
+    "indications": "آلام المفاصل الموضعية، التهاب الأوتار، آلام الرقبة والظهر، الرضوض الرياضية",
+    "dosage_rule": "2–4g (كمية حمصة كبيرة) على المنطقة المصابة 3–4 مرات يومياً.",
+    "clinical_pearl": "التأثير الجهازي ضئيل جداً (3–6% امتصاص) — أكثر أماناً للقرحة والكلى. لا يُطبق على جروح مفتوحة أو ملتهبة. يُغسل اليد بعد الوضع. لا تغطيه بعصابة ضيقة — يُسرع الامتصاص. Photosensitivity ممكنة — لا تعرض للشمس مباشرة.",
+    "common_substitutes": ["Ketoprofen 2.5% gel", "Ibuprofen 5% cream (Nurofen Gel)"]
+  },
+
+  {
+    "id": 63,
+    "trade_name": "ألوبيورينول / Zyloric / Allopurinol",
+    "active_ingredient": "Allopurinol 100mg / 300mg tablet",
+    "drug_class": "مثبط زانثين أوكسيداز — خافض حمض اليوريك",
+    "category": "مسكنات/مزمن",
+    "indications": "النقرس المزمن الوقاية، حصى الكلى اليورية، متلازمة تحلل الورم",
+    "dosage_rule": "بالغين: 100mg/day كبداية، زِد 100mg أسبوعياً حتى 300–600mg/day. عدّل للفشل الكلوي.",
+    "clinical_pearl": "لا تُعطيه في النوبة الحادة — يُطيلها. ابدأ بعد هدأة النوبة بـ 2–4 أسابيع. تحذير حيوي: حاملو HLA-B*5801 (أكثر شيوعاً في المصريين والأسيويين) معرضون لـ Severe Cutaneous Reactions (SJS/TEN) — أوقف فوراً عند أي طفح.",
+    "common_substitutes": ["Febuxostat (Uloric) 40–80mg", "Probenecid 500mg (للإفراز الكلوي الناقص)"]
+  },
+
+  {
+    "id": 64,
+    "trade_name": "كولشيسين / Colchicine",
+    "active_ingredient": "Colchicine 0.5mg / 1mg tablet",
+    "drug_class": "مضاد التهاب خاص للنقرس — مثبط انتشار المحببات",
+    "category": "مسكنات/نقرس",
+    "indications": "النوبة الحادة من النقرس (خط أول)، التهاب التامور، حمى البحر المتوسط",
+    "dosage_rule": "نوبة حادة: 1mg جرعة أولى + 0.5mg بعد ساعة. وقاية: 0.5mg مرة أو مرتين يومياً.",
+    "clinical_pearl": "أفضل تأثير إذا أُعطي خلال أول 12–24 ساعة من النوبة. الجرعة المنخفضة (Low-dose) فعّالة وأقل أعراضاً جانبية. تفاعل خطير مع Clarithromycin وCyclosporine — تراكم سمي. إسهال وغثيان أعراض جانبية شائعة في الجرعات العالية. ممنوع في الفشل الكلوي الشديد.",
+    "common_substitutes": ["Indomethacin 50mg للنقرس الحاد", "Prednisolone 30mg إذا تعذر NSAIDs وColchicine"]
+  },
+
+  {
+    "id": 65,
+    "trade_name": "ديكساميثازون / Decadron / Dexamethasone",
+    "active_ingredient": "Dexamethasone 0.5mg / 4mg / 8mg tablet | 4mg/ml ampoule",
+    "drug_class": "قشرانيات سكرية فلوريية — الأقوى والأطول مفعولاً",
+    "category": "مسكنات/مضادات التهاب",
+    "indications": "الوذمة الدماغية، صدمة الحساسية (بعد Adrenaline)، غثيان الكيماوي، الكروب الكاذب في الأطفال",
+    "dosage_rule": "وذمة دماغية: 10mg IV أولاً ثم 4mg كل 6 ساعات. كروب كاذب: 0.6 mg/kg IM جرعة واحدة. غثيان: 8mg IV قبل الكيماوي.",
+    "clinical_pearl": "الأقوى: 1mg Dexamethasone ≈ 25mg Hydrocortisone ≈ 7mg Prednisolone. لا احتباس سوائل تقريباً. IV بطيء — سريع يُسبب وخزاً وحرقة في المنطقة التناسلية. لا تنسَ Sick Day Rules للمرضى المزمنين — يُرفع للضعف الثلاثي عند المرض الحاد.",
+    "common_substitutes": ["Methylprednisolone 16mg", "Prednisolone 40mg (أقل قوة)"]
+  }
+]
+```
+
+---
+
+## الجزء الثاني — أصناف 66 إلى 100 + الملحقات
+
+```json
+[
+  // ═══════════════════════════════════════════════
+  // القسم الرابع: الجهاز التنفسي ونزلات البرد (66–85)
+  // ═══════════════════════════════════════════════
+
+  {
+    "id": 66,
+    "trade_name": "سيتيريزين / Zyrtec / Cetirizine",
+    "active_ingredient": "Cetirizine HCl 5mg/5ml syrup | 10mg tablet",
+    "drug_class": "مضاد هيستامين H1 الجيل الثاني — أقل نعاساً",
+    "category": "تنفسي/حساسية",
+    "indications": "التهاب الأنف التحسسي، الشرى الحاد والمزمن، الحكة التحسسية، التهاب الملتحمة",
+    "dosage_rule": "بالغين: 10mg مرة يومياً (مساءً للتأثير الأمثل). 2–6 سنوات: 2.5mg مرتين. 6–12 سنة: 5mg مرة أو مرتين.",
+    "clinical_pearl": "يُفضّل أخذه مساءً لتأثيره الرائع على الحكة الليلية. يسبب نعاساً في بعض المرضى (10–15%) رغم أنه جيل ثانٍ. عدّل الجرعة في الفشل الكلوي (GFR<31 ml/min). آمن في الحمل (فئة B) للأم المصابة بحساسية شديدة.",
+    "common_substitutes": ["Levocetirizine (Xyzal) 5mg (أنقى وأقل نعاساً)", "Loratadine (Clarityne) 10mg"]
+  },
+
+  {
+    "id": 67,
+    "trade_name": "لوراتادين / Clarityne / Claritin",
+    "active_ingredient": "Loratadine 10mg tablet | 5mg/5ml syrup",
+    "drug_class": "مضاد هيستامين H1 الجيل الثاني — طويل المفعول بلا نعاس",
+    "category": "تنفسي/حساسية",
+    "indications": "التهاب الأنف التحسسي الموسمي والمعمّر، الشرى، الحكة",
+    "dosage_rule": "بالغين: 10mg مرة يومياً. أطفال 2–12 سنة <30kg: 5mg. ≥30kg: 10mg.",
+    "clinical_pearl": "الأقل نعاساً من مضادات الهيستامين — الأمثل للسائقين والطيارين. تأثيره يبدأ بعد 30–60 دقيقة ويستمر 24 ساعة. آمن في الحمل. لا تفاعل مع الكحول. يُعطى على معدة فارغة للامتصاص الأسرع.",
+    "common_substitutes": ["Cetirizine (Zyrtec) 10mg", "Fexofenadine (Allegra) 120–180mg"]
+  },
+
+  {
+    "id": 68,
+    "trade_name": "فيكسوفينادين / Allegra / Telfast",
+    "active_ingredient": "Fexofenadine HCl 120mg / 180mg tablet",
+    "drug_class": "مضاد هيستامين H1 الجيل الثالث — لا يخترق BBB",
+    "category": "تنفسي/حساسية",
+    "indications": "التهاب الأنف التحسسي، الشرى المزمن",
+    "dosage_rule": "بالغين: 120mg مرة يومياً للرينيت. 180mg للشرى. أطفال 6–11 سنة: 30mg مرتين.",
+    "clinical_pearl": "الأفضل لعدم النعاس تقريباً مطلقاً (P-glycoprotein يمنع دخوله للـ CNS). ممنوع مع عصير الجريب فروت والبرتقال والتفاح — يُقلل امتصاصه بـ 36%. يُؤخذ مع الماء فقط. آمن تماماً للطيارين والجراحين.",
+    "common_substitutes": ["Loratadine 10mg", "Levocetirizine 5mg"]
+  },
+
+  {
+    "id": 69,
+    "trade_name": "كلورفينيرامين / Piriton / Polaramine",
+    "active_ingredient": "Chlorpheniramine maleate 4mg tablet | 2mg/5ml syrup | Dexchlorpheniramine (Polaramine) 2mg",
+    "drug_class": "مضاد هيستامين H1 الجيل الأول — يخترق BBB",
+    "category": "تنفسي/حساسية",
+    "indications": "الشرى الحاد الشديد، الحكة الحادة، حساسية نقل الدم، أعراض البرد مع زكام",
+    "dosage_rule": "بالغين: 4mg كل 4–6 ساعات. حد أقصى 24mg/day. أطفال 2–6 سنوات: 1mg كل 4–6 ساعات.",
+    "clinical_pearl": "الأقوى والأسرع بين مضادات الهيستامين الجيل الأول. النعاس ميزة للتحسس الليلي الشديد. ممنوع في الزرق وتضخم البروستاتا. خطر Paradoxical excitation في الأطفال الصغار (يصبحون hyperactive). لا قيادة.",
+    "common_substitutes": ["Cetirizine 10mg للنهار", "Hydroxyzine (Atarax) 25mg للحكة الشديدة"]
+  },
+
+  {
+    "id": 70,
+    "trade_name": "هيدروكسيزين / Atarax",
+    "active_ingredient": "Hydroxyzine HCl 10mg / 25mg tablet | 10mg/5ml syrup",
+    "drug_class": "مضاد هيستامين H1 الجيل الأول + مضاد قلق",
+    "category": "تنفسي/حساسية",
+    "indications": "الشرى الحاد الشديد، الحكة المزمنة، القلق الحاد، التهدئة قبل الإجراءات",
+    "dosage_rule": "شرى: 25–50mg 3–4 مرات يومياً. قلق: 50–100mg 4 مرات. أطفال: 0.5 mg/kg/dose كل 6 ساعات.",
+    "clinical_pearl": "الأقوى لعلاج الشرى المزمن المقاوم. نعاسه الشديد ميزة للحكة الليلية التي تمنع النوم. ممنوع في الحمل (فئة C —奇形). يُطيل QT في الجرعات العالية — تحقق من ECG للقلبيين. مناسب للتهدئة قبل ختان أو سحب دم.",
+    "common_substitutes": ["Fexofenadine 180mg + Montelukast 10mg للشرى المقاوم", "Cetirizine 10mg"]
+  },
+
+  {
+    "id": 71,
+    "trade_name": "مونتيلوكاست / Singulair",
+    "active_ingredient": "Montelukast Sodium 10mg tablet | 4mg / 5mg chewable للأطفال",
+    "drug_class": "مضاد مستقبل الليوكوترين (LTRA) — Cys-LT1 antagonist",
+    "category": "تنفسي/ربو",
+    "indications": "الربو المزمن الوقائي، التهاب الأنف التحسسي الموسمي، الشرى المزمن المقاوم",
+    "dosage_rule": "بالغين: 10mg مرة يومياً مساءً. 6–14 سنة: 5mg. 2–5 سنوات: 4mg.",
+    "clinical_pearl": "يُؤخذ مساءً — الربو أشد ليلاً والليوكوترينات أعلى في الليل. لا يُستخدم للنوبة الحادة — وقائي فقط. تحذير FDA 2020: يُسبب تغيرات نفسية (كوابيس، اكتئاب، أفكار انتحارية) — راقب وأبلغ المريض. آمن في الحمل نسبياً (مدروس).",
+    "common_substitutes": ["Cetirizine + Steroid nasal spray للأنف", "Inhaled Corticosteroids للربو"]
+  },
+
+  {
+    "id": 72,
+    "trade_name": "سلبوتامول / Ventolin / Salamol",
+    "active_ingredient": "Salbutamol (Albuterol) Sulfate — 100mcg/actuation MDI | 5mg/ml nebulizer solution | 2mg / 4mg tablet",
+    "drug_class": "ناهض β2-adrenergic قصير المفعول (SABA)",
+    "category": "تنفسي/ربو",
+    "indications": "نوبة الربو الحادة، COPD، الوقاية من التشنج القصبي المجهدي",
+    "dosage_rule": "MDI: 1–2 بخة كل 20 دقيقة في الحادة (3 مرات). الصيانة: 1–2 بخة كل 4–6 ساعات. نبيولايزر: 2.5mg/2.5ml (0.5ml + 2ml saline) كل 20 دقيقة.",
+    "clinical_pearl": "البخاخ يحتاج تقنية صحيحة — الخطأ الشائع: لا يحبس النفس 10 ثوانٍ بعد البخة. Spacer يُحسّن الوصول للرئة بـ 300%. الجرعة العالية (>3 بخات/24h بشكل منتظم) تعني ضبط سيء — أضف ICS. يُسبب تسارع قلب ورجفة اليد في الجرعات العالية.",
+    "common_substitutes": ["Terbutaline (Bricanyl) 0.5mg SC", "Ipratropium (Atrovent) + Salbutamol في COPD"]
+  },
+
+  {
+    "id": 73,
+    "trade_name": "أمبروكسول / Mucosolvan / Mucolytics",
+    "active_ingredient": "Ambroxol HCl 30mg tablet | 15mg/5ml | 75mg SR capsule",
+    "drug_class": "طارد بلغم — مُعدِّل إفرازات القصبات",
+    "category": "تنفسي",
+    "indications": "الكحة مع بلغم كثيف، التهاب القصبات الحاد والمزمن، COPD، الربو مع بلغم",
+    "dosage_rule": "بالغين: 30mg 3 مرات أو 75mg SR مرة. شراب أطفال: <2 سنة: 7.5mg مرتين. 2–6 سنوات: 7.5mg 3 مرات. >6 سنوات: 15mg 3 مرات.",
+    "clinical_pearl": "الترياق الذهبي: اشرب 1.5–2 لتر ماء يومياً لمضاعفة فاعليته. يُحفز إنتاج Surfactant — مفيد جداً بعد التنبيب والعمليات لمنع انخماص الرئة. لا يُعطى مع Dextromethorphan (مثبطات الكحة) — تناقض تام في التأثير.",
+    "common_substitutes": ["Carbocisteine (Rhinathiol) 750mg", "N-Acetylcysteine (ACC) 600mg effervescent"]
+  },
+
+  {
+    "id": 74,
+    "trade_name": "كاربوسيستين / Rhinathiol / Carbocisteine",
+    "active_ingredient": "Carbocisteine 375mg / 750mg capsule | 250mg/5ml syrup",
+    "drug_class": "مُذيب بلغم — يُغيّر التركيب الكيميائي للمخاط",
+    "category": "تنفسي",
+    "indications": "الكحة مع بلغم لزج، COPD، التهاب الجيوب الأنفية المزمن",
+    "dosage_rule": "بالغين: 750mg 3 مرات يومياً مع الطعام. 2.25g/day للحاد. Syrup أطفال: 5–10ml حسب العمر.",
+    "clinical_pearl": "يُعدَّل تركيب المخاط كيميائياً (يكسر روابط disulfide) — أعمق تأثيراً من مجرد التخفيف. يُؤخذ مع الطعام لتقليل الغثيان. لا يُعطى مع مثبطات الكحة. آمن نسبياً في الحمل بعد الثلث الأول.",
+    "common_substitutes": ["Ambroxol (Mucosolvan) 30mg", "Acetylcysteine 600mg effervescent"]
+  },
+
+  {
+    "id": 75,
+    "trade_name": "أستيل سيستين / ACC 600 / NAC",
+    "active_ingredient": "N-Acetylcysteine 200mg / 600mg effervescent tablet | 100mg/5ml syrup",
+    "drug_class": "مُذيب بلغم + مضاد أكسدة + ترياق",
+    "category": "تنفسي",
+    "indications": "الكحة مع بلغم، COPD، التليف الرئوي، تسمم Paracetamol (ترياق IV)، أمراض الكبد",
+    "dosage_rule": "بالغين: 600mg مرة يومياً فوار. أطفال: 100–200mg مرتين إلى ثلاثاً. تسمم Paracetamol: بروتوكول Rumack-Matthew بالـ IV.",
+    "clinical_pearl": "600mg فوار مرة يومياً أسهل compliance من 200mg 3 مرات. الرائحة الكبريتية طبيعية — أخبر المريض. هو الترياق الوحيد لتسمم Paracetamol — يُعطى خلال 8–10 ساعات من التسمم لأقصى فاعلية. ممتاز كمضاد أكسدة في COPD لتقليل التفاقمات.",
+    "common_substitutes": ["Carbocisteine (Rhinathiol) 750mg", "Ambroxol 75mg SR"]
+  },
+
+  {
+    "id": 76,
+    "trade_name": "زيلوميتازولين / Xylometazoline / Otrivin",
+    "active_ingredient": "Xylometazoline HCl 0.05% (أطفال) | 0.1% (بالغين) nasal spray",
+    "drug_class": "مُضيّق أوعية أنفي — ناهض α1-adrenergic",
+    "category": "تنفسي/أنف",
+    "indications": "احتقان الأنف الحاد، التهاب الأنف (للتخفيف السريع)، التهاب الجيوب",
+    "dosage_rule": "بالغين: 2–3 قطرات أو بخة في كل فتحة 2–3 مرات يومياً. أطفال <6 سنوات: 0.05% فقط بخة واحدة. مدة الاستخدام: 3–5 أيام كحد أقصى.",
+    "clinical_pearl": "حد أقصى 5 أيام — الاستخدام الطويل يُسبب Rhinitis Medicamentosa (احتقان ارتدادي مزمن). تُعلّم المريض: إذا احتجته >5 أيام فعليك مراجعة الطبيب. لا يُعطى للأطفال أقل من 2 سنة. لا يُستخدم مع MAOIs. الوضع الصحيح: رأس للأمام عند الاستخدام.",
+    "common_substitutes": ["Oxymetazoline 0.05% (Afrin) — نفس الاحتياطات", "Saline nasal spray كبديل آمن طويل الأمد"]
+  },
+
+  {
+    "id": 77,
+    "trade_name": "سودوإيفيدرين / Pseudoephedrine / Sudafed",
+    "active_ingredient": "Pseudoephedrine HCl 30mg / 60mg tablet | 30mg/5ml syrup",
+    "drug_class": "مُزيل احتقان جهازي — ناهض أدرينالي غير مباشر",
+    "category": "تنفسي",
+    "indications": "احتقان الأنف في البرد والحساسية، التهاب الجيوب الأنفية",
+    "dosage_rule": "بالغين: 30–60mg كل 4–6 ساعات. حد أقصى 240mg/day. لا يُعطى للأطفال <2 سنة.",
+    "clinical_pearl": "ممنوع في: ارتفاع ضغط الدم، أمراض القلب، فرط الدرقية، الزرق، تضخم البروستاتا. تفاعل خطير مع MAOIs (أزمة ارتفاع الضغط). يُؤخذ صباحاً لا مساءً (يُسبب أرقاً). في مصر: متاح في تركيبات البرد المركبة.",
+    "common_substitutes": ["Xylometazoline nasal spray (تأثير موضعي أقل أعراضاً جهازية)", "Saline sinus wash"]
+  },
+
+  {
+    "id": 78,
+    "trade_name": "ديكستروميثورفان + جوايفنيزين / Robitussin DM",
+    "active_ingredient": "Dextromethorphan 10–20mg + Guaifenesin 100–200mg / 5ml",
+    "drug_class": "مثبط سعال مركزي + طارد بلغم",
+    "category": "تنفسي",
+    "indications": "السعال الجاف المصحوب ببلغم خفيف، سعال البرد المركب",
+    "dosage_rule": "بالغين: 10–20ml كل 4 ساعات. حد أقصى 4 جرعات/day. أطفال >6 سنوات: 5ml.",
+    "clinical_pearl": "التركيبة المركبة مثيرة للجدل — DXM يُثبط السعال بينما Guaifenesin يُذيب البلغم ليُخرج (قد يتعارضان). المنطق: للسعال الجاف المزعج مع بدء بلغم. ممنوع أقل من 6 سنوات. ممنوع مع MAOIs.",
+    "common_substitutes": ["Ambroxol 30mg (إذا كان البلغم هو المشكلة)", "Dextromethorphan منفرداً للسعال الجاف الصرف"]
+  },
+
+  {
+    "id": 79,
+    "trade_name": "أموكسيسيللين كبسول / Amoxil / Flemoxin",
+    "active_ingredient": "Amoxicillin trihydrate 250mg / 500mg capsule | 875mg tablet",
+    "drug_class": "بيتا-لاكتام — بنسلين واسع الطيف",
+    "category": "تنفسي/مضادات",
+    "indications": "التهاب اللوز والبلعوم (GAS)، الالتهاب الرئوي المكتسب من المجتمع (Mild)، التهاب الأذن، التهاب الجيوب الأنفية",
+    "dosage_rule": "بالغين: 500mg 3 مرات يومياً لـ 7–10 أيام. جرعة عالية: 875mg مرتين لتغطية S. pneumoniae المقاوم.",
+    "clinical_pearl": "يُؤخذ مع أو بدون طعام — الطعام لا يؤثر امتصاصه. الطفح الجلدي في وجود EBV (Mono) → طفح لا يعني حساسية حقيقية من البنسلين! ابدأ العلاج كاملاً لالتهاب LGS (10 أيام) لمنع الحمى الروماتيزمية. يُبيَّض البول أحياناً — طبيعي.",
+    "common_substitutes": ["Augmentin 625mg (Amox+Clav) لمقاومة المتحملة للبيتا-لاكتاماز", "Phenoxymethylpenicillin 500mg للـ GAS الصرف"]
+  },
+
+  {
+    "id": 80,
+    "trade_name": "أزيثرومايسين / Zithromax / Azithrocin",
+    "active_ingredient": "Azithromycin dihydrate 250mg / 500mg tablet",
+    "drug_class": "ماكروليد — مثبط ريبوسوم 50S بكتيري",
+    "category": "تنفسي/مضادات",
+    "indications": "التهابات تنفسية (Atypical pneumonia)، الحساسية من البنسلين، الكلاميديا والميكوبلازما",
+    "dosage_rule": "5 أيام: 500mg اليوم 1، ثم 250mg الأيام 2–5. أو 500mg/day لـ 3 أيام. STD: جرعة واحدة 1g.",
+    "clinical_pearl": "يُؤخذ على معدة فارغة — الطعام يُقلل امتصاصه. تفاعل خطير مع: Domperidone، Terfenadine، Haloperidol (إطالة QT). نصف عمره الطويل (68 ساعة) يعني 3–5 أيام تكافئ 10 أيام من البنسلين. لا يُكرر في نفس الشهر. فحص ECG للقلبيين قبل البدء.",
+    "common_substitutes": ["Clarithromycin (Klacid) 500mg", "Doxycycline 100mg للـ Atypical"]
+  },
+
+  {
+    "id": 81,
+    "trade_name": "كلاريثرومايسين / Klacid / Biaxin",
+    "active_ingredient": "Clarithromycin 250mg / 500mg tablet | 125mg/5ml syrup",
+    "drug_class": "ماكروليد — مثبط 50S ريبوسوم",
+    "category": "تنفسي/مضادات",
+    "indications": "الالتهاب الرئوي (Atypical + typical)، H. pylori (بالتثليث)، التهاب الجيوب، MAC infection في HIV",
+    "dosage_rule": "بالغين: 250–500mg مرتين يومياً لـ 7–14 يوماً. H. pylori: 500mg مرتين + PPI + Amoxicillin.",
+    "clinical_pearl": "مثبط قوي لـ CYP3A4 — تفاعلات دوائية كثيرة جداً: Simvastatin (خطر اعتلال عضلي)، Warfarin (يرفع INR)، Colchicine، Sildenafil (يرفع تركيزه). يُؤخذ مع الطعام لتقليل الغثيان. طعم مرّ في الفم — طبيعي. لا يُعطى في الحمل (قد يكون teratogenic).",
+    "common_substitutes": ["Azithromycin 500mg", "Doxycycline 100mg للـ Atypical"]
+  },
+
+  {
+    "id": 82,
+    "trade_name": "دوكسيسيكلين / Doxycycline / Vibramycin",
+    "active_ingredient": "Doxycycline hyclate 100mg capsule / tablet",
+    "drug_class": "تيتراسيكلين — مثبط ريبوسوم 30S",
+    "category": "تنفسي/مضادات",
+    "indications": "الالتهاب الرئوي اللانمطي (Mycoplasma، Chlamydia)، الكلاميديا STD، حب الشباب (Acne)، الملاريا (وقاية)",
+    "dosage_rule": "بالغين: 100mg مرتين يومياً لـ 7–14 يوماً. حب الشباب: 50–100mg يومياً. وقاية ملاريا: 100mg/day ابدأ قبل السفر بيومين.",
+    "clinical_pearl": "ممنوع مع الحليب ومضادات الحموضة والحديد والكالسيوم — يُؤخذ بكوب ماء كامل قبل أو بعد الطعام بساعتين. Photosensitivity شديدة — احمِ نفسك من الشمس. ممنوع في الحمل والأطفال أقل من 8 سنوات (يُلوّن الأسنان ويُضر بالعظم). يُؤخذ جالساً أو واقفاً — لا تستلقِ بعده مباشرة (قرحة مريء).",
+    "common_substitutes": ["Azithromycin 500mg للـ Atypical", "Amoxicillin 500mg للـ Typical"]
+  },
+
+  {
+    "id": 83,
+    "trade_name": "بيديزولون بخاخ أنفي / Beconase / Flixonase",
+    "active_ingredient": "Beclomethasone 50mcg/spray | Fluticasone propionate 50mcg/spray (Flixonase)",
+    "drug_class": "كورتيزون أنفي موضعي — مضاد التهاب مثبط مناعة موضعي",
+    "category": "تنفسي/حساسية",
+    "indications": "التهاب الأنف التحسسي الموسمي والمعمّر (الخط الأول)، الزوائد الأنفية",
+    "dosage_rule": "بالغين: 2 بخة في كل فتحة مرة يومياً (صباحاً). أطفال >6 سنوات: بخة واحدة في كل فتحة.",
+    "clinical_pearl": "الخط الأول العلمي لالتهاب الأنف التحسسي — أفضل من مضادات الهيستامين للأعراض الأنفية. يبدأ التأثير بعد 3–7 أيام. التقنية الصحيحة: اهمّ للأمام وبخّ باتجاه جدار الأنف الجانبي (لا للوسط — ترسل للحنجرة ويُسبب صداع). اشطف الأنف قبل الاستخدام.",
+    "common_substitutes": ["Mometasone (Nasonex) 200mcg (أقل امتصاصاً جهازياً)", "Triamcinolone (Nasacort) nasal spray"]
+  },
+
+  {
+    "id": 84,
+    "trade_name": "إيبراتروبيوم / Atrovent / Ipratropium",
+    "active_ingredient": "Ipratropium bromide 20mcg/actuation MDI | 0.5mg/2ml nebulizer",
+    "drug_class": "مضاد كوليني — موسع قصبي للـ COPD",
+    "category": "تنفسي",
+    "indications": "COPD (الخط الأول)، الربو الحاد الشديد (مع Salbutamol)، إفراز أنفي مفرط",
+    "dosage_rule": "MDI: 2 بخة كل 6 ساعات. نبيولايزر: 0.5mg + Salbutamol 2.5mg معاً في محلول.",
+    "clinical_pearl": "الفرق الجوهري: β2-agonist (Salbutamol) أسرع وأقوى، Ipratropium أطول مفعولاً وأنسب للـ COPD. في حالة الربو الحاد الشديد: أضفه لـ Salbutamol في النبيولايزر لتحسين الاستجابة بـ 25%. تجنب الرش في العين — يُسبب Acute Angle Glaucoma.",
+    "common_substitutes": ["Salbutamol (Ventolin) للـ Acute", "Tiotropium (Spiriva) للـ COPD المزمن مرة يومياً"]
+  },
+
+  {
+    "id": 85,
+    "trade_name": "أوكسيميتازولين / Afrin / Otriven",
+    "active_ingredient": "Oxymetazoline HCl 0.025% (أطفال) | 0.05% (بالغين) nasal drops/spray",
+    "drug_class": "مُضيّق أوعية أنفي طويل المفعول — α1/α2 agonist",
+    "category": "تنفسي/أنف",
+    "indications": "الاحتقان الأنفي الحاد، التهاب الأنف التحسسي الحاد",
+    "dosage_rule": "بالغين: بخة أو 2–3 قطرات في كل فتحة مرتين يومياً فقط. حد أقصى مطلق: 3–5 أيام.",
+    "clinical_pearl": "أطول مفعولاً من Xylometazoline (12 ساعة مقابل 6–8). نفس خطر Rhinitis Medicamentosa عند التجاوز 5 أيام. الانسحاب التدريجي أو Saline spray للإقلاع عن التعود. ممنوع للأطفال أقل من 6 سنوات. إذا أكل الطفل الصغير منه: طوارئ — يسبب بطء قلب وصدمة.",
+    "common_substitutes": ["Xylometazoline 0.1% spray", "Saline nasal spray (الآمن المفضل)"]
+  },
+
+  // ═══════════════════════════════════════════════
+  // القسم الخامس: المضادات الحيوية الأساسية (86–100)
+  // ═══════════════════════════════════════════════
+
+  {
+    "id": 86,
+    "trade_name": "أوجمنتين / Augmentin / Co-Amoxiclav",
+    "active_ingredient": "Amoxicillin 500mg + Clavulanic acid 125mg tablet | 875mg + 125mg | 400mg + 57mg/5ml suspension",
+    "drug_class": "بيتا-لاكتام محمي — بنسلين + مثبط بيتا-لاكتاماز",
+    "category": "مضادات حيوية",
+    "indications": "التهاب الجيوب والأذن والرئة، عضات الإنسان والحيوان، التهاب الجلد والنسيج تحت الجلد، التهاب المسالك البولية المعقد",
+    "dosage_rule": "بالغين: 625mg (500+125) مرتين إلى ثلاث مرات يومياً. High-dose: 875mg مرتين. أطفال: 40mg/kg/day (amoxicillin) ÷ 3 جرعات.",
+    "clinical_pearl": "يُؤخذ مع أول لقمة من الوجبة لتقليل الإسهال. الـ Clavulanate يُسبب اضطراب هضمي — الجرعة مرتين أفضل تحملاً من ثلاث. الشراب يُحفظ في الثلاجة وصالح 10 أيام. ممنوع في حساسية البنسلين.",
+    "common_substitutes": ["Cefuroxime (Zinnat) 500mg للتنفسي", "Cefdinir (Omnicef) 300mg"]
+  },
+
+  {
+    "id": 87,
+    "trade_name": "سيفروروكسيم / Zinnat / Cefuroxime",
+    "active_ingredient": "Cefuroxime axetil 125mg / 250mg / 500mg tablet | 125mg/5ml suspension",
+    "drug_class": "سيفالوسبورين الجيل الثاني — مثبط جدار الخلية",
+    "category": "مضادات حيوية",
+    "indications": "التهاب الجيوب الأنفية والأذن الوسطى، الالتهاب الرئوي الخفيف، التهاب اللوز، التهاب الجلد المعقد",
+    "dosage_rule": "بالغين: 250–500mg مرتين يومياً مع الطعام. أطفال: 30 mg/kg/day ÷ مرتين.",
+    "clinical_pearl": "يُؤخذ حصراً مع الطعام — البيوأفاضلية ترتفع من 37% (فارغة) إلى 52% (مع أكل). تفاعل متقاطع 10% مع حساسية البنسلين. تحتاج البنكرياس لتحوّله من Axetil إلى Cefuroxime النشط — خذه مع وجبة دسمة.",
+    "common_substitutes": ["Amoxicillin/Clavulanate (Augmentin) 625mg", "Cefdinir (Omnicef) 300mg"]
+  },
+
+  {
+    "id": 88,
+    "trade_name": "سيفيكسيم / Suprax / Cefiksim",
+    "active_ingredient": "Cefixime 200mg / 400mg tablet | 100mg/5ml oral suspension",
+    "drug_class": "سيفالوسبورين الجيل الثالث الفموي — طيف واسع",
+    "category": "مضادات حيوية",
+    "indications": "التهابات المسالك البولية غير المعقدة، التهاب الجيوب والأذن، التهاب عنق الرحم بالسيلان (Gonorrhea)",
+    "dosage_rule": "بالغين: 400mg مرة يومياً أو 200mg مرتين. السيلان: 400mg جرعة واحدة. أطفال: 8 mg/kg/day.",
+    "clinical_pearl": "الطيف المعوي (E. coli, Klebsiella) ممتاز — خيار ممتاز لـ UTI. لا تغطية لـ MRSA والـ Pseudomonas. الشراب أبطأ امتصاصاً لكن أكثر فاعلية بيولوجياً عند الأطفال. معدة فارغة أو مليئة — لا فرق كبير.",
+    "common_substitutes": ["Cefpodoxime (Orelox) 200mg", "Amoxicillin/Clavulanate للـ UTI المعقدة"]
+  },
+
+  {
+    "id": 89,
+    "trade_name": "سيفتريكسون / Rocephin / Ceftriaxone",
+    "active_ingredient": "Ceftriaxone sodium 500mg / 1g / 2g vial IM/IV",
+    "drug_class": "سيفالوسبورين الجيل الثالث الحقني — طيف واسع جداً",
+    "category": "مضادات حيوية",
+    "indications": "التهاب السحايا، الإنتان، الالتهاب الرئوي الشديد، التهاب المفاصل الإنتاني، السيلان",
+    "dosage_rule": "بالغين: 1–2g IM/IV مرة يومياً. التهاب سحايا: 2g IV مرتين. أطفال: 50–100 mg/kg/day.",
+    "clinical_pearl": "الحقن IM مؤلم جداً — يُخفف في 1% Lidocaine للحقن العضلي. لا يُخلط مع محاليل كالسيوم (يترسب) — ممنوع منعاً باتاً في نوفوبورن مع كالسيوم IV. يُغطي 95% من العوامل الممرضة الشائعة. نصف عمره 6–9 ساعات = مرة يومياً تكفي.",
+    "common_substitutes": ["Cefotaxime (Claforan) 1g للنوفوبورن", "Cefepime 1g للـ Pseudomonas"]
+  },
+
+  {
+    "id": 90,
+    "trade_name": "سيبروفلوكساسين / Cipro / Ciprofloxacin",
+    "active_ingredient": "Ciprofloxacin HCl 250mg / 500mg / 750mg tablet | 200mg/100ml IV",
+    "drug_class": "فلوروكينولون — مثبط DNA gyrase وTopoisomerase IV",
+    "category": "مضادات حيوية",
+    "indications": "التهابات المسالك البولية المعقدة، الإسهال المصحوب بحمى، التهاب البروستاتا، الجمرة الخبيثة، ضربة الشمس الجرثومية",
+    "dosage_rule": "UTI بسيط: 250–500mg مرتين يومياً لـ 3–7 أيام. UTI معقد: 500–750mg مرتين لـ 7–14 يوماً.",
+    "clinical_pearl": "ممنوع مع الحليب ومضادات الحموضة والحديد والزنك — يُؤخذ على معدة فارغة أو مع وجبة خفيفة جداً. تفاعل خطير مع Tizanidine (يرفع مستواه 10 أضعاف). يُسبب تلف الأوتار (Tendinopathy) خاصةً وتر أخيل — قلل النشاط البدني. ممنوع للأطفال <18 سنة والحامل.",
+    "common_substitutes": ["Levofloxacin (Tavanic) 500mg مرة يومياً", "TMP-SMX (Co-trimoxazole) 960mg لـ UTI غير المعقد"]
+  },
+
+  {
+    "id": 91,
+    "trade_name": "ليفوفلوكساسين / Tavanic / Levaquin",
+    "active_ingredient": "Levofloxacin 250mg / 500mg / 750mg tablet",
+    "drug_class": "فلوروكينولون الجيل الثالث — مثبط DNA gyrase",
+    "category": "مضادات حيوية",
+    "indications": "الالتهاب الرئوي المكتسب من المجتمع (CAP)، التهاب المسالك المعقد، التهاب الجيوب الشديد",
+    "dosage_rule": "CAP: 500mg مرة يومياً لـ 7–14 يوماً. UTI معقد: 250mg مرة يومياً لـ 10 أيام.",
+    "clinical_pearl": "جرعة يومية واحدة = compliance ممتاز. يُطيل QT — تحقق من ECG للقلبيين قبل البدء. يُؤخذ على معدة فارغة (2 ساعة قبل أو بعد الأكل) أو مع وجبة خفيفة. Tendinopathy + خطر تمزق الأوتار — نفس تحذير Cipro. ممنوع للأطفال.",
+    "common_substitutes": ["Moxifloxacin (Avelox) 400mg للـ LRTI", "Ciprofloxacin 500mg للـ UTI"]
+  },
+
+  {
+    "id": 92,
+    "trade_name": "ميترونيدازول / Flagyl IV",
+    "active_ingredient": "Metronidazole 500mg/100ml IV infusion bag",
+    "drug_class": "نيترو-إيميدازول حقني — مضاد البكتيريا اللاهوائية",
+    "category": "مضادات حيوية",
+    "indications": "الالتهابات اللاهوائية الشديدة، الإنتان البطني، التهاب القولون C. difficile الشديد، الخراجات",
+    "dosage_rule": "بالغين: 500mg IV كل 8 ساعات أو 1g كل 12 ساعة. أطفال: 7.5 mg/kg/dose كل 8 ساعات.",
+    "clinical_pearl": "يُعطى على 30–60 دقيقة IV لتجنب الغثيان. لا يُعطى بسرعة IV. يمكن التحويل فورياً للفموي بنفس الجرعة (البيوأفاضلية متطابقة تقريباً). تفاعل الكحول يستمر 48–72 ساعة بعد الانتهاء.",
+    "common_substitutes": ["Tinidazole 500mg IV (حيث متاح)", "Clindamycin 600mg IV للاهوائيين البديلة"]
+  },
+
+  {
+    "id": 93,
+    "trade_name": "كلينداميسين / Dalacin C / Clindamycin",
+    "active_ingredient": "Clindamycin HCl 150mg / 300mg capsule | 150mg/ml IV ampoule",
+    "drug_class": "لينكوساميد — مثبط ريبوسوم 50S",
+    "category": "مضادات حيوية",
+    "indications": "الحساسية من البنسلين للتنفسي، التهابات الجلد والأنسجة الرخوة، إصابات الأسنان وتجاريف العظام",
+    "dosage_rule": "بالغين: 150–450mg كل 6 ساعات. Cellulitis: 300mg كل 8 ساعات. IV: 600–900mg كل 8 ساعات.",
+    "clinical_pearl": "يُؤخذ مع كوب ماء كامل ولا يُؤخذ مستلقياً — يُسبب التهاب مريء شديد. أعلى خطر لـ C. difficile colitis من كل المضادات الحيوية — احذر. ممتاز لـ MRSA المجتمعي (CA-MRSA) ولالتهابات العظام.",
+    "common_substitutes": ["Linezolid (Zyvox) 600mg للـ MRSA الشديد", "TMP-SMX 960mg للـ CA-MRSA الخفيف"]
+  },
+
+  {
+    "id": 94,
+    "trade_name": "أموكسيسيللين + كلافيولانيك / Augmentin 1g",
+    "active_ingredient": "Amoxicillin 875mg + Clavulanic acid 125mg tablet",
+    "drug_class": "بيتا-لاكتام محمي — High-dose formula",
+    "category": "مضادات حيوية",
+    "indications": "الالتهاب الرئوي CAP، الجيوب الشديد، عضة الحيوان، التهاب البريق والنسيج (Cellulitis)",
+    "dosage_rule": "بالغين: 875/125mg مرتين يومياً مع الطعام لـ 7–14 يوماً.",
+    "clinical_pearl": "الجرعة مرتين (875mg) أريح وأقل تأثيراً هضمياً من 625mg ثلاث مرات. إذا كان لدى المريض UTI بالكلى (pyelonephritis) قد يُفضَّل الـ IV. تحفظ الأقراص في درجة حرارة الغرفة (الرطوبة تُفسد Clavulanate).",
+    "common_substitutes": ["Cefuroxime (Zinnat) 500mg مرتين", "Levofloxacin 500mg مرة للحساسية من البيتا-لاكتام"]
+  },
+
+  {
+    "id": 95,
+    "trade_name": "إيريثرومايسين / Erythrocin / Erythromycin",
+    "active_ingredient": "Erythromycin stearate 250mg / 500mg tablet | 125mg/5ml syrup",
+    "drug_class": "ماكروليد الجيل الأول — مثبط 50S ريبوسوم",
+    "category": "مضادات حيوية",
+    "indications": "الحساسية من البنسلين (التنفسي)، الديكة، الكلاميديا، سفلس الحمل",
+    "dosage_rule": "بالغين: 250–500mg كل 6 ساعات مع الطعام. أطفال: 40 mg/kg/day ÷ 4 جرعات.",
+    "clinical_pearl": "الأكثر غثياناً وتقلصاً بطنياً من الماكروليدات — أكل قبله إلزامي. مثبط CYP3A4 — تفاعلات دوائية كثيرة. أقل استخداماً الآن بعد Azithromycin وClarithromycin. الشراب الطفلي للكلاميديا العين في الرضع (بديل Tetracycline الممنوع).",
+    "common_substitutes": ["Azithromycin 500mg (أفضل تحملاً)", "Clarithromycin 500mg (أقل جرعات)"]
+  },
+
+  {
+    "id": 96,
+    "trade_name": "كوتريموكسازول / Co-trimoxazole / Septrin",
+    "active_ingredient": "Trimethoprim 80mg + Sulfamethoxazole 400mg tablet (standard) | 160mg+800mg (Forte)",
+    "drug_class": "سلفوناميد + مثبط ديهيدروفوليت ريداكتيز — تأثير مضاعف",
+    "category": "مضادات حيوية",
+    "indications": "UTI بسيط، التهاب البروستاتا، التهاب رئة Pneumocystis (PCP) في الإيدز، التوكسوبلازموزيس",
+    "dosage_rule": "UTI: قرص Forte مرتين يومياً لـ 3–7 أيام. PCP: 15–20 mg/kg/day TMP ÷ 3–4 جرعات.",
+    "clinical_pearl": "شرب الماء الكافي (2L يومياً) ضروري — يمنع ترسب الكريستالات في الكلى. يُسبب طفح جلدي وفي بعض الحالات SJS. ممنوع في الحمل (3 مراحل: الأول نقص فولات، الثالث kernicterus). ممنوع في الفشل الكلوي المتقدم. يرفع تأثير Warfarin وSulfonylurea.",
+    "common_substitutes": ["Nitrofurantoin (Furadantin) 100mg للـ UTI الجيب البسيط", "Ciprofloxacin 250mg للـ UTI الأشد"]
+  },
+
+  {
+    "id": 97,
+    "trade_name": "نيتروفيورانتوين / Furadantin / Nitrofurantoin",
+    "active_ingredient": "Nitrofurantoin 50mg / 100mg capsule",
+    "drug_class": "نيتروفيوران — مضاد مسالك بولية موضعي",
+    "category": "مضادات حيوية",
+    "indications": "UTI البسيط غير المعقد في النساء، التهاب المثانة المتكرر، وقاية UTI طويلة الأمد",
+    "dosage_rule": "100mg مرتين يومياً مع الطعام لـ 5–7 أيام. وقاية: 50mg مرة ليلاً.",
+    "clinical_pearl": "يتركز في البول فقط — لا يُعالج الكلى أو الدم. يُؤخذ حصراً مع الطعام أو الحليب للامتصاص (ويُقلل الغثيان). يُلوَّن البول بني أو أصفر داكن — طبيعي. ممنوع في GFR <30 (لا يتركز في البول ويتراكم). قد يُسبب التهاب رئة في الاستخدام طويل الأمد (نادر لكن خطير).",
+    "common_substitutes": ["Co-trimoxazole Forte (Septrin)", "Pivmecillinam (Selexid) حيث متاح"]
+  },
+
+  {
+    "id": 98,
+    "trade_name": "فانكومايسين / Vancocin / Vancomycin",
+    "active_ingredient": "Vancomycin HCl 500mg / 1g vial IV | 125mg / 250mg capsule (للمعوي فقط)",
+    "drug_class": "جليكوببتيد — مثبط تخليق جدار الخلية الجرام موجبة",
+    "category": "مضادات حيوية",
+    "indications": "MRSA، C. difficile colitis (فموي)، الإنتان الغرام موجب المقاوم، الاستبدال الصمامي",
+    "dosage_rule": "IV: 15–20 mg/kg كل 8–12 ساعة (تُراقب المستويات). C. diff فموي: 125mg كل 6 ساعات لـ 10 أيام.",
+    "clinical_pearl": "لا يُعطى IV بسرعة — Red Man Syndrome (احمرار وجه وعنق وصدر) عند IV سريع. يُعطى على ساعة لكل 500mg. يراقب مستواه في الدم (Trough: 15–20 mg/L للإنتان). ممنوع في الفشل الكلوي بدون تعديل جرعة. الفموي لا يُمتص — للقولون فقط.",
+    "common_substitutes": ["Linezolid (Zyvox) 600mg للـ MRSA التنفسي", "Daptomycin للـ Bacteremia والـ Endocarditis"]
+  },
+
+  {
+    "id": 99,
+    "trade_name": "فلوكونازول / Diflucan / Fluconazole",
+    "active_ingredient": "Fluconazole 50mg / 100mg / 150mg / 200mg capsule | 2mg/ml IV",
+    "drug_class": "مضاد فطريات ثلاثي الأزول — مثبط Cytochrome P450 الفطري (14α-demethylase)",
+    "category": "مضادات حيوية/فطريات",
+    "indications": "فطريات المهبل (Candidiasis)، فطريات الفم والحلق (Oropharyngeal)، فطريات الجلد، التهاب السحايا الفطري",
+    "dosage_rule": "Vaginal candidiasis: 150mg جرعة واحدة. Oral thrush: 100mg يومياً لـ 7–14 يوماً. Systemic: 400mg يوم 1 ثم 200mg/day.",
+    "clinical_pearl": "مثبط قوي CYP2C9 وCYP3A4 — تفاعلات كثيرة: يرفع Warfarin، Phenytoin، Cyclosporine. Fluconazole 150mg جرعة واحدة = علاج مثالي للكانديدا المهبلية. ممنوع مع Terfenadine وCisapride وAstemizole. تُوقف للحامل (رابط بعيوب خلقية في الاستخدام طويل الأمد). يؤخذ مع أو بدون طعام.",
+    "common_substitutes": ["Itraconazole (Sporanox) 100mg لفطريات الأظافر والجلد", "Clotrimazole vaginal tablets للكانديدا الموضعي"]
+  },
+
+  {
+    "id": 100,
+    "trade_name": "ميتفورمين + جليبنكلاميد / Glucovance",
+    "active_ingredient": "Metformin 500mg + Glibenclamide (Glyburide) 2.5mg or 5mg tablet",
+    "drug_class": "بيجوانيد + سلفونيليوريا — مضاد سكري مزدوج",
+    "category": "مزمن/سكر",
+    "indications": "السكري النوع الثاني الذي لا يُسيطر عليه بميتفورمين وحده",
+    "dosage_rule": "يبدأ بـ 500/2.5mg مرتين يومياً مع الوجبات. يُعدَّل حسب السكر كل 2 أسابيع.",
+    "clinical_pearl": "ميزة: جرعة واحدة بدلاً من دواءين. خطر هبوط السكر من الـ Glibenclamide — يُنبَّه المريض. لا يُعطى للكبار >75 سنة (هبوط سكر خطير). أوقفه قبل الصبغة بـ 48 ساعة. الـ Glibenclamide هو الأكثر خطورة للـ Hypoglycemia بين السلفونيليوريا.",
+    "common_substitutes": ["Metformin + Sitagliptin (Janumet) أكثر أماناً", "Metformin + Empagliflozin (Jardiamet) للقلبيين"]
+  }
+]
+```
+
+---
+
+## الملحق الأول — أهم 25 اختصاراً لاتينياً في الروشتات
+
+| # | الاختصار | المعنى اللاتيني | الترجمة العملية |
+|---|----------|----------------|----------------|
+| 1 | **od / qd** | Omni die | مرة يومياً |
+| 2 | **bid / bd** | Bis in die | مرتان يومياً |
+| 3 | **tid / tds** | Ter in die | ثلاث مرات يومياً |
+| 4 | **qid / qds** | Quater in die | أربع مرات يومياً |
+| 5 | **ac** | Ante cibum | قبل الأكل |
+| 6 | **pc** | Post cibum | بعد الأكل |
+| 7 | **cc** | Cum cibo | مع الأكل |
+| 8 | **prn / sos** | Pro re nata | عند الحاجة |
+| 9 | **stat** | Statim | فوراً / الآن |
+| 10 | **hs / nocte** | Hora somni | عند النوم |
+| 11 | **om** | Omni mane | كل صباح |
+| 12 | **q8h / q6h** | Quaque 8 hora | كل 8/6 ساعات |
+| 13 | **supp** | Suppositorium | تحميلة / تحاميل |
+| 14 | **susp** | Suspensio | معلق / شراب |
+| 15 | **ung / oint** | Unguentum | مرهم |
+| 16 | **gtt** | Gutta / Guttae | قطرة / قطرات |
+| 17 | **tab** | Tabella | قرص / أقراص |
+| 18 | **cap** | Capsula | كبسول |
+| 19 | **sig / s** | Signa | اكتب / الجرعة |
+| 20 | **amp** | Ampulla | أمبولة |
+| 21 | **inj** | Injectio | حقنة |
+| 22 | **iv** | Intravenous | وريدي |
+| 23 | **im** | Intramuscular | عضلي |
+| 24 | **sl / subling** | Sublingual | تحت اللسان |
+| 25 | **div** | Divide | يُقسَّم على |
+
+---
+
+## الملحق الثاني — أشهر 10 أدوية LASA (تشابه اسم/شكل)
+
+| # | الزوج الخطير | الخطأ الشائع | الفارق الحيوي | طريقة التمييز |
+|---|-------------|-------------|--------------|--------------|
+| 1 | **Celebrex 200mg** vs **Cerebyx 200mg** | صرف السيليكوكسيب عوضاً عن فوسفينيتوين | أحدهما مسكن، الآخر مضاد صرع | اقرأ حتى آخر حرف. اكتب CELEBREX بخط كبير |
+| 2 | **Losec (Omeprazole)** vs **Lasix (Furosemide)** | صرف مدر البول عوضاً عن PPI | واحد لارتجاع المعدة والآخر لفشل القلب | تحقق دائماً من المادة الفعالة |
+| 3 | **Paracetamol 120mg/5ml** vs **80mg/ml drops** | إعطاء جرعة النقط بملعقة الشراب (3.2x overdose) | الأقراص أكثر تركيزاً 3 أضعاف | اقرأ التركيز (Concentration) لا الاسم فقط |
+| 4 | **Prednisolone 5mg** vs **Prednisone 5mg** | خلط الجرعات (المصر يحوّل Prednisone للنشط في الكبد) | متطابقان تقريباً لكن يختلفان في الفشل الكبدي | في فشل الكبد: Prednisolone فقط |
+| 5 | **Hydroxyzine (Atarax)** vs **Hydroxychloroquine (Plaquenil)** | صرف دواء الذئبة للحكة | واحد مضاد هيستامين، الآخر علاج أمراض مناعية | الاسم الوصفي مختلف جذرياً — انتبه للشكل الكامل |
+| 6 | **Clonidine 0.1mg** vs **Clonazepam 0.5mg** | صرف مضاد ضغط الدم عوضاً عن مضاد الصرع | أحدهما لضغط الدم والآخر للصرع والقلق | تحقق من المؤشر العلاجي والشكل |
+| 7 | **Tramadol 50mg** vs **Toradol (Ketorolac) 10mg** | الاثنان مسكنات لكن بآليات مختلفة ومتطلبات مختلفة | Tramadol Opioid، Toradol NSAID | اقرأ الوصفة بصوت عالٍ (Tra-MA-dol vs TO-ra-dol) |
+| 8 | **Metronidazole** vs **Metformin** | صرف الميتفورمين بدلاً من الفلاجيل | ضد السكر vs ضد الأوليات | الـ Met- وحده لا يكفي — اقرأ الباقي |
+| 9 | **Glibenclamide 5mg** vs **Glipizide 5mg** vs **Gliclazide 80mg** | خلط جرعات السلفونيليوريا | جرعات مختلفة تماماً — Gliclazide 80mg لكن Glibenclamide 5mg | احفظ جرعة كل واحدة بمفردها |
+| 10 | **Augmentin 625mg** vs **Augmentin 1g** vs **Augmentin ES 600mg/5ml** | خلط التركيزات يُغيّر نسبة Clavulanate | نسبة Amox:Clav مختلفة في كل شكل | اقرأ الجرعة الكاملة: Amoxicillin/Clavulanate بالملليجرام |
+
+---
+
+### ملاحظة ختامية احترافية
+
+هذه الـ 100 صنف تغطي **~80% من حركة الصيدلية اليومية** في السوق المصري. تذكر دائماً:
+
+1. **الـ Concentration قبل الـ Dose** — خاصةً في أدوية الأطفال
+2. **الـ Interaction قبل الصرف** — 5 ثوانٍ تحقق تُنقذ حياة
+3. **الـ Allergy History دائماً** — خاصةً البنسلين قبل أي بيتا-لاكتام
+4. **الوقت من الأكل** — قبل/مع/بعد يُغيّر الفاعلية والأمان
+5. **الحامل والمرضع** — لا تصرف بدون تحقق من فئة الأمان

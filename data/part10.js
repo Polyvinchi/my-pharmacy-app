@@ -1,0 +1,136 @@
+window.PART10_DATA = [
+  {
+    "id": 339,
+    "trade_name": "Protocol: Hypertensive Headache (صداع مريض الضغط)",
+    "name_ar": "فخ إنترفيو: صداع لمريض ضغط مرتفع",
+    "active_ingredient": "Paracetamol 500mg (Only)",
+    "dosage_form": "OTC Protocol Kit",
+    "sub_form_type": "سيناريو سريري حرج للكاونتر",
+    "is_fridge": false,
+    "system_category": "بروتوكولات OTC",
+    "indications": "الشكوى من صداع حاد لمريض لديه تاريخ مرضي مع ارتفاع ضغط الدم",
+    "dosage_and_admin": "قياس الضغط فورياً أولاً؛ إذا كان أقل من 140/90 يصرف Paracetamol 500-1000mg فقط كل 6 ساعات",
+    "clinical_pearl": "فخ إنترفيو شهير: إياك وصرف Panadol Extra أو أدوية البرد مثل Congestal أو Comtrex أو مسكنات NSAIDs مثل Cataflam/Brufen لأنها ترفع ضغط الدم بشكل حاد أو تسبب احتباس السوائل وتتعارض مع أدوية الضغط",
+    "critical_warnings": "علامة حمراء (Red Flag): إذا كان الضغط أعلى من 180/120 أو الصداع مصحوباً بزغللة في العين أو تنميل في نصف الوجه/الأطراف، يحظر إعطاء أي دواء ويحول فوراً لطوارئ المستشفى (Hypertensive Crisis)",
+    "drug_interactions": "السودوإيفيدرين، الكافيين، ومسكنات NSAIDs ترفع الضغط وتبطل مفعول حاصرات بيتا ومثبطات ACE",
+    "special_populations": {
+      "pregnancy": "Safe",
+      "hypertension": "Critical Monitoring",
+      "diabetic": "Safe"
+    },
+    "substitutes_same_active": [
+      "Panadol Advance",
+      "Paramol Tab",
+      "Cetal Tab"
+    ],
+    "substitutes_alternative_class": [
+      "إحالة طوارئ فورية إذا كان الضغط انفجارياً"
+    ]
+  },
+  {
+    "id": 340,
+    "trade_name": "Protocol: Groin Rash Tinea vs Allergy (فخ التسلخات)",
+    "name_ar": "فخ إنترفيو: تسلخات الفخذين (فطريات أم حساسية)",
+    "active_ingredient": "Terbinafine 1% or Clotrimazole 1% (Antifungal Only)",
+    "dosage_form": "OTC Protocol Kit",
+    "sub_form_type": "سيناريو سريري حرج للكاونتر",
+    "is_fridge": false,
+    "system_category": "بروتوكولات OTC",
+    "indications": "التهاب وحكة شديدة بين الفخذين (Tinea Cruris)",
+    "dosage_and_admin": "دهان كريم مضاد للفطريات مرتين يومياً مع التمديد 2 سم خارج حدود الحافة الحمراء لمدة أسبوعين",
+    "clinical_pearl": "فخ إنترفيو شهير: منع صرف كريم كورتيزون صريح (مثل Betaderm أو Dermovate) إطلاقاً؛ الكورتيزون يهديء الحكة مؤقتاً لساعات ثم يغذي الفطريات ويضعف مناعة الجلد محولاً الحالة إلى Tinea Incognito المستعصية",
+    "critical_warnings": "يحظر تغطية المنطقة بضماد محكم، ويجب تجفيف المنطقة جيداً وعدم مشاركة الفوط",
+    "drug_interactions": "لا توجد تفاعلات جهازية",
+    "special_populations": {
+      "pregnancy": "Safe",
+      "hypertension": "Safe",
+      "diabetic": "Safe - مرضى السكر أكثر عرضة"
+    },
+    "substitutes_same_active": [
+      "Lamisil Cream",
+      "Canesten Cream"
+    ],
+    "substitutes_alternative_class": [
+      "Daktacort (لفترة قصيرة جداً لا تتجاوز 48 ساعة فقط)"
+    ]
+  },
+  {
+    "id": 341,
+    "trade_name": "Protocol: Warfarin Drug-Drug Traps (فخاخ مريض السيولة)",
+    "name_ar": "فخ إنترفيو: مريض يتناول ماريفان / وارفارين",
+    "active_ingredient": "Warfarin Monitoring Red Flags",
+    "dosage_form": "OTC Protocol Kit",
+    "sub_form_type": "سيناريو سريري حرج للكاونتر",
+    "is_fridge": false,
+    "system_category": "بروتوكولات OTC",
+    "indications": "طلب علاج لمغص، أسنان، خراج، أو فطريات فم لمريض صمام صناعي أو جلطات",
+    "dosage_and_admin": "التسكين المسموح فقط هو الباراسيتامول بجرعة لا تتعدى 2 جم يومياً كحد أقصى",
+    "clinical_pearl": "فخ قاتل: Flagyl (مترونيدازول) و Daktarin Oral Gel (ميكونازول) يثبطان إنزيم CYP2C9 المسؤول عن تكسير الوارفارين، مما يقفز بمستويات الـ INR لأكثر من 8 ويؤدي لنزيف دماغي أو معوي مميت",
+    "critical_warnings": "ممنوع قطعاً صرف أي مسكن NSAID (كتافلام، بروفين، كيتولاك، أسبرين) لأنه يسبب قرحاً نازفة مضاعفة",
+    "drug_interactions": "تفاعل نزفي قاتل مع Metronidazole, Miconazole, Fluconazole, Ciprofloxacin, NSAIDs",
+    "special_populations": {
+      "pregnancy": "Contraindicated",
+      "hypertension": "Monitor",
+      "diabetic": "Safe"
+    },
+    "substitutes_same_active": [
+      "Paracetamol (المسكن الوحيد الآمن بجرعة منخفضة)"
+    ],
+    "substitutes_alternative_class": [
+      "إحالة لطبيب القلب المشرف فوراً قبل صرف أي مضاد حيوي"
+    ]
+  },
+  {
+    "id": 342,
+    "trade_name": "Protocol: Pediatric Fever & Dehydration (حمى أطفال مع جفاف)",
+    "name_ar": "فخ إنترفيو: سخونية طفل مع إسهال وقيء",
+    "active_ingredient": "Paracetamol Drops/Syrup + ORS (No Ibuprofen)",
+    "dosage_and_admin": "باراسيتامول 15 ملغ/كجم مع محلول جفاف ملحي بالمعلقة ببطء شديد",
+    "dosage_form": "OTC Protocol Kit",
+    "sub_form_type": "سيناريو سريري حرج للكاونتر",
+    "is_fridge": false,
+    "system_category": "بروتوكولات OTC",
+    "indications": "ارتفاع درجة حرارة طفل رضيع مصحوب بإسهال وقيء مستمر",
+    "clinical_pearl": "فخ إنترفيو شهير: يحظر نهائياً صرف الإيبوبروفين (Brufen/Dolphin) لطفل مصاب بجفاف؛ لأن البروفين يمنع تدفق الدم للشرايين الكلوية (Renal Vasoconstriction) ويؤدي مع الجفاف لفشل كلوي حاد فوري (Acute Renal Failure)",
+    "critical_warnings": "الإيبوبروفين ممنوع تماماً تحت عمر 3 إلى 6 أشهر ولأي طفل يرفض السوائل وجلده جاف",
+    "drug_interactions": "NSAIDs + Dehydration = سمية كلوية حادة",
+    "special_populations": {
+      "pregnancy": "N/A",
+      "hypertension": "Safe",
+      "diabetic": "Safe"
+    },
+    "substitutes_same_active": [
+      "Cetal Syrup",
+      "Paramol Suspension"
+    ],
+    "substitutes_alternative_class": [
+      "محاليل الجفاف الفموي Hydrosafe/Rehydran"
+    ]
+  },
+  {
+    "id": 343,
+    "trade_name": "Smart Cross-Selling Matrix (البيع الاستشاري الذكي)",
+    "name_ar": "مهارة إنترفيو: التوصيات المكملة الصيدلانية",
+    "active_ingredient": "Clinical Counseling Matrix",
+    "dosage_form": "OTC Protocol Kit",
+    "sub_form_type": "معايير تقييم البيع المهني في السلاسل",
+    "is_fridge": false,
+    "system_category": "بروتوكولات OTC",
+    "indications": "رفع قيمة التذكرة العلاجية عبر حماية المريض من الآثار الجانبية للدواء الأساسي",
+    "dosage_and_admin": "توصية علاجية استباقية أثناء مراجعة الروشتة مع العميل",
+    "clinical_pearl": "1. مع المضاد الحيوي القوي (أوجمنتين): اعرض Probiotic لحماية فلورا الأمعاء ومنع الإسهال. 2. مع ميتفورمين (سيدوفاج/جلوكوفاج): اعرض فيتامين B12 (ميلجا/نيوروتون) لمنع تنميل الأطراف. 3. مع الـ NSAIDs المزمن: اعرض واقي معدة PPI (كونترولوك). 4. مع الحديد: اعرض فيتامين C لتعزيز الامتصاص ونبه للفصل عن الشاي",
+    "critical_warnings": "لا تعرض منتجات دون أساس علمي مبرر، ولا تصرف مكملات تتعارض زمنياً في الامتصاص مع الدواء الموصوف",
+    "drug_interactions": "يجب الفصل ساعتين بين المضاد والبروبيوتيك، وساعتين بين الحديد ومنتجات الكالسيوم والشاي",
+    "special_populations": {
+      "pregnancy": "Guidance Required",
+      "hypertension": "Guidance Required",
+      "diabetic": "Guidance Required"
+    },
+    "substitutes_same_active": [
+      "Patient Counseling Excellence"
+    ],
+    "substitutes_alternative_class": [
+      "Cross-Selling Guidelines"
+    ]
+  }
+];

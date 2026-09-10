@@ -1,0 +1,84 @@
+[
+  {
+    "id": 336,
+    "trade_name": "Ferinject 500mg/10ml",
+    "name_ar": "فيرينجكت 500 مج حقن حديد وريدي",
+    "active_ingredient": "Ferric Carboxymaltose 500mg/10ml",
+    "dosage_form": "Vial",
+    "sub_form_type": "حديد وريدي عالي التركيز واسع المدى",
+    "is_fridge": false,
+    "system_category": "حقن طوارئ / أعصاب وفيتامينات",
+    "indications": "علاج الأنيميا الحادة بنقص الحديد قبل الولادة أو الجراحات، وعند فشل أو عدم تحمل أقراص الحديد الفموية",
+    "dosage_and_admin": "IV Infusion فقط بالتنقيط في 100 مل محلول ملح 0.9% على مدار 15 دقيقة على الأقل (جرعة أسبوعية)",
+    "clinical_pearl": "يسمح بإعطاء جرعة تعويضية ضخمة (حتى 1000 ملغ) في جلسة واحدة دون الحاجة لتكرار الحقن عدة مرات كما في الفينوفر؛ يمنع تماماً حقنه في العضل IM",
+    "critical_warnings": "ممنوع IM أو IV push سريع، ممنوع في الثلث الأول من الحمل، مراقبة المريض 30 دقيقة بعد الحقن تحسباً لصدمة تحسسية",
+    "drug_interactions": "يقلل امتصاص الحديد الفموي، لذا يفصل 5 أيام قبل البدء بأي حبوب حديد",
+    "special_populations": {
+      "pregnancy": "Safe (T2, T3) / Contraindicated (T1)",
+      "hypertension": "Safe",
+      "diabetic": "Safe"
+    },
+    "substitutes_same_active": [
+      "Carboxyfer 500mg"
+    ],
+    "substitutes_alternative_class": [
+      "Venofer 100mg",
+      "Ferrosac 100mg"
+    ]
+  },
+  {
+    "id": 337,
+    "trade_name": "Urivin Effervescent",
+    "name_ar": "يوريفين فوار أكياس",
+    "active_ingredient": "Colchicine 0.3mg + Piperazine + Atropine Sulfate + Khellin",
+    "dosage_form": "Effervescent Sachet",
+    "sub_form_type": "فوار مذيب لحصوات اليورات ومضاد لنوبات النقرس",
+    "is_fridge": false,
+    "system_category": "مسالك ومطهرات",
+    "indications": "أملاح اليورات المرتفعة، الوقاية وتسكين نوبات النقرس الحادة، وتقلصات المسالك البولية",
+    "dosage_and_admin": "كيس واحد في نصف كوب ماء 3 مرات يومياً بعد الوجبات مباشرة أثناء الفوران",
+    "clinical_pearl": "يحتوي على الخلين والكولشيسين لفك تقلصات الحالب وتهدئة التهاب مفصل النقرس؛ إذا أصيب المريض بإسهال شديد يوقف فوراً لتفادي تسمم الكولشيسين",
+    "critical_warnings": "ممنوع للحوامل ومرضى الفشل الكلوي الحاد والمغص الكبدي",
+    "drug_interactions": "يتعارض مع الستاتينات (يزيد سمية العضلات) ومدرات البول ومضادات الفطريات",
+    "special_populations": {
+      "pregnancy": "Contraindicated",
+      "hypertension": "Caution - يحتوي صوديوم",
+      "diabetic": "Safe"
+    },
+    "substitutes_same_active": [
+      "Urosolvine",
+      "Goutless"
+    ],
+    "substitutes_alternative_class": [
+      "Zyloric Tab",
+      "Feburic Tab"
+    ]
+  },
+  {
+    "id": 338,
+    "trade_name": "Zofran Syrup / Danset",
+    "name_ar": "زوفران شرب / دانسيت للقيء",
+    "active_ingredient": "Ondansetron 4mg/5ml",
+    "dosage_form": "Syrup",
+    "sub_form_type": "مضاد قيء تخصصي سريع المفعول للأطفال",
+    "is_fridge": false,
+    "system_category": "أطفال وحديثي الولادة",
+    "indications": "القيء المستمر في النزلات المعوية للأطفال للتمكن من شرب محاليل الجفاف، وقيء ما بعد العمليات",
+    "dosage_and_admin": "0.15 ملغ/كجم (حوالي 2 إلى 4 مل حسب الوزن والعمر) قبل محلول الجفاف بـ 20 دقيقة",
+    "clinical_pearl": "الخيار الأحدث والأكثر أماناً من البريمبران (لا يسبب أعراض تشنج الرقبة خارج الهرمية Extrapyramidal)؛ يعطى أولاً ليوقف القيء حتى يستقر محلول الـ ORS في معدة الطفل",
+    "critical_warnings": "حذر مع الأطفال الذين يعانون من متلازمة استطالة كهربية القلب (Long QT)، لا يستخدم كعلاج روتيني للقيء البسيط",
+    "drug_interactions": "يزيد خطورة اضطراب نظم القلب إذا جمع مع أدوية تطيل فترة QT مثل الأزيثروماكس",
+    "special_populations": {
+      "pregnancy": "Safe (T2, T3) / Caution (T1)",
+      "hypertension": "Safe",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Danset Syrup",
+      "Emeset Syrup"
+    ],
+    "substitutes_alternative_class": [
+      "Motilium Suspension"
+    ]
+  }
+]

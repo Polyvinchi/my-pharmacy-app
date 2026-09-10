@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>رفيق الجيب الصيدلاني</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        medical: { 50: '#f0fdfa', 100: '#ccfbf1', 500: '#14b8a6', 600: '#0d9488', 700: '#0f766e', 900: '#134e4a' },
+                        navy: { 50: '#eff6ff', 500: '#3b82f6', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a' }
+                    },
+                    fontFamily: { sans: ['system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'Arial', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .perspective { perspective: 1000px; }
+        .flip-card-inner {
+            transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transform-style: preserve-3d;
+            position: relative; width: 100%; height: 100%;
+        }
+        .flipped .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back {
+            backface-visibility: hidden; -webkit-backface-visibility: hidden;
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            width: 100%; height: 100%;
+        }
+        .flip-card-back { transform: rotateY(180deg); }
+        body { -webkit-tap-highlight-color: transparent; }
+        .pb-safe { padding-bottom: env(safe-area-inset-bottom, 20px); }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-200">
+
+<div class="max-w-md mx-auto min-h-screen bg-gray-50 dark:bg-gray-900 relative shadow-2xl flex flex-col">
+    <!-- Header -->
+    <header class="bg-white dark:bg-gray-800 shadow-sm px-4 py-3 sticky top-0 z-40 border-b dark:border-gray-700">
+        <div class="flex justify-between items-center mb-3">
+            <div class="flex items-center gap-2 text-medical-600 dark:text-medical-500">
+                <i data-lucide="cross" class="w-6 h-6"></i>
+                <h1 class="text-xl font-bold">رفيق الصيدلي</h1>
+            </div>
+            <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-300">
+                <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i>
+                <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+            </button>
+        </div>
+        
+        <div id="search-container" class="relative">
+            <input type="text" id="search-input" placeholder="ابحث بالاسم، المادة الفعالة، أو الاستخدام..." 
+                   class="w-full bg-gray-100 dark:bg-gray-700 border-none rounded-xl py-2.5 px-4 text-sm focus:ring-2 focus:ring-medical-500 dark:text-white placeholder-gray-400">
+            <button id="clear-search" class="absolute top-3 left-3 text-gray-400 hidden">
+                <i data-lucide="x-circle" class="w-4 h-4"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 overflow-y-auto pb-24">
+        
+        <!-- Section 1: Dictionary -->
+        <div id="tab-dict" class="section-content block">
+            <div class="overflow-x-auto hide-scrollbar py-3 px-4 border-b dark:border-gray-700 bg-white dark:bg-gray-800 sticky top-0 z-30">
+                <div class="flex gap-2" id="chips-container"></div>
+            </div>
+            <div id="cards-container" class="p-4 space-y-4"></div>
+            <div id="no-results" class="hidden flex-col items-center justify-center py-12 text-gray-400">
+                <i data-lucide="search-x" class="w-12 h-12 mb-3 opacity-50"></i>
+                <p>لا توجد نتائج مطابقة</p>
+            </div>
+        </div>
+
+        <!-- Section 2: Calc -->
+        <div id="tab-calc" class="section-content hidden p-5">
+            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 mb-6">
+                <div class="flex items-center gap-2 mb-4 text-medical-600 dark:text-medical-500">
+                    <i data-lucide="calculator" class="w-6 h-6"></i>
+                    <h2 class="text-xl font-bold">حاسبة جرعات الأطفال</h2>
+                </div>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">إدخال الوزن للحصول على الميليليتر (ml) فوراً لتجنب الحسابات الذهنية وقت الزحمة.</p>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold mb-1 dark:text-gray-200">وزن الطفل بالكيلوجرام (kg):</label>
+                        <input type="number" id="calc-weight" step="0.1" placeholder="مثال: 12.5" class="w-full bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl px-4 py-3 focus:ring-2 focus:ring-medical-500 dark:text-white">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-1 dark:text-gray-200">اختر الدواء:</label>
+                        <select id="calc-drug" class="w-full bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl px-4 py-3 focus:ring-2 focus:ring-medical-500 dark:text-white appearance-none">
+                            <option value="para">باراسيتامول شراب (120مجم/5مل)</option>
+                            <option value="ibu">بروفين شراب (100مجم/5مل)</option>
+                            <option value="aug">أوجمنتين معلق (400مجم/5مل)</option>
+                        </select>
+                    </div>
+                    <button onclick="calculateDose()" class="w-full bg-medical-600 hover:bg-medical-700 text-white font-bold py-3 rounded-xl transition-colors flex justify-center items-center gap-2 mt-2">
+                        <i data-lucide="zap" class="w-5 h-5"></i>
+                        احسب الجرعة الدقيقة
+                    </button>
+                </div>
+            </div>
+            <div id="calc-result" class="bg-blue-50 dark:bg-navy-900/40 border border-blue-100 dark:border-navy-700 rounded-2xl p-5 hidden"></div>
+        </div>
+
+        <!-- Section 3: Flashcards -->
+        <div id="tab-flash" class="section-content hidden p-5 flex flex-col h-full items-center">
+            <div class="w-full flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold text-navy-700 dark:text-navy-400">بطاقات الذاكرة السريعة</h2>
+                <div class="text-xs font-semibold bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full text-gray-700 dark:text-gray-200" id="flash-progress">1 / 100</div>
+            </div>
+            
+            <div class="perspective w-full h-80 mb-6 cursor-pointer" onclick="toggleFlip()">
+                <div id="flashcard-inner" class="flip-card-inner rounded-2xl shadow-lg w-full h-full">
+                    <div class="flip-card-front bg-gradient-to-br from-medical-500 to-medical-700 text-white rounded-2xl p-6 flex flex-col justify-center items-center text-center border-4 border-white dark:border-gray-800 relative overflow-hidden">
+                        <i data-lucide="pill" class="w-24 h-24 opacity-10 absolute -bottom-4 -right-4"></i>
+                        <h3 id="fc-front-name" class="text-2xl font-bold mb-3 z-10" dir="ltr">Trade Name</h3>
+                        <span id="fc-front-cat" class="bg-white/20 px-4 py-1 rounded-full text-sm font-medium backdrop-blur-sm mt-2 z-10">Category</span>
+                        <p class="text-sm mt-8 opacity-80 flex items-center z-10"><i data-lucide="rotate-ccw" class="w-4 h-4 mr-1"></i> اضغط للقلب</p>
+                    </div>
+                    <div class="flip-card-back bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 rounded-2xl p-6 flex flex-col justify-center border-2 border-medical-500">
+                        <h4 class="text-xs text-medical-600 dark:text-medical-400 font-bold mb-1">المادة الفعالة:</h4>
+                        <p id="fc-back-active" class="font-bold mb-3 text-base leading-tight text-navy-700 dark:text-navy-300" dir="ltr">Active Ing</p>
+                        <h4 class="text-xs text-medical-600 dark:text-medical-400 font-bold mb-1">الجرعة المعتادة:</h4>
+                        <p id="fc-back-dose" class="text-xs mb-4 bg-gray-50 dark:bg-gray-700/50 p-2 rounded leading-snug">Dose</p>
+                        <div class="mt-auto bg-amber-50 dark:bg-amber-900/30 border-r-4 border-amber-400 p-3 rounded-l">
+                            <p class="text-[10px] font-bold text-amber-800 dark:text-amber-400 flex items-center mb-1"><i data-lucide="lightbulb" class="w-3 h-3 mr-1"></i> تريكة سريرية:</p>
+                            <p id="fc-back-pearl" class="text-xs text-amber-900 dark:text-amber-200 leading-snug">Pearl</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex gap-3 w-full">
+                <button onclick="markReview()" class="flex-1 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 text-gray-700 dark:text-gray-200 py-3 rounded-xl font-bold flex justify-center items-center transition text-sm">
+                    <i data-lucide="refresh-cw" class="w-4 h-4 ml-1"></i> محتاجة مراجعة
+                </button>
+                <button onclick="markMastered()" class="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white py-3 rounded-xl font-bold flex justify-center items-center transition shadow-lg shadow-emerald-500/30 text-sm">
+                    <i data-lucide="check-circle" class="w-4 h-4 ml-1"></i> أتقنتها
+                </button>
+            </div>
+            <button onclick="resetMastery()" class="mt-5 text-xs text-gray-400 underline decoration-gray-400 underline-offset-4">إعادة تصفير قائمة المراجعة</button>
+        </div>
+
+        <!-- Section 4: Rx Cheat-Sheet -->
+        <div id="tab-rx" class="section-content hidden p-5">
+            <h2 class="text-xl font-bold text-navy-700 dark:text-navy-400 mb-4 flex items-center"><i data-lucide="scroll-text" class="w-6 h-6 ml-2"></i> مترجم الروشتات السريع</h2>
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
+                <div class="bg-medical-50 dark:bg-medical-900/50 p-3 border-b dark:border-gray-700">
+                    <h3 class="font-bold text-medical-800 dark:text-medical-200 text-sm">أهم 25 اختصار لاتيني</h3>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-xs text-right">
+                        <thead class="bg-gray-50 dark:bg-gray-700/50 text-gray-500 dark:text-gray-400 border-b dark:border-gray-700">
+                            <tr><th class="px-3 py-2 font-semibold">الاختصار</th><th class="px-3 py-2 font-semibold">المعنى العملي</th></tr>
+                        </thead>
+                        <tbody id="latin-table" class="divide-y divide-gray-100 dark:divide-gray-700"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
+                <div class="bg-red-50 dark:bg-red-900/30 p-3 border-b dark:border-gray-700 flex items-center">
+                    <i data-lucide="alert-triangle" class="w-4 h-4 ml-2 text-red-600 dark:text-red-400"></i>
+                    <h3 class="font-bold text-red-800 dark:text-red-400 text-sm">الأدوية المتشابهة (LASA)</h3>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-xs text-right">
+                        <thead class="bg-gray-50 dark:bg-gray-700/50 text-gray-500 dark:text-gray-400 border-b dark:border-gray-700">
+                            <tr><th class="px-3 py-2 font-semibold">الزوج الخطير</th><th class="px-3 py-2 font-semibold">الفارق الحيوي</th></tr>
+                        </thead>
+                        <tbody id="lasa-table" class="divide-y divide-gray-100 dark:divide-gray-700"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Nav -->
+    <nav class="fixed bottom-0 w-full max-w-md bg-white dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700 pb-safe z-50 flex justify-around">
+        <button class="tab-btn w-full py-2.5 flex flex-col items-center text-medical-600 dark:text-medical-400 font-bold transition" data-target="tab-dict">
+            <i data-lucide="book" class="w-6 h-6 mb-1"></i><span class="text-[10px]">القاموس</span>
+        </button>
+        <button class="tab-btn w-full py-2.5 flex flex-col items-center text-gray-400 dark:text-gray-500 hover:text-medical-500 transition" data-target="tab-calc">
+            <i data-lucide="calculator" class="w-6 h-6 mb-1"></i><span class="text-[10px]">حاسبة</span>
+        </button>
+        <button class="tab-btn w-full py-2.5 flex flex-col items-center text-gray-400 dark:text-gray-500 hover:text-medical-500 transition" data-target="tab-flash">
+            <i data-lucide="layers" class="w-6 h-6 mb-1"></i><span class="text-[10px]">فلاش كاردز</span>
+        </button>
+        <button class="tab-btn w-full py-2.5 flex flex-col items-center text-gray-400 dark:text-gray-500 hover:text-medical-500 transition" data-target="tab-rx">
+            <i data-lucide="file-text" class="w-6 h-6 mb-1"></i><span class="text-[10px]">روشتات</span>
+        </button>
+    </nav>
+</div>
+
+<script>
+// ================= DATA =================
+const drugsData = [
+  {id:1, trade_name:"بنادول بيبي / Panadol Baby", active_ingredient:"Paracetamol 120mg/5ml syrup | 80mg/ml drops", drug_class:"خافض حرارة ومسكن", category:"أطفال", indications:"الحمى، ألم التسنين، ألم ما بعد التطعيم", dosage_rule:"15 mg/kg/dose كل 4–6 ساعات. حد أقصى 5 جرعات.", clinical_pearl:"تنبيه حرج: نقط الباراسيتامول 80mg/ml أكثر تركيزاً 3.2 مرة من الشراب.", common_substitutes:["Paracetamol Adwia", "Tempra"]},
+  {id:2, trade_name:"بروفين أطفال / Brufen", active_ingredient:"Ibuprofen 100mg/5ml suspension", drug_class:"NSAID", category:"أطفال", indications:"الحمى المرتفعة، آلام المفاصل، التسنين", dosage_rule:"5–10 mg/kg/dose كل 6–8 ساعات. لا يعطى لأقل من 6 أشهر.", clinical_pearl:"البروفين أقوى في خفض الحرارة الشديدة (>39.5). ممنوع في الجفاف.", common_substitutes:["Nurofen", "Ibuprofen Kahira"]},
+  {id:3, trade_name:"باراسيتامول لبوس / Paracetamol Supp", active_ingredient:"Paracetamol 125mg / 250mg / 500mg", drug_class:"مسكن خافض حرارة", category:"أطفال", indications:"الحمى مع قيء، الحمى الليلية", dosage_rule:"15–20 mg/kg/dose كل 6–8 ساعات.", clinical_pearl:"الامتصاص أبطأ من الفموي (45 دقيقة). لا تقطعي التحميلة لتقليل الجرعة.", common_substitutes:["Panadol supp", "Tempra supp"]},
+  {id:4, trade_name:"نقط المغص / Infacol / Sab Simplex", active_ingredient:"Simethicone 40mg/ml drops", drug_class:"مضاد انتفاخ", category:"أطفال", indications:"مغص الرضع، الغازات", dosage_rule:"0.3–0.6ml (20–40mg) قبل كل رضعة.", clinical_pearl:"غير ممتص نهائياً آمن 100%. أعطيه قبل الرضاعة وليس بعدها.", common_substitutes:["Espumisan", "Colimix"]},
+  {id:5, trade_name:"ريهيدرال / Rehydral ORS", active_ingredient:"WHO Low-osmolarity ORS", drug_class:"محلول إماهة", category:"أطفال", indications:"الجفاف الناتج عن الإسهال والقيء", dosage_rule:"50–100 ml/kg خلال 4 ساعات. ثم 10ml/kg بعد كل إسهال.", clinical_pearl:"الأولوية الأولى دائماً قبل أي دواء. ساشيه في 200ml ماء فاتر فقط.", common_substitutes:["Dioralyte", "Pedialyte"]},
+  {id:6, trade_name:"كولبيرين / Colpermin", active_ingredient:"Simethicone + Dill oil + Fennel", drug_class:"مضاد تشنج وانتفاخ", category:"أطفال", indications:"المغص للرضع الأكبر من 6 أشهر", dosage_rule:"5–10ml ثلاث مرات يومياً بعد الوجبات.", clinical_pearl:"يجمع تأثير سيميثيكون مع الأعشاب. آمن لكن لا يعطى لحساسية الخزامى.", common_substitutes:["Sab Simplex", "Kolicar"]},
+  {id:7, trade_name:"أبيتال شراب / Apetal", active_ingredient:"Cyproheptadine 2mg/5ml + Vitamins", drug_class:"مضاد هيستامين + محفز شهية", category:"أطفال", indications:"فقدان الشهية، نقص الوزن", dosage_rule:"2–6 سنوات: 2.5ml مرتين. قبل الوجبة بـ 30 دقيقة.", clinical_pearl:"يسبب نعاساً، أعطه ليلاً كجرعة أساسية. لا يعطى لأقل من سنتين.", common_substitutes:["Novalon", "Zinc sulfate"]},
+  {id:8, trade_name:"لاكتيال / Lacteol Fort", active_ingredient:"Lactobacillus acidophilus (inactivated)", drug_class:"بروبيوتيك", category:"أطفال / هضمي", indications:"إسهال الرضع، إسهال المضادات الحيوية", dosage_rule:"ساشيه واحد مرتين يومياً.", clinical_pearl:"معطل حرارياً يعمل بآلية مناعية يبقى فعالاً مع المضادات الحيوية. لا يحتاج ثلاجة.", common_substitutes:["Ultra-Levure", "Bioplex"]},
+  {id:9, trade_name:"الترا ليفور / Ultra-Levure", active_ingredient:"Saccharomyces boulardii 250mg", drug_class:"بروبيوتيك خميري", category:"أطفال / هضمي", indications:"إسهال المضادات، C. difficile", dosage_rule:"250mg مرتين يومياً.", clinical_pearl:"خميرة فلا تقتلها المضادات الحيوية، ابدأها مع المضاد من اليوم الأول.", common_substitutes:["Lacteol Fort"]},
+  {id:10, trade_name:"بيوجايا / BioGaia drops", active_ingredient:"Lactobacillus reuteri", drug_class:"بروبيوتيك حي", category:"أطفال", indications:"مغص الرضع، تحسين الفلورا", dosage_rule:"5 نقط يومياً.", clinical_pearl:"الأقوى دليلاً لمغص الرضع. يحفظ بالثلاجة بعد الفتح.", common_substitutes:["Nermina drops"]},
+  {id:11, trade_name:"ديفوكوف / Devocough", active_ingredient:"Dextromethorphan 15mg/5ml", drug_class:"مضاد سعال مركزي", category:"أطفال >6 سنوات", indications:"السعال الجاف المزعج", dosage_rule:"6–12 سنة: 5–10ml كل 6–8 ساعات.", clinical_pearl:"ممنوع منعاً باتاً أقل من 6 سنوات وممنوع مع السعال ببلغم.", common_substitutes:["Benylin Dry", "Vicks 44"]},
+  {id:12, trade_name:"ليفوسيتيريزين / Xyzal", active_ingredient:"Levocetirizine 2.5mg/5ml | 5mg tab", drug_class:"مضاد هيستامين جيل 3", category:"أطفال / تنفسي", indications:"التهاب الأنف التحسسي، الشرى", dosage_rule:"2.5mg إلى 5mg مرة يومياً مساءً.", clinical_pearl:"الأنقى والأقل نعاساً، يعطى مساءً لتأثيره الجيد على حكة الليل.", common_substitutes:["Cetirizine", "Loratadine"]},
+  {id:13, trade_name:"أموكسيل شراب / Amoxil", active_ingredient:"Amoxicillin 250mg/5ml", drug_class:"بنسلين واسع الطيف", category:"أطفال / مضادات", indications:"التهاب الأذن، اللوز، المسالك", dosage_rule:"25–40 mg/kg/day تقسيم 3. AOM الشديد: 80-90.", clinical_pearl:"التهاب الأذن <2 سنة ابدأ مباشرة. يحفظ بالثلاجة بعد الحل 14 يوماً.", common_substitutes:["Augmentin", "Cefdinir"]},
+  {id:14, trade_name:"زيثروماكس / Zithromax", active_ingredient:"Azithromycin 200mg/5ml", drug_class:"ماكروليد", category:"أطفال / مضادات", indications:"الالتهاب الرئوي اللانمطي، حساسية البنسلين", dosage_rule:"10 mg/kg اليوم 1، ثم 5 mg/kg الأيام 2–5.", clinical_pearl:"نصف عمر طويل، 5 أيام تكافئ 10. لا يعطى مع دومبيريدون.", common_substitutes:["Klacid syrup"]},
+  {id:15, trade_name:"سيبروهيبتادين / Periactine", active_ingredient:"Cyproheptadine 4mg", drug_class:"مضاد هيستامين جيل 1", category:"تنفسي / حساسية", indications:"الشرى المزمن، الحساسية، فاتح شهية", dosage_rule:"4mg مرتين لثلاث مرات.", clinical_pearl:"الأكثر نعاساً، ميزة للحكة الليلية. ممنوع بالجلوكوما والبروستاتا.", common_substitutes:["Chlorpheniramine", "Xyzal"]},
+  {id:16, trade_name:"زنك سلفيت / Zinkid", active_ingredient:"Zinc sulfate 10mg/5ml | 20mg", drug_class:"معدن أساسي", category:"أطفال / هضمي", indications:"علاج الإسهال الحاد للأطفال (بروتوكول WHO)", dosage_rule:"<6 أشهر 10mg. >6 أشهر 20mg. لـ 10-14 يوماً.", clinical_pearl:"يقلص مدة الإسهال 25%. يعطى مع ORS. لا يعطى فارغ المعدة.", common_substitutes:["Zinplex"]},
+  {id:17, trade_name:"فيتامين D نقط / Vi-Drop", active_ingredient:"Vitamin D3 400 IU/drop", drug_class:"فيتامين", category:"أطفال", indications:"وقاية الكساح، الرضاعة الطبيعية", dosage_rule:"قطرة واحدة (400 IU) يومياً من الولادة.", clinical_pearl:"لا تخلطها بالرضاعة الكاملة قد تترسب، ضعها على حلمة الثدي أو خد الطفل.", common_substitutes:["Vigantol (انتبه للتركيز)"]},
+  {id:18, trade_name:"حديد قطرات / Fer-In-Sol", active_ingredient:"Ferrous sulfate 25mg/ml drops", drug_class:"مستحضر حديد", category:"أطفال", indications:"فقر الدم، وقاية الخدج", dosage_rule:"3–6 mg/kg/day علاجي. 2mg للوقاية.", clinical_pearl:"يعطى خلف الأسنان لئلا يلونها. فيتامين سي يضاعف امتصاصه.", common_substitutes:["Kendaron"]},
+  {id:19, trade_name:"أوجمنتين ES شراب", active_ingredient:"Amoxicillin 600mg + Clavulanate 42.9mg/5ml", drug_class:"بنسلين محمي", category:"أطفال / مضادات", indications:"التهاب الأذن المقاوم", dosage_rule:"90 mg/kg/day مقسمة مرتين.", clinical_pearl:"معدل الأموكس للـ Clav ممتاز للتحمل الهضمي للمقاومة. يحفظ بالثلاجة.", common_substitutes:["Zinnat"]},
+  {id:20, trade_name:"سيفيكسيم / Suprax", active_ingredient:"Cefixime 100mg/5ml", drug_class:"سيفالوسبورين جيل 3", category:"أطفال / مضادات", indications:"التهاب اللوز، المسالك البولية", dosage_rule:"8 mg/kg/day جرعة واحدة يومياً.", clinical_pearl:"جرعة واحدة = التزام ممتاز. الإسهال عرض جانبي شائع طبيعي.", common_substitutes:["Orelox"]},
+  {id:21, trade_name:"أوميبرازول / Omez / Losec", active_ingredient:"Omeprazole 20mg/40mg", drug_class:"PPI", category:"هضمي", indications:"GERD، قرحة المعدة", dosage_rule:"20-40mg مرة يومياً قبل الإفطار بـ 30 دقيقة.", clinical_pearl:"تفاعل خطير مع Clopidogrel (يقلل فاعليته 40%). استبدله بـ Pantoprazole.", common_substitutes:["Controloc"]},
+  {id:22, trade_name:"بانتوبرازول / Controloc", active_ingredient:"Pantoprazole 40mg", drug_class:"PPI", category:"هضمي", indications:"GERD، قرحة، مع Clopidogrel", dosage_rule:"40mg مرة يومياً قبل الأكل.", clinical_pearl:"الأمثل مع دواء السيولة Clopidogrel. الأقل تفاعلات دوائية.", common_substitutes:["Nexium", "Omez"]},
+  {id:23, trade_name:"إيزوميبرازول / Nexium", active_ingredient:"Esomeprazole 20mg/40mg", drug_class:"PPI", category:"هضمي", indications:"GERD الشديد، H. pylori", dosage_rule:"20-40mg يومياً.", clinical_pearl:"الأكثر فاعلية في رفع pH لأطول فترة. آمن للحمل (فئة B).", common_substitutes:["Controloc"]},
+  {id:24, trade_name:"ميتوكلوبراميد / Primperan", active_ingredient:"Metoclopramide 10mg", drug_class:"مضاد قيء D2", category:"هضمي", indications:"الغثيان، شلل المعدة", dosage_rule:"10mg 3 مرات قبل الأكل.", clinical_pearl:"يعبر BBB يسبب EPS (ارتعاش/تيبس) في الشباب. لا تتجاوز 5 أيام.", common_substitutes:["Motilium"]},
+  {id:25, trade_name:"دومبيريدون / Motilium", active_ingredient:"Domperidone 10mg", drug_class:"مضاد قيء", category:"هضمي", indications:"الغثيان والقيء", dosage_rule:"10mg 3 مرات قبل الأكل. حد أقصى 7 أيام.", clinical_pearl:"لا يعبر BBB فلا ارتعاش. لكن يطيل QT ممنوع مع الماكروليد والقلبيين.", common_substitutes:["Zofran", "Primperan"]},
+  {id:26, trade_name:"أونداسيترون / Zofran", active_ingredient:"Ondansetron 4mg/8mg", drug_class:"مضاد قيء 5-HT3", category:"هضمي", indications:"قيء الكيماوي، قيء الحمل الشديد", dosage_rule:"8mg قبل الكيماوي، أو 4mg عند الحاجة.", clinical_pearl:"الأقوى مطلقاً. يطيل QTc. يسبب إمساكاً وصداعاً بقوة.", common_substitutes:["Primperan"]},
+  {id:27, trade_name:"بوسكوبان / Buscopan", active_ingredient:"Hyoscine Butylbromide 10mg", drug_class:"مضاد تشنج", category:"هضمي", indications:"مغص الأمعاء، الكلى، الدورة", dosage_rule:"10mg 3-4 مرات.", clinical_pearl:"لا يعبر الدماغ فلا يسبب نعاساً. Buscopan Comp يحوي باراسيتامول.", common_substitutes:["Duspatalin", "Dicetel"]},
+  {id:28, trade_name:"ميبيفيرين / Duspatalin", active_ingredient:"Mebeverine 135mg | 200mg SR", drug_class:"مضاد تشنج للقولون", category:"هضمي", indications:"القولون العصبي IBS", dosage_rule:"135mg 3 مرات قبل الأكل بـ 20 دقيقة.", clinical_pearl:"انتقائي للقولون بلا أعراض أتروبينية جفاف بالفم.", common_substitutes:["Colpermin"]},
+  {id:29, trade_name:"لوبراميد / Imodium", active_ingredient:"Loperamide 2mg", drug_class:"مضاد إسهال أفيوني", category:"هضمي", indications:"الإسهال الحاد غير الدموي", dosage_rule:"4mg أولاً ثم 2mg بعد كل إسهال.", clinical_pearl:"ممنوع بالإسهال الدموي أو بوجود حمى. يسبب تسمم القولون للجرثومي.", common_substitutes:["Smecta", "Hidrasec"]},
+  {id:30, trade_name:"سمكتا / Smecta", active_ingredient:"Diosmectite 3g", drug_class:"طالبة معوية طينية", category:"هضمي", indications:"إسهال الأطفال والبالغين", dosage_rule:"3 أكياس يومياً مذابة بماء.", clinical_pearl:"آمنة للرضع والحوامل. تمتص السموم. تعزل عن باقي الأدوية بساعتين.", common_substitutes:["Hidrasec"]},
+  {id:31, trade_name:"نيفوروكسازيد / Antinal", active_ingredient:"Nifuroxazide 200mg | 220/5ml", drug_class:"مطهر معوي", category:"هضمي", indications:"الإسهال البكتيري الحاد", dosage_rule:"200mg 4 مرات لـ 5 أيام.", clinical_pearl:"لا يمتص بالدم يعمل محلياً فقط. لا يؤثر على الفلورا الجيدة. يلون البول.", common_substitutes:["Ciprofloxacin للكبار"]},
+  {id:32, trade_name:"فلاجيل / Flagyl", active_ingredient:"Metronidazole 500mg | 200/5ml", drug_class:"مضاد لاهوائيات وأوليات", category:"هضمي / مضادات", indications:"أميبا، جيارديا، H. pylori", dosage_rule:"500mg 3 مرات لـ 7 أيام.", clinical_pearl:"ممنوع مع الكحول كلياً (قيء شديد). طعم معدني بالفم وتلون البول داكن طبيعي.", common_substitutes:["Tinidazole"]},
+  {id:33, trade_name:"دوفالاك / Duphalac", active_ingredient:"Lactulose 3.33g/5ml", drug_class:"ملين اسموزي", category:"هضمي", indications:"الإمساك المزمن، اعتلال كبدي", dosage_rule:"15-30ml يومياً.", clinical_pearl:"تأثيره يبدأ بعد 24-48 ساعة لا تضاعف الجرعة. آمن للحمل تماماً.", common_substitutes:["Forlax", "Dulcolax"]},
+  {id:34, trade_name:"فورلاكس / Forlax", active_ingredient:"Macrogol 10g", drug_class:"ملين اسموزي", category:"هضمي", indications:"إمساك الأطفال والمزمن", dosage_rule:"كيس أو اثنين يومياً بماء.", clinical_pearl:"الأفضل لإمساك الأطفال آمن تماماً ولا يمتص ولا يسبب تقلصات كالسنا.", common_substitutes:["Duphalac"]},
+  {id:35, trade_name:"دولكولاكس / Dulcolax", active_ingredient:"Bisacodyl 5mg | 10mg supp", drug_class:"ملين محفز", category:"هضمي", indications:"الإمساك الحاد، تنظير", dosage_rule:"5-10mg ليلاً.", clinical_pearl:"لا يكسر ولا يحل مع حليب أو مضاد حموضة. يعمل صباحاً. لا تستمر لأسبوع.", common_substitutes:["Senokot"]},
+  {id:36, trade_name:"غافيسكون / Gaviscon", active_ingredient:"Sodium alginate + Antacids", drug_class:"مضاد ارتجاع طافي", category:"هضمي", indications:"حموضة الحمل، الارتجاع المريئي", dosage_rule:"10-20ml بعد الوجبات.", clinical_pearl:"الخيار الأول للحامل. يطفو كطبقة تمنع الارتجاع فيزيائياً. اشرب ماء بعده.", common_substitutes:["Maalox"]},
+  {id:37, trade_name:"مالوكس / Maalox", active_ingredient:"Aluminum + Magnesium Hydroxide", drug_class:"مضاد حموضة", category:"هضمي", indications:"حرقة المعدة السريعة", dosage_rule:"10-20ml بعد الأكل.", clinical_pearl:"تركيبة متعادلة لا تسبب إسهال ولا إمساك. يباعد عن الأدوية الأخرى ساعتين.", common_substitutes:["Gaviscon"]},
+  {id:38, trade_name:"موكوسولفان / Mucosolvan", active_ingredient:"Ambroxol 30mg | 15mg/5ml", drug_class:"مذيب بلغم", category:"تنفسي", indications:"الكحة ببلغم لزج", dosage_rule:"30mg 3 مرات يومياً.", clinical_pearl:"شرب لترين ماء يضاعف فاعليته. ممنوع خلطه مع مثبطات الكحة.", common_substitutes:["Carbocisteine"]},
+  {id:39, trade_name:"هيداز-في / Hidrasec", active_ingredient:"Racecadotril 100mg | 10mg", drug_class:"مضاد إفراز معوي", category:"هضمي", indications:"الإسهال المائي الحاد", dosage_rule:"100mg 3 مرات يومياً.", clinical_pearl:"آلية رائعة لا يوقف حركة الأمعاء بل يقلل الإفراز. آمن بالبكتيري. للأطفال جيد.", common_substitutes:["Smecta"]},
+  {id:40, trade_name:"كابوتين / Capoten", active_ingredient:"Captopril 25mg / 50mg", drug_class:"ACE Inhibitor", category:"مزمن / قلب", indications:"الضغط العالي الطارئ، فشل القلب", dosage_rule:"25mg تحت اللسان للطوارئ.", clinical_pearl:"يخفض الضغط سريعاً تحت اللسان. الكحة الجافة أشهر عرض جانبي له.", common_substitutes:["Enalapril"]},
+  {id:41, trade_name:"كونكور / Concor", active_ingredient:"Bisoprolol 2.5/5/10mg", drug_class:"Beta Blocker", category:"مزمن / قلب", indications:"الضغط، تسارع النبض", dosage_rule:"2.5 لـ 10mg صباحاً.", clinical_pearl:"لا يوقف فجأة. ممنوع في الربو الشديد والـ COPD.", common_substitutes:["Nebivolol"]},
+  {id:42, trade_name:"ديباكين / Depakine", active_ingredient:"Sodium Valproate 500mg", drug_class:"مضاد صرع", category:"مزمن / أعصاب", indications:"الصرع، الصداع النصفي، ثنائي القطب", dosage_rule:"حسب إرشاد الطبيب فقط.", clinical_pearl:"ممنوع منعاً باتاً للحامل (تشوهات جنين عالية). سمية كبدية تتطلب فحص دوري.", common_substitutes:["Keppra", "Tegretol"]},
+  {id:43, trade_name:"إليكسويس / Eliquis", active_ingredient:"Apixaban 2.5/5mg", drug_class:"مضاد تخثر NOAC", category:"مزمن / سيولة", indications:"الرجفان الأذيني، تجلط الأوردة DVT", dosage_rule:"5mg مرتين يومياً.", clinical_pearl:"لا يحتاج تحليل INR بعكس الماريفان. آمن وفعال وسريع.", common_substitutes:["Xarelto"]},
+  {id:44, trade_name:"ميتفورمين / Glucophage", active_ingredient:"Metformin 500/850/1000mg", drug_class:"مضاد سكر", category:"مزمن / سكر", indications:"السكري نوع 2، تكيس المبايض", dosage_rule:"500mg مرتين مع الأكل.", clinical_pearl:"الخيار الأول للسكر. يقلل B12. يوقف قبل أشعة الصبغة بـ 48 ساعة.", common_substitutes:["Januvia"]},
+  {id:45, trade_name:"بانكريلاز / Creon", active_ingredient:"Pancreatin 10k-40k", drug_class:"إنزيمات هضمية", category:"هضمي", indications:"قصور البنكرياس، التليف الكيسي", dosage_rule:"مع كل وجبة رئيسية.", clinical_pearl:"يؤخذ في بداية الوجبة ولا يسحق، يخلط بطعام حمضي لمن لا يبلع.", common_substitutes:["Spasmo-Digestin"]},
+  {id:46, trade_name:"باراسيتامول / Panadol", active_ingredient:"Paracetamol 500mg", drug_class:"مسكن", category:"مسكنات", indications:"صداع، حرارة", dosage_rule:"500-1000mg كل 6 ساعات. أقصى 4 جرام.", clinical_pearl:"لا تأثير مضاد للالتهاب. سمية كبدية مع الجرعة الزائدة.", common_substitutes:["Brufen"]},
+  {id:47, trade_name:"بنادول اكسترا / Panadol Extra", active_ingredient:"Paracetamol 500mg + Caffeine 65mg", drug_class:"مسكن ومنبه", category:"مسكنات", indications:"صداع شديد، شقيقة خفيفة", dosage_rule:"قرصين كل 6 ساعات.", clinical_pearl:"الكافيين يسرع الامتصاص ويضيق أوعية الدماغ. تجنبه لمرضى القلق والأرق.", common_substitutes:["Neurofen"]},
+  {id:48, trade_name:"بروفين / Brufen 400", active_ingredient:"Ibuprofen 400/600mg", drug_class:"NSAID", category:"مسكنات", indications:"آلام عظام ومفاصل ودورة", dosage_rule:"400mg مع الأكل كل 8 ساعات.", clinical_pearl:"يؤخذ مع الأكل دائماً. يبعد عن أسبرين القلب بساعتين. يرفع ضغط الدم.", common_substitutes:["Voltaren"]},
+  {id:49, trade_name:"فولتارين / Voltaren", active_ingredient:"Diclofenac 50mg / 75mg SR", drug_class:"NSAID قوي", category:"مسكنات", indications:"التهاب مفاصل، ألم شديد", dosage_rule:"50mg مرتين بعد الأكل.", clinical_pearl:"خطر قلبي عالي، وحقن العضل مؤلمة. SR لمرة واحدة يومياً.", common_substitutes:["Cataflam (أسرع للألم الحاد)"]},
+  {id:50, trade_name:"فيلدين / Feldene", active_ingredient:"Piroxicam 20mg", drug_class:"NSAID طويل المفعول", category:"مسكنات", indications:"روماتيزم المزمن", dosage_rule:"20mg مرة يومياً.", clinical_pearl:"نصف عمر 50 ساعة. أعلى خطر قرحة معدة بين المسكنات، يعطى مع PPI.", common_substitutes:["Celebrex"]},
+  {id:51, trade_name:"سيليبريكس / Celebrex", active_ingredient:"Celecoxib 200mg", drug_class:"COX-2 Inhibitor", category:"مسكنات", indications:"مفاصل، لمرضى القرحة المعدية", dosage_rule:"100-200mg مرتين.", clinical_pearl:"الأقل خطراً للقرحة. لكن لا يعطى لمرضى جلطات القلب الحديثة. يحوي سلفا.", common_substitutes:["Arcoxia"]},
+  {id:52, trade_name:"نابروكسين / Naprosyn", active_ingredient:"Naproxen 500mg", drug_class:"NSAID", category:"مسكنات", indications:"ألم دورة، صداع نصفي، نقرس", dosage_rule:"500mg مرتين يومياً.", clinical_pearl:"الأكثر أماناً للقلب بين الـ NSAIDs الكلاسيكية. يستمر 12 ساعة.", common_substitutes:["Brufen"]},
+  {id:53, trade_name:"بونستان / Ponstan", active_ingredient:"Mefenamic acid 500mg", drug_class:"NSAID", category:"مسكنات", indications:"آلام الدورة الشهرية الشديدة", dosage_rule:"500mg ثم 250 كل 8 س.", clinical_pearl:"الخيار الأول للـ Dysmenorrhea. لا يستخدم لأكثر من أسبوع متواصل.", common_substitutes:["Synflex"]},
+  {id:54, trade_name:"كيتوبروفين / Profenid", active_ingredient:"Ketoprofen 100/200 SR | Gel", drug_class:"NSAID", category:"مسكنات", indications:"التهاب أوتار ومفاصل", dosage_rule:"100mg مرتين.", clinical_pearl:"الجل الموضعي منه قد يسبب حساسية ضوء (تجنب الشمس المباشرة عليه).", common_substitutes:["Voltaren"]},
+  {id:55, trade_name:"ترامادول / Tramal", active_ingredient:"Tramadol 50/100mg", drug_class:"مسكن أفيوني", category:"مسكنات", indications:"ألم حاد شديد، ألم مزمن", dosage_rule:"50mg لـ 100mg كل 6 س.", clinical_pearl:"يخفض عتبة الصرع ممنوع للمتشنجين. خطر إدمان وانسحاب قوي.", common_substitutes:["Toradol"]},
+  {id:56, trade_name:"تورادول / Toradol", active_ingredient:"Ketorolac 10mg / 30mg Amp", drug_class:"NSAID حقني قوي", category:"مسكنات", indications:"ألم ما بعد الجراحة ومغص الكلى", dosage_rule:"30mg عضل أو وريد.", clinical_pearl:"أقوى مسكن لا-أفيوني. حد أقصى مطلق 5 أيام (يدمر الكلى والمعدة بعده).", common_substitutes:["Diclofenac 75mg Amp"]},
+  {id:57, trade_name:"بريدنيزولون / Hostacortin", active_ingredient:"Prednisolone 5/20mg", drug_class:"كورتيكوستيرويد", category:"مسكنات / مضادات التهاب", indications:"ربو، حساسية، مناعة", dosage_rule:"حسب الحالة، صباحاً.", clinical_pearl:"لا يوقف فجأة. يرفع السكر والضغط والوزن. الأفضل أخذه صباحاً مع الفطور.", common_substitutes:["Medrol"]},
+  {id:58, trade_name:"ميدرول / Medrol", active_ingredient:"Methylprednisolone 4/16mg", drug_class:"كورتيكوستيرويد", category:"مضادات التهاب", indications:"حساسية شديدة، مفاصل", dosage_rule:"4-16mg.", clinical_pearl:"أقوى بقليل من البريدنيزولون وأقل احتباساً للسوائل. حقنه الوريدية تعطى ببطء.", common_substitutes:["Dexamethasone"]},
+  {id:59, trade_name:"ميورلاكس / Myorelax", active_ingredient:"Methocarbamol 750mg", drug_class:"باسط عضلات", category:"مسكنات / باسطات عضلات", indications:"تشنج عضلات الظهر", dosage_rule:"750mg مرتين لـ 4.", clinical_pearl:"يلون البول للأسود أو الأخضر طبيعياً. يسبب نعاساً ولا يقاد معه السيارة.", common_substitutes:["Sirdalud"]},
+  {id:60, trade_name:"سيردالود / Sirdalud", active_ingredient:"Tizanidine 2/4mg", drug_class:"باسط عضلات", category:"مسكنات / باسطات عضلات", indications:"تشنج الرقبة، تصلب متعدد", dosage_rule:"2-4mg 3 مرات.", clinical_pearl:"ممنوع أخذ سيبروفلوكساسين معه تماماً (يرفع تركيزه 10 أضعاف ويهبط الضغط).", common_substitutes:["Baclofen"]},
+  {id:61, trade_name:"باكلوفين / Baclofen", active_ingredient:"Baclofen 10/25mg", drug_class:"باسط عضلات مركزي", category:"مسكنات / باسطات عضلات", indications:"إصابات الحبل الشوكي، تصلب", dosage_rule:"10mg مرتين.", clinical_pearl:"الإيقاف المفاجئ يسبب هلوسة وتشنجات خطيرة. الأفضل للأمراض العصبية.", common_substitutes:["Sirdalud"]},
+  {id:62, trade_name:"فولتارين جيل / Voltaren Emulgel", active_ingredient:"Diclofenac 1%", drug_class:"مسكن موضعي", category:"مسكنات موضعية", indications:"رضوض وكدمات ومفاصل", dosage_rule:"دهان 3-4 مرات.", clinical_pearl:"آمن للكلى والمعدة لقلة الامتصاص. لا يوضع على جرح مفتوح.", common_substitutes:["Ketoprofen gel"]},
+  {id:63, trade_name:"زايلوريك / Zyloric", active_ingredient:"Allopurinol 100/300mg", drug_class:"خافض يوريك", category:"مسكنات / نقرس", indications:"النقرس المزمن", dosage_rule:"100-300mg يومياً.", clinical_pearl:"لا تبدأه أثناء نوبة النقرس الحادة (يطيلها). اوقفه فوراً إذا ظهر طفح جلدي (خطر SJS).", common_substitutes:["Febuxostat"]},
+  {id:64, trade_name:"كولشيسين / Colchicine", active_ingredient:"Colchicine 0.5mg", drug_class:"مضاد التهاب نقرسي", category:"مسكنات / نقرس", indications:"النقرس الحاد، حمى بحر متوسط", dosage_rule:"1mg ثم 0.5 للحبة.", clinical_pearl:"تفاعل قاتل مع كلاريثرومايسين. يسبب إسهال شديد بالجرعات العالية.", common_substitutes:["Indomethacin"]},
+  {id:65, trade_name:"ديكساميثازون / Decadron", active_ingredient:"Dexamethasone 0.5/4/8mg", drug_class:"كورتيزون قوي", category:"مضادات التهاب", indications:"صدمة حساسية، كروب، وذمة", dosage_rule:"حسب الطوارئ.", clinical_pearl:"الأقوى والأطول مفعولاً، ولا يحبس السوائل تقريباً. حقن سريع يسبب حرقة منطقة العانة.", common_substitutes:["Solucortef"]},
+  {id:66, trade_name:"زيرتيك / Zyrtec", active_ingredient:"Cetirizine 10mg", drug_class:"مضاد هيستامين جيل 2", category:"تنفسي / حساسية", indications:"حساسية الأنف والجلد", dosage_rule:"10mg مساءً.", clinical_pearl:"يسبب نعاس خفيف عند 15% من الناس لذا الأفضل مساءً للحكة الليلية.", common_substitutes:["Clarityne", "Xyzal"]},
+  {id:67, trade_name:"كلاريتين / Clarityne", active_ingredient:"Loratadine 10mg", drug_class:"مضاد هيستامين جيل 2", category:"تنفسي / حساسية", indications:"زكام، رينيتس", dosage_rule:"10mg مرة صباحاً.", clinical_pearl:"بلا نعاس إطلاقاً مناسب للسائقين. يعطى على معدة فارغة لأسرع تأثير.", common_substitutes:["Telfast"]},
+  {id:68, trade_name:"تلفاست / Telfast", active_ingredient:"Fexofenadine 120/180mg", drug_class:"مضاد هيستامين جيل 3", category:"تنفسي / حساسية", indications:"شرى وحساسية مزمنة", dosage_rule:"120 لـ 180mg.", clinical_pearl:"لا يعطى مع عصير التفاح أو البرتقال (يمنع امتصاصه 40%). لا يعبر للدماغ.", common_substitutes:["Clarityne"]},
+  {id:69, trade_name:"بيريتون / Piriton", active_ingredient:"Chlorpheniramine 4mg", drug_class:"مضاد هيستامين جيل 1", category:"تنفسي / حساسية", indications:"شرى حاد وبرد مع زكام", dosage_rule:"4mg كل 6 س.", clinical_pearl:"قوي وسريع يسبب نعاساً مفيداً ليلاً. قد يسبب فرط حركة عكسي للأطفال الصغار.", common_substitutes:["Zyrtec"]},
+  {id:70, trade_name:"أتاراكس / Atarax", active_ingredient:"Hydroxyzine 10/25mg", drug_class:"مضاد هيستامين + مهدئ", category:"تنفسي / حساسية", indications:"حكة مزمنة وقلق", dosage_rule:"10-25mg مساءً.", clinical_pearl:"الأقوى لعلاج الشرى المزمن. النعاس الشديد ميزته، يمنع بالحمل تماماً.", common_substitutes:["Xyzal"]},
+  {id:71, trade_name:"سينجولير / Singulair", active_ingredient:"Montelukast 10mg / 4mg أطفال", drug_class:"مضاد ليوكوترين", category:"تنفسي / ربو", indications:"وقاية ربو وحساسية موسمية", dosage_rule:"10mg مساءً.", clinical_pearl:"يؤخذ مساءً دائماً. راقب التغيرات المزاجية والكوابيس (تحذير FDA). وقائي وليس للأزمة.", common_substitutes:["Zyrtec للأنف"]},
+  {id:72, trade_name:"فينتولين / Ventolin", active_ingredient:"Salbutamol 100mcg MDI", drug_class:"SABA موسع قصبات", category:"تنفسي / ربو", indications:"نوبة ربو، ضيق تنفس", dosage_rule:"بختين وقت اللزوم.", clinical_pearl:"تقنية البخاخ هي الأهم: احبس النفس 10 ثوانٍ. استخدامه يومياً يعني ربو غير منضبط.", common_substitutes:["Atrovent"]},
+  {id:73, trade_name:"أمبروكسول / Mucosolvan", active_ingredient:"Ambroxol 30/75 SR", drug_class:"طارد بلغم", category:"تنفسي", indications:"بلغم لزج، COPD", dosage_rule:"30mg 3 مرات.", clinical_pearl:"يحفز الـ Surfactant. اشرب ماءً كثيراً. يمنع مع مثبطات الكحة الجافة.", common_substitutes:["Rhinathiol"]},
+  {id:74, trade_name:"ريناتيول / Rhinathiol", active_ingredient:"Carbocisteine 375/750mg", drug_class:"مذيب بلغم", category:"تنفسي", indications:"بلغم COPD المدخنين", dosage_rule:"750mg 3 مرات.", clinical_pearl:"يكسر الروابط الكيميائية للمخاط. يؤخذ مع الطعام.", common_substitutes:["ACC 600"]},
+  {id:75, trade_name:"استيل سيستين / ACC 600", active_ingredient:"N-Acetylcysteine 600mg", drug_class:"مذيب بلغم وترياق", category:"تنفسي", indications:"كحة ببلغم، تسمم باراسيتامول", dosage_rule:"600mg فوار مرة يومياً.", clinical_pearl:"رائحته الكبريتية طبيعية. أقوى مضاد أكسدة للرئة والوحيد المنقذ من الباراسيتامول.", common_substitutes:["Mucosolvan"]},
+  {id:76, trade_name:"أوتريفين / Otrivin", active_ingredient:"Xylometazoline 0.1%", drug_class:"مزيل احتقان موضعي", category:"تنفسي / أنف", indications:"انسداد الأنف الشديد", dosage_rule:"بخة كل 8 ساعات لـ 5 أيام.", clinical_pearl:"حد أقصى 5 أيام فقط وإلا سيسبب احتقاناً ارتدادياً مزمناً (إدمان القطرة).", common_substitutes:["Afrin"]},
+  {id:77, trade_name:"سودافيد / Sudafed", active_ingredient:"Pseudoephedrine 30/60mg", drug_class:"مزيل احتقان جهازي", category:"تنفسي", indications:"زكام الجيوب الأنفية", dosage_rule:"60mg كل 6 س.", clinical_pearl:"ممنوع لمرضى الضغط والقلب وتضخم البروستاتا. يسبب أرقاً فخذها نهاراً.", common_substitutes:["Otrivin"]},
+  {id:78, trade_name:"روبيتوسين / Robitussin DM", active_ingredient:"Dextromethorphan + Guaifenesin", drug_class:"سعال جاف وبلغم", category:"تنفسي", indications:"السعال المزعج ببلغم خفيف", dosage_rule:"10ml كل 4 س.", clinical_pearl:"تركيبة متعارضة أحياناً لكنها للسعال الناشف المزعج مع بوادر بلغم. لا لأقل من 6 سنين.", common_substitutes:["Devocough"]},
+  {id:79, trade_name:"أموكسيل / Amoxil 500", active_ingredient:"Amoxicillin 500mg", drug_class:"بنسلين", category:"مضادات حيوية", indications:"لوز، أذن، حامل", dosage_rule:"500mg 3 مرات لـ 7 أيام.", clinical_pearl:"آمن بالحمل. طفح جلدي مع الـ EBV لا يعني حساسية. التزم بالـ 10 أيام للوز لحماية القلب.", common_substitutes:["Augmentin"]},
+  {id:80, trade_name:"زيثروماكس / Zithromax 500", active_ingredient:"Azithromycin 500mg", drug_class:"ماكروليد", category:"مضادات حيوية", indications:"كلاميديا، رئة لانمطي", dosage_rule:"500mg لـ 3 أيام.", clinical_pearl:"يؤخذ على معدة فارغة. يطيل كهرباء القلب QT. نصف عمره طويل يظل فعالاً أياماً.", common_substitutes:["Klacid"]},
+  {id:81, trade_name:"كلاسيد / Klacid", active_ingredient:"Clarithromycin 500mg", drug_class:"ماكروليد", category:"مضادات حيوية", indications:"ميكروب حلزوني، جيوب", dosage_rule:"500mg مرتين.", clinical_pearl:"يضرب السيتوكروم بقوة: يتعارض مع الاستاتين (يسبب فشل كلوي من العضلات) ومسيلات الدم.", common_substitutes:["Zithromax"]},
+  {id:82, trade_name:"فيبرامايسين / Vibramycin", active_ingredient:"Doxycycline 100mg", drug_class:"تيتراسيكلين", category:"مضادات حيوية", indications:"حب شباب، كلاميديا", dosage_rule:"100mg مرتين.", clinical_pearl:"ممنوع للحامل والأطفال (يسود الأسنان). يمنع مع الحليب والحديد، ولا تستلقي بعده لتجنب القرحة.", common_substitutes:["Zithromax"]},
+  {id:83, trade_name:"فليكسوناز / Flixonase", active_ingredient:"Fluticasone 50mcg", drug_class:"كورتيزون أنفي", category:"تنفسي / أنف", indications:"حساسية الأنف الدائمة", dosage_rule:"بختين كل فتحة صباحاً.", clinical_pearl:"الخط الأول علمياً للحساسية. لا يعمل فوراً يحتاج 3 أيام. رش بعيداً عن الحاجز الأنفي الوسطي.", common_substitutes:["Nasonex"]},
+  {id:84, trade_name:"أتروفينت / Atrovent", active_ingredient:"Ipratropium MDI / Neb", drug_class:"مضاد كوليني", category:"تنفسي", indications:"COPD، ربو", dosage_rule:"في الجلسات مع فينتولين.", clinical_pearl:"يوسع القصبات بطيئاً لكن مفعوله أطول. تجنب رشه بالعين يسبب ماء أزرق زرق حاد.", common_substitutes:["Spiriva"]},
+  {id:85, trade_name:"أفرين / Afrin", active_ingredient:"Oxymetazoline 0.05%", drug_class:"مزيل احتقان", category:"تنفسي / أنف", indications:"انسداد الأنف القوي", dosage_rule:"بخة مرتين لـ 3 أيام.", clinical_pearl:"أطول مفعولاً من الأوتريفين (12 ساعة). نفس الخطر من الإدمان بعد 5 أيام. سمي جداً إن شربه طفل.", common_substitutes:["Otrivin"]},
+  {id:86, trade_name:"أوجمنتين / Augmentin 1g", active_ingredient:"Amoxicillin 875mg + Clav 125", drug_class:"بنسلين محمي", category:"مضادات حيوية", indications:"عضات، جيوب، رئة", dosage_rule:"1g مرتين بعد الأكل.", clinical_pearl:"الكلافولانات تسبب إسهالاً ومغصاً، تناوله مع أول لقمة من الوجبة يقلل ذلك 80%.", common_substitutes:["Zinnat"]},
+  {id:87, trade_name:"زينات / Zinnat", active_ingredient:"Cefuroxime 500mg", drug_class:"سيفالوسبورين 2", category:"مضادات حيوية", indications:"التهاب أذن وجيوب ورئة", dosage_rule:"500mg مرتين.", clinical_pearl:"يجب أخذه مع طعام دسم ليمتص جيداً، حبة مريرة جداً لا تكسرها.", common_substitutes:["Augmentin"]},
+  {id:88, trade_name:"سوبراكس / Suprax", active_ingredient:"Cefixime 400mg", drug_class:"سيفالوسبورين 3", category:"مضادات حيوية", indications:"مسالك بولية، سيلان", dosage_rule:"400mg مرة يومياً.", clinical_pearl:"رائع لمسالك البطن E. coli وللسيلان كجرعة واحدة. التزام ممتاز من المريض لسهولته.", common_substitutes:["Orelox"]},
+  {id:89, trade_name:"روسيفين / Rocephin", active_ingredient:"Ceftriaxone 1g IV/IM", drug_class:"سيفالوسبورين حقن", category:"مضادات حيوية", indications:"إنتان دم، سحايا، رئة", dosage_rule:"1-2g مرة يومياً.", clinical_pearl:"يؤلم جداً بالعضل فيحل بـ Lidocaine. ممنوع منعه بـ كالسيوم وريدي للمواليد يترسب ويميت.", common_substitutes:["Cefotaxime"]},
+  {id:90, trade_name:"سيبرو / Cipro", active_ingredient:"Ciprofloxacin 500mg", drug_class:"فلوروكينولون", category:"مضادات حيوية", indications:"مسالك وبكتيريا معوية", dosage_rule:"500mg مرتين.", clinical_pearl:"ممنوع لأقل من 18 وحوامل. يدمر الأوتار. تفاعل مميت مع تيزانيدين. يبعد عن الألبان تماماً.", common_substitutes:["Levaquin"]},
+  {id:91, trade_name:"تافانيك / Tavanic", active_ingredient:"Levofloxacin 500mg", drug_class:"فلوروكينولون", category:"مضادات حيوية", indications:"جيوب ورئة ومسالك", dosage_rule:"500mg مرة يومياً.", clinical_pearl:"ممتاز للرئة. يطيل كهرباء القلب بقوة. خطر قطع وتر أخيل. خذه بمعدة فارغة.", common_substitutes:["Cipro"]},
+  {id:92, trade_name:"فلاجيل وريدي / Flagyl IV", active_ingredient:"Metronidazole 500/100ml", drug_class:"لاهوائيات حقن", category:"مضادات حيوية", indications:"التهاب بطن وجراحة", dosage_rule:"500mg كل 8 س.", clinical_pearl:"يجب نقعه وريدياً ببطء 30-60 دقيقة. نفس التفاعل الكحولي القوي.", common_substitutes:["Dalacin IV"]},
+  {id:93, trade_name:"دالاسين / Dalacin C", active_ingredient:"Clindamycin 300mg", drug_class:"لينكوساميد", category:"مضادات حيوية", indications:"عظام، أسنان، MRSA الجلد", dosage_rule:"300mg كل 8 س.", clinical_pearl:"خذه بكوب ماء كامل ولا تستلقي. بطل إسهال C. difficile القاتل كعرض جانبي، راقبه.", common_substitutes:["Septrin"]},
+  {id:94, trade_name:"سيبراليكس / Cipralex", active_ingredient:"Escitalopram 10mg", drug_class:"SSRI", category:"مزمن / أعصاب", indications:"اكتئاب، قلق، هلع", dosage_rule:"10mg صباحاً.", clinical_pearl:"يبدأ مفعوله بعد 3-4 أسابيع، لا يوقف فجأة. آمن نسبياً للقلب.", common_substitutes:["Prozac"]},
+  {id:95, trade_name:"اريثرومايسين / Erythrocin", active_ingredient:"Erythromycin 500mg", drug_class:"ماكروليد قديم", category:"مضادات حيوية", indications:"بديل بنسلين، كلاميديا", dosage_rule:"500mg كل 6 س.", clinical_pearl:"الأعنف على المعدة (مغص وقيء)، يجب أخذه مع طعام. تفاعلاته الدوائية كارثية للكثرة.", common_substitutes:["Zithromax"]},
+  {id:96, trade_name:"سبترين دي اس / Septrin DS", active_ingredient:"Co-trimoxazole 960", drug_class:"سلفا", category:"مضادات حيوية", indications:"مسالك بولية، MRSA مجتمعي", dosage_rule:"قرص مرتين.", clinical_pearl:"اشرب ماءً كثيراً ليمنع حصى الكلى. يمنع للمرضى بحساسية السلفا وللحوامل آخر شهر.", common_substitutes:["Macrodantin"]},
+  {id:97, trade_name:"ماكرودانتين / Macrodantin", active_ingredient:"Nitrofurantoin 100mg", drug_class:"مطهر بولي", category:"مضادات حيوية", indications:"التهاب مثانة زنان للسيدات", dosage_rule:"100mg مرتين.", clinical_pearl:"يعمل بالبول فقط ولا يمس الدم. يجب أخذه مع الطعام. يلون البول للأسمر طبيعياً.", common_substitutes:["Septrin"]},
+  {id:98, trade_name:"فانكومايسين / Vancocin", active_ingredient:"Vancomycin 1g IV", drug_class:"جليكوببتيد", category:"مضادات حيوية", indications:"MRSA القاتل، إنتان عظم", dosage_rule:"جرعة حسب الكلى وريدياً.", clinical_pearl:"الحقن السريع يسبب متلازمة الرجل الأحمر المتهيج. الفموي منه لا يمتص ويعالج القولون فقط.", common_substitutes:["Zyvox"]},
+  {id:99, trade_name:"ديفلوكان / Diflucan", active_ingredient:"Fluconazole 150mg", drug_class:"مضاد فطريات", category:"مضادات حيوية", indications:"فطريات مهبلية، وفم", dosage_rule:"150mg كبسولة واحدة.", clinical_pearl:"حبة واحدة تكفي لكانديدا المهبل. يرفع مستوى مسيلات الدم وأدوية الصرع بقوة.", common_substitutes:["Sporanox"]},
+  {id:100, trade_name:"جلوكوفانس / Glucovance", active_ingredient:"Metformin + Glibenclamide", drug_class:"سكر مزدوج", category:"مزمن / سكر", indications:"سكر النوع 2 المقاوم", dosage_rule:"حبة مع الغداء.", clinical_pearl:"يسبب هبوط سكر قوي بسبب الجليبنكلاميد، لا يعطى لمسنين فوق 75 ولا للكلى الضعيفة.", common_substitutes:["Janumet"]}
+];
+
+const latinAbbr = [
+    {abbr:"od / qd", meaning:"مرة يومياً"}, {abbr:"bid / bd", meaning:"مرتان يومياً"},
+    {abbr:"tid / tds", meaning:"ثلاث مرات يومياً"}, {abbr:"qid / qds", meaning:"أربع مرات يومياً"},
+    {abbr:"ac", meaning:"قبل الأكل"}, {abbr:"pc", meaning:"بعد الأكل"},
+    {abbr:"cc", meaning:"مع الأكل"}, {abbr:"prn / sos", meaning:"عند الحاجة"},
+    {abbr:"stat", meaning:"فوراً / الآن"}, {abbr:"hs / nocte", meaning:"عند النوم"},
+    {abbr:"om", meaning:"كل صباح"}, {abbr:"q8h / q6h", meaning:"كل 8/6 ساعات"},
+    {abbr:"supp", meaning:"تحميلة"}, {abbr:"susp", meaning:"معلق شراب"},
+    {abbr:"ung / oint", meaning:"مرهم"}, {abbr:"gtt", meaning:"قطرة"},
+    {abbr:"tab", meaning:"قرص"}, {abbr:"cap", meaning:"كبسول"},
+    {abbr:"sig / s", meaning:"الجرعة / اكتب"}, {abbr:"amp", meaning:"أمبولة"},
+    {abbr:"inj", meaning:"حقنة"}, {abbr:"iv", meaning:"وريدي"},
+    {abbr:"im", meaning:"عضلي"}, {abbr:"sl / subling", meaning:"تحت اللسان"},
+    {abbr:"div", meaning:"يُقسَّم على"}
+];
+
+const lasaList = [
+    {pair:"Celebrex vs Cerebyx", diff:"مسكن المفاصل vs مضاد صرع قوي"},
+    {pair:"Losec vs Lasix", diff:"معدة وارتجاع vs مدر بول للقلب"},
+    {pair:"Paracetamol 120/5 vs 80/1", diff:"الشراب الملعقة vs قطارة الرضع المركزة"},
+    {pair:"Prednisolone vs Prednisone", diff:"النشط الجاهز vs ما يحتاج للكبد ليعمل"},
+    {pair:"Atarax vs Plaquenil", diff:"مضاد حكة قوي vs دواء للذئبة الحمراء والمناعة"},
+    {pair:"Clonidine vs Clonazepam", diff:"مضاد ضغط عالي vs مضاد تشنج ومهدئ"},
+    {pair:"Tramadol vs Toradol", diff:"مسكن أفيوني للجدول vs مسكن NSAID حقني للكلى"},
+    {pair:"Metronidazole vs Metformin", diff:"فلاجيل مطهر وبكتيريا vs منظم سكر شهير"},
+    {pair:"Glibenclamide vs Gliclazide", diff:"أدوية سكر بجرعات 5mg مقابل 80mg !"},
+    {pair:"Augmentin 625 vs 1g vs ES", diff:"اختلاف نسب الكلافيولانيك يسبب جرعات ومغص مختلف"}
+];
+
+// ================= LOGIC & STATE =================
+let activeChip = 'الكل';
+let currentQuery = '';
+const chipMapping = {
+    'الكل': '', 'أطفال': 'أطفال', 'مسكنات': 'مسكن', 'جهاز هضمي': 'هضم', 'تنفسي': 'تنفس', 'مضادات': 'مضاد'
+};
+let fcList = [];
+let fcCurrent = 0;
+let masteredIds = JSON.parse(localStorage.getItem('pharmacist_mastered_v1') || '[]');
+
+const htmlEl = document.documentElement;
+if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    htmlEl.classList.add('dark');
+}
+
+document.getElementById('theme-toggle').addEventListener('click', () => {
+    htmlEl.classList.toggle('dark');
+    localStorage.theme = htmlEl.classList.contains('dark') ? 'dark' : 'light';
+});
+
+document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => {
+            b.classList.remove('text-medical-600', 'dark:text-medical-400');
+            b.classList.add('text-gray-400', 'dark:text-gray-500');
+        });
+        btn.classList.remove('text-gray-400', 'dark:text-gray-500');
+        btn.classList.add('text-medical-600', 'dark:text-medical-400');
+        
+        document.querySelectorAll('.section-content').forEach(sec => {
+            sec.classList.remove('block'); sec.classList.add('hidden');
+        });
+        const targetId = btn.getAttribute('data-target');
+        document.getElementById(targetId).classList.remove('hidden');
+        document.getElementById(targetId).classList.add('block');
+        
+        document.getElementById('search-container').style.display = targetId === 'tab-dict' ? 'block' : 'none';
+        if(targetId === 'tab-flash' && fcList.length === 0) initFlashcards();
+    });
+});
+
+function initApp() {
+    renderChips(); renderCards(); initTables(); lucide.createIcons();
+}
+
+function renderChips() {
+    document.getElementById('chips-container').innerHTML = Object.keys(chipMapping).map(chip => `
+        <button onclick="setFilter('${chip}')" class="whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold transition-all ${activeChip === chip ? 'bg-medical-600 text-white shadow shadow-medical-600/30' : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300 border border-transparent'}">
+            ${chip}
+        </button>
+    `).join('');
+}
+
+function setFilter(chip) { activeChip = chip; renderChips(); renderCards(); }
+
+document.getElementById('search-input').addEventListener('input', (e) => {
+    currentQuery = e.target.value.toLowerCase().trim();
+    document.getElementById('clear-search').style.display = currentQuery ? 'block' : 'none';
+    renderCards();
+});
+document.getElementById('clear-search').addEventListener('click', () => {
+    document.getElementById('search-input').value = ''; currentQuery = '';
+    document.getElementById('clear-search').style.display = 'none'; renderCards();
+});
+
+function renderCards() {
+    const container = document.getElementById('cards-container');
+    const noResults = document.getElementById('no-results');
+    const term = chipMapping[activeChip];
+    
+    const filtered = drugsData.filter(d => {
+        const matchC = term === '' || d.category.includes(term) || d.drug_class.includes(term);
+        const matchS = currentQuery === '' || 
+            d.trade_name.toLowerCase().includes(currentQuery) ||
+            d.active_ingredient.toLowerCase().includes(currentQuery) ||
+            d.indications.toLowerCase().includes(currentQuery);
+        return matchC && matchS;
+    });
+
+    if(filtered.length === 0) {
+        container.innerHTML = ''; noResults.classList.remove('hidden'); noResults.classList.add('flex');
+    } else {
+        noResults.classList.add('hidden'); noResults.classList.remove('flex');
+        container.innerHTML = filtered.map(d => `
+            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-4 pb-3">
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="text-base font-bold text-navy-700 dark:text-navy-400 font-sans" dir="ltr"><span class="float-right ms-2 rtl:float-none text-right block" dir="rtl">${d.trade_name}</span></h3>
+                </div>
+                <div class="mb-3 border-b dark:border-gray-700 pb-3">
+                    <span class="inline-block px-2 py-0.5 bg-medical-50 text-medical-700 dark:bg-medical-900/40 dark:text-medical-300 text-[10px] rounded-md font-bold mb-2">${d.category}</span>
+                    <p class="text-sm font-bold text-gray-800 dark:text-gray-200 leading-snug" dir="ltr"><span class="float-right ms-1">💊</span> <span class="text-right block w-full" dir="auto">${d.active_ingredient}</span></p>
+                    <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-1">${d.drug_class}</p>
+                </div>
+                
+                <div class="space-y-1.5 text-xs mb-3">
+                    <p class="flex items-start"><i data-lucide="activity" class="w-3.5 h-3.5 text-medical-500 ml-1.5 mt-0.5 shrink-0"></i> <span class="dark:text-gray-200 leading-relaxed"><strong class="text-gray-700 dark:text-gray-400">دواعي الاستعمال:</strong> ${d.indications}</span></p>
+                    <p class="flex items-start"><i data-lucide="clock" class="w-3.5 h-3.5 text-medical-500 ml-1.5 mt-0.5 shrink-0"></i> <span class="dark:text-gray-200 leading-relaxed"><strong class="text-gray-700 dark:text-gray-400">الجرعة:</strong> ${d.dosage_rule}</span></p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/20 border-r-2 border-amber-400 p-2.5 rounded text-xs mb-3">
+                    <p class="font-bold text-amber-800 dark:text-amber-400 mb-0.5 flex items-center"><i data-lucide="lightbulb" class="w-3.5 h-3.5 ml-1"></i> تريكة الصيدلي:</p>
+                    <p class="text-amber-900 dark:text-amber-100 leading-relaxed">${d.clinical_pearl}</p>
+                </div>
+
+                <div class="text-[10px] text-gray-500 dark:text-gray-400 flex items-center bg-gray-50 dark:bg-gray-800/50 p-2 rounded">
+                    <i data-lucide="git-branch" class="w-3 h-3 ml-1 shrink-0"></i>
+                    <span><strong>بدائل:</strong> <span dir="ltr">${d.common_substitutes.join(' | ')}</span></span>
+                </div>
+            </div>
+        `).join('');
+        lucide.createIcons();
+    }
+}
+
+function calculateDose() {
+    const w = parseFloat(document.getElementById('calc-weight').value);
+    const drug = document.getElementById('calc-drug').value;
+    const box = document.getElementById('calc-result');
+    box.classList.remove('hidden');
+
+    if(!w || w <= 0) {
+        box.innerHTML = '<p class="text-red-500 font-bold text-sm">أدخل وزن الطفل الصحيح بالكيلوجرام.</p>'; return;
+    }
+
+    let h = `<div class="flex items-center gap-2 mb-2 text-navy-800 dark:text-navy-300"><i data-lucide="check-circle" class="w-5 h-5"></i><h3 class="font-bold">الجرعة الموصى بها:</h3></div>`;
+    if(drug === 'para') {
+        const ml = ((15 * w) / 120) * 5;
+        h += `<p class="font-bold text-3xl text-medical-600 dark:text-medical-400 mb-2 font-sans" dir="ltr">${ml.toFixed(1)} ml</p>
+              <p class="text-sm font-bold text-gray-700 dark:text-gray-300 mb-1">كل 4 إلى 6 ساعات للحرارة</p>
+              <p class="text-[10px] text-red-600 dark:text-red-400 font-bold mt-2">حد أقصى 5 مرات في 24 ساعة!</p>
+              <p class="text-[10px] text-gray-500">حُسبت كـ 15mg/kg/dose</p>`;
+    } else if(drug === 'ibu') {
+        const m1 = ((5 * w) / 100) * 5; const m2 = ((10 * w) / 100) * 5;
+        h += `<p class="font-bold text-3xl text-medical-600 dark:text-medical-400 mb-2 font-sans" dir="ltr">${m1.toFixed(1)} - ${m2.toFixed(1)} ml</p>
+              <p class="text-sm font-bold text-gray-700 dark:text-gray-300 mb-1">كل 6 إلى 8 ساعات بعد الأكل</p>
+              <p class="text-[10px] text-gray-500 mt-2">حُسبت كـ 5-10mg/kg/dose</p>`;
+    } else if(drug === 'aug') {
+        const ml = (((40 * w) / 400) * 5) / 2;
+        h += `<p class="font-bold text-3xl text-medical-600 dark:text-medical-400 mb-2 font-sans" dir="ltr">${ml.toFixed(1)} ml</p>
+              <p class="text-sm font-bold text-gray-700 dark:text-gray-300 mb-1">مرتين يومياً (كل 12 ساعة)</p>
+              <p class="text-[10px] text-gray-500 mt-2">حُسبت كـ 40mg/kg/day مقسمة على جرعتين</p>`;
+    }
+    box.innerHTML = h; lucide.createIcons();
+}
+
+function initFlashcards() {
+    fcList = drugsData.filter(d => !masteredIds.includes(d.id)).sort(() => Math.random() - 0.5);
+    fcCurrent = 0;
+    
+    if(fcList.length === 0) {
+        document.getElementById('flashcard-inner').innerHTML = `
+            <div class="flip-card-front bg-emerald-500 text-white rounded-2xl p-6 flex flex-col justify-center items-center text-center">
+                <i data-lucide="award" class="w-16 h-16 mb-4"></i><h3 class="text-2xl font-bold">إنجاز رائع!</h3>
+                <p class="mt-2 text-sm opacity-90">لقد أتقنت الـ 100 دواء كاملة.</p>
+            </div>`;
+        document.getElementById('flash-progress').innerText = '100 / 100 مُتقن';
+        lucide.createIcons(); return;
+    }
+    loadFlashcard();
+}
+
+function loadFlashcard() {
+    if(fcList.length === 0) return;
+    const d = fcList[fcCurrent];
+    document.getElementById('fc-front-name').innerText = d.trade_name.split(' / ')[0];
+    document.getElementById('fc-front-cat').innerText = d.category;
+    document.getElementById('fc-back-active').innerText = d.active_ingredient;
+    document.getElementById('fc-back-dose').innerText = d.dosage_rule;
+    document.getElementById('fc-back-pearl').innerText = d.clinical_pearl;
+    document.getElementById('flashcard-inner').parentElement.classList.remove('flipped');
+    document.getElementById('flash-progress').innerText = `${masteredIds.length} / 100 مُتقن`;
+}
+
+function toggleFlip() { document.getElementById('flashcard-inner').parentElement.classList.toggle('flipped'); }
+function nextFlashcard() {
+    fcCurrent = (fcCurrent + 1) % fcList.length;
+    document.getElementById('flashcard-inner').parentElement.classList.remove('flipped');
+    setTimeout(loadFlashcard, 300);
+}
+function markReview() { if(fcList.length) nextFlashcard(); }
+function markMastered() {
+    if(fcList.length === 0) return;
+    masteredIds.push(fcList[fcCurrent].id);
+    localStorage.setItem('pharmacist_mastered_v1', JSON.stringify(masteredIds));
+    fcList.splice(fcCurrent, 1);
+    if(fcCurrent >= fcList.length) fcCurrent = 0;
+    if(fcList.length === 0) initFlashcards();
+    else { document.getElementById('flashcard-inner').parentElement.classList.remove('flipped'); setTimeout(loadFlashcard, 300); }
+}
+function resetMastery() {
+    if(confirm('هل تريد مسح كل الإنجازات والبدء من جديد؟')) {
+        masteredIds = []; localStorage.setItem('pharmacist_mastered_v1', '[]'); initFlashcards();
+    }
+}
+
+function initTables() {
+    document.getElementById('latin-table').innerHTML = latinAbbr.map(l => `
+        <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/50">
+            <td class="px-3 py-2.5 font-bold text-navy-700 dark:text-navy-400 text-left" dir="ltr">${l.abbr}</td>
+            <td class="px-3 py-2.5 text-gray-700 dark:text-gray-300">${l.meaning}</td>
+        </tr>`).join('');
+    document.getElementById('lasa-table').innerHTML = lasaList.map(l => `
+        <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/50">
+            <td class="px-3 py-2.5 font-bold text-red-700 dark:text-red-400 text-left font-sans text-[11px]" dir="ltr">${l.pair}</td>
+            <td class="px-3 py-2.5 text-gray-700 dark:text-gray-300">${l.diff}</td>
+        </tr>`).join('');
+}
+
+// Start
+initApp();
+</script>
+</body>
+</html>

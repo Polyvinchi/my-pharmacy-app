@@ -1,0 +1,1315 @@
+[
+  {
+    "id": 1,
+    "trade_name": "Cetal",
+    "name_ar": "سيتال",
+    "active_ingredient": "Paracetamol 120mg/5ml",
+    "dosage_form": "Suspension",
+    "sub_form_type": "خافض حرارة ومسكن",
+    "is_fridge": false,
+    "system_category": "أطفال وحديثي الولادة",
+    "indications": "خفض الحرارة وتسكين الألم البسيط للأطفال",
+    "dosage_and_admin": "الجرعة 10-15mg/kg كل 4-6 ساعات، أقصى 5 جرعات باليوم. مثال: طفل 10kg = 4-6ml للجرعة",
+    "clinical_pearl": "يفضل عدم إعطاؤه بمعدة فارغة تماماً لتقليل تهيج المعدة، ورج العبوة جيداً قبل الاستخدام",
+    "critical_warnings": "يمنع تجاوز الجرعة اليومية القصوى لخطر تسمم الكبد، حذر مع أدوية أخرى تحتوي باراسيتامول",
+    "drug_interactions": "يزيد سمية الكبد مع الكحول أو أدوية أخرى بها باراسيتامول",
+    "special_populations": {
+      "pregnancy": "Safe",
+      "hypertension": "Safe",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Paramol Suspension",
+      "Adol Suspension"
+    ],
+    "substitutes_alternative_class": [
+      "Brufen Suspension (Ibuprofen)"
+    ]
+  },
+  {
+    "id": 2,
+    "trade_name": "Paramol",
+    "name_ar": "بارامول",
+    "active_ingredient": "Paracetamol 120mg/5ml",
+    "dosage_form": "Suspension",
+    "sub_form_type": "خافض حرارة ومسكن",
+    "is_fridge": false,
+    "system_category": "أطفال وحديثي الولادة",
+    "indications": "خفض الحرارة وتسكين الألم للأطفال",
+    "dosage_and_admin": "10-15mg/kg كل 4-6 ساعات، مثال: طفل 15kg = 7.5-11ml",
+    "clinical_pearl": "يوجد بالعبوة كوب أو حقنة معايرة، يفضل التنبيه لتفادي الخلط بين الجرعة بالحقنة والكوب",
+    "critical_warnings": "عدم استخدامه مع مستحضرات أخرى تحتوي باراسيتامول بنفس الوقت",
+    "drug_interactions": "الكحول والأدوية الكبدية",
+    "special_populations": {
+      "pregnancy": "Safe",
+      "hypertension": "Safe",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Cetal Suspension",
+      "Adol Suspension"
+    ],
+    "substitutes_alternative_class": [
+      "Dolphin Suspension"
+    ]
+  },
+  {
+    "id": 3,
+    "trade_name": "Dolphin Suspension",
+    "name_ar": "دولفين شرب أطفال",
+    "active_ingredient": "Diclofenac Potassium 9mg/5ml (1.8mg/ml)",
+    "dosage_form": "Suspension",
+    "sub_form_type": "مسكن ومضاد للالتهاب وخافض حرارة",
+    "is_fridge": false,
+    "system_category": "أطفال وحديثي الولادة",
+    "indications": "خفض الحرارة المرتفعة المقاومة وتسكين آلام التهابات الأذن واللوز الحادة",
+    "dosage_and_admin": "0.5 إلى 1.5 ملغ/كجم مقسمة على مرتين إلى 3 مرات يومياً بعد الأكل (مثال: طفل 10 كجم = 2.5 إلى 4 مل كل 8 ساعات)",
+    "clinical_pearl": "لا يصرف للأطفال أقل من عمر سنة، ويحظر إعطاؤه على معدة فارغة أو مع وجود جفاف وإسهال حاد لتجنب الفشل الكلوي",
+    "critical_warnings": "ممنوع تماماً في حالات الجفاف الشديد وقرحة المعدة وحساسية الصدر (الربو الحساس للمسكنات)",
+    "drug_interactions": "لا يجمع في نفس التوقيت مع البروفين لتفادي النزيف وتدمير وظائف الكلى",
+    "special_populations": {
+      "pregnancy": "N/A",
+      "hypertension": "Caution",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Babyfen Suspension",
+      "Cataflam Drops"
+    ],
+    "substitutes_alternative_class": [
+      "Brufen Suspension",
+      "Cetal Suspension"
+    ]
+  },
+  {
+    "id": 4,
+    "trade_name": "Brufen",
+    "name_ar": "بروفين",
+    "active_ingredient": "Ibuprofen 100mg/5ml",
+    "dosage_form": "Suspension",
+    "sub_form_type": "خافض حرارة ومضاد التهاب",
+    "is_fridge": false,
+    "system_category": "أطفال وحديثي الولادة",
+    "indications": "خفض الحرارة، تسكين الألم، مضاد التهاب (التسنين، التهابات الحلق)",
+    "dosage_and_admin": "5-10mg/kg كل 6-8 ساعات، مثال: طفل 10kg = 5ml كل 8 ساعات",
+    "clinical_pearl": "يعطى بعد الأكل مباشرة لتقليل تهيج المعدة، لا يستخدم تحت عمر 3 شهور أو وزن أقل من 5kg",
+    "critical_warnings": "يمنع في حالات الجفاف، الجدري المائي، وقرحة المعدة النشطة",
+    "drug_interactions": "يتعارض مع الأسبرين ومدرات البول ويزيد خطر النزيف مع مضادات التجلط",
+    "special_populations": {
+      "pregnancy": "Caution",
+      "hypertension": "Avoid",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Advil Suspension",
+      "Fenac Suspension"
+    ],
+    "substitutes_alternative_class": [
+      "Cetal Suspension"
+    ]
+  },
+  {
+    "id": 5,
+    "trade_name": "Megafen",
+    "name_ar": "ميجافين",
+    "active_ingredient": "Paracetamol 250mg + Chlorpheniramine 1mg/5ml",
+    "dosage_form": "Suspension",
+    "sub_form_type": "خافض حرارة مركب مع مضاد حساسية",
+    "is_fridge": false,
+    "system_category": "جهاز تنفسي",
+    "indications": "حرارة مصحوبة بأعراض برد ورشح وحساسية",
+    "dosage_and_admin": "حسب العمر: 1-5 سنوات 2.5-5ml كل 6-8 ساعات",
+    "clinical_pearl": "يسبب نعاساً بسبب الكلورفينيرامين، يفضل إعطاؤه مساءً",
+    "critical_warnings": "يمنع تحت عمر سنة، حذر في حالات الربو وضيق التنفس",
+    "drug_interactions": "يزيد التأثير المهدئ مع مضادات الهيستامين الأخرى أو المهدئات",
+    "special_populations": {
+      "pregnancy": "Caution",
+      "hypertension": "Caution",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Adol Cold Suspension"
+    ],
+    "substitutes_alternative_class": [
+      "Cetal Suspension + Fenistil Drops"
+    ]
+  },
+  {
+    "id": 6,
+    "trade_name": "Augmentin",
+    "name_ar": "أوجمنتين",
+    "active_ingredient": "Amoxicillin + Clavulanic Acid 457mg/5ml",
+    "dosage_form": "Suspension",
+    "sub_form_type": "مضاد حيوي واسع المجال",
+    "is_fridge": false,
+    "system_category": "جهاز تنفسي",
+    "indications": "التهابات الجهاز التنفسي والأذن والجيوب الأنفية",
+    "dosage_and_admin": "25-45mg/kg/day مقسمة كل 12 ساعة حسب Amoxicillin، مثال: طفل 10kg = 4ml كل 12 ساعة (تركيز 457)",
+    "clinical_pearl": "يحفظ بالثلاجة بعد الحل، صالح 7 أيام فقط، يعطى مع بداية الوجبة لتقليل الإسهال",
+    "critical_warnings": "يمنع في حالة الحساسية من البنسلين، حذر شديد في مرضى اليرقان الكبدي السابق مع أموكسيسيلين كلافيولانيك",
+    "drug_interactions": "يقلل فعالية حبوب منع الحمل، يتعارض مع الميثوتريكسات",
+    "special_populations": {
+      "pregnancy": "Safe",
+      "hypertension": "Safe",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Megamox Suspension",
+      "Curam Suspension"
+    ],
+    "substitutes_alternative_class": [
+      "Zithromax Suspension"
+    ]
+  },
+  {
+    "id": 7,
+    "trade_name": "Curam",
+    "name_ar": "كيورام",
+    "active_ingredient": "Amoxicillin + Clavulanic Acid 457mg/5ml",
+    "dosage_form": "Suspension",
+    "sub_form_type": "مضاد حيوي واسع المجال",
+    "is_fridge": false,
+    "system_category": "جهاز تنفسي",
+    "indications": "التهابات الجهاز التنفسي والأذن الوسطى",
+    "dosage_and_admin": "25-45mg/kg/day كل 12 ساعة، مثال: طفل 15kg = 6ml كل 12 ساعة",
+    "clinical_pearl": "صلاحيته بعد الحل بالماء أسبوع بالثلاجة، يهز جيداً قبل كل استخدام",
+    "critical_warnings": "يمنع مع تاريخ اليرقان الكبدي الناتج عن أموكسيسيلين كلافيولانيك سابقاً",
+    "drug_interactions": "يقلل فعالية حبوب منع الحمل",
+    "special_populations": {
+      "pregnancy": "Safe",
+      "hypertension": "Safe",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Augmentin Suspension",
+      "Megamox"
+    ],
+    "substitutes_alternative_class": [
+      "Cefix Suspension"
+    ]
+  },
+  {
+    "id": 8,
+    "trade_name": "Megamox",
+    "name_ar": "ميجاموكس",
+    "active_ingredient": "Amoxicillin + Clavulanic Acid 228.5mg/5ml",
+    "dosage_form": "Suspension",
+    "sub_form_type": "مضاد حيوي واسع المجال",
+    "is_fridge": false,
+    "system_category": "جهاز تنفسي",
+    "indications": "التهابات الجهاز التنفسي والمسالك البولية للأطفال",
+    "dosage_and_admin": "25-45mg/kg/day مقسمة كل 12 ساعة (تركيز نصف Augmentin)، مثال: طفل 10kg = 8ml كل 12 ساعة",
+    "clinical_pearl": "تركيز أقل من Augmentin لذا الحجم أكبر، انتبه عند تبديل الماركات",
+    "critical_warnings": "يمنع مع الحساسية من البنسلين",
+    "drug_interactions": "يقلل فعالية حبوب منع الحمل",
+    "special_populations": {
+      "pregnancy": "Safe",
+      "hypertension": "Safe",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Augmentin Suspension",
+      "Curam"
+    ],
+    "substitutes_alternative_class": [
+      "Zithromax Suspension"
+    ]
+  },
+  {
+    "id": 9,
+    "trade_name": "Zithromax",
+    "name_ar": "زيثروماكس",
+    "active_ingredient": "Azithromycin 200mg/5ml",
+    "dosage_form": "Suspension",
+    "sub_form_type": "مضاد حيوي ماكرولايد",
+    "is_fridge": false,
+    "system_category": "جهاز تنفسي",
+    "indications": "التهابات الجهاز التنفسي، الأذن، الجلد لمن لديهم حساسية بنسلين",
+    "dosage_and_admin": "10mg/kg مرة واحدة يومياً لمدة 3 أيام، مثال: طفل 10kg = 2.5ml يومياً",
+    "clinical_pearl": "مدة العلاج قصيرة (3 أيام فقط) مما يحسن الالتزام، يعطى قبل الأكل بساعة أو بعده بساعتين",
+    "critical_warnings": "حذر في مرضى القلب (إطالة QT)، لا يستخدم مع أمراض الكبد الشديدة",
+    "drug_interactions": "يتعارض مع مضادات الحموضة (يقلل الامتصاص)، خطر مع أدوية القلب المطيلة لـQT",
+    "special_populations": {
+      "pregnancy": "Caution",
+      "hypertension": "Caution",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Zithrocin Suspension",
+      "Azomax Suspension"
+    ],
+    "substitutes_alternative_class": [
+      "Augmentin Suspension"
+    ]
+  },
+  {
+    "id": 10,
+    "trade_name": "Sutrim",
+    "name_ar": "سوتريم",
+    "active_ingredient": "Sulfamethoxazole + Trimethoprim 240mg/5ml",
+    "dosage_form": "Suspension",
+    "sub_form_type": "مضاد حيوي سلفا",
+    "is_fridge": false,
+    "system_category": "جهاز هضمي",
+    "indications": "التهابات المسالك البولية والمعوية",
+    "dosage_and_admin": "6-8mg/kg/day (على أساس trimethoprim) مقسمة كل 12 ساعة، لا يستخدم تحت شهرين",
+    "clinical_pearl": "يعطى مع كمية وفيرة من الماء لتقليل ترسب البلورات بالكلى",
+    "critical_warnings": "يمنع تحت عمر شهرين، حذر شديد في مرضى نقص G6PD واليرقان",
+    "drug_interactions": "يزيد تأثير الوارفارين ومضادات السكر الفموية",
+    "special_populations": {
+      "pregnancy": "Contraindicated",
+      "hypertension": "Caution",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Septrin Suspension"
+    ],
+    "substitutes_alternative_class": [
+      "Augmentin Suspension"
+    ]
+  },
+  {
+    "id": 11,
+    "trade_name": "Cefix",
+    "name_ar": "سيفيكس",
+    "active_ingredient": "Cefixime 100mg/5ml",
+    "dosage_form": "Suspension",
+    "sub_form_type": "مضاد حيوي سيفالوسبورين",
+    "is_fridge": false,
+    "system_category": "جهاز تنفسي",
+    "indications": "التهابات الجهاز التنفسي والمسالك البولية",
+    "dosage_and_admin": "8mg/kg/day مرة واحدة أو مقسمة كل 12 ساعة، مثال: طفل 15kg = 6ml يومياً",
+    "clinical_pearl": "يمكن إعطاؤه مرة واحدة يومياً مما يسهل الالتزام بالجرعة، مع أو بدون طعام",
+    "critical_warnings": "حذر مع الحساسية من السيفالوسبورينات أو البنسلين الشديدة",
+    "drug_interactions": "يتعارض مع مضادات الحموضة ويزيد تأثير الوارفارين",
+    "special_populations": {
+      "pregnancy": "Safe",
+      "hypertension": "Safe",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Denvar Suspension",
+      "Ceforal Suspension"
+    ],
+    "substitutes_alternative_class": [
+      "Augmentin Suspension"
+    ]
+  },
+  {
+    "id": 12,
+    "trade_name": "Denvar",
+    "name_ar": "دينفار",
+    "active_ingredient": "Cefixime 100mg/5ml",
+    "dosage_form": "Suspension",
+    "sub_form_type": "مضاد حيوي سيفالوسبورين",
+    "is_fridge": false,
+    "system_category": "جهاز تنفسي",
+    "indications": "التهابات الأذن والجهاز التنفسي والبولي",
+    "dosage_and_admin": "8mg/kg/day، مثال: طفل 20kg = 8ml يومياً",
+    "clinical_pearl": "طعم مقبول للأطفال يحسن الالتزام بالعلاج، يهز جيداً قبل الاستخدام",
+    "critical_warnings": "حذر مع الحساسية للسيفالوسبورينات",
+    "drug_interactions": "يتعارض مع مضادات الحموضة",
+    "special_populations": {
+      "pregnancy": "Safe",
+      "hypertension": "Safe",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Cefix Suspension"
+    ],
+    "substitutes_alternative_class": [
+      "Zithromax Suspension"
+    ]
+  },
+  {
+    "id": 13,
+    "trade_name": "Prospan",
+    "name_ar": "بروسبان",
+    "active_ingredient": "Ivy Leaf Extract (Hedera helix)",
+    "dosage_form": "Syrup",
+    "sub_form_type": "مذيب بلغم عشبي",
+    "is_fridge": false,
+    "system_category": "جهاز تنفسي",
+    "indications": "الكحة المصحوبة ببلغم والتهاب الشعب الهوائية",
+    "dosage_and_admin": "الأطفال 2-5 سنوات: 2.5ml مرتين يومياً، أكبر من 6 سنوات: 5ml 3 مرات يومياً",
+    "clinical_pearl": "منتج عشبي آمن نسبياً ويمكن إعطاؤه للرضع بعد استشارة الطبيب، خالٍ من الكحول والسكر",
+    "critical_warnings": "نادراً ما يسبب حساسية أو اضطراب معدي، حذر في مرضى الربو التحسسي الشديد من نبات اللبلاب",
+    "drug_interactions": "لا توجد تعارضات دوائية معروفة هامة",
+    "special_populations": {
+      "pregnancy": "Caution",
+      "hypertension": "Safe",
+      "diabetic": "Sugar-free"
+    },
+    "substitutes_same_active": [
+      "Hedelix Syrup"
+    ],
+    "substitutes_alternative_class": [
+      "Bronchicum Syrup"
+    ]
+  },
+  {
+    "id": 14,
+    "trade_name": "Bronchicum",
+    "name_ar": "برونشيكم",
+    "active_ingredient": "Thyme Extract (Thymus vulgaris)",
+    "dosage_form": "Syrup",
+    "sub_form_type": "مذيب بلغم عشبي",
+    "is_fridge": false,
+    "system_category": "جهاز تنفسي",
+    "indications": "الكحة والتهاب الشعب الهوائية والبلغم",
+    "dosage_and_admin": "الأطفال 1-5 سنوات: 2.5ml 3 مرات يومياً، البالغين 5ml 3-4 مرات يومياً",
+    "clinical_pearl": "مستخلص الزعتر له خواص طاردة للبلغم ومضادة للتشنج، يفضل تناوله مع كمية وفيرة من السوائل",
+    "critical_warnings": "حذر في حالات الحساسية من نباتات الفصيلة الشفوية (Lamiaceae)",
+    "drug_interactions": "لا توجد تعارضات معروفة هامة",
+    "special_populations": {
+      "pregnancy": "Caution",
+      "hypertension": "Safe",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Tussamag Syrup"
+    ],
+    "substitutes_alternative_class": [
+      "Prospan Syrup"
+    ]
+  },
+  {
+    "id": 15,
+    "trade_name": "Notuss",
+    "name_ar": "نوتاس",
+    "active_ingredient": "Dextromethorphan 10mg/5ml",
+    "dosage_form": "Syrup",
+    "sub_form_type": "كحة ناشفة (مثبط سعال)",
+    "is_fridge": false,
+    "system_category": "جهاز تنفسي",
+    "indications": "الكحة الجافة المزعجة غير المصحوبة ببلغم",
+    "dosage_and_admin": "الأطفال 6-12 سنة: 5ml كل 6-8 ساعات، لا يستخدم تحت 6 سنوات",
+    "clinical_pearl": "لا يستخدم مع الكحة المصحوبة ببلغم لأنه يثبط منعكس السعال المطلوب لطرد البلغم",
+    "critical_warnings": "يمنع تحت عمر 6 سنوات وفي حالات الربو النشط وأمراض الكبد الشديدة",
+    "drug_interactions": "خطر متلازمة السيروتونين مع مثبطات MAO ومضادات الاكتئاب SSRI",
+    "special_populations": {
+      "pregnancy": "Caution",
+      "hypertension": "Safe",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Tuseran Syrup"
+    ],
+    "substitutes_alternative_class": [
+      "Prospan Syrup"
+    ]
+  },
+  {
+    "id": 16,
+    "trade_name": "Toplexil",
+    "name_ar": "توبلكسيل",
+    "active_ingredient": "Oxomemazine",
+    "dosage_form": "Syrup",
+    "sub_form_type": "كحة ناشفة مضاد هيستامين",
+    "is_fridge": false,
+    "system_category": "جهاز تنفسي",
+    "indications": "الكحة الجافة التحسسية المصحوبة برشح",
+    "dosage_and_admin": "للبالغين 1-3 معالق صغيرة يومياً حسب وصف الطبيب، يمنع للأطفال دون سن معينة حسب النشرة",
+    "clinical_pearl": "يسبب نعاساً شديداً، يفضل تناوله ليلاً وتجنب القيادة بعده",
+    "critical_warnings": "يمنع في الرضع (خطر توقف تنفسي)، حذر في الجلوكوما وتضخم البروستاتا",
+    "drug_interactions": "يزيد التأثير المهدئ مع الكحول والمهدئات الأخرى",
+    "special_populations": {
+      "pregnancy": "Caution",
+      "hypertension": "Caution",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "-"
+    ],
+    "substitutes_alternative_class": [
+      "Notuss Syrup"
+    ]
+  },
+  {
+    "id": 17,
+    "trade_name": "Selgon",
+    "name_ar": "سيلجون",
+    "active_ingredient": "Pipazethate 2mg/5ml",
+    "dosage_form": "Syrup",
+    "sub_form_type": "موسع شعب هوائية",
+    "is_fridge": false,
+    "system_category": "جهاز تنفسي",
+    "indications": "الربو الشعبي وضيق التنفس التشنجي",
+    "dosage_and_admin": "0.1-0.15mg/kg/dose كل 6-8 ساعات، مثال: طفل 10kg = 2.5ml كل 8 ساعات",
+    "clinical_pearl": "قد يسبب رعشة وتسارع بالقلب خاصة بداية العلاج، الجرعة تحسب بدقة حسب الوزن",
+    "critical_warnings": "حذر في مرضى القلب وفرط نشاط الغدة الدرقية والسكري",
+    "drug_interactions": "يتعارض مع حاصرات بيتا (تعاكس تأثيري) ويزيد تأثيره منشطات القلب",
+    "special_populations": {
+      "pregnancy": "Caution",
+      "hypertension": "Caution",
+      "diabetic": "Caution"
+    },
+    "substitutes_same_active": [
+      "Ventolin Syrup"
+    ],
+    "substitutes_alternative_class": [
+      "Bricanyl Syrup"
+    ]
+  },
+  {
+    "id": 18,
+    "trade_name": "Mucosol",
+    "name_ar": "موكوسول",
+    "active_ingredient": "Ambroxol HCl 15mg/5ml",
+    "dosage_form": "Syrup",
+    "sub_form_type": "مذيب بلغم",
+    "is_fridge": false,
+    "system_category": "جهاز تنفسي",
+    "indications": "الكحة مع البلغم الكثيف واللزج",
+    "dosage_and_admin": "الأطفال 2-5 سنوات: 2.5ml مرتين يومياً، 6-12 سنة: 5ml مرتين يومياً",
+    "clinical_pearl": "يعمل بشكل أفضل مع شرب كمية كافية من الماء لتسييل البلغم أكثر",
+    "critical_warnings": "حذر في حالات قرحة المعدة النشطة والفشل الكلوي الشديد",
+    "drug_interactions": "يزيد تركيز المضادات الحيوية في إفرازات الشعب عند إعطائهما معاً (تفاعل مفيد)",
+    "special_populations": {
+      "pregnancy": "Caution",
+      "hypertension": "Safe",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Mucolyt Syrup",
+      "Ambrohexal"
+    ],
+    "substitutes_alternative_class": [
+      "Prospan Syrup"
+    ]
+  },
+  {
+    "id": 19,
+    "trade_name": "Antinal",
+    "name_ar": "أنتينال",
+    "active_ingredient": "Nifuroxazide 220mg/5ml (Suspension) / 200mg (Caps)",
+    "dosage_form": "Suspension",
+    "sub_form_type": "مطهر معوي",
+    "is_fridge": false,
+    "system_category": "جهاز هضمي",
+    "indications": "الإسهال الحاد الناتج عن عدوى بكتيرية معوية",
+    "dosage_and_admin": "الأطفال 6 أشهر-2.5 سنة: 5ml مرتين يومياً، 2.5-6 سنوات: 5ml 3 مرات يومياً",
+    "clinical_pearl": "لا يعالج الجفاف بذاته، يجب دائماً استخدام محلول الجفاف (ORS) معه كخط أول للعلاج",
+    "critical_warnings": "يمنع تحت عمر شهرين، لا يعوض عن محاليل معالجة الجفاف",
+    "drug_interactions": "لا توجد تعارضات جهازية هامة لأنه يعمل موضعياً بالأمعاء",
+    "special_populations": {
+      "pregnancy": "Safe",
+      "hypertension": "Safe",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Nifurozide Suspension"
+    ],
+    "substitutes_alternative_class": [
+      "Kapect Suspension"
+    ]
+  },
+  {
+    "id": 20,
+    "trade_name": "Flagyl",
+    "name_ar": "فلاجيل",
+    "active_ingredient": "Metronidazole 125mg/5ml",
+    "dosage_form": "Suspension",
+    "sub_form_type": "مضاد طفيليات وبكتيريا لاهوائية",
+    "is_fridge": false,
+    "system_category": "جهاز هضمي",
+    "indications": "الأميبا والجيارديا والالتهابات المعوية اللاهوائية",
+    "dosage_and_admin": "7.5mg/kg كل 8 ساعات لمدة 5-10 أيام حسب الحالة",
+    "clinical_pearl": "يعطى بعد الأكل لتقليل اضطراب المعدة، يسبب طعماً معدنياً بالفم شائع الحدوث",
+    "critical_warnings": "يمنع تناول الكحول أثناء العلاج وحتى 48 ساعة بعده (تفاعل شبيه بالديسلفيرام)",
+    "drug_interactions": "يتعارض بشدة مع الكحول ويزيد تأثير الوارفارين",
+    "special_populations": {
+      "pregnancy": "Caution",
+      "hypertension": "Safe",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Amrizole Suspension"
+    ],
+    "substitutes_alternative_class": [
+      "Antinal Suspension"
+    ]
+  },
+  {
+    "id": 21,
+    "trade_name": "Kapect",
+    "name_ar": "كابكت",
+    "active_ingredient": "Kaolin + Pectin",
+    "dosage_form": "Suspension",
+    "sub_form_type": "مضاد إسهال ماص للسموم",
+    "is_fridge": false,
+    "system_category": "جهاز هضمي",
+    "indications": "الإسهال الحاد غير المصحوب بحمى شديدة",
+    "dosage_and_admin": "الأطفال 3-6 سنوات: 5-10ml بعد كل مرة تبرز سائل، البالغين 30ml",
+    "clinical_pearl": "قد يقلل امتصاص الأدوية الأخرى، يفضل الفصل بينه وبين أي دواء آخر بساعتين",
+    "critical_warnings": "لا يستخدم في الإسهال الدموي أو المصحوب بحمى عالية دون استشارة طبية",
+    "drug_interactions": "يقلل امتصاص المضادات الحيوية والأدوية الأخرى إذا أعطيا معاً بنفس الوقت",
+    "special_populations": {
+      "pregnancy": "Safe",
+      "hypertension": "Safe",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "-"
+    ],
+    "substitutes_alternative_class": [
+      "Smecta Sachet"
+    ]
+  },
+  {
+    "id": 22,
+    "trade_name": "Smecta",
+    "name_ar": "سميكتا",
+    "active_ingredient": "Diosmectite 3g",
+    "dosage_form": "Sachet",
+    "sub_form_type": "مطهر ماص معوي",
+    "is_fridge": false,
+    "system_category": "جهاز هضمي",
+    "indications": "الإسهال الحاد والمزمن وحماية الغشاء المخاطي المعوي",
+    "dosage_and_admin": "الرضع أقل من سنة: كيس واحد يومياً، 1-2 سنة: كيسين يومياً، أكبر من سنتين: 2-3 أكياس يومياً",
+    "clinical_pearl": "يذاب في 50ml ماء أو يخلط بالطعام شبه السائل، يعطى بعيداً عن باقي الأدوية بساعتين",
+    "critical_warnings": "قد يسبب إمساك عند الجرعات الزائدة، يفصل عن باقي الأدوية زمنياً",
+    "drug_interactions": "يقلل امتصاص الأدوية الأخرى بشكل ملحوظ عند تناولهما معاً",
+    "special_populations": {
+      "pregnancy": "Safe",
+      "hypertension": "Safe",
+      "diabetic": "Safe"
+    },
+    "substitutes_same_active": [
+      "Diar-Este Sachet"
+    ],
+    "substitutes_alternative_class": [
+      "Antinal Suspension"
+    ]
+  },
+  {
+    "id": 23,
+    "trade_name": "Dentinox",
+    "name_ar": "دينتينوكس",
+    "active_ingredient": "Simethicone + Lidocaine + Chamomile",
+    "dosage_form": "Drops/Gel",
+    "sub_form_type": "مسكن تسنين ومغص",
+    "is_fridge": false,
+    "system_category": "أطفال وحديثي الولادة",
+    "indications": "آلام التسنين ومغص الرضع",
+    "dosage_and_admin": "يدهن على اللثة بكمية صغيرة عدة مرات يومياً، أو نقط للمغص حسب النشرة",
+    "clinical_pearl": "مكون الليدوكايين يعطي تأثيراً موضعياً سريعاً لتخفيف ألم التسنين",
+    "critical_warnings": "يستخدم بكميات صغيرة جداً لتفادي ابتلاع كمية زائدة من الليدوكايين",
+    "drug_interactions": "لا توجد تعارضات جهازية هامة عند الاستخدام الموضعي الصحيح",
+    "special_populations": {
+      "pregnancy": "Safe",
+      "hypertension": "Safe",
+      "diabetic": "Safe"
+    },
+    "substitutes_same_active": [
+      "-"
+    ],
+    "substitutes_alternative_class": [
+      "Bebicalm Drops"
+    ]
+  },
+  {
+    "id": 24,
+    "trade_name": "Bebicalm",
+    "name_ar": "بيبي كالم",
+    "active_ingredient": "Simethicone + Fennel + Chamomile",
+    "dosage_form": "Drops",
+    "sub_form_type": "مضاد انتفاخ ومغص للرضع",
+    "is_fridge": false,
+    "system_category": "أطفال وحديثي الولادة",
+    "indications": "المغص وانتفاخ البطن عند الرضع",
+    "dosage_and_admin": "10-20 نقطة قبل أو أثناء الرضاعة 3 مرات يومياً حسب عمر الطفل",
+    "clinical_pearl": "يفضل إعطاؤه قبل الرضعة بدقائق لتقليل تكون الغازات أثناء الرضاعة",
+    "critical_warnings": "نادراً ما يسبب حساسية من مكوناته العشبية",
+    "drug_interactions": "لا توجد تعارضات دوائية جهازية معروفة",
+    "special_populations": {
+      "pregnancy": "Safe",
+      "hypertension": "Safe",
+      "diabetic": "Safe"
+    },
+    "substitutes_same_active": [
+      "Minifom Drops"
+    ],
+    "substitutes_alternative_class": [
+      "Simethicone Drops"
+    ]
+  },
+  {
+    "id": 25,
+    "trade_name": "Simethicone (Aero)",
+    "name_ar": "سيميثيكون / إيرو",
+    "active_ingredient": "Simethicone 40mg/0.6ml",
+    "dosage_form": "Oral Drops",
+    "sub_form_type": "مضاد انتفاخ (طارد غازات)",
+    "is_fridge": false,
+    "system_category": "أطفال وحديثي الولادة",
+    "indications": "غازات وانتفاخ البطن عند الرضع والأطفال",
+    "dosage_and_admin": "الرضع: 0.3ml (20 نقطة) 4 مرات يومياً، البالغين: 0.6-1.2ml بعد الوجبات",
+    "clinical_pearl": "يعمل ميكانيكياً بتكسير فقاعات الغاز، آمن جداً وغير ممتص بالجسم",
+    "critical_warnings": "لا توجد موانع استخدام كبرى، آمن حتى لحديثي الولادة",
+    "drug_interactions": "لا توجد تعارضات دوائية معروفة",
+    "special_populations": {
+      "pregnancy": "Safe",
+      "hypertension": "Safe",
+      "diabetic": "Sugar-free"
+    },
+    "substitutes_same_active": [
+      "Disflatyl Drops"
+    ],
+    "substitutes_alternative_class": [
+      "Bebicalm Drops"
+    ]
+  },
+  {
+    "id": 26,
+    "trade_name": "Rehydran-B",
+    "name_ar": "ريهيدران بي",
+    "active_ingredient": "ORS (Sodium, Potassium, Glucose)",
+    "dosage_form": "Sachet",
+    "sub_form_type": "محلول معالجة جفاف",
+    "is_fridge": false,
+    "system_category": "جهاز هضمي",
+    "indications": "تعويض السوائل والأملاح المفقودة نتيجة الإسهال والقيء",
+    "dosage_and_admin": "يذاب الكيس في 200ml ماء مغلي مبرد، يعطى بعد كل مرة إسهال بكمية 50-100ml للأطفال",
+    "clinical_pearl": "المحلول المذاب يستخدم خلال 24 ساعة فقط ثم يرمى الباقي، يعطى ببطء وبكميات صغيرة متكررة لتفادي القيء",
+    "critical_warnings": "يمنع إذابته في كمية ماء أقل أو أكثر من المحدد لخطر اختلال توازن الأملاح",
+    "drug_interactions": "لا توجد تعارضات دوائية جهازية",
+    "special_populations": {
+      "pregnancy": "Safe",
+      "hypertension": "Caution",
+      "diabetic": "Caution"
+    },
+    "substitutes_same_active": [
+      "Hydrosafe Sachet",
+      "ORS-Well Sachet"
+    ],
+    "substitutes_alternative_class": [
+      "-"
+    ]
+  },
+  {
+    "id": 27,
+    "trade_name": "Hydrosafe",
+    "name_ar": "هيدروسيف",
+    "active_ingredient": "ORS (Reduced Osmolarity)",
+    "dosage_form": "Sachet",
+    "sub_form_type": "محلول معالجة جفاف",
+    "is_fridge": false,
+    "system_category": "جهاز هضمي",
+    "indications": "علاج ومنع الجفاف الناتج عن الإسهال",
+    "dosage_and_admin": "كيس يذاب في 200ml ماء، يعطى بمعدل 10ml/kg بعد كل مرة إسهال",
+    "clinical_pearl": "صيغة أسمولية منخفضة تقلل مدة الإسهال وتحسن الامتصاص مقارنة بالصيغة القديمة",
+    "critical_warnings": "عدم إضافة سكر إضافي للمحلول لأنه يزيد الأسمولية ويفاقم الإسهال",
+    "drug_interactions": "لا توجد تعارضات جهازية معروفة",
+    "special_populations": {
+      "pregnancy": "Safe",
+      "hypertension": "Caution",
+      "diabetic": "Caution"
+    },
+    "substitutes_same_active": [
+      "Rehydran-B Sachet"
+    ],
+    "substitutes_alternative_class": [
+      "-"
+    ]
+  },
+  {
+    "id": 28,
+    "trade_name": "Fenistil",
+    "name_ar": "فينيستيل",
+    "active_ingredient": "Dimethindene Maleate 1mg/ml",
+    "dosage_form": "Oral Drops",
+    "sub_form_type": "مضاد هيستامين للحساسية",
+    "is_fridge": false,
+    "system_category": "حساسية",
+    "indications": "الحساسية الجلدية والأنفية والحكة عند الرضع والأطفال",
+    "dosage_and_admin": "الرضع 1شهر-1سنة: 3-10 نقط 3 مرات يومياً، حسب الوزن والعمر بدقة من النشرة",
+    "clinical_pearl": "يسبب نعاساً خفيفاً خصوصاً بداية الاستخدام، يفضل جرعة المساء أكبر من الصباح",
+    "critical_warnings": "يمنع تحت عمر شهر، حذر في الخدج وحديثي الولادة",
+    "drug_interactions": "يزيد التأثير المهدئ مع أدوية الجهاز العصبي المركزي الأخرى",
+    "special_populations": {
+      "pregnancy": "Caution",
+      "hypertension": "Safe",
+      "diabetic": "Sugar-free"
+    },
+    "substitutes_same_active": [
+      "-"
+    ],
+    "substitutes_alternative_class": [
+      "Zyrtec Drops"
+    ]
+  },
+  {
+    "id": 29,
+    "trade_name": "Zyrtec",
+    "name_ar": "زيرتك",
+    "active_ingredient": "Cetirizine 5mg/5ml (Syrup) / 10mg/ml (Drops)",
+    "dosage_form": "Oral Drops",
+    "sub_form_type": "مضاد هيستامين جيل ثاني",
+    "is_fridge": false,
+    "system_category": "حساسية",
+    "indications": "الحساسية الأنفية الموسمية وحساسية الجلد والشرى",
+    "dosage_and_admin": "2-6 سنوات: 2.5mg (2.5ml شراب) مرة يومياً، أكبر من 6 سنوات: 5-10mg يومياً",
+    "clinical_pearl": "أقل تسبباً بالنعاس من الجيل الأول، يمكن تناوله مرة واحدة يومياً لتحسين الالتزام",
+    "critical_warnings": "يمنع تحت عمر سنتين، حذر في الفشل الكلوي (تعديل جرعة)",
+    "drug_interactions": "تأثير إضافي بسيط مع الكحول والمهدئات",
+    "special_populations": {
+      "pregnancy": "Caution",
+      "hypertension": "Safe",
+      "diabetic": "Sugar-free available"
+    },
+    "substitutes_same_active": [
+      "Alerzyn Drops",
+      "Cetryn Syrup"
+    ],
+    "substitutes_alternative_class": [
+      "Claritine Syrup"
+    ]
+  },
+  {
+    "id": 30,
+    "trade_name": "Claritine",
+    "name_ar": "كلاريتين",
+    "active_ingredient": "Loratadine 5mg/5ml",
+    "dosage_form": "Syrup",
+    "sub_form_type": "مضاد هيستامين جيل ثاني",
+    "is_fridge": false,
+    "system_category": "حساسية",
+    "indications": "حساسية الأنف الموسمية والشري المزمن",
+    "dosage_and_admin": "2-12 سنة ووزن أقل من 30kg: 5ml مرة يومياً، وزن أكبر من 30kg: 10ml مرة يومياً",
+    "clinical_pearl": "لا يسبب نعاساً ملحوظاً مقارنة بمضادات الهيستامين الأخرى، يعطى في أي وقت باليوم",
+    "critical_warnings": "يمنع تحت عمر سنتين، حذر في أمراض الكبد الشديدة (تعديل جرعة)",
+    "drug_interactions": "يزيد تركيزه في الدم مع الكيتوكونازول والإريثروميسين",
+    "special_populations": {
+      "pregnancy": "Caution",
+      "hypertension": "Safe",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Lorfast Syrup"
+    ],
+    "substitutes_alternative_class": [
+      "Zyrtec Syrup"
+    ]
+  },
+  {
+    "id": 31,
+    "trade_name": "Histazine",
+    "name_ar": "هيستازين",
+    "active_ingredient": "Chlorpheniramine Maleate 2mg/5ml",
+    "dosage_form": "Syrup",
+    "sub_form_type": "مضاد هيستامين جيل أول",
+    "is_fridge": false,
+    "system_category": "حساسية",
+    "indications": "الحساسية والرشح ونزلات البرد والحكة",
+    "dosage_and_admin": "1-2 سنة: 2.5ml مرتين يومياً، 2-6 سنوات: 2.5-5ml كل 6-8 ساعات",
+    "clinical_pearl": "يسبب نعاساً واضحاً، يستخدم أحياناً عمداً مساءً لمساعدة الطفل على النوم أثناء نزلة البرد",
+    "critical_warnings": "حذر في الربو والجلوكوما وتضخم البروستاتا، يمنع تحت عمر سنة",
+    "drug_interactions": "يزيد التأثير المثبط مع الكحول والمهدئات ومضادات الاكتئاب",
+    "special_populations": {
+      "pregnancy": "Caution",
+      "hypertension": "Caution",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Allergex Syrup"
+    ],
+    "substitutes_alternative_class": [
+      "Zyrtec Drops"
+    ]
+  },
+  {
+    "id": 32,
+    "trade_name": "Sansovit",
+    "name_ar": "سانسوفيت",
+    "active_ingredient": "Multivitamins + Lysine",
+    "dosage_form": "Syrup",
+    "sub_form_type": "فيتامينات لفتح الشهية",
+    "is_fridge": false,
+    "system_category": "فيتامينات ومقويات",
+    "indications": "نقص الشهية وسوء التغذية عند الأطفال",
+    "dosage_and_admin": "الأطفال: 5-10ml يومياً حسب العمر، يفضل قبل الوجبة الرئيسية بنصف ساعة",
+    "clinical_pearl": "يعطى في الصباح أو قبل الغداء لتحفيز الشهية طوال اليوم وليس مساءً",
+    "critical_warnings": "لا يستخدم كبديل عن نظام غذائي متوازن، حذر في حالات فرط فيتامين أ أو د",
+    "drug_interactions": "لا توجد تعارضات جهازية هامة عند الجرعات الطبيعية",
+    "special_populations": {
+      "pregnancy": "Caution",
+      "hypertension": "Safe",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Pediakid Syrup"
+    ],
+    "substitutes_alternative_class": [
+      "Osteocare Junior"
+    ]
+  },
+  {
+    "id": 33,
+    "trade_name": "Feroglobin",
+    "name_ar": "فيروجلوبين",
+    "active_ingredient": "Iron + Vitamin B12 + Folic Acid",
+    "dosage_form": "Syrup",
+    "sub_form_type": "مقوي دم (حديد)",
+    "is_fridge": false,
+    "system_category": "فيتامينات ومقويات",
+    "indications": "علاج ومنع فقر الدم الناتج عن نقص الحديد",
+    "dosage_and_admin": "الأطفال: 5ml يومياً أو حسب وصف الطبيب، البالغين: 10ml يومياً",
+    "clinical_pearl": "يفضل تناوله بشيء من الفيتامين C (عصير برتقال) لتحسين الامتصاص، يجنب الشاي والقهوة وقت الجرعة",
+    "critical_warnings": "يسبب اسوداد البراز (طبيعي)، حذر في مرضى الثلاسيميا وترسب الحديد",
+    "drug_interactions": "يقلل امتصاص التتراسيكلين والكينولونات إذا أعطيا معاً",
+    "special_populations": {
+      "pregnancy": "Safe",
+      "hypertension": "Safe",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Ferrofol Syrup"
+    ],
+    "substitutes_alternative_class": [
+      "Sansovit Syrup"
+    ]
+  },
+  {
+    "id": 34,
+    "trade_name": "Osteocare Junior",
+    "name_ar": "أوستيوكير جونيور",
+    "active_ingredient": "Calcium + Vitamin D3 + Zinc",
+    "dosage_form": "Syrup",
+    "sub_form_type": "مقوي عظام",
+    "is_fridge": false,
+    "system_category": "فيتامينات ومقويات",
+    "indications": "دعم نمو العظام والأسنان عند الأطفال",
+    "dosage_and_admin": "الأطفال 1-12 سنة: 5ml يومياً أو مرتين حسب العمر",
+    "clinical_pearl": "يفضل تناوله مع الوجبات لتحسين امتصاص الكالسيوم وتقليل اضطراب المعدة",
+    "critical_warnings": "حذر في حالات فرط كالسيوم الدم وحصوات الكلى",
+    "drug_interactions": "يقلل امتصاص المضادات الحيوية من مجموعة التتراسيكلين والكينولون",
+    "special_populations": {
+      "pregnancy": "Safe",
+      "hypertension": "Safe",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Calcimax Syrup"
+    ],
+    "substitutes_alternative_class": [
+      "Sansovit Syrup"
+    ]
+  },
+  {
+    "id": 35,
+    "trade_name": "Adol",
+    "name_ar": "أدول",
+    "active_ingredient": "Paracetamol 120mg/5ml",
+    "dosage_form": "Suspension",
+    "sub_form_type": "خافض حرارة ومسكن",
+    "is_fridge": false,
+    "system_category": "أطفال وحديثي الولادة",
+    "indications": "خفض الحرارة وتسكين الألم البسيط",
+    "dosage_and_admin": "10-15mg/kg كل 4-6 ساعات، أقصى 5 جرعات يومياً",
+    "clinical_pearl": "متوفر أيضاً بشكل تحاميل وهو بديل جيد عند القيء أو رفض الطفل الشراب",
+    "critical_warnings": "تجنب تكرار الجرعة مع مستحضرات أخرى تحوي باراسيتامول",
+    "drug_interactions": "يزيد سمية الكبد مع الكحول",
+    "special_populations": {
+      "pregnancy": "Safe",
+      "hypertension": "Safe",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Cetal Suspension"
+    ],
+    "substitutes_alternative_class": [
+      "Brufen Suspension"
+    ]
+  },
+  {
+    "id": 36,
+    "trade_name": "Amoxil",
+    "name_ar": "أموكسيل",
+    "active_ingredient": "Amoxicillin 250mg/5ml",
+    "dosage_form": "Suspension",
+    "sub_form_type": "مضاد حيوي بنسلين",
+    "is_fridge": false,
+    "system_category": "جهاز تنفسي",
+    "indications": "التهابات الجهاز التنفسي والأذن والمسالك البولية البسيطة",
+    "dosage_and_admin": "25-50mg/kg/day مقسمة كل 8 ساعات، مثال: طفل 10kg = 3.5-7ml كل 8 ساعات",
+    "clinical_pearl": "يحفظ بالثلاجة بعد الحل وصالح 14 يوماً، يمكن إعطاؤه مع أو بدون طعام",
+    "critical_warnings": "يمنع في الحساسية من البنسلين، طفح جلدي شائع مع عدوى فيروس EBV (كثرة الوحيدات)",
+    "drug_interactions": "يقلل فعالية حبوب منع الحمل",
+    "special_populations": {
+      "pregnancy": "Safe",
+      "hypertension": "Safe",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Hiconcil Suspension"
+    ],
+    "substitutes_alternative_class": [
+      "Augmentin Suspension"
+    ]
+  },
+  {
+    "id": 37,
+    "trade_name": "Klacid",
+    "name_ar": "كلاسيد",
+    "active_ingredient": "Clarithromycin 125mg/5ml",
+    "dosage_form": "Suspension",
+    "sub_form_type": "مضاد حيوي ماكرولايد",
+    "is_fridge": false,
+    "system_category": "جهاز تنفسي",
+    "indications": "التهابات الجهاز التنفسي لمن لديهم حساسية بنسلين",
+    "dosage_and_admin": "7.5mg/kg كل 12 ساعة، مثال: طفل 15kg = 4.5ml كل 12 ساعة",
+    "clinical_pearl": "يسبب طعماً مراً مميزاً بالفم بعد البلع، يعطى مع الطعام لتقليل اضطراب المعدة",
+    "critical_warnings": "حذر شديد مع أدوية القلب المطيلة لـQT وأمراض الكبد",
+    "drug_interactions": "تعارض خطير مع الستاتينات وبعض أدوية القلب (يزيد تركيزها بشدة)",
+    "special_populations": {
+      "pregnancy": "Caution",
+      "hypertension": "Caution",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Klaricid Suspension"
+    ],
+    "substitutes_alternative_class": [
+      "Zithromax Suspension"
+    ]
+  },
+  {
+    "id": 38,
+    "trade_name": "Zinnat",
+    "name_ar": "زينات",
+    "active_ingredient": "Cefuroxime 125mg/5ml",
+    "dosage_form": "Suspension",
+    "sub_form_type": "مضاد حيوي سيفالوسبورين جيل ثاني",
+    "is_fridge": false,
+    "system_category": "جهاز تنفسي",
+    "indications": "التهابات الجهاز التنفسي والأذن الوسطى المقاومة",
+    "dosage_and_admin": "20-30mg/kg/day مقسمة كل 12 ساعة، مثال: طفل 15kg = 6ml كل 12 ساعة",
+    "clinical_pearl": "يعطى مع الطعام لتحسين الامتصاص بشكل ملحوظ، طعمه مر إذا سحق أو مضغ",
+    "critical_warnings": "حذر في الحساسية الشديدة من البنسلين (تحسس متصالب محتمل)",
+    "drug_interactions": "يتعارض مع مضادات الحموضة (يقلل الامتصاص)",
+    "special_populations": {
+      "pregnancy": "Safe",
+      "hypertension": "Safe",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Ceroxim Suspension"
+    ],
+    "substitutes_alternative_class": [
+      "Augmentin Suspension"
+    ]
+  },
+  {
+    "id": 39,
+    "trade_name": "Flemex",
+    "name_ar": "فليمكس",
+    "active_ingredient": "Carbocisteine 250mg/5ml",
+    "dosage_form": "Syrup",
+    "sub_form_type": "مذيب بلغم",
+    "is_fridge": false,
+    "system_category": "جهاز تنفسي",
+    "indications": "الكحة مع البلغم اللزج",
+    "dosage_and_admin": "الأطفال 2-5 سنوات: 2.5-5ml 3 مرات يومياً، أكبر من 5 سنوات: 10ml 3 مرات",
+    "clinical_pearl": "يفضل تجنبه قبل النوم مباشرة لأنه قد يزيد إفراز البلغم مؤقتاً قبل تحسنه",
+    "critical_warnings": "يمنع في قرحة المعدة النشطة والحمل بالثلث الأول",
+    "drug_interactions": "لا توجد تعارضات جهازية كبرى معروفة",
+    "special_populations": {
+      "pregnancy": "Contraindicated",
+      "hypertension": "Safe",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Rhinathiol Syrup"
+    ],
+    "substitutes_alternative_class": [
+      "Mucosol Syrup"
+    ]
+  },
+  {
+    "id": 40,
+    "trade_name": "Rhinathiol",
+    "name_ar": "رينياتيول",
+    "active_ingredient": "Carbocisteine 5%",
+    "dosage_form": "Syrup",
+    "sub_form_type": "مذيب بلغم",
+    "is_fridge": false,
+    "system_category": "جهاز تنفسي",
+    "indications": "البلغم اللزج المصاحب للكحة والتهابات الجهاز التنفسي",
+    "dosage_and_admin": "حسب العمر والتركيز (طفولي/بالغين)، يراجع النشرة للجرعة الدقيقة بالعمر",
+    "clinical_pearl": "يتوفر بتركيزين (أطفال وبالغين) يجب الانتباه لعدم الخلط بينهما عند الصرف",
+    "critical_warnings": "يمنع في قرحة المعدة النشطة",
+    "drug_interactions": "لا توجد تعارضات جهازية كبرى",
+    "special_populations": {
+      "pregnancy": "Contraindicated",
+      "hypertension": "Safe",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Flemex Syrup"
+    ],
+    "substitutes_alternative_class": [
+      "Mucosol Syrup"
+    ]
+  },
+  {
+    "id": 41,
+    "trade_name": "Motilium",
+    "name_ar": "موتيليوم",
+    "active_ingredient": "Domperidone 5mg/5ml",
+    "dosage_form": "Suspension",
+    "sub_form_type": "مضاد قيء وغثيان",
+    "is_fridge": false,
+    "system_category": "جهاز هضمي",
+    "indications": "القيء والغثيان واضطراب حركة المعدة",
+    "dosage_and_admin": "0.25mg/kg كل 8 ساعات قبل الأكل بـ 15-30 دقيقة، حسب وزن الطفل",
+    "clinical_pearl": "يعطى قبل الوجبات مباشرة لتحسين فعاليته في تفريغ المعدة وتقليل الغثيان",
+    "critical_warnings": "حذر شديد في أمراض القلب (إطالة QT)، يمنع في انسداد الأمعاء الميكانيكي",
+    "drug_interactions": "تعارض خطير مع الكيتوكونازول ومضادات الحموضة عند تناولهما معاً",
+    "special_populations": {
+      "pregnancy": "Caution",
+      "hypertension": "Caution",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Costi Suspension"
+    ],
+    "substitutes_alternative_class": [
+      "-"
+    ]
+  },
+  {
+    "id": 42,
+    "trade_name": "Reflex",
+    "name_ar": "ريفلكس",
+    "active_ingredient": "Domperidone 5mg/5ml",
+    "dosage_form": "Suspension",
+    "sub_form_type": "مضاد قيء وغثيان",
+    "is_fridge": false,
+    "system_category": "جهاز هضمي",
+    "indications": "الغثيان والقيء وامتلاء المعدة",
+    "dosage_and_admin": "0.25mg/kg كل 8 ساعات قبل الأكل، لا يتجاوز 3 جرعات يومياً",
+    "clinical_pearl": "لا يعطى لمدة تزيد عن أسبوع دون مراجعة طبية لتقييم أسباب القيء المستمر",
+    "critical_warnings": "حذر في أمراض الكبد والكلى وأمراض القلب",
+    "drug_interactions": "يتعارض مع مضادات الفطريات الآزولية وبعض المضادات الحيوية",
+    "special_populations": {
+      "pregnancy": "Caution",
+      "hypertension": "Caution",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Motilium Suspension"
+    ],
+    "substitutes_alternative_class": [
+      "-"
+    ]
+  },
+  {
+    "id": 43,
+    "trade_name": "Buscopan",
+    "name_ar": "بسكوبان",
+    "active_ingredient": "Hyoscine Butylbromide 5mg/5ml",
+    "dosage_form": "Syrup",
+    "sub_form_type": "مضاد تقلص وتشنج معوي",
+    "is_fridge": false,
+    "system_category": "جهاز هضمي",
+    "indications": "مغص المعدة والأمعاء والتشنجات الهضمية",
+    "dosage_and_admin": "البالغين: 10-20ml 3 مرات يومياً، الأطفال حسب وصف الطبيب بعد 6 سنوات غالباً",
+    "clinical_pearl": "يبدأ مفعوله خلال 15-30 دقيقة، يفضل عند بداية الشعور بالمغص",
+    "critical_warnings": "يمنع في الجلوكوما، تضخم البروستاتا، وانسداد الأمعاء الميكانيكي",
+    "drug_interactions": "يزيد التأثير الجانبي مع مضادات الهيستامين ومضادات الاكتئاب ثلاثية الحلقات",
+    "special_populations": {
+      "pregnancy": "Caution",
+      "hypertension": "Safe",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Spasmo Syrup"
+    ],
+    "substitutes_alternative_class": [
+      "Dicetel"
+    ]
+  },
+  {
+    "id": 44,
+    "trade_name": "Nastizol",
+    "name_ar": "ناستيزول",
+    "active_ingredient": "Pseudoephedrine + Triprolidine",
+    "dosage_form": "Syrup",
+    "sub_form_type": "مضاد احتقان وحساسية للبرد",
+    "is_fridge": false,
+    "system_category": "جهاز تنفسي",
+    "indications": "احتقان الأنف والرشح المصاحب لنزلات البرد",
+    "dosage_and_admin": "الأطفال أكبر من سنتين: 2.5-5ml كل 6-8 ساعات حسب العمر",
+    "clinical_pearl": "يسبب أرقاً خفيفاً بسبب السودوإيفيدرين، يفضل تجنب الجرعة الأخيرة قبل النوم مباشرة",
+    "critical_warnings": "يمنع في ارتفاع ضغط الدم وأمراض القلب وفرط نشاط الغدة الدرقية",
+    "drug_interactions": "يتعارض بشدة مع مثبطات MAO ويرفع ضغط الدم مع منشطات الودي الأخرى",
+    "special_populations": {
+      "pregnancy": "Caution",
+      "hypertension": "Avoid",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Actifed Syrup"
+    ],
+    "substitutes_alternative_class": [
+      "Histazine Syrup"
+    ]
+  },
+  {
+    "id": 45,
+    "trade_name": "Actifed",
+    "name_ar": "أكتيفيد",
+    "active_ingredient": "Pseudoephedrine + Triprolidine",
+    "dosage_form": "Syrup",
+    "sub_form_type": "مضاد احتقان وحساسية",
+    "is_fridge": false,
+    "system_category": "جهاز تنفسي",
+    "indications": "أعراض نزلات البرد من احتقان ورشح وعطس",
+    "dosage_and_admin": "الأطفال 2-6 سنوات: 2.5ml كل 6-8 ساعات، أكبر من 6 سنوات: 5ml كل 6-8 ساعات",
+    "clinical_pearl": "يفيد بشكل خاص في احتقان الأنف المصاحب للحساسية، تجنب الجرعة المسائية المتأخرة",
+    "critical_warnings": "يمنع في ارتفاع ضغط الدم غير المنضبط وأمراض القلب التاجية",
+    "drug_interactions": "تعارض خطير مع مثبطات MAO",
+    "special_populations": {
+      "pregnancy": "Caution",
+      "hypertension": "Avoid",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Nastizol Syrup"
+    ],
+    "substitutes_alternative_class": [
+      "Claritine Syrup"
+    ]
+  },
+  {
+    "id": 46,
+    "trade_name": "Gaviscon",
+    "name_ar": "جافيسكون",
+    "active_ingredient": "Sodium Alginate + Sodium Bicarbonate",
+    "dosage_form": "Suspension",
+    "sub_form_type": "مضاد حموضة وارتجاع",
+    "is_fridge": false,
+    "system_category": "جهاز هضمي",
+    "indications": "حرقة المعدة والارتجاع المريئي وعسر الهضم",
+    "dosage_and_admin": "البالغين: 10-20ml بعد الوجبات وقبل النوم، الرضع لديهم تركيبة خاصة (Gaviscon Infant) حسب الوزن",
+    "clinical_pearl": "يعطى بعد الوجبة مباشرة وليس قبلها ليكون فعالاً في تكوين طبقة حماية فوق محتويات المعدة",
+    "critical_warnings": "حذر في مرضى القصور الكلوي (محتوى الصوديوم) وارتفاع ضغط الدم",
+    "drug_interactions": "يقلل امتصاص العديد من الأدوية إذا أعطي معها بنفس الوقت (يفصل بساعتين)",
+    "special_populations": {
+      "pregnancy": "Safe",
+      "hypertension": "Caution",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Gastrogel Suspension"
+    ],
+    "substitutes_alternative_class": [
+      "Maalox Suspension"
+    ]
+  },
+  {
+    "id": 47,
+    "trade_name": "Maalox",
+    "name_ar": "مالوكس",
+    "active_ingredient": "Aluminium Hydroxide + Magnesium Hydroxide",
+    "dosage_form": "Suspension",
+    "sub_form_type": "مضاد حموضة",
+    "is_fridge": false,
+    "system_category": "جهاز هضمي",
+    "indications": "حموضة المعدة وعسر الهضم والقرحة الهضمية",
+    "dosage_and_admin": "البالغين: 10-20ml 1-3 ساعات بعد الوجبات وقبل النوم",
+    "clinical_pearl": "يفصل عن باقي الأدوية بساعتين على الأقل لتجنب التداخل في الامتصاص",
+    "critical_warnings": "حذر في الفشل الكلوي (تراكم الألومنيوم والماغنسيوم)",
+    "drug_interactions": "يقلل امتصاص التتراسيكلين والكينولونات والحديد وأدوية أخرى كثيرة",
+    "special_populations": {
+      "pregnancy": "Safe",
+      "hypertension": "Safe",
+      "diabetic": "Sugar-free available"
+    },
+    "substitutes_same_active": [
+      "Gelusil Suspension"
+    ],
+    "substitutes_alternative_class": [
+      "Gaviscon Suspension"
+    ]
+  },
+  {
+    "id": 48,
+    "trade_name": "Nexium",
+    "name_ar": "نيكسيوم",
+    "active_ingredient": "Esomeprazole 10mg/Sachet",
+    "dosage_form": "Sachet",
+    "sub_form_type": "مثبط مضخة بروتون",
+    "is_fridge": false,
+    "system_category": "جهاز هضمي",
+    "indications": "ارتجاع المريء والقرحة الهضمية عند الأطفال والرضع حسب وصف الطبيب",
+    "dosage_and_admin": "يذاب الكيس في الماء ويعطى قبل الوجبة بـ 30-60 دقيقة، الجرعة حسب وزن الطفل وتقدير الطبيب",
+    "clinical_pearl": "يجب إذابته فوراً قبل الإعطاء مباشرة وعدم تخزين المحلول المذاب لفترة طويلة",
+    "critical_warnings": "يستخدم فقط تحت إشراف طبي دقيق عند الأطفال والرضع",
+    "drug_interactions": "يقلل امتصاص أدوية تحتاج حموضة معدية مثل بعض مضادات الفطريات",
+    "special_populations": {
+      "pregnancy": "Caution",
+      "hypertension": "Safe",
+      "diabetic": "Safe"
+    },
+    "substitutes_same_active": [
+      "-"
+    ],
+    "substitutes_alternative_class": [
+      "Gaviscon Suspension"
+    ]
+  },
+  {
+    "id": 49,
+    "trade_name": "Polybion",
+    "name_ar": "بوليبيون",
+    "active_ingredient": "Vitamin B Complex",
+    "dosage_form": "Syrup",
+    "sub_form_type": "فيتامينات ب مركبة",
+    "is_fridge": false,
+    "system_category": "فيتامينات ومقويات",
+    "indications": "نقص فيتامينات ب وضعف الأعصاب والتهاب الفم واللسان",
+    "dosage_and_admin": "الأطفال: 5-10ml يومياً، البالغين: 10-15ml يومياً بعد الأكل",
+    "clinical_pearl": "يسبب تلوناً أصفر مكثفاً للبول بسبب الريبوفلافين، أمر طبيعي غير مقلق ويطمئن به المريض",
+    "critical_warnings": "لا توجد موانع كبرى، حذر بسيط في الحساسية من أحد مكوناته",
+    "drug_interactions": "لا توجد تعارضات دوائية جهازية هامة",
+    "special_populations": {
+      "pregnancy": "Safe",
+      "hypertension": "Safe",
+      "diabetic": "Contains sugar"
+    },
+    "substitutes_same_active": [
+      "Becozyme Syrup"
+    ],
+    "substitutes_alternative_class": [
+      "Sansovit Syrup"
+    ]
+  },
+  {
+    "id": 50,
+    "trade_name": "Depura",
+    "name_ar": "ديبيورا",
+    "active_ingredient": "Vitamin D3 (Cholecalciferol) 15000IU/ml Drops",
+    "dosage_form": "Oral Drops",
+    "sub_form_type": "فيتامين د",
+    "is_fridge": false,
+    "system_category": "فيتامينات ومقويات",
+    "indications": "نقص فيتامين د وتقوية العظام عند الرضع والأطفال",
+    "dosage_and_admin": "الرضع: نقطة إلى نقطتين يومياً حسب التركيز ووصف الطبيب (400-800IU/day وقائياً)",
+    "clinical_pearl": "تعطى النقط مباشرة بالفم أو مخلوطة بقليل من اللبن، يفضل مع وجبة تحتوي دهون لتحسين الامتصاص",
+    "critical_warnings": "تجنب الجرعات الزائدة لخطر فرط فيتامين د وترسب الكالسيوم",
+    "drug_interactions": "حذر مع أدوية الديجوكسين (خطر تسمم عند فرط كالسيوم الدم الناتج)",
+    "special_populations": {
+      "pregnancy": "Safe",
+      "hypertension": "Safe",
+      "diabetic": "Sugar-free"
+    },
+    "substitutes_same_active": [
+      "Devarol-S Drops"
+    ],
+    "substitutes_alternative_class": [
+      "Osteocare Junior Syrup"
+    ]
+  }
+]
