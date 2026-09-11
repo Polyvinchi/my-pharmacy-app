@@ -32,24 +32,24 @@ export default function ClientApp({ initialData }: { initialData?: any }) {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-0 sm:p-4 font-sans text-slate-900 relative">
+    <div className="min-h-screen bg-transparent flex items-center justify-center p-0 sm:p-4 font-sans text-slate-900 relative">
       
       {tourStep === 'splash' && <SplashScreen onComplete={startTour} />}
 
       {/* Mobile Shell Wrapper */}
-      <div className="w-full max-w-md h-screen sm:h-[850px] bg-slate-50 sm:rounded-[2rem] sm:shadow-2xl overflow-hidden relative flex flex-col sm:border-[8px] border-slate-800">
+      <div className="w-full max-w-md h-[100dvh] sm:h-[90vh] sm:max-h-[850px] bg-slate-50 sm:rounded-[2rem] sm:shadow-[0_0_50px_rgba(0,0,0,0.15)] overflow-hidden relative flex flex-col sm:border-[8px] border-slate-800">
 
         <FacadeBanner onShareClick={() => setIsShareOpen(true)} settings={initialData?.settings} />
         
         <ActionGrid activeTourStep={tourStep} onMapClick={() => setIsMapOpen(true)} settings={initialData?.settings} />
 
         {/* Fixed Bottom Button (Offers) */}
-        <div className="absolute bottom-0 left-0 w-full px-4 pt-3 pb-1 bg-white border-t border-slate-100 z-30 shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.1)]">
+        <div className="absolute bottom-0 left-0 w-full px-3 pt-1 pb-2 z-50">
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => setIsOffersOpen(true)}
-            className="w-full py-4 bg-gradient-to-r from-yellow-500 to-yellow-600 text-white rounded-xl font-bold shadow-lg shadow-yellow-500/30 hover:shadow-yellow-500/50 transition-all flex items-center justify-center relative overflow-hidden"
+            className="w-full py-4 bg-gradient-to-r from-yellow-500 to-yellow-600 text-white rounded-2xl font-bold shadow-xl shadow-yellow-500/40 hover:shadow-yellow-500/60 transition-all flex items-center justify-center relative overflow-hidden"
           >
             {/* Shimmer effect */}
             <motion.div 

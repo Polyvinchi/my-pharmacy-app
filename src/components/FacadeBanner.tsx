@@ -1,57 +1,59 @@
-import Image from 'next/image';
-import { Share2 } from 'lucide-react';
 
-export default function FacadeBanner({ onShareClick, settings }: { onShareClick?: () => void, settings?: any }) {
+'use client';
+
+import { Share2 } from 'lucide-react';
+import Image from 'next/image';
+
+interface FacadeBannerProps {
+  onShareClick: () => void;
+  settings?: any;
+}
+
+export default function FacadeBanner({ onShareClick, settings }: FacadeBannerProps) {
+  // Use settings or fallback
+  const bgImage = settings?.pharmacy_image || 'https://images.unsplash.com/photo-1586015555751-63bb77f4322a?q=80&w=800&h=400&fit=crop';
+  const showLogo = settings?.show_logo !== false;
+  const showTitle = settings?.show_title !== false;
+  
   return (
-    <div className="relative w-full overflow-hidden shadow-2xl rounded-b-xl z-10 flex flex-col">
-      {/* The Blue Signboard */}
-      <div className="bg-gradient-to-b from-[#0D47A1] to-[#0a3880] w-full pt-8 pb-6 px-4 flex flex-col items-center justify-center relative border-b-4 border-yellow-500">
+    <div className="w-full relative z-30 shrink-0">
+      <div className="pt-8 pb-6 px-4 relative overflow-hidden rounded-b-[1.25rem] shadow-md border-b border-white/20">
         
-        {/* Share Button */}
+        {/* Crystal Clear Background */}
+        <div 
+          className="absolute inset-0 z-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${bgImage})` }}
+        />
+        
+        {/* Very Subtle Gradient for text readability */}
+        <div className="absolute inset-0 z-0 bg-gradient-to-t from-blue-900/80 via-blue-900/20 to-transparent" />
+        <div className="absolute inset-0 z-0 bg-black/10" />
+
         <button 
           onClick={onShareClick}
-          className="absolute top-4 left-4 w-11 h-11 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm transition-all group"
+          className="absolute top-4 left-4 w-10 h-10 bg-white/95 backdrop-blur-md rounded-full flex items-center justify-center text-blue-900 hover:bg-white hover:shadow-xl active:scale-95 transition-all shadow-lg border border-white/50 z-20"
         >
-          <Share2 size={20} className="text-white" />
-          <span className="absolute -bottom-8 bg-black/70 text-white text-[10px] px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-            مشاركة التطبيق
-          </span>
+          <Share2 size={20} strokeWidth={2.5} />
         </button>
 
-        {/* Spotlights Effect (Illuminated Signboard) */}
-        <div className="absolute top-0 w-full flex justify-between px-14">
-          <div className="w-4 h-4 bg-white rounded-full blur-[8px] opacity-70"></div>
-          <div className="w-4 h-4 bg-white rounded-full blur-[8px] opacity-70"></div>
-          <div className="w-4 h-4 bg-white rounded-full blur-[8px] opacity-70"></div>
-        </div>
-
-        {/* Logo and Typography */}
-        <div className="flex flex-col items-center space-y-3 z-10">
-          <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-inner p-1">
-            <Image 
-              src="/logo.png" 
-              alt="شعار صيدلية إيمان عبد الوهاب" 
-              width={90} 
-              height={90} 
-              className="object-contain"
-            />
-          </div>
+        <div className="flex flex-col items-center justify-center relative z-20 mt-2">
+          {showLogo && (
+            <div className="w-24 h-24 bg-white/95 backdrop-blur-sm rounded-[1.5rem] shadow-xl mb-3 flex items-center justify-center overflow-hidden p-2 border-2 border-white/60">
+              <img src="/logo.png" alt="Logo" className="w-[85%] h-[85%] object-contain drop-shadow-sm" />
+            </div>
+          )}
           
-          <div className="text-center">
-            <h1 className="text-white font-black text-2xl tracking-tight drop-shadow-md">
-              صيدلية د. إيمان عبد الوهاب
-            </h1>
-            <p className="text-blue-100 text-xs mt-1 font-medium">
-              عروض حصرية • استشارات مجانية • توصيل سريع
-            </p>
-          </div>
+          {showTitle && (
+            <div className="text-center">
+              <h1 className="text-white font-black text-2xl tracking-tight drop-shadow-lg shadow-black">
+                صيدلية د. إيمان عبد الوهاب
+              </h1>
+              <p className="text-blue-50 text-xs mt-1.5 font-bold drop-shadow-lg shadow-black">
+                عروض حصرية • استشارات مجانية • توصيل سريع
+              </p>
+            </div>
+          )}
         </div>
-      </div>
-
-      {/* The Red Pillars / Storefront Glass Illusion */}
-      <div className="h-4 bg-gradient-to-r from-[#C62828] via-slate-200 to-[#C62828] w-full flex justify-between">
-        <div className="w-8 h-full bg-[#C62828] shadow-inner"></div>
-        <div className="w-8 h-full bg-[#C62828] shadow-inner"></div>
       </div>
     </div>
   );

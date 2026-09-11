@@ -32,7 +32,53 @@ export default async function Home() {
   
   // Fetch data
   const { data: settings } = await supabase.from('app_settings').select('*').eq('singleton_key', 'config').single();
-  const { data: offers } = await supabase.from('offers').select('*').eq('is_active', true).order('created_at', { ascending: false });
+  let { data: offers } = await supabase.from('offers').select('*').eq('is_active', true).order('created_at', { ascending: false });
+  
+  // Fallback default offers if DB is empty or fails
+  if (!offers || offers.length === 0) {
+    offers = [
+  {
+    "id": "1",
+    "title": "CeraVe غسول للبشرة الدهنية 236 مل",
+    "price": "450",
+    "old_price": "520",
+    "img_url": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=300&h=300&fit=crop",
+    "is_active": true
+  },
+  {
+    "id": "2",
+    "title": "Limitless Omega 3 - 30 كبسولة",
+    "price": "120",
+    "old_price": "150",
+    "img_url": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=300&h=300&fit=crop",
+    "is_active": true
+  },
+  {
+    "id": "3",
+    "title": "Panadol Advance - 24 قرص",
+    "price": "45",
+    "old_price": "50",
+    "img_url": "https://images.unsplash.com/photo-1550572017-edb143c3933c?q=80&w=300&h=300&fit=crop",
+    "is_active": true
+  },
+  {
+    "id": "4",
+    "title": "Vichy سائل حماية من الشمس 50ml",
+    "price": "680",
+    "old_price": "800",
+    "img_url": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?q=80&w=300&h=300&fit=crop",
+    "is_active": true
+  },
+  {
+    "id": "5",
+    "title": "Optimum Nutrition مكمل غذائي",
+    "price": "2100",
+    "old_price": "2400",
+    "img_url": "https://images.unsplash.com/photo-1593095948071-474c5cc2989d?q=80&w=300&h=300&fit=crop",
+    "is_active": true
+  }
+] as any;
+  }
 
   const appData = {
     settings: settings || {
@@ -52,9 +98,9 @@ export default async function Home() {
     "telephone": appData.settings.phone_number,
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "شارع أولاد عنتر، حسن محمد",
-      "addressLocality": "الجيزة",
-      "addressRegion": "الجيزة",
+      "streetAddress": "شارع أولاد غنيم، أمام مسجد الملك فصل، حدائق القبة",
+      "addressLocality": "قليوب",
+      "addressRegion": "القليوبية",
       "addressCountry": "EG"
     },
     "openingHoursSpecification": {
@@ -66,9 +112,9 @@ export default async function Home() {
   };
 
   return (
-    <main className="min-h-[100dvh] w-full max-w-md mx-auto bg-slate-50 shadow-2xl relative overflow-hidden flex flex-col sm:border-x sm:border-slate-200">
+    <>
       <JsonLd data={pharmacySchema} />
       <ClientApp initialData={appData} />
-    </main>
+    </>
   );
 }

@@ -23,7 +23,7 @@ export default function SplashScreen({ onComplete }: { onComplete: () => void })
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, y: -50 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#0D47A1]"
+          className="absolute inset-0 z-[100] flex flex-col items-center justify-center bg-[#0D47A1]"
         >
           {/* Logo with Shimmer/Pulse Effect */}
           <motion.div 
