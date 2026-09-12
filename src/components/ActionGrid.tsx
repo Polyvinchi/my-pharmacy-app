@@ -12,9 +12,10 @@ interface ActionGridProps {
   onMapClick: () => void;
   settings?: any;
   services?: any[];
+  sections?: any[];
 }
 
-export default function ActionGrid({ activeTourStep, onMapClick, settings, services }: ActionGridProps) {
+export default function ActionGrid({ activeTourStep, onMapClick, settings, services, sections }: ActionGridProps) {
   const s = settings || {};
   const [toast, setToast] = useState<string | null>(null);
   const [enlargedNumber, setEnlargedNumber] = useState<{ number: string, label: string, type: 'instapay' | 'vodafone' } | null>(null);

@@ -55,10 +55,10 @@ export async function addOffer(formData: FormData) {
 
   const { error: insertError } = await supabase.from('offers').insert({
     title,
-    price,
+    new_price: price ? price : null,
     old_price: oldPrice || null,
     description: description || null,
-    img_url: uploadedUrls[0],
+    image_url: uploadedUrls[0] || null,
     images: uploadedUrls,
     is_active: isActive,
     condition_text: conditionText || null,
@@ -141,7 +141,7 @@ export async function editOffer(formData: FormData) {
 
   const updateData: any = {
     title,
-    price,
+    new_price: price ? price : null,
     old_price: oldPrice || null,
     description: description || null,
     is_active: isActive,
@@ -152,7 +152,7 @@ export async function editOffer(formData: FormData) {
   };
   
   if (uploadedUrls.length > 0) {
-    updateData.img_url = uploadedUrls[0];
+    updateData.image_url = uploadedUrls[0];
     updateData.images = uploadedUrls;
   }
 

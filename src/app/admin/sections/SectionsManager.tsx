@@ -140,7 +140,7 @@ export default function SectionsManager({ initialSections, initialItems }: { ini
                             {item.action_type !== 'none' && <p className="text-[10px] text-slate-500 truncate w-32">{item.action_type}: {item.action_value}</p>}
                           </div>
                         </div>
-                        <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div className="flex gap-1 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
                           <button onClick={() => openItemModal(sec.id, item)} className="p-1.5 text-blue-600 hover:bg-blue-50 rounded"><Edit2 size={16} /></button>
                           <button onClick={() => handleDeleteItem(item.id)} className="p-1.5 text-red-600 hover:bg-red-50 rounded"><Trash2 size={16} /></button>
                         </div>

@@ -38,7 +38,7 @@ export default function ClientApp({ initialData }: { initialData?: any }) {
 
         <FacadeBanner onShareClick={() => setIsShareOpen(true)} settings={initialData?.settings} />
         
-        <ActionGrid activeTourStep={tourStep} onMapClick={() => setIsMapOpen(true)} settings={initialData?.settings} services={initialData?.services} />
+        <ActionGrid activeTourStep={tourStep} onMapClick={() => setIsMapOpen(true)} settings={initialData?.settings} services={initialData?.services} sections={initialData?.sections} />
 
         {/* Fixed Bottom Button (Offers) */}
         <div className="absolute bottom-0 left-0 w-full px-3 pt-1 pb-2 z-50">
