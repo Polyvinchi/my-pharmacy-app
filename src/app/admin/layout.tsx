@@ -22,7 +22,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const nav = [
     { name: 'الإعدادات', path: '/admin', icon: LayoutDashboard },
     { name: 'الإحصائيات', path: '/admin/statistics', icon: BarChart3 },
-    { name: 'الخدمات', path: '/admin/services', icon: Stethoscope },
     { name: 'العروض', path: '/admin/offers', icon: Tags },
     { name: 'الأقسام', path: '/admin/sections', icon: Component },
   ];

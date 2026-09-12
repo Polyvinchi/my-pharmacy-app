@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const supabase = await createClient();
   const { data: pharmacy } = await supabase.from('pharmacies').select('*').single();
   
-  const title = pharmacy?.title_tag || "صيدلية د. إيمان عبد الوهاب | عروض حصرية";
+  const title = pharmacy?.title_tag || "صيدلية د ايمان عبد الوهاب | حسن محمد - فيصل";
   const description = pharmacy?.meta_description || "صيدلية متكاملة - عروض حصرية وتوصيل سريع";
 
   return {
@@ -83,13 +83,13 @@ export default async function Home() {
 
   const appData = {
     settings: {
-      facade_title: pharmacy?.name || 'صيدلية د. إيمان عبد الوهاب',
+      facade_title: pharmacy?.name || 'صيدلية د ايمان عبد الوهاب | حسن محمد - فيصل',
       facade_subtitle: pharmacy?.meta_description || 'رعايتك الصحية أولوية',
       whatsapp_number: pharmacy?.social_links?.whatsapp || '201000000000',
       primary_color: pharmacy?.theme_config?.primaryColor || null,
       logo_url: pharmacy?.logo_url || null,
       cover_url: pharmacy?.cover_url || null,
-      splash_text: pharmacy?.theme_config?.splash_text || pharmacy?.name || 'صيدلية د. إيمان عبد الوهاب',
+      splash_text: pharmacy?.theme_config?.splash_text || pharmacy?.name || 'صيدلية د ايمان عبد الوهاب | حسن محمد - فيصل',
       splash_animation: pharmacy?.theme_config?.splash_animation || 'pulse',
       status_mode: pharmacy?.theme_config?.status_mode || 'always_open',
       open_time: pharmacy?.theme_config?.open_time || '09:00',
