@@ -39,12 +39,12 @@ export default function ActionGrid({ activeTourStep, onMapClick, settings, servi
   const handleNumberClick = (e: React.MouseEvent, type: 'instapay' | 'vodafone') => {
     if (longPressFired.current) { e.preventDefault(); return; }
     trackAction(type === 'instapay' ? 'copy_instapay' : 'copy_wallet');
-    const num = '01012345678';
+    const num = type === 'instapay' ? (s?.social_links?.instapay || '01012345678') : (s?.social_links?.wallet || '01012345678');
     navigator.clipboard.writeText(num).then(() => {
-      setToast(type === 'instapay' ? 'تم نسخ رقم إنستاباي ✅' : 'تم نسخ رقم محفظة كاش ✅');
+      setToast(type === 'instapay' ? `تم نسخ رقم إنستاباي ${num} ✅` : `تم نسخ محفظة كاش ${num} ✅`);
       setTimeout(() => setToast(null), 2500);
       if (type === 'instapay') setTimeout(() => { try { window.location.href = 'instapay://'; } catch(e){} }, 1000);
-      else setTimeout(() => { window.location.href = `tel:01012345678`; }, 1000);
+      else setTimeout(() => { window.location.href = `tel:${num}`; }, 1000);
     });
   };
 
@@ -133,7 +133,7 @@ export default function ActionGrid({ activeTourStep, onMapClick, settings, servi
           <div className={`w-full bg-white rounded-xl border-2 ${activeTourStep === 'payments' ? 'border-[#D28CFF] shadow-lg' : 'border-slate-100 shadow-sm'} p-2 pt-4 transition-all duration-300`}>
             <p className="text-[10px] font-bold text-slate-400 text-center mb-1">الدفع الإلكتروني (اضغط للنسخ)</p>
             <div className="grid grid-cols-2 gap-1.5">
-              <button onMouseDown={() => startPress('01012345678', 'إنستاباي', 'instapay')} onMouseUp={cancelPress} onMouseLeave={cancelPress} onTouchStart={() => startPress('01012345678', 'إنستاباي', 'instapay')} onTouchEnd={cancelPress} onClick={(e) => handleNumberClick(e, 'instapay')} className="group/btn bg-white border-2 border-slate-100 rounded-xl p-2 flex flex-row-reverse items-center justify-between gap-1 hover:border-violet-500 active:border-violet-500 hover:bg-violet-500/10 active:bg-violet-500/10 hover:shadow-sm active:shadow-sm transition-all h-[60px]">
+              <button onMouseDown={() => startPress(s?.social_links?.instapay || '01012345678', 'إنستاباي', 'instapay')} onMouseUp={cancelPress} onMouseLeave={cancelPress} onTouchStart={() => startPress(s?.social_links?.instapay || '01012345678', 'إنستاباي', 'instapay')} onTouchEnd={cancelPress} onClick={(e) => handleNumberClick(e, 'instapay')} className="group/btn bg-white border-2 border-slate-100 rounded-xl p-2 flex flex-row-reverse items-center justify-between gap-1 hover:border-violet-500 active:border-violet-500 hover:bg-violet-500/10 active:bg-violet-500/10 hover:shadow-sm active:shadow-sm transition-all h-[60px]">
                 <div className="text-right flex-1">
                   <span className="block text-[11px] font-bold text-slate-700 ">إنستاباي</span>
                   <span className="block text-[9px] text-slate-400  transition-colors">تحويل بنكي</span>
@@ -142,7 +142,7 @@ export default function ActionGrid({ activeTourStep, onMapClick, settings, servi
                   <img src="/instapay.png" alt="InstaPay" className="w-full h-full object-contain" />
                 </div>
               </button>
-              <button onMouseDown={() => startPress('01012345678', 'محفظة كاش', 'vodafone')} onMouseUp={cancelPress} onMouseLeave={cancelPress} onTouchStart={() => startPress('01012345678', 'محفظة كاش', 'vodafone')} onTouchEnd={cancelPress} onClick={(e) => handleNumberClick(e, 'vodafone')} className="group/btn bg-white border-2 border-slate-100 rounded-xl p-2 flex flex-row-reverse items-center justify-between gap-1 hover:border-red-500 active:border-red-500 hover:bg-red-500/10 active:bg-red-500/10 hover:shadow-sm active:shadow-sm transition-all h-[60px]">
+              <button onMouseDown={() => startPress(s?.social_links?.wallet || '01012345678', 'محفظة كاش', 'vodafone')} onMouseUp={cancelPress} onMouseLeave={cancelPress} onTouchStart={() => startPress(s?.social_links?.wallet || '01012345678', 'محفظة كاش', 'vodafone')} onTouchEnd={cancelPress} onClick={(e) => handleNumberClick(e, 'vodafone')} className="group/btn bg-white border-2 border-slate-100 rounded-xl p-2 flex flex-row-reverse items-center justify-between gap-1 hover:border-red-500 active:border-red-500 hover:bg-red-500/10 active:bg-red-500/10 hover:shadow-sm active:shadow-sm transition-all h-[60px]">
                 <div className="text-right flex-1">
                   <span className="block text-[11px] font-bold text-slate-700 ">محفظة كاش</span>
                   <span className="block text-[9px] text-slate-400  transition-colors">موبايل</span>
