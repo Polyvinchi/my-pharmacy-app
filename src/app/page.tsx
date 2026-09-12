@@ -93,7 +93,8 @@ export default async function Home() {
       splash_animation: pharmacy?.theme_config?.splash_animation || 'pulse',
       status_mode: pharmacy?.theme_config?.status_mode || 'always_open',
       open_time: pharmacy?.theme_config?.open_time || '09:00',
-      close_time: pharmacy?.theme_config?.close_time || '23:00'
+      close_time: pharmacy?.theme_config?.close_time || '23:00',
+      social_links: pharmacy?.social_links || null
     },
     pharmacy: pharmacy,
     offers: offers,
