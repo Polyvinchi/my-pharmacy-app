@@ -57,10 +57,14 @@ export async function seedDefaultSections() {
 
 export async function saveSectionItem(item: any) {
   const supabase = await createClient()
-  if (item.id) {
-    await supabase.from('section_items').update(item).eq('id', item.id)
+  const { id, ...rest } = item
+
+  if (id) {
+    const { error } = await supabase.from('section_items').update(rest).eq('id', id)
+    if (error) throw new Error(error.message)
   } else {
-    await supabase.from('section_items').insert([item])
+    const { error } = await supabase.from('section_items').insert([rest])
+    if (error) throw new Error(error.message)
   }
   revalidatePath('/', 'layout')
 }

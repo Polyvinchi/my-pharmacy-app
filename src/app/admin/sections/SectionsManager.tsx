@@ -102,22 +102,22 @@ export default function SectionsManager({ initialSections, initialItems }: { ini
         label: itemLabel,
         icon_name: itemIcon,
         action_type: itemActionType,
-        action_value: itemActionValue,
+        action_value: itemActionValue || null,
         image_url: itemImageUrl || null,
         is_active: true,
         style_config: { text: itemColor }
       }
       if (editingItem) {
-        await saveSectionItem({ ...data, id: editingItem.id, style_config: { ...editingItem.style_config, text: itemColor } })
+        await saveSectionItem({ ...data, id: editingItem.id })
       } else {
         await saveSectionItem(data)
       }
+      setIsModalOpen(false)
       window.location.reload()
-    } catch {
-      alert('خطأ في الحفظ')
+    } catch (err: any) {
+      alert('خطأ في الحفظ: ' + (err?.message || 'تفاصيل غير متاحة'))
     } finally {
       setModalLoading(false)
-      setIsModalOpen(false)
     }
   }
 
