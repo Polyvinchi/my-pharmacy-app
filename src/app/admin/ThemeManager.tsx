@@ -89,7 +89,7 @@ export default function ThemeManager({ initialData }: { initialData: any }) {
         <p className="text-slate-500">إدارة كافة تفاصيل الصيدلية ومعلوماتها وشاشة البداية ومواعيد العمل.</p>
         <button onClick={async () => {
           const pass = prompt('تحذير: هذا الإجراء سيمسح بياناتك ويرجع الموقع لحالته الأولى. أدخل الباسورد للتأكيد:');
-          if (pass === '2025') {
+          if (pass === 'wer123@#TYXCQ!5550') {
             if(confirm('هل أنت متأكد تماماً من إرجاع الإعدادات الافتراضية؟')) {
               await injectPharmacyAndOffers();
               window.location.reload();
