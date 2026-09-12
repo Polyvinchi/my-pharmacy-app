@@ -38,18 +38,6 @@ export default function ThemeManager({ initialData }: { initialData: any }) {
     e.preventDefault()
     setLoading(true)
     try {
-
-  // New States
-  const [logoUrl, setLogoUrl] = useState(initialData.logo_url || '')
-  const [coverUrl, setCoverUrl] = useState(initialData.cover_url || '')
-
-  const [loading, setLoading] = useState(false)
-  const supabase = createClient()
-
-  const handleSave = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
-    try {
       const themeConfig = { 
         ...initialData.theme_config, 
         primaryColor, 

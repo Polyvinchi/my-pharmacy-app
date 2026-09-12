@@ -26,15 +26,15 @@ export async function addOffer(formData: FormData) {
   const supabase = await createClient();
   const uploadedUrls: string[] = [...externalImages];
 
-  // Upload all images
+  // Upload all images to pharmacy-assets bucket
   for (const image of images) {
     if (image.size > 0) {
       const fileExt = image.name.split('.').pop();
-      const fileName = `${Math.random()}.${fileExt}`;
+      const fileName = `${Date.now()}_${Math.random().toString(36).slice(2)}.${fileExt}`;
       const filePath = `offers/${fileName}`;
 
       const { error: uploadError } = await supabase.storage.from('pharmacy-assets').upload(filePath, image);
-      if (uploadError) return { error: uploadError.message };
+      if (uploadError) return { error: 'خطأ رفع الصورة: ' + uploadError.message };
 
       const { data } = supabase.storage.from('pharmacy-assets').getPublicUrl(filePath);
       uploadedUrls.push(data.publicUrl);
@@ -53,11 +53,10 @@ export async function addOffer(formData: FormData) {
 
   const { error: insertError } = await supabase.from('offers').insert({
     title,
-    new_price: price ? price : null,
-    old_price: oldPrice || null,
+    discounted_price: price ? parseFloat(price) : null,
+    original_price: oldPrice ? parseFloat(oldPrice) : null,
     description: description || null,
-    image_url: uploadedUrls[0] || null,
-    images: uploadedUrls,
+    images: uploadedUrls.length > 0 ? uploadedUrls : [],
     is_active: isActive,
     condition_text: conditionText || null,
     bundle_items: bundleItemsStr ? JSON.parse(bundleItemsStr) : [],
@@ -65,12 +64,7 @@ export async function addOffer(formData: FormData) {
     sort_order: sortOrder
   });
 
-  if (insertError) {
-    if (insertError.message.includes('Could not find')) {
-      return { error: 'يرجى تشغيل كود SQL أولاً لتحديث قاعدة البيانات!' };
-    }
-    return { error: insertError.message };
-  }
+  if (insertError) return { error: insertError.message };
 
   revalidatePath('/admin');
   revalidatePath('/');
@@ -116,11 +110,11 @@ export async function editOffer(formData: FormData) {
     for (const image of images) {
       if (image.size > 0) {
         const fileExt = image.name.split('.').pop();
-        const fileName = `${Math.random()}.${fileExt}`;
+        const fileName = `${Date.now()}_${Math.random().toString(36).slice(2)}.${fileExt}`;
         const filePath = `offers/${fileName}`;
 
         const { error: uploadError } = await supabase.storage.from('pharmacy-assets').upload(filePath, image);
-        if (uploadError) return { error: uploadError.message };
+        if (uploadError) return { error: 'خطأ رفع الصورة: ' + uploadError.message };
 
         const { data } = supabase.storage.from('pharmacy-assets').getPublicUrl(filePath);
         uploadedUrls.push(data.publicUrl);
@@ -139,8 +133,8 @@ export async function editOffer(formData: FormData) {
 
   const updateData: any = {
     title,
-    new_price: price ? price : null,
-    old_price: oldPrice || null,
+    discounted_price: price ? parseFloat(price) : null,
+    original_price: oldPrice ? parseFloat(oldPrice) : null,
     description: description || null,
     is_active: isActive,
     condition_text: conditionText || null,
@@ -149,19 +143,13 @@ export async function editOffer(formData: FormData) {
     sort_order: sortOrder
   };
   
+  // Only update images if new ones were provided or external URLs exist
   if (uploadedUrls.length > 0) {
-    updateData.image_url = uploadedUrls[0];
     updateData.images = uploadedUrls;
   }
 
   const { error: updateError } = await supabase.from('offers').update(updateData).eq('id', id);
-
-  if (updateError) {
-    if (updateError.message.includes('Could not find')) {
-      return { error: 'يرجى تشغيل كود SQL أولاً لتحديث قاعدة البيانات!' };
-    }
-    return { error: updateError.message };
-  }
+  if (updateError) return { error: updateError.message };
 
   revalidatePath('/admin');
   revalidatePath('/');
