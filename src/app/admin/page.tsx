@@ -1,27 +1,14 @@
-import { createClient } from '@/lib/supabase/server';
-import OffersManager from './OffersManager';
+import { createClient } from "@/utils/supabase/server"
+import ThemeManager from "./ThemeManager"
 
-export const revalidate = 0; // Always fresh for admin
-
-export default async function AdminPage() {
-  const supabase = await createClient();
-  
-  // Fetch existing offers
-  const { data: offers, error } = await supabase
-    .from('offers')
-    .select('*')
-    .order('created_at', { ascending: false });
-
-  if (error) {
-    return <div className="p-4 bg-red-50 text-red-600 rounded-lg">خطأ في جلب العروض: {error.message}</div>;
-  }
+export default async function AdminOverview() {
+  const supabase = await createClient()
+  const { data: pharmacy } = await supabase.from('pharmacies').select('*').single()
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-        <h2 className="text-xl font-bold text-slate-800 mb-4">إضافة عرض جديد</h2>
-        <OffersManager initialOffers={offers || []} />
-      </div>
+    <div>
+      <h1 className="text-2xl font-bold text-slate-800 mb-6">إعدادات الصيدلية والثيم</h1>
+      <ThemeManager initialData={pharmacy || {}} />
     </div>
-  );
+  )
 }
