@@ -32,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ar" dir="rtl" className="scroll-smooth">
+    <html lang="ar" dir="rtl" className="scroll-smooth" data-scroll-behavior="smooth">
       <body className={`${tajawal.className} antialiased bg-gradient-to-br from-slate-200 via-blue-50 to-emerald-100 min-h-screen text-slate-900`}>
         {children}
         <script dangerouslySetInnerHTML={{ __html: [
