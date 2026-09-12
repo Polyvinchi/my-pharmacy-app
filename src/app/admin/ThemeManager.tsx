@@ -1,7 +1,7 @@
 "use client"
 import { useState } from 'react'
 import { createClient } from '@/utils/supabase/client'
-import { Save, Loader2 } from 'lucide-react'
+import { Save, Loader2, Check } from 'lucide-react'
 import ImageUploader from '@/components/ImageUploader'
 import { injectPharmacyAndOffers } from './actions'
 
@@ -25,6 +25,19 @@ export default function ThemeManager({ initialData }: { initialData: any }) {
   const [statusMode, setStatusMode] = useState(initialData.theme_config?.status_mode || 'always_open')
   const [openTime, setOpenTime] = useState(initialData.theme_config?.open_time || '09:00')
   const [closeTime, setCloseTime] = useState(initialData.theme_config?.close_time || '23:00')
+
+  // New States
+  const [logoUrl, setLogoUrl] = useState(initialData.logo_url || '')
+  const [coverUrl, setCoverUrl] = useState(initialData.cover_url || '')
+
+  const [loading, setLoading] = useState(false)
+  const [savedMsg, setSavedMsg] = useState(false)
+  const supabase = createClient()
+
+  const handleSave = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setLoading(true)
+    try {
 
   // New States
   const [logoUrl, setLogoUrl] = useState(initialData.logo_url || '')
@@ -75,9 +88,10 @@ export default function ThemeManager({ initialData }: { initialData: any }) {
           ...payload
         }])
       }
-      alert('تم حفظ الإعدادات بنجاح!')
+      setSavedMsg(true)
+      setTimeout(() => setSavedMsg(false), 3000)
     } catch (error) {
-      alert('خطأ أثناء الحفظ')
+      alert('خطأ أثناء الحفظ: ' + (error as any)?.message)
     } finally {
       setLoading(false)
     }
@@ -85,6 +99,12 @@ export default function ThemeManager({ initialData }: { initialData: any }) {
 
   return (
     <>
+      {/* Success Toast */}
+      {savedMsg && (
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-emerald-600 text-white px-6 py-3 rounded-2xl shadow-xl font-bold text-sm flex items-center gap-2 animate-bounce-once">
+          <Check size={18} /> تم حفظ الإعدادات بنجاح ✅
+        </div>
+      )}
       <div className="flex justify-between items-center mb-6">
         <p className="text-slate-500">إدارة كافة تفاصيل الصيدلية ومعلوماتها وشاشة البداية ومواعيد العمل.</p>
         <button onClick={async () => {
@@ -193,10 +213,48 @@ export default function ThemeManager({ initialData }: { initialData: any }) {
 
         {/* الألوان */}
         <div className="border-t pt-6">
-          <label className="block text-sm font-medium mb-2">اللون الأساسي (Primary Color)</label>
-          <div className="flex items-center gap-4">
-            <input type="text" value={primaryColor} onChange={e => setPrimaryColor(e.target.value)} className="w-full md:w-1/2 border rounded-lg p-3 outline-none focus:border-blue-500" dir="ltr" />
-            <div className="w-12 h-12 rounded-lg border shadow-sm shrink-0" style={{ backgroundColor: primaryColor }}></div>
+          <label className="block text-sm font-bold text-slate-700 mb-3">اللون الأساسي للتطبيق</label>
+          <div className="flex items-center gap-4 flex-wrap">
+            {/* Native color wheel - opens on click */}
+            <label className="cursor-pointer relative group">
+              <div 
+                className="w-16 h-16 rounded-2xl border-4 border-white shadow-lg ring-2 ring-slate-200 group-hover:ring-blue-400 transition-all"
+                style={{ backgroundColor: primaryColor }}
+              />
+              <input 
+                type="color" 
+                value={primaryColor} 
+                onChange={e => setPrimaryColor(e.target.value)}
+                className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
+              />
+              <span className="absolute -bottom-5 left-1/2 -translate-x-1/2 text-[10px] text-slate-400 whitespace-nowrap">اضغط</span>
+            </label>
+
+            {/* Quick color presets */}
+            <div className="flex flex-wrap gap-2">
+              {['#1d4ed8','#16a34a','#dc2626','#9333ea','#ea580c','#0891b2','#be185d','#0f172a'].map(c => (
+                <button 
+                  key={c} type="button"
+                  onClick={() => setPrimaryColor(c)}
+                  className={`w-9 h-9 rounded-xl border-2 transition-all hover:scale-110 active:scale-95 ${primaryColor === c ? 'border-slate-800 scale-110' : 'border-transparent'}`}
+                  style={{ backgroundColor: c }}
+                />
+              ))}
+            </div>
+
+            {/* Hex code display */}
+            <div className="flex items-center gap-2 border-2 rounded-xl px-3 py-2 bg-slate-50 border-slate-200">
+              <span className="text-slate-400 text-sm font-mono">#</span>
+              <input 
+                type="text" 
+                value={primaryColor.replace('#','')} 
+                onChange={e => { const v = e.target.value; if (/^[0-9a-fA-F]{0,6}$/.test(v)) setPrimaryColor('#' + v) }}
+                className="w-20 outline-none bg-transparent font-mono text-sm font-bold uppercase text-slate-800"
+                maxLength={6}
+                dir="ltr"
+                placeholder="1d4ed8"
+              />
+            </div>
           </div>
         </div>
 

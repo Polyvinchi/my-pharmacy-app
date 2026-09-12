@@ -153,7 +153,7 @@ export default function OffersManager({ initialOffers }: { initialOffers: Offer[
               
               <div className="w-28 h-28 relative rounded-xl overflow-hidden flex-shrink-0 bg-slate-100 border border-slate-100">
                 <img 
-                  src={offer.img_url || offer.images?.[0] || offer.img || '/logo.png'} 
+                  src={offer.image_url || offer.img_url || offer.images?.[0] || offer.img || '/logo.png'} 
                   alt={offer.title || 'Offer'} 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                   onError={(e: any) => { e.target.src = '/logo.png'; }} 
@@ -169,7 +169,7 @@ export default function OffersManager({ initialOffers }: { initialOffers: Offer[
                 <div>
                   <h4 className="font-bold text-sm leading-tight text-slate-800 line-clamp-2 mb-1">{offer.title}</h4>
                   <div className="flex items-center gap-2">
-                    <span className="font-bold text-blue-600 text-lg leading-none">{offer.price || offer.discounted_price}</span>
+                    <span className="font-bold text-blue-600 text-lg leading-none">{offer.new_price || offer.price || offer.discounted_price}</span>
                     {(offer.old_price || offer.original_price) && <span className="text-xs text-slate-400 line-through">{offer.old_price || offer.original_price}</span>}
                   </div>
                   {offer.is_active === false && (

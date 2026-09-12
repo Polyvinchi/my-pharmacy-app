@@ -14,6 +14,7 @@ export default async function StatisticsPage() {
     whatsapp_click: 0,
     facebook_click: 0,
     instagram_click: 0,
+    talabat_click: 0,
     call_mobile: 0,
     call_landline: 0,
     location_click: 0,
@@ -138,6 +139,17 @@ export default async function StatisticsPage() {
           <p className="text-3xl font-black text-slate-800">{stats.facebook_click}</p>
         </div>
         
+        {/* Talabat */}
+        <div className="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm flex flex-col">
+          <div className="flex justify-between items-start mb-4">
+            <div className="bg-orange-100 text-orange-600 p-2.5 rounded-xl">
+              <Activity size={24} />
+            </div>
+          </div>
+          <h3 className="text-slate-500 font-bold text-sm mb-1">فتح طلبات (Talabat)</h3>
+          <p className="text-3xl font-black text-slate-800">{stats.talabat_click}</p>
+        </div>
+
         {/* Instagram */}
         <div className="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm flex flex-col">
           <div className="flex justify-between items-start mb-4">

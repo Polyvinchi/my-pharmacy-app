@@ -37,7 +37,7 @@ export default function SectionsManager({ initialSections, initialItems }: { ini
 
   // ── Toggle item visibility (local only, pending save) ──
   const toggleItemVisibility = (id: string) => {
-    setItems(items.map(i => i.id === id ? { ...i, is_active: i.is_active === false ? true : false } : i))
+    setItems(items.map(i => i.id === id ? { ...i, is_visible: i.is_visible === false ? true : false } : i))
     setHasChanges(true)
     setSaved(false)
   }
@@ -54,10 +54,10 @@ export default function SectionsManager({ initialSections, initialItems }: { ini
       }
       for (const item of items) {
         const orig = initialItems.find(i => i.id === item.id)
-        const origActive = orig?.is_active !== false
-        const curActive = item.is_active !== false
-        if (orig && origActive !== curActive) {
-          await supabase.from('section_items').update({ is_active: curActive }).eq('id', item.id)
+        const origVisible = orig?.is_visible !== false
+        const curVisible = item.is_visible !== false
+        if (orig && origVisible !== curVisible) {
+          await supabase.from('section_items').update({ is_visible: curVisible }).eq('id', item.id)
         }
       }
       setHasChanges(false)
@@ -104,7 +104,7 @@ export default function SectionsManager({ initialSections, initialItems }: { ini
         action_type: itemActionType,
         action_value: itemActionValue || null,
         image_url: itemImageUrl || null,
-        is_active: true,
+        is_visible: true,
         style_config: { text: itemColor }
       }
       if (editingItem) {
@@ -234,7 +234,7 @@ export default function SectionsManager({ initialSections, initialItems }: { ini
                         <div
                           key={item.id}
                           className={`bg-white p-2.5 rounded-xl border-2 flex items-center justify-between gap-2 transition-all ${
-                            item.is_active !== false ? 'border-slate-200' : 'border-dashed border-slate-200 opacity-60'
+                            item.is_visible !== false ? 'border-slate-200' : 'border-dashed border-slate-200 opacity-60'
                           }`}
                         >
                           {/* Item info */}
@@ -245,7 +245,7 @@ export default function SectionsManager({ initialSections, initialItems }: { ini
                                 : item.icon_name}
                             </div>
                             <div className="min-w-0">
-                              <p className={`font-bold text-sm truncate ${item.is_active !== false ? 'text-slate-800' : 'text-slate-400 line-through'}`}>
+                              <p className={`font-bold text-sm truncate ${item.is_visible !== false ? 'text-slate-800' : 'text-slate-400 line-through'}`}>
                                 {item.label}
                               </p>
                               {item.action_type && item.action_type !== 'none' && (
@@ -258,14 +258,14 @@ export default function SectionsManager({ initialSections, initialItems }: { ini
                           <div className="flex items-center gap-1 shrink-0">
                             <button
                               onClick={() => toggleItemVisibility(item.id)}
-                              title={item.is_active !== false ? 'اخفِ' : 'أظهر'}
+                              title={item.is_visible !== false ? 'اخفِ' : 'أظهر'}
                               className={`p-1.5 rounded-lg transition border ${
-                                item.is_active !== false
+                                item.is_visible !== false
                                   ? 'border-transparent text-slate-300 hover:text-blue-600 hover:border-blue-200 hover:bg-blue-50'
                                   : 'border-orange-200 text-orange-500 bg-orange-50'
                               }`}
                             >
-                              {item.is_active !== false ? <Eye size={14} /> : <EyeOff size={14} />}
+                              {item.is_visible !== false ? <Eye size={14} /> : <EyeOff size={14} />}
                             </button>
                             <button
                               onClick={() => openItemModal(sec.id, item)}

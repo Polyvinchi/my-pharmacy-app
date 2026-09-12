@@ -65,9 +65,9 @@ export default function OffersDrawer({ isOpen, handleClose, offers, whatsapp }: 
                     className="p-4 space-y-4 pb-10"
                   >
                     {activeOffers.map(offer => {
-                      const displayPrice = offer.price || offer.discounted_price;
+                      const displayPrice = offer.new_price || offer.price || offer.discounted_price;
                       const oldPrice = offer.old_price || offer.original_price;
-                      const primaryImg = offer.img_url || offer.images?.[0] || offer.img || '/logo.png';
+                      const primaryImg = offer.image_url || offer.img_url || offer.images?.[0] || offer.img || '/logo.png';
 
                       return (
                         <div 
@@ -157,7 +157,7 @@ export default function OffersDrawer({ isOpen, handleClose, offers, whatsapp }: 
                         <div className="flex items-center space-x-4 space-x-reverse border-t border-slate-100 pt-3 mt-3">
                           <div className="flex flex-col">
                             <span className="text-xs text-slate-400 font-bold mb-0.5">السعر بعد الخصم</span>
-                            <span className="text-3xl font-black text-blue-700 leading-none">{(selectedOffer.price || selectedOffer.discounted_price)} ج.م</span>
+                            <span className="text-3xl font-black text-blue-700 leading-none">{(selectedOffer.new_price || selectedOffer.price || selectedOffer.discounted_price)} ج.م</span>
                           </div>
                           {((selectedOffer.old_price || selectedOffer.original_price)) && (
                             <div className="flex flex-col items-end flex-1">

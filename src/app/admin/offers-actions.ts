@@ -33,15 +33,13 @@ export async function addOffer(formData: FormData) {
       const fileName = `${Math.random()}.${fileExt}`;
       const filePath = `offers/${fileName}`;
 
-      const { error: uploadError } = await supabase.storage.from('public_assets').upload(filePath, image);
+      const { error: uploadError } = await supabase.storage.from('pharmacy-assets').upload(filePath, image);
       if (uploadError) return { error: uploadError.message };
 
-      const { data } = supabase.storage.from('public_assets').getPublicUrl(filePath);
+      const { data } = supabase.storage.from('pharmacy-assets').getPublicUrl(filePath);
       uploadedUrls.push(data.publicUrl);
     }
   }
-
-  if (uploadedUrls.length === 0) return { error: 'يرجى إرفاق صورة واحدة على الأقل' };
 
   // Calculate discount percentage
   let discount_percentage = null;
@@ -121,10 +119,10 @@ export async function editOffer(formData: FormData) {
         const fileName = `${Math.random()}.${fileExt}`;
         const filePath = `offers/${fileName}`;
 
-        const { error: uploadError } = await supabase.storage.from('public_assets').upload(filePath, image);
+        const { error: uploadError } = await supabase.storage.from('pharmacy-assets').upload(filePath, image);
         if (uploadError) return { error: uploadError.message };
 
-        const { data } = supabase.storage.from('public_assets').getPublicUrl(filePath);
+        const { data } = supabase.storage.from('pharmacy-assets').getPublicUrl(filePath);
         uploadedUrls.push(data.publicUrl);
       }
     }
