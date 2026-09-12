@@ -17,6 +17,13 @@ interface ActionGridProps {
 
 export default function ActionGrid({ activeTourStep, onMapClick, settings, services, sections }: ActionGridProps) {
   const s = settings || {};
+
+  // Helper: check if a section_key is visible (default true if no data)
+  const isSectionVisible = (key: string) => {
+    if (!sections || sections.length === 0) return true;
+    const sec = sections.find((s: any) => s.section_key === key);
+    return sec ? sec.is_visible !== false : true;
+  };
   const [toast, setToast] = useState<string | null>(null);
   const [enlargedNumber, setEnlargedNumber] = useState<{ number: string, label: string, type: 'instapay' | 'vodafone' } | null>(null);
   const { canInstall, install: pwaInstall } = usePWAInstall();
@@ -77,6 +84,7 @@ export default function ActionGrid({ activeTourStep, onMapClick, settings, servi
         </AnimatePresence>
 
         {/* ═══ SERVICES BOX ═══ */}
+        {isSectionVisible('services') && (
         <div className="relative mt-1">
           <AnimatePresence>
             {activeTourStep === 'services' && (<motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="absolute -top-3.5 right-4 z-50"><div className="text-[10px] font-bold text-blue-700 bg-blue-100 px-3 py-1 rounded-full shadow-md border border-blue-200">خدماتنا الطبية</div></motion.div>)}
@@ -122,8 +130,10 @@ export default function ActionGrid({ activeTourStep, onMapClick, settings, servi
             </div>
           </div>
         </div>
+        )} {/* end services */}
 
         {/* ═══ PAYMENTS BOX ═══ */}
+        {isSectionVisible('payments') && (
         <div className="relative mt-0.5">
           <AnimatePresence>
             {activeTourStep === 'payments' && (<motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="absolute -top-3.5 right-4 z-50"><div className="text-[10px] font-bold text-white bg-[#D28CFF] px-4 py-1 rounded-full shadow-md">اضغط للنسخ فوراً</div></motion.div>)}
@@ -155,8 +165,10 @@ export default function ActionGrid({ activeTourStep, onMapClick, settings, servi
             </div>
           </div>
         </div>
+        )} {/* end payments */}
 
         {/* ═══ SOCIALS BOX ═══ */}
+        {isSectionVisible('socials') && (
         <div className="relative mt-0.5 mb-1">
           <AnimatePresence>
             {activeTourStep === 'socials' && (<motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-50"><div className="text-[10px] font-bold text-white bg-[#5D9CFF] px-6 py-1 rounded-full shadow-md">تواصل معنا</div></motion.div>)}
@@ -199,8 +211,10 @@ export default function ActionGrid({ activeTourStep, onMapClick, settings, servi
             </div>
           </div>
         </div>
+        )} {/* end socials */}
 
         {/* MAP */}
+        {isSectionVisible('map_preview') && (
         <button onClick={onMapClick} onTouchStart={() => {}} className="w-full h-[52px] rounded-xl overflow-hidden relative group/map shadow-sm hover:shadow-md active:shadow-md transition-all border border-slate-100 shrink-0">
           <img src="/map_preview.png" alt="Map" className="w-full h-full object-cover group-hover/map:scale-105 group-active/map:scale-105 transition-transform duration-700" />
           <div className="absolute inset-0 bg-slate-900/40 group-hover/map:bg-slate-900/25 transition-colors flex items-center justify-center">
@@ -209,6 +223,7 @@ export default function ActionGrid({ activeTourStep, onMapClick, settings, servi
             </div>
           </div>
         </button>
+        )} {/* end map */}
 
       </div>
     </>

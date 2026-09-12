@@ -1,21 +1,24 @@
 "use client"
 import { useState } from 'react'
 import { createClient } from '@/utils/supabase/client'
-import { Check, X, Save, Loader2, Plus, Edit2, Trash2, ChevronDown, ChevronUp, GripVertical, Image as ImageIcon } from 'lucide-react'
+import { Check, X, Save, Loader2, Plus, Edit2, Trash2, ChevronDown, ChevronUp, GripVertical, Eye, EyeOff, Image as ImageIcon } from 'lucide-react'
 import ImageUploader from '@/components/ImageUploader'
-import { saveSectionItem, deleteSectionItem, injectBeautifulDefaults } from './actions'
+import { saveSectionItem, deleteSectionItem } from './actions'
 
 export default function SectionsManager({ initialSections, initialItems }: { initialSections: any[], initialItems: any[] }) {
   const [sections, setSections] = useState(initialSections)
   const [items, setItems] = useState(initialItems)
-  const [loading, setLoading] = useState(false)
+  const [saving, setSaving] = useState(false)
+  const [saved, setSaved] = useState(false)
+  const [hasChanges, setHasChanges] = useState(false)
   const [expandedSection, setExpandedSection] = useState<string | null>(null)
-  
+
   // Item Modal State
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [modalLoading, setModalLoading] = useState(false)
   const [editingItem, setEditingItem] = useState<any>(null)
   const [activeSectionId, setActiveSectionId] = useState<string>('')
-  
+
   const [itemLabel, setItemLabel] = useState('')
   const [itemIcon, setItemIcon] = useState('Activity')
   const [itemActionType, setItemActionType] = useState('none')
@@ -25,12 +28,49 @@ export default function SectionsManager({ initialSections, initialItems }: { ini
 
   const supabase = createClient()
 
-  const toggleVisibility = async (id: string, current: boolean) => {
-    const newVal = !current;
-    setSections(sections.map(s => s.id === id ? { ...s, is_visible: newVal } : s))
-    await supabase.from('page_sections').update({ is_visible: newVal }).eq('id', id)
+  // ── Toggle section visibility (local only, pending save) ──
+  const toggleSectionVisibility = (id: string) => {
+    setSections(sections.map(s => s.id === id ? { ...s, is_visible: !s.is_visible } : s))
+    setHasChanges(true)
+    setSaved(false)
   }
 
+  // ── Toggle item visibility (local only, pending save) ──
+  const toggleItemVisibility = (id: string) => {
+    setItems(items.map(i => i.id === id ? { ...i, is_active: i.is_active === false ? true : false } : i))
+    setHasChanges(true)
+    setSaved(false)
+  }
+
+  // ── Save ALL pending changes at once ──
+  const saveAllChanges = async () => {
+    setSaving(true)
+    try {
+      for (const sec of sections) {
+        const orig = initialSections.find(s => s.id === sec.id)
+        if (orig && orig.is_visible !== sec.is_visible) {
+          await supabase.from('page_sections').update({ is_visible: sec.is_visible }).eq('id', sec.id)
+        }
+      }
+      for (const item of items) {
+        const orig = initialItems.find(i => i.id === item.id)
+        const origActive = orig?.is_active !== false
+        const curActive = item.is_active !== false
+        if (orig && origActive !== curActive) {
+          await supabase.from('section_items').update({ is_active: curActive }).eq('id', item.id)
+        }
+      }
+      setHasChanges(false)
+      setSaved(true)
+      setTimeout(() => setSaved(false), 3000)
+    } catch {
+      alert('حدث خطأ أثناء الحفظ')
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  // ── Item Modal ──
   const openItemModal = (sectionId: string, item?: any) => {
     setActiveSectionId(sectionId)
     if (item) {
@@ -55,7 +95,7 @@ export default function SectionsManager({ initialSections, initialItems }: { ini
 
   const handleSaveItem = async (e: React.FormEvent) => {
     e.preventDefault()
-    setLoading(true)
+    setModalLoading(true)
     try {
       const data = {
         section_id: activeSectionId,
@@ -73,152 +113,263 @@ export default function SectionsManager({ initialSections, initialItems }: { ini
         await saveSectionItem(data)
       }
       window.location.reload()
-    } catch (error) {
+    } catch {
       alert('خطأ في الحفظ')
     } finally {
-      setLoading(false)
+      setModalLoading(false)
       setIsModalOpen(false)
     }
   }
 
   const handleDeleteItem = async (id: string) => {
-    if(!confirm('حذف هذا العنصر؟')) return
+    if (!confirm('حذف هذا العنصر؟')) return
     await deleteSectionItem(id)
     window.location.reload()
   }
 
-  const commonIcons = ['Activity', 'HeartPulse', 'Stethoscope', 'Pill', 'Weight', 'Search', 'CreditCard', 'Wallet', 'Phone', 'MapPin', 'Facebook', 'Instagram', 'Twitter', 'FacebookNative', 'InstagramNative', 'GoogleMapsNative', 'WhatsappNative', 'InstapayNative', 'TalabatNative', 'AppLogo']
+  const commonIcons = ['Activity', 'HeartPulse', 'Stethoscope', 'Pill', 'Weight', 'Search', 'CreditCard', 'Wallet', 'Phone', 'MapPin', 'Facebook', 'Instagram', 'Twitter', 'FacebookNative', 'InstagramNative', 'GoogleMapsNative', 'WhatsappNative', 'InstapayNative', 'TalabatNative', 'AppLogo', 'Bike']
   const colorOptions = ['text-slate-600', 'text-blue-600', 'text-emerald-600', 'text-red-600', 'text-purple-700', 'text-orange-500', 'text-yellow-500']
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-        <div className="flex justify-between items-center mb-4">
-          <p className="text-slate-500">مُحرك الأقسام المتطور: تحكم كامل في الأزرار، اللوجوهات، والألوان.</p>
-        </div>
+    <div className="space-y-6 pb-28">
 
-        <div className="space-y-4">
-          {sections.map((sec) => (
-            <div key={sec.id} className="border rounded-xl overflow-hidden bg-slate-50">
-              <div className="flex items-center justify-between p-4 bg-white border-b">
-                <div className="flex items-center gap-4 cursor-pointer flex-1" onClick={() => setExpandedSection(expandedSection === sec.id ? null : sec.id)}>
-                  <GripVertical size={20} className="text-slate-300 cursor-grab" />
-                  {expandedSection === sec.id ? <ChevronUp size={20} className="text-slate-400" /> : <ChevronDown size={20} className="text-slate-400" />}
-                  <div>
-                    <h3 className="font-bold text-lg">{sec.display_name}</h3>
-                    <p className="text-sm text-slate-500">نوع البلوك: {sec.component_type || 'grid'}</p>
-                  </div>
+      {/* ── Floating Save Bar (shows only when there are pending changes) ── */}
+      {hasChanges && (
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-sm">
+          <div className="bg-slate-900 text-white rounded-2xl shadow-2xl px-5 py-3 flex items-center justify-between gap-4 border border-slate-700">
+            <span className="text-sm font-bold">⚠️ يوجد تعديلات لم تُحفظ</span>
+            <button
+              onClick={saveAllChanges}
+              disabled={saving}
+              className="bg-blue-500 hover:bg-blue-400 text-white px-5 py-2 rounded-xl font-bold text-sm flex items-center gap-2 transition disabled:opacity-60 active:scale-95"
+            >
+              {saving ? <Loader2 size={16} className="animate-spin" /> : <Save size={16} />}
+              {saving ? 'جاري الحفظ...' : 'حفظ التعديلات'}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* ── Saved Toast ── */}
+      {saved && (
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-emerald-600 text-white px-6 py-3 rounded-2xl shadow-xl font-bold text-sm flex items-center gap-2">
+          <Check size={18} /> تم الحفظ بنجاح ✅
+        </div>
+      )}
+
+      <div className="bg-white p-4 sm:p-6 rounded-2xl shadow-sm border border-slate-100">
+        <p className="text-slate-500 text-sm mb-5">
+          اضغط على <Eye size={14} className="inline" /> لإخفاء/إظهار أي قسم أو عنصر، ثم اضغط <strong>حفظ التعديلات</strong>.
+        </p>
+
+        <div className="space-y-3">
+          {sections.map((sec) => {
+            const secItems = items.filter(i => i.section_id === sec.id).sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0))
+            const isExpanded = expandedSection === sec.id
+            const hiddenCount = secItems.filter(i => i.is_active === false).length
+
+            return (
+              <div
+                key={sec.id}
+                className={`border-2 rounded-xl overflow-hidden transition-all duration-200 ${
+                  sec.is_visible ? 'border-slate-200 bg-white' : 'border-dashed border-slate-200 bg-slate-50'
+                }`}
+              >
+                {/* Section Header Row */}
+                <div className="flex items-center gap-2 p-3">
+                  {/* Expand toggle */}
+                  <button
+                    onClick={() => setExpandedSection(isExpanded ? null : sec.id)}
+                    className="flex items-center gap-2 flex-1 text-right min-w-0"
+                  >
+                    <GripVertical size={16} className="text-slate-200 shrink-0" />
+                    {isExpanded
+                      ? <ChevronUp size={16} className="text-slate-400 shrink-0" />
+                      : <ChevronDown size={16} className="text-slate-400 shrink-0" />
+                    }
+                    <div className="min-w-0 text-right">
+                      <h3 className={`font-bold text-sm sm:text-base leading-tight ${sec.is_visible ? 'text-slate-800' : 'text-slate-400 line-through'}`}>
+                        {sec.display_name}
+                      </h3>
+                      <p className="text-[10px] text-slate-400">
+                        نوع البلوك: {sec.component_type || 'grid'}
+                        {hiddenCount > 0 && <span className="mr-1 text-orange-400">· {hiddenCount} عنصر مخفي</span>}
+                        {!sec.is_visible && <span className="mr-1 text-red-400 font-bold">· القسم مخفي بالكامل</span>}
+                      </p>
+                    </div>
+                  </button>
+
+                  {/* Section visibility toggle button */}
+                  <button
+                    onClick={() => toggleSectionVisibility(sec.id)}
+                    className={`shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-lg font-bold text-xs sm:text-sm transition-all border-2 ${
+                      sec.is_visible
+                        ? 'bg-blue-50 border-blue-200 text-blue-700 hover:bg-blue-100'
+                        : 'bg-slate-100 border-slate-200 text-slate-500 hover:bg-slate-200'
+                    }`}
+                  >
+                    {sec.is_visible ? <><Check size={14} /> ظاهر</> : <><X size={14} /> مخفي</>}
+                  </button>
                 </div>
-                <button 
-                  onClick={() => toggleVisibility(sec.id, sec.is_visible)}
-                  className={`px-4 py-2 rounded-lg flex items-center gap-2 font-medium transition-colors ${sec.is_visible ? 'bg-blue-100 text-blue-700' : 'bg-slate-200 text-slate-600'}`}
-                >
-                  {sec.is_visible ? <Check size={16} /> : <X size={16} />}
-                  {sec.is_visible ? 'ظاهر' : 'مخفي'}
-                </button>
-              </div>
-              
-              {expandedSection === sec.id && (
-                <div className="p-4 bg-slate-50/50">
-                  <div className="flex justify-between items-center mb-4">
-                    <h4 className="font-bold text-slate-700">العناصر (الأزرار والخدمات)</h4>
-                    <button onClick={() => openItemModal(sec.id)} className="text-sm bg-blue-600 text-white px-3 py-1.5 rounded flex items-center gap-1 hover:bg-blue-700">
-                      <Plus size={14} /> إضافة زر جديد
-                    </button>
-                  </div>
-                  
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                    {items.filter(i => i.section_id === sec.id).sort((a,b)=>a.sort_order - b.sort_order).map(item => (
-                      <div key={item.id} className="bg-white p-3 rounded-lg border shadow-sm flex justify-between items-center group">
-                        <div className="flex items-center gap-3">
-                          <GripVertical size={16} className="text-slate-200 cursor-grab" />
-                          <div className={`w-10 h-10 ${item.style_config?.bg || 'bg-slate-50'} rounded-lg border flex items-center justify-center text-xs font-bold overflow-hidden`}>
-                            {item.image_url ? <img src={item.image_url} alt="" className="w-full h-full object-cover" /> : item.icon_name}
-                          </div>
-                          <div>
-                            <p className="font-bold text-sm text-slate-800">{item.label}</p>
-                            {item.action_type !== 'none' && <p className="text-[10px] text-slate-500 truncate w-32">{item.action_type}: {item.action_value}</p>}
-                          </div>
-                        </div>
-                        <div className="flex gap-1 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
-                          <button onClick={() => openItemModal(sec.id, item)} className="p-1.5 text-blue-600 hover:bg-blue-50 rounded"><Edit2 size={16} /></button>
-                          <button onClick={() => handleDeleteItem(item.id)} className="p-1.5 text-red-600 hover:bg-red-50 rounded"><Trash2 size={16} /></button>
-                        </div>
+
+                {/* Expanded: items list */}
+                {isExpanded && (
+                  <div className="border-t p-3 bg-slate-50/60 space-y-2">
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-xs font-bold text-slate-500">العناصر الداخلية ({secItems.length})</span>
+                      <button
+                        onClick={() => openItemModal(sec.id)}
+                        className="text-xs bg-blue-600 text-white px-3 py-1.5 rounded-lg flex items-center gap-1 hover:bg-blue-700 transition"
+                      >
+                        <Plus size={13} /> إضافة زر
+                      </button>
+                    </div>
+
+                    {secItems.length === 0 ? (
+                      <div className="text-center text-sm text-slate-400 py-6 border-2 border-dashed rounded-xl">
+                        القسم فارغ — أضف عنصر جديد
                       </div>
-                    ))}
-                    {items.filter(i => i.section_id === sec.id).length === 0 && (
-                      <div className="col-span-full text-center text-sm text-slate-400 py-4">البلوك فاضي. أضف عنصر جديد!</div>
+                    ) : (
+                      secItems.map(item => (
+                        <div
+                          key={item.id}
+                          className={`bg-white p-2.5 rounded-xl border-2 flex items-center justify-between gap-2 transition-all ${
+                            item.is_active !== false ? 'border-slate-200' : 'border-dashed border-slate-200 opacity-60'
+                          }`}
+                        >
+                          {/* Item info */}
+                          <div className="flex items-center gap-2.5 flex-1 min-w-0">
+                            <div className={`w-9 h-9 shrink-0 ${item.style_config?.bg || 'bg-slate-50'} rounded-lg border flex items-center justify-center text-[9px] font-bold overflow-hidden`}>
+                              {item.image_url
+                                ? <img src={item.image_url} alt="" className="w-full h-full object-cover" />
+                                : item.icon_name}
+                            </div>
+                            <div className="min-w-0">
+                              <p className={`font-bold text-sm truncate ${item.is_active !== false ? 'text-slate-800' : 'text-slate-400 line-through'}`}>
+                                {item.label}
+                              </p>
+                              {item.action_type && item.action_type !== 'none' && (
+                                <p className="text-[10px] text-slate-400 truncate">{item.action_type}: {item.action_value}</p>
+                              )}
+                            </div>
+                          </div>
+
+                          {/* Item action buttons */}
+                          <div className="flex items-center gap-1 shrink-0">
+                            <button
+                              onClick={() => toggleItemVisibility(item.id)}
+                              title={item.is_active !== false ? 'اخفِ' : 'أظهر'}
+                              className={`p-1.5 rounded-lg transition border ${
+                                item.is_active !== false
+                                  ? 'border-transparent text-slate-300 hover:text-blue-600 hover:border-blue-200 hover:bg-blue-50'
+                                  : 'border-orange-200 text-orange-500 bg-orange-50'
+                              }`}
+                            >
+                              {item.is_active !== false ? <Eye size={14} /> : <EyeOff size={14} />}
+                            </button>
+                            <button
+                              onClick={() => openItemModal(sec.id, item)}
+                              className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-lg transition border border-transparent hover:border-blue-200"
+                            >
+                              <Edit2 size={14} />
+                            </button>
+                            <button
+                              onClick={() => handleDeleteItem(item.id)}
+                              className="p-1.5 text-red-500 hover:bg-red-50 rounded-lg transition border border-transparent hover:border-red-200"
+                            >
+                              <Trash2 size={14} />
+                            </button>
+                          </div>
+                        </div>
+                      ))
                     )}
                   </div>
-                </div>
-              )}
-            </div>
-          ))}
+                )}
+              </div>
+            )
+          })}
         </div>
       </div>
 
+      {/* ── Item Edit/Add Modal ── */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-slate-900/50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl w-full max-w-md p-6 max-h-[90vh] overflow-y-auto">
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-xl font-bold">{editingItem ? 'تعديل الزر' : 'إضافة زر جديد'}</h2>
-              <button onClick={() => setIsModalOpen(false)} className="text-slate-400 hover:text-slate-700"><X size={24} /></button>
+        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
+          <div className="bg-white rounded-t-2xl sm:rounded-2xl w-full sm:max-w-md shadow-2xl max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-center p-5 border-b bg-slate-50 rounded-t-2xl sticky top-0">
+              <h2 className="text-lg font-black text-slate-800">
+                {editingItem ? '✏️ تعديل العنصر' : '➕ إضافة زر جديد'}
+              </h2>
+              <button onClick={() => setIsModalOpen(false)} className="text-slate-400 hover:text-slate-700 p-1.5 rounded-full hover:bg-slate-200 transition">
+                <X size={20} />
+              </button>
             </div>
-            
-            <form onSubmit={handleSaveItem} className="space-y-4">
+
+            <form onSubmit={handleSaveItem} className="p-5 space-y-4">
               <div>
-                <label className="block text-sm font-medium mb-1">اسم الزر (Label)</label>
-                <input type="text" required value={itemLabel} onChange={e => setItemLabel(e.target.value)} className="w-full border rounded-lg p-2 outline-none focus:border-blue-500" />
+                <label className="block text-sm font-bold text-slate-700 mb-1">اسم الزر / العنصر *</label>
+                <input
+                  type="text" required
+                  value={itemLabel} onChange={e => setItemLabel(e.target.value)}
+                  className="w-full border-2 rounded-xl p-3 outline-none focus:border-blue-500 transition"
+                  placeholder="مثال: واتساب"
+                />
               </div>
-              
-              <div className="grid grid-cols-2 gap-4">
+
+              <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-sm font-medium mb-1">الأيقونة المدمجة</label>
-                  <select value={itemIcon} onChange={e => setItemIcon(e.target.value)} className="w-full border rounded-lg p-2 outline-none focus:border-blue-500" dir="ltr">
+                  <label className="block text-sm font-bold text-slate-700 mb-1">الأيقونة</label>
+                  <select value={itemIcon} onChange={e => setItemIcon(e.target.value)} className="w-full border-2 rounded-xl p-2.5 outline-none focus:border-blue-500" dir="ltr">
                     {commonIcons.map(icon => <option key={icon} value={icon}>{icon}</option>)}
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-1">لون الأيقونة/النص</label>
-                  <select value={itemColor} onChange={e => setItemColor(e.target.value)} className="w-full border rounded-lg p-2 outline-none focus:border-blue-500" dir="ltr">
+                  <label className="block text-sm font-bold text-slate-700 mb-1">اللون</label>
+                  <select value={itemColor} onChange={e => setItemColor(e.target.value)} className="w-full border-2 rounded-xl p-2.5 outline-none focus:border-blue-500" dir="ltr">
                     {colorOptions.map(c => <option key={c} value={c}>{c}</option>)}
                   </select>
                 </div>
               </div>
 
-              <div className="border-t pt-4">
-                <label className="block text-sm font-bold text-purple-600 mb-1 flex items-center gap-1"><ImageIcon size={16}/> صورة مخصصة (Custom Image)</label>
-                <p className="text-xs text-slate-500 mb-2">لو رفعت صورة هنا (لوجو طلبات مثلاً)، هتظهر مكان الأيقونة المدمجة.</p>
-                <input type="text" value={itemImageUrl} onChange={e => setItemImageUrl(e.target.value)} placeholder="أو ضع رابط صورة خارجي هنا..." className="w-full border rounded-lg p-2 outline-none focus:border-purple-500 mb-3" dir="ltr" />
-                <ImageUploader 
-                  onUpload={(url) => setItemImageUrl(url)} 
-                  currentImage={itemImageUrl} 
-                  label="ارفع صورة (بديلة للأيقونة)" 
-                  folder="section_icons" 
+              <div className="border-2 rounded-xl p-4 bg-slate-50/50 space-y-3">
+                <label className="block text-sm font-bold text-purple-700 flex items-center gap-1">
+                  <ImageIcon size={15} /> صورة مخصصة (بديل للأيقونة)
+                </label>
+                <input
+                  type="text" value={itemImageUrl} onChange={e => setItemImageUrl(e.target.value)}
+                  placeholder="رابط صورة..."
+                  className="w-full border-2 rounded-xl p-2.5 outline-none focus:border-purple-400 text-sm" dir="ltr"
                 />
+                <ImageUploader onUpload={(url) => setItemImageUrl(url)} currentImage={itemImageUrl} label="أو ارفع صورة من جهازك" folder="section_icons" />
               </div>
 
-              <div className="border-t pt-4">
-                <label className="block text-sm font-medium mb-1">نوع الإجراء عند الضغط (Action)</label>
-                <select value={itemActionType} onChange={e => setItemActionType(e.target.value)} className="w-full border rounded-lg p-2 outline-none focus:border-blue-500">
-                  <option value="none">بدون (عرض فقط)</option>
-                  <option value="copy">نسخ النص (للمحافظ الذكية وانستا)</option>
+              <div>
+                <label className="block text-sm font-bold text-slate-700 mb-1">الإجراء عند الضغط</label>
+                <select value={itemActionType} onChange={e => setItemActionType(e.target.value)} className="w-full border-2 rounded-xl p-2.5 outline-none focus:border-blue-500">
+                  <option value="none">بدون إجراء (عرض فقط)</option>
+                  <option value="copy">نسخ رقم / نص</option>
                   <option value="link">رابط خارجي (Link)</option>
-                  <option value="whatsapp">رسالة واتساب</option>
-                  <option value="modal">فتح نافذة (Modal)</option>
+                  <option value="whatsapp">إرسال رسالة واتساب</option>
+                  <option value="modal">فتح نافذة (map / install)</option>
                 </select>
               </div>
 
               {itemActionType !== 'none' && (
                 <div>
-                  <label className="block text-sm font-medium mb-1">القيمة (الرابط أو النص المراد نسخه)</label>
-                  <input type="text" value={itemActionValue} onChange={e => setItemActionValue(e.target.value)} className="w-full border rounded-lg p-2 outline-none focus:border-blue-500" dir="ltr" />
+                  <label className="block text-sm font-bold text-slate-700 mb-1">القيمة (الرابط / النص)</label>
+                  <input
+                    type="text" value={itemActionValue} onChange={e => setItemActionValue(e.target.value)}
+                    className="w-full border-2 rounded-xl p-2.5 outline-none focus:border-blue-500" dir="ltr"
+                    placeholder="https://... أو رقم موبايل"
+                  />
                 </div>
               )}
 
-              <div className="pt-4 flex gap-3">
-                <button type="submit" disabled={loading} className="flex-1 bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50">
-                  {loading ? 'جاري الحفظ...' : 'حفظ'}
+              <div className="flex gap-3 pt-2 border-t">
+                <button type="button" onClick={() => setIsModalOpen(false)} className="flex-1 border-2 border-slate-200 text-slate-600 py-3 rounded-xl font-bold hover:bg-slate-50 transition">
+                  إلغاء
+                </button>
+                <button type="submit" disabled={modalLoading} className="flex-1 bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 disabled:opacity-50 flex items-center justify-center gap-2 transition">
+                  {modalLoading ? <><Loader2 size={16} className="animate-spin" /> جاري الحفظ...</> : <><Save size={16} /> حفظ</>}
                 </button>
               </div>
             </form>
