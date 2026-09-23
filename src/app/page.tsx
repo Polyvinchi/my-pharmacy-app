@@ -3,8 +3,7 @@ import JsonLd from '@/components/JsonLd';
 import ClientApp from '@/components/ClientApp';
 import { createClient } from '@/utils/supabase/server';
 
-export const revalidate = 0;
-
+export const revalidate = 60; // Cache the page for 60 seconds to drastically improve server response time
 export async function generateMetadata(): Promise<Metadata> {
   const supabase = await createClient();
   const { data: pharmacy } = await supabase.from('pharmacies').select('*').single();
