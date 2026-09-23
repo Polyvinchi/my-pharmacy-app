@@ -18,7 +18,9 @@ self.addEventListener('fetch', e => {
     fetch(e.request)
       .then(res => {
         const clone = res.clone();
-        caches.open(CACHE).then(c => c.put(e.request, clone));
+        if (e.request.url.startsWith('http')) {
+          caches.open(CACHE).then(c => c.put(e.request, clone));
+        }
         return res;
       })
       .catch(() => caches.match(e.request).then(r => r || caches.match('/')))
