@@ -125,6 +125,8 @@ export default function ActionGrid({ activeTourStep, onMapClick, settings, servi
       } else if (item.action_type === 'modal' && item.action_value === 'map') {
         trackAction('location_click');
         onMapClick();
+      } else if (item.action_type === 'modal' && item.action_value === 'install') {
+        handleInstallClick();
       } else if (item.action_type === 'copy') {
         navigator.clipboard.writeText(item.action_value);
         alert('تم النسخ: ' + item.action_value);
