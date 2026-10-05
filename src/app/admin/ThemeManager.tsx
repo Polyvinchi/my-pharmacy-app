@@ -218,47 +218,28 @@ export default function ThemeManager({ initialData }: { initialData: any }) {
 
         {/* الألوان */}
         <div className="border-t pt-6">
-          <label className="block text-sm font-bold text-slate-700 mb-3">اللون الأساسي للتطبيق</label>
-          <div className="flex items-center gap-4 flex-wrap">
-            {/* Native color wheel - opens on click */}
-            <label className="cursor-pointer relative group">
-              <div 
-                className="w-16 h-16 rounded-2xl border-4 border-white shadow-lg ring-2 ring-slate-200 group-hover:ring-blue-400 transition-all"
-                style={{ backgroundColor: primaryColor }}
-              />
-              <input 
-                type="color" 
-                value={primaryColor} 
-                onChange={e => setPrimaryColor(e.target.value)}
-                className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
-              />
-              <span className="absolute -bottom-5 left-1/2 -translate-x-1/2 text-[10px] text-slate-400 whitespace-nowrap">اضغط</span>
-            </label>
-
-            {/* Quick color presets */}
-            <div className="flex flex-wrap gap-2">
-              {['#1d4ed8','#16a34a','#dc2626','#9333ea','#ea580c','#0891b2','#be185d','#0f172a'].map(c => (
-                <button 
-                  key={c} type="button"
-                  onClick={() => setPrimaryColor(c)}
-                  className={`w-9 h-9 rounded-xl border-2 transition-all hover:scale-110 active:scale-95 ${primaryColor === c ? 'border-slate-800 scale-110' : 'border-transparent'}`}
-                  style={{ backgroundColor: c }}
-                />
-              ))}
+          <h3 className="text-lg font-bold mb-4 text-slate-700">ألوان التطبيق</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-3">اللون الأساسي</label>
+              <div className="flex items-center gap-3">
+                <input type="color" value={primaryColor} onChange={e => setPrimaryColor(e.target.value)} className="w-12 h-12 rounded-xl cursor-pointer border-none p-0 outline-none" />
+                <input type="text" value={primaryColor} onChange={e => setPrimaryColor(e.target.value)} className="w-24 border rounded-lg p-2 outline-none font-mono text-sm" dir="ltr" />
+              </div>
             </div>
-
-            {/* Hex code display */}
-            <div className="flex items-center gap-2 border-2 rounded-xl px-3 py-2 bg-slate-50 border-slate-200">
-              <span className="text-slate-400 text-sm font-mono">#</span>
-              <input 
-                type="text" 
-                value={primaryColor.replace('#','')} 
-                onChange={e => { const v = e.target.value; if (/^[0-9a-fA-F]{0,6}$/.test(v)) setPrimaryColor('#' + v) }}
-                className="w-20 outline-none bg-transparent font-mono text-sm font-bold uppercase text-slate-800"
-                maxLength={6}
-                dir="ltr"
-                placeholder="1d4ed8"
-              />
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-3">لون نص الواجهة (الغلاف)</label>
+              <div className="flex items-center gap-3">
+                <input type="color" value={textColor} onChange={e => setTextColor(e.target.value)} className="w-12 h-12 rounded-xl cursor-pointer border-none p-0 outline-none" />
+                <input type="text" value={textColor} onChange={e => setTextColor(e.target.value)} className="w-24 border rounded-lg p-2 outline-none font-mono text-sm" dir="ltr" />
+              </div>
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-3">لون شاشة البداية (Intro)</label>
+              <div className="flex items-center gap-3">
+                <input type="color" value={splashBgColor} onChange={e => setSplashBgColor(e.target.value)} className="w-12 h-12 rounded-xl cursor-pointer border-none p-0 outline-none" />
+                <input type="text" value={splashBgColor} onChange={e => setSplashBgColor(e.target.value)} className="w-24 border rounded-lg p-2 outline-none font-mono text-sm" dir="ltr" />
+              </div>
             </div>
           </div>
         </div>
@@ -277,33 +258,54 @@ export default function ThemeManager({ initialData }: { initialData: any }) {
               <option value="spin">دوران (Spin)</option>
             </select>
           </div>
-        </div>
-
-        {/* الصور */}
-        <div className="border-t pt-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-lg font-bold mb-4 text-slate-700">لوجو الصيدلية</h3>
-            <input type="text" value={logoUrl} onChange={e => setLogoUrl(e.target.value)} placeholder="أو ضع رابط صورة خارجي هنا..." className="w-full border rounded-lg p-3 outline-none focus:border-blue-500 mb-3" dir="ltr" />
-            <ImageUploader 
-              onUpload={setLogoUrl} 
-              currentImage={logoUrl} 
-              label="ارفع لوجو ليظهر في التطبيق" 
-              folder="logos" 
-            />
-          </div>
-          <div>
-            <h3 className="text-lg font-bold mb-4 text-slate-700">صورة الـ Cover (الخلفية)</h3>
-            <input type="text" value={coverUrl} onChange={e => setCoverUrl(e.target.value)} placeholder="أو ضع رابط صورة خارجي هنا..." className="w-full border rounded-lg p-3 outline-none focus:border-blue-500 mb-3" dir="ltr" />
-            <ImageUploader 
-              onUpload={setCoverUrl} 
-              currentImage={coverUrl} 
-              label="ارفع صورة لتكون خلفية القسم العلوي" 
-              folder="covers" 
-            />
+          <div className="md:col-span-2">
+            <h3 className="text-sm font-bold mb-2">لوجو شاشة البداية (اختياري - إذا كان مختلف عن اللوجو الأساسي)</h3>
+            <ImageUploader onUpload={setSplashLogoUrl} currentImage={splashLogoUrl} label="ارفع لوجو الإنترو" folder="logos" aspect={1} shape="round" />
           </div>
         </div>
 
+        {/* إعدادات اللوجو والصور */}
         <div className="border-t pt-6">
+          <h3 className="text-lg font-bold mb-4 text-slate-700">إعدادات لوجو الواجهة الرئيسية</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            <div>
+              <label className="block text-sm font-medium mb-2">إظهار/إخفاء اللوجو</label>
+              <select value={showLogo ? "true" : "false"} onChange={e => setShowLogo(e.target.value === "true")} className="w-full border rounded-lg p-3 outline-none focus:border-blue-500">
+                <option value="true">إظهار اللوجو</option>
+                <option value="false">إخفاء اللوجو تماماً</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2">مكان اللوجو</label>
+              <select value={logoPosition} onChange={e => setLogoPosition(e.target.value)} className="w-full border rounded-lg p-3 outline-none focus:border-blue-500">
+                <option value="center">في المنتصف (Center)</option>
+                <option value="right">يمين (Right)</option>
+                <option value="left">يسار (Left)</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2">شكل اللوجو (الحواف)</label>
+              <select value={logoShape} onChange={e => setLogoShape(e.target.value)} className="w-full border rounded-lg p-3 outline-none focus:border-blue-500" dir="ltr">
+                <option value="rounded-full">دائرة (Circle)</option>
+                <option value="rounded-3xl">مربع بحواف مدورة جداً</option>
+                <option value="rounded-xl">مربع بحواف مدورة</option>
+                <option value="rounded-none">مربع حاد (Square)</option>
+              </select>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h3 className="text-sm font-bold mb-2">اللوجو الأساسي</h3>
+              <ImageUploader onUpload={setLogoUrl} currentImage={logoUrl} label="ارفع وقص لوجو الصيدلية" folder="logos" aspect={1} shape={logoShape === "rounded-full" ? "round" : "rect"} />
+            </div>
+            <div>
+              <h3 className="text-sm font-bold mb-2">صورة الـ Cover (الخلفية)</h3>
+              <ImageUploader onUpload={setCoverUrl} currentImage={coverUrl} label="ارفع وقص خلفية الصيدلية" folder="covers" aspect={16/9} shape="rect" />
+            </div>
+          </div>
+        </div>
+<div className="border-t pt-6">
           <button type="submit" disabled={loading} className="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold flex items-center gap-2 hover:bg-blue-700 transition-colors disabled:opacity-50">
             {loading ? <Loader2 className="animate-spin" size={20} /> : <Save size={20} />}
             حفظ التغييرات

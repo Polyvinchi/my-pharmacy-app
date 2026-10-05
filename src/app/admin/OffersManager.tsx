@@ -265,9 +265,17 @@ export default function OffersManager({ initialOffers }: { initialOffers: Offer[
                         </label>
                         
                         <div>
-                          <p className="text-xs text-slate-500 mb-1">1. ارفع صور من جهازك (يمكنك اختيار أكثر من صورة):</p>
-                          <input name="images" type="file" multiple accept="image/*" className="w-full px-2 py-1.5 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none bg-white text-sm file:mr-3 file:py-1 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-slate-100 file:text-slate-700 hover:file:bg-slate-200" />
-                        </div>
+                            <p className="text-xs text-slate-500 mb-2">1. ارفع وقص صورة للعرض (يمكنك رفع عدة صور بالضغط مرات متتالية):</p>
+                            <ImageUploader 
+                              onUpload={(url) => { if(url) setImageUrls(prev => [...prev, url]) }} 
+                              label="ارفع واقص صورة جديدة" 
+                              folder="offers" 
+                              aspect={1}
+                              shape="rect"
+                            />
+                            {/* Hidden input to bypass the native file upload action if needed */}
+                            <input name="externalImages" type="hidden" value={JSON.stringify(imageUrls)} />
+                          </div>
                         
                         <div className="relative flex items-center justify-center">
                           <span className="bg-slate-200 h-px flex-1"></span>

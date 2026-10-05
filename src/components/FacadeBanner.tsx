@@ -100,13 +100,13 @@ export default function FacadeBanner({ onShareClick, settings }: FacadeBannerPro
           </button>
         </div>
 
-        <div className="flex flex-col items-center justify-center relative z-20 mt-4">
-          <div className="w-24 h-24 bg-white/95 backdrop-blur-sm rounded-[1.5rem] shadow-xl mb-3 flex items-center justify-center overflow-hidden p-2 border-2 border-white/60">
+        <div className={`flex flex-col relative z-20 mt-4 ${settings?.theme_config?.logo_position === "right" ? "items-start" : settings?.theme_config?.logo_position === "left" ? "items-end" : "items-center"}`}>
+          {settings?.theme_config?.show_logo !== false && (<div className={`w-24 h-24 bg-white/95 backdrop-blur-sm ${settings?.theme_config?.logo_shape || "rounded-full"} shadow-xl mb-3 flex items-center justify-center overflow-hidden p-2 border-2 border-white/60`}>
             <img src={settings?.logo_url || "/logo.png"} alt="Logo" className="w-[85%] h-[85%] object-contain drop-shadow-sm" />
-          </div>
+          </div>)}
           
           <div className="text-center">
-            <h1 className="text-white font-black text-2xl tracking-tight drop-shadow-lg shadow-black">
+            <h1 className="font-black text-2xl tracking-tight drop-shadow-lg shadow-black" style={{ color: settings?.theme_config?.text_color || "#ffffff" }}>
               {settings?.facade_title || 'صيدلية د. إيمان عبد الوهاب'}
             </h1>
             <p className="text-blue-50 text-xs mt-1.5 font-bold drop-shadow-lg shadow-black">
