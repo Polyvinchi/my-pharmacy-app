@@ -16,6 +16,10 @@ export default function ClientApp({ initialData }: { initialData?: any }) {
   const [isShareOpen, setIsShareOpen] = useState(false);
   const [isMapOpen, setIsMapOpen] = useState(false);
 
+  useEffect(() => {
+    trackAction('page_view');
+  }, []);
+
   const startTour = () => {
     setTourStep('payments');
     setTimeout(() => setTourStep('socials'), 1500);
