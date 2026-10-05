@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { createClient } from '@/utils/supabase/client'
 import { Save, Loader2, Check } from 'lucide-react'
 import ImageUploader from '@/components/ImageUploader'
-import { injectPharmacyAndOffers } from './actions'
+import { injectPharmacyAndOffers, clearAppCache } from './actions'
 
 export default function ThemeManager({ initialData }: { initialData: any }) {
   const [name, setName] = useState(initialData.name || '')
@@ -76,6 +76,9 @@ export default function ThemeManager({ initialData }: { initialData: any }) {
           ...payload
         }])
       }
+      
+      await clearAppCache();
+
       setSavedMsg(true)
       setTimeout(() => setSavedMsg(false), 3000)
     } catch (error) {

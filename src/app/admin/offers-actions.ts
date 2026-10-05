@@ -51,7 +51,10 @@ export async function addOffer(formData: FormData) {
     }
   }
 
+  const { data: pharmacy } = await supabase.from('pharmacies').select('id').single();
+
   const { error: insertError } = await supabase.from('offers').insert({
+    pharmacy_id: pharmacy?.id,
     title,
     discounted_price: price ? parseFloat(price) : null,
     original_price: oldPrice ? parseFloat(oldPrice) : null,

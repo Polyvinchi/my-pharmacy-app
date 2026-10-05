@@ -4,6 +4,7 @@ import { createClient } from '@/utils/supabase/client'
 import { Check, X, Save, Loader2, Plus, Edit2, Trash2, ChevronDown, ChevronUp, GripVertical, Eye, EyeOff, Image as ImageIcon } from 'lucide-react'
 import ImageUploader from '@/components/ImageUploader'
 import { saveSectionItem, deleteSectionItem } from './actions'
+import { clearAppCache } from '../actions'
 
 export default function SectionsManager({ initialSections, initialItems }: { initialSections: any[], initialItems: any[] }) {
   const [sections, setSections] = useState(initialSections)
@@ -60,6 +61,7 @@ export default function SectionsManager({ initialSections, initialItems }: { ini
           await supabase.from('section_items').update({ is_visible: curVisible }).eq('id', item.id)
         }
       }
+      await clearAppCache();
       setHasChanges(false)
       setSaved(true)
       setTimeout(() => setSaved(false), 3000)

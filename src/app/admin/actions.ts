@@ -87,3 +87,8 @@ export async function injectPharmacyAndOffers() {
 
   revalidatePath('/', 'layout')
 }
+
+export async function clearAppCache() {
+  revalidatePath('/', 'layout');
+  revalidatePath('/admin', 'layout');
+}
