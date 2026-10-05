@@ -128,7 +128,7 @@ export default function ActionGrid({ activeTourStep, onMapClick, settings, servi
   };
 
   return (
-    <div className="flex flex-col gap-1.5 px-3 z-10 w-full mb-24 relative max-w-[500px] mx-auto">
+    <div className="flex-1 overflow-y-auto px-2.5 py-1.5 relative gap-2 pb-32 flex flex-col z-40 w-full max-w-[500px] mx-auto no-scrollbar">
       {sections.filter(s => s.is_visible).sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0)).map(section => (
         <div key={section.id} className="relative mt-1">
           {activeTourStep === section.section_key && (
