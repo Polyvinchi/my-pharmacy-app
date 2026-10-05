@@ -3,6 +3,7 @@
 import { useState, useRef } from 'react';
 import { addOffer, deleteOffer, editOffer } from './offers-actions';
 import { Plus, X, Package2, Image as ImageIcon, Link as LinkIcon } from 'lucide-react';
+import ImageUploader from '@/components/ImageUploader';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export type Offer = {
@@ -267,7 +268,7 @@ export default function OffersManager({ initialOffers }: { initialOffers: Offer[
                         <div>
                             <p className="text-xs text-slate-500 mb-2">1. ارفع وقص صورة للعرض (يمكنك رفع عدة صور بالضغط مرات متتالية):</p>
                             <ImageUploader 
-                              onUpload={(url) => { if(url) setImageUrls(prev => [...prev, url]) }} 
+                              onUpload={(url: string) => { if(url) setImageUrls(prev => [...prev, url]) }} 
                               label="ارفع واقص صورة جديدة" 
                               folder="offers" 
                               aspect={1}
