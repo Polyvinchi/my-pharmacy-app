@@ -139,59 +139,6 @@ export default function ThemeManager({ initialData }: { initialData: any }) {
           <input type="text" value={name} onChange={e => setName(e.target.value)} required className="w-full border rounded-lg p-3 outline-none focus:border-blue-500" />
         </div>
 
-        {/* أرقام التواصل */}
-        <div className="border-t pt-6">
-          <h3 className="text-lg font-bold mb-4 text-slate-700">أرقام التواصل</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div>
-              <label className="block text-sm font-medium mb-2">رقم الواتساب</label>
-              <input type="text" value={whatsapp} onChange={e => setWhatsapp(e.target.value)} className="w-full border rounded-lg p-3 outline-none focus:border-blue-500" dir="ltr" placeholder="مثال: 20100000000" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-2">رقم الموبايل</label>
-              <input type="text" value={phone} onChange={e => setPhone(e.target.value)} className="w-full border rounded-lg p-3 outline-none focus:border-blue-500" dir="ltr" placeholder="مثال: 01000000000" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-2">الخط الأرضي</label>
-              <input type="text" value={landline} onChange={e => setLandline(e.target.value)} className="w-full border rounded-lg p-3 outline-none focus:border-blue-500" dir="ltr" placeholder="مثال: 022000000" />
-            </div>
-          </div>
-        </div>
-
-        {/* السوشيال ميديا وطلبات */}
-        <div className="border-t pt-6">
-          <h3 className="text-lg font-bold mb-4 text-slate-700">روابط السوشيال والخدمات</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div>
-              <label className="block text-sm font-medium mb-2">رابط فيسبوك</label>
-              <input type="text" value={facebook} onChange={e => setFacebook(e.target.value)} className="w-full border rounded-lg p-3 outline-none focus:border-blue-500" dir="ltr" placeholder="https://facebook.com/..." />
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-2">رابط انستجرام</label>
-              <input type="text" value={instagram} onChange={e => setInstagram(e.target.value)} className="w-full border rounded-lg p-3 outline-none focus:border-blue-500" dir="ltr" placeholder="https://instagram.com/..." />
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-2">رابط طلبات (Talabat)</label>
-              <input type="text" value={talabat} onChange={e => setTalabat(e.target.value)} className="w-full border rounded-lg p-3 outline-none focus:border-blue-500" dir="ltr" placeholder="https://talabat.com/..." />
-            </div>
-          </div>
-        </div>
-
-        {/* الدفع الإلكتروني */}
-        <div className="border-t pt-6">
-          <h3 className="text-lg font-bold mb-4 text-slate-700">أرقام الدفع الإلكتروني</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label className="block text-sm font-medium mb-2">رقم انستا باي (InstaPay)</label>
-              <input type="text" value={instapay} onChange={e => setInstapay(e.target.value)} className="w-full border rounded-lg p-3 outline-none focus:border-blue-500" dir="ltr" placeholder="مثال: 01000000000" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-2">رقم المحفظة (فودافون كاش الخ)</label>
-              <input type="text" value={wallet} onChange={e => setWallet(e.target.value)} className="w-full border rounded-lg p-3 outline-none focus:border-blue-500" dir="ltr" placeholder="مثال: 01000000000" />
-            </div>
-          </div>
-        </div>
-
         {/* حالة الصيدلية ومواعيد العمل */}
         <div className="border-t pt-6 bg-slate-50 -mx-6 px-6 pb-6">
           <h3 className="text-lg font-bold mb-4 text-slate-700">حالة الصيدلية (مفتوح/مغلق)</h3>

@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { createClient } from '@/utils/supabase/client'
 import { Check, X, Save, Loader2, Plus, Edit2, Trash2, ChevronDown, ChevronUp, GripVertical, Eye, EyeOff, Image as ImageIcon } from 'lucide-react'
 import ImageUploader from '@/components/ImageUploader'
-import { saveSectionItem, deleteSectionItem } from './actions'
+import { saveSectionItem, deleteSectionItem, addSection, deleteSection } from './actions'
 import { clearAppCache } from '../actions'
 
 export default function SectionsManager({ initialSections, initialItems }: { initialSections: any[], initialItems: any[] }) {
@@ -26,6 +26,37 @@ export default function SectionsManager({ initialSections, initialItems }: { ini
   const [itemActionValue, setItemActionValue] = useState('')
   const [itemImageUrl, setItemImageUrl] = useState('')
   const [itemColor, setItemColor] = useState('text-slate-600')
+
+  const [isAddSectionOpen, setIsAddSectionOpen] = useState(false)
+  const [newSectionName, setNewSectionName] = useState('')
+  const [addingSection, setAddingSection] = useState(false)
+
+  const handleAddSection = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newSectionName.trim()) return;
+    setAddingSection(true);
+    try {
+      await addSection(newSectionName);
+      setIsAddSectionOpen(false);
+      setNewSectionName('');
+      setTimeout(() => window.location.reload(), 1000);
+    } catch (e) {
+      alert("Error adding section");
+    } finally {
+      setAddingSection(false);
+    }
+  }
+
+  const handleDeleteSection = async (id: string) => {
+    if (confirm('هل أنت متأكد من حذف هذا القسم وكل عناصره؟')) {
+      try {
+        await deleteSection(id);
+        setTimeout(() => window.location.reload(), 1000);
+      } catch (e) {
+        alert("Error deleting section");
+      }
+    }
+  }
 
   const supabase = createClient()
 
@@ -140,6 +171,13 @@ export default function SectionsManager({ initialSections, initialItems }: { ini
         <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-sm">
           <div className="bg-slate-900 text-white rounded-2xl shadow-2xl px-5 py-3 flex items-center justify-between gap-4 border border-slate-700">
             <span className="text-sm font-bold">⚠️ يوجد تعديلات لم تُحفظ</span>
+            <button
+              onClick={() => setIsAddSectionOpen(true)}
+              className="bg-green-600 text-white px-4 py-2 rounded-xl font-bold flex items-center gap-2 hover:bg-green-700 transition"
+            >
+              <Plus size={18} />
+              إضافة قسم جديد
+            </button>
             <button
               onClick={saveAllChanges}
               disabled={saving}
