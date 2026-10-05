@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
@@ -16,9 +16,9 @@ export default function SplashScreen({ onComplete, settings }: { onComplete: () 
   }, [onComplete]);
 
   // Read settings
-  const splashLogo = settings?.logo_url || "/logo.png";
-  const splashText = settings?.splash_text || settings?.facade_title || "صيدلية د. إيمان عبد الوهاب";
-  const bgColor = settings?.primary_color || "#0D47A1";
+  const splashLogo = settings?.theme_config?.splash_logo_url || settings?.logo_url || "/logo.png";
+  const splashText = settings?.splash_text || settings?.facade_title || "ØµÙŠØ¯Ù„ÙŠØ© Ø¯. Ø¥ÙŠÙ…Ø§Ù† Ø¹Ø¨Ø¯ Ø§Ù„ÙˆÙ‡Ø§Ø¨";
+  const bgColor = settings?.theme_config?.splash_bg_color || settings?.theme_config?.primaryColor || "#0D47A1";
   const animationType = settings?.splash_animation || "pulse"; // pulse, spin, bounce
 
   // Determine Logo Animation
@@ -121,3 +121,4 @@ export default function SplashScreen({ onComplete, settings }: { onComplete: () 
     </AnimatePresence>
   );
 }
+

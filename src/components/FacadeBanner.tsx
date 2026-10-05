@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { Share2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
@@ -81,14 +81,14 @@ export default function FacadeBanner({ onShareClick, settings }: FacadeBannerPro
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
               </div>
-              <span className="text-[10px] font-bold text-emerald-700">مفتوح الآن</span>
+              <span className="text-[10px] font-bold text-emerald-700">Ù…ÙØªÙˆØ­ Ø§Ù„Ø¢Ù†</span>
             </div>
           ) : (
             <div className="bg-white/95 backdrop-blur-md rounded-full px-3 py-1.5 flex items-center gap-1.5 shadow-lg border border-red-500/30">
               <div className="relative flex h-2.5 w-2.5">
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
               </div>
-              <span className="text-[10px] font-bold text-red-700">مغلق مؤقتاً</span>
+              <span className="text-[10px] font-bold text-red-700">Ù…ØºÙ„Ù‚ Ù…Ø¤Ù‚ØªØ§Ù‹</span>
             </div>
           )}
 
@@ -100,17 +100,17 @@ export default function FacadeBanner({ onShareClick, settings }: FacadeBannerPro
           </button>
         </div>
 
-        <div className="flex flex-col items-center justify-center relative z-20 mt-4">
-          <div className="w-24 h-24 bg-white/95 backdrop-blur-sm rounded-[1.5rem] shadow-xl mb-3 flex items-center justify-center overflow-hidden p-2 border-2 border-white/60">
+        <div className={`flex flex-col relative z-20 mt-4 ${settings?.theme_config?.logo_position === "right" ? "items-start" : settings?.theme_config?.logo_position === "left" ? "items-end" : "items-center"}`}>
+          {settings?.theme_config?.show_logo !== false && (<div className={`w-24 h-24 bg-white/95 backdrop-blur-sm ${settings?.theme_config?.logo_shape || "rounded-full"} shadow-xl mb-3 flex items-center justify-center overflow-hidden p-2 border-2 border-white/60`}>
             <img src={settings?.logo_url || "/logo.png"} alt="Logo" className="w-[85%] h-[85%] object-contain drop-shadow-sm" />
-          </div>
+          </div>)}
           
           <div className="text-center">
-            <h1 className="text-white font-black text-2xl tracking-tight drop-shadow-lg shadow-black">
-              {settings?.facade_title || 'صيدلية د. إيمان عبد الوهاب'}
+            <h1 className="font-black text-2xl tracking-tight drop-shadow-lg shadow-black" style={{ color: settings?.theme_config?.text_color || "#ffffff" }}>
+              {settings?.facade_title || 'ØµÙŠØ¯Ù„ÙŠØ© Ø¯. Ø¥ÙŠÙ…Ø§Ù† Ø¹Ø¨Ø¯ Ø§Ù„ÙˆÙ‡Ø§Ø¨'}
             </h1>
             <p className="text-blue-50 text-xs mt-1.5 font-bold drop-shadow-lg shadow-black">
-              {settings?.facade_subtitle || 'عروض حصرية • استشارات مجانية • توصيل سريع'}
+              {settings?.facade_subtitle || 'Ø¹Ø±ÙˆØ¶ Ø­ØµØ±ÙŠØ© â€¢ Ø§Ø³ØªØ´Ø§Ø±Ø§Øª Ù…Ø¬Ø§Ù†ÙŠØ© â€¢ ØªÙˆØµÙŠÙ„ Ø³Ø±ÙŠØ¹'}
             </p>
           </div>
         </div>
@@ -118,3 +118,4 @@ export default function FacadeBanner({ onShareClick, settings }: FacadeBannerPro
     </div>
   );
 }
+
