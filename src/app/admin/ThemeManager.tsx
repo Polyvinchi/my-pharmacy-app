@@ -30,6 +30,14 @@ export default function ThemeManager({ initialData }: { initialData: any }) {
   const [logoUrl, setLogoUrl] = useState(initialData.logo_url || '')
   const [coverUrl, setCoverUrl] = useState(initialData.cover_url || '')
 
+  // New advanced UI states
+  const [showLogo, setShowLogo] = useState(initialData.theme_config?.show_logo ?? true)
+  const [logoPosition, setLogoPosition] = useState(initialData.theme_config?.logo_position || 'center')
+  const [logoShape, setLogoShape] = useState(initialData.theme_config?.logo_shape || 'rounded-full')
+  const [splashLogoUrl, setSplashLogoUrl] = useState(initialData.theme_config?.splash_logo_url || '')
+  const [splashBgColor, setSplashBgColor] = useState(initialData.theme_config?.splash_bg_color || '#0D47A1')
+  const [textColor, setTextColor] = useState(initialData.theme_config?.text_color || '#ffffff')
+
   const [loading, setLoading] = useState(false)
   const [savedMsg, setSavedMsg] = useState(false)
   const supabase = createClient()
@@ -45,7 +53,13 @@ export default function ThemeManager({ initialData }: { initialData: any }) {
         splash_animation: splashAnimation,
         status_mode: statusMode,
         open_time: openTime,
-        close_time: closeTime
+        close_time: closeTime,
+        show_logo: showLogo,
+        logo_position: logoPosition,
+        logo_shape: logoShape,
+        splash_logo_url: splashLogoUrl,
+        splash_bg_color: splashBgColor,
+        text_color: textColor
       }
       const socialLinks = { 
         ...initialData.social_links, 

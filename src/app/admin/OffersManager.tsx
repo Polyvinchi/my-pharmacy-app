@@ -8,14 +8,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 export type Offer = {
   id: string;
   title: string;
-  price: string;
-  old_price: string | null;
-  img_url: string;
+  price?: string; // made optional
+  old_price?: string | null;
+  img_url?: string;
   description?: string;
   discounted_price?: string;
   original_price?: string;
   images?: string[];
   img?: string;
+  image_url?: string; // added
+  new_price?: string; // added
   is_active?: boolean;
   condition_text?: string;
   bundle_items?: string[];
