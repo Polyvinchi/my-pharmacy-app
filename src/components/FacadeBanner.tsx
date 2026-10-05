@@ -107,10 +107,10 @@ export default function FacadeBanner({ onShareClick, settings }: FacadeBannerPro
           
           <div className="text-center">
             <h1 className="font-black text-2xl tracking-tight drop-shadow-lg shadow-black" style={{ color: settings?.theme_config?.text_color || "#ffffff" }}>
-              {settings?.facade_title || 'صيدلية د. إيمان عبد الوهاب'}
+              {settings?.theme_config?.facade_title || settings?.name || 'صيدلية د. إيمان عبد الوهاب'}
             </h1>
             <p className="text-blue-50 text-xs mt-1.5 font-bold drop-shadow-lg shadow-black">
-              {settings?.facade_subtitle || 'عروض حصرية • استشارات مجانية • توصيل سريع'}
+              {settings?.theme_config?.facade_subtitle || 'عروض حصرية • استشارات مجانية • توصيل سريع'}
             </p>
           </div>
         </div>

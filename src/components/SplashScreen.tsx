@@ -17,7 +17,7 @@ export default function SplashScreen({ onComplete, settings }: { onComplete: () 
 
   // Read settings
   const splashLogo = settings?.theme_config?.splash_logo_url || settings?.logo_url || "/logo.png";
-  const splashText = settings?.splash_text || settings?.facade_title || "صيدلية د. إيمان عبد الوهاب";
+  const splashText = settings?.theme_config?.splash_text || settings?.theme_config?.facade_title || settings?.name || "صيدلية د. إيمان عبد الوهاب";
   const bgColor = settings?.theme_config?.splash_bg_color || settings?.theme_config?.primaryColor || "#0D47A1";
   const animationType = settings?.splash_animation || "pulse"; // pulse, spin, bounce
 

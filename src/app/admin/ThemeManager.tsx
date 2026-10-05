@@ -19,6 +19,9 @@ export default function ThemeManager({ initialData }: { initialData: any }) {
   
   // Splash Screen settings
   const [splashText, setSplashText] = useState(initialData.theme_config?.splash_text || initialData.name || 'صيدلية د. إيمان عبد الوهاب')
+  const [tabTitle, setTabTitle] = useState(initialData.title_tag || initialData.name || '')
+  const [facadeTitle, setFacadeTitle] = useState(initialData.theme_config?.facade_title || initialData.name || '')
+  const [facadeSubtitle, setFacadeSubtitle] = useState(initialData.theme_config?.facade_subtitle || 'صيدلية متكاملة - عروض حصرية وتوصيل سريع')
   const [splashAnimation, setSplashAnimation] = useState(initialData.theme_config?.splash_animation || 'pulse')
 
   // Store Status Settings
@@ -75,6 +78,7 @@ export default function ThemeManager({ initialData }: { initialData: any }) {
       
       const payload = {
         name,
+        title_tag: tabTitle,
         theme_config: themeConfig,
         social_links: socialLinks,
         logo_url: logoUrl || null,
@@ -86,7 +90,7 @@ export default function ThemeManager({ initialData }: { initialData: any }) {
       } else {
         await supabase.from('pharmacies').insert([{
           slug: 'default',
-          title_tag: name,
+          
           ...payload
         }])
       }
