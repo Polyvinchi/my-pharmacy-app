@@ -105,7 +105,7 @@ export default function FacadeBanner({ onShareClick, settings }: FacadeBannerPro
             <img src={settings?.logo_url || "/logo.png"} alt="Logo" className="w-[85%] h-[85%] object-contain drop-shadow-sm" />
           </div>)}
           
-          <div className="text-center">
+          <div className={`w-full ${settings?.theme_config?.logo_position === "right" ? "text-right" : settings?.theme_config?.logo_position === "left" ? "text-left" : "text-center"}`}>
             <h1 className="font-black text-2xl tracking-tight drop-shadow-lg shadow-black" style={{ color: settings?.theme_config?.text_color || "#ffffff" }}>
               {settings?.theme_config?.facade_title || settings?.name || 'صيدلية د. إيمان عبد الوهاب'}
             </h1>

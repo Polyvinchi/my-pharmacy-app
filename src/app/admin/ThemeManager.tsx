@@ -62,7 +62,9 @@ export default function ThemeManager({ initialData }: { initialData: any }) {
         logo_shape: logoShape,
         splash_logo_url: splashLogoUrl,
         splash_bg_color: splashBgColor,
-        text_color: textColor
+        text_color: textColor,
+        facade_title: facadeTitle,
+        facade_subtitle: facadeSubtitle
       }
       const socialLinks = { 
         ...initialData.social_links, 
