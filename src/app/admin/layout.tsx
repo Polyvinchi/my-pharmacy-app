@@ -5,6 +5,7 @@ import { createClient } from '@/utils/supabase/client';
 import { useRouter } from 'next/navigation';
 import { LayoutDashboard, Tags, Component, LogOut, BarChart3, Stethoscope, Menu } from 'lucide-react';
 import { useState } from 'react';
+import LockScreen from '@/components/LockScreen';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -27,6 +28,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   ];
 
   return (
+    <LockScreen>
     <div className="min-h-screen bg-slate-50 flex flex-col md:flex-row" dir="rtl">
       {/* Mobile Header & Dropdown (دورب ليست منيو) */}
       <div className="md:hidden bg-white border-b border-slate-200 p-4">
@@ -87,5 +89,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         {children}
       </main>
     </div>
+    </LockScreen>
   );
 }
