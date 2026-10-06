@@ -41,7 +41,7 @@ export default function ThemeManager({ initialData }: { initialData: any }) {
   const [splashBgColor, setSplashBgColor] = useState(initialData.theme_config?.splash_bg_color || '#0D47A1')
   const [splashBgImage, setSplashBgImage] = useState(initialData.theme_config?.splash_bg_image || '')
   
-  const defaultSizes = { logo: 100, sections: 100, icons: 100, buttons: 100 };
+  const defaultSizes = { logo: 100, sections: 100, icons: 100, buttons: 100, images: 100 };
   const [sizes, setSizes] = useState(initialData.theme_config?.sizes || defaultSizes);
   const [textColor, setTextColor] = useState(initialData.theme_config?.text_color || '#ffffff')
 
@@ -254,6 +254,15 @@ export default function ThemeManager({ initialData }: { initialData: any }) {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <div>
+              <div className="flex justify-between mb-2">
+                <label className="text-sm font-medium">حجم الصور (كالعروض)</label>
+                <span className="text-sm font-bold text-blue-600">{sizes.images || 100}%</span>
+              </div>
+              <input type="range" min="50" max="150" value={sizes.images || 100} onChange={e => setSizes({...sizes, images: parseInt(e.target.value)})} className="w-full accent-blue-600" />
+            </div>
+
             <div>
               <h3 className="text-sm font-bold mb-2">اللوجو الأساسي</h3>
               <ImageUploader onUpload={setLogoUrl} currentImage={logoUrl} label="ارفع وقص لوجو الصيدلية" folder="logos" aspect={1} shape={logoShape === "rounded-full" ? "round" : "rect"} />

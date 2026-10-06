@@ -16,7 +16,7 @@ export default function ClientApp({ initialData }: { initialData?: any }) {
   const [isShareOpen, setIsShareOpen] = useState(false);
   const [isMapOpen, setIsMapOpen] = useState(false);
 
-  const sizes = initialData?.settings?.sizes || { logo: 100, sections: 100, icons: 100, buttons: 100 };
+  const sizes = initialData?.settings?.sizes || { logo: 100, sections: 100, icons: 100, buttons: 100, images: 100 };
   
   // Element scale = 70% of variation, Spacing scale = 30% of variation
   const getScale = (percent: number) => 1 + ((percent - 100) / 100) * 0.7;
@@ -31,6 +31,8 @@ export default function ClientApp({ initialData }: { initialData?: any }) {
     '--space-icons': getSpacing(sizes.icons),
     '--scale-buttons': getScale(sizes.buttons),
     '--space-buttons': getSpacing(sizes.buttons),
+    '--scale-images': getScale(sizes.images || 100),
+    '--space-images': getSpacing(sizes.images || 100),
   } as React.CSSProperties;
 
 
