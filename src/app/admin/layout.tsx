@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 import { createClient } from '@/utils/supabase/client';
 import { useRouter } from 'next/navigation';
 import { LayoutDashboard, Tags, Component, LogOut, BarChart3, Stethoscope, Menu, Users } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import LockScreen from '@/components/LockScreen';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -12,6 +12,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const router = useRouter();
   const supabase = createClient();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [role, setRole] = useState<string>('super_admin');
+  
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (user) {
+        setRole(user.user_metadata?.role || user.app_metadata?.role || 'super_admin');
+      }
+    });
+  }, []);
 
   if (pathname.includes('/login')) return <>{children}</>;
 
@@ -20,13 +29,19 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     router.push('/admin/login');
   };
 
-  const nav = [
-    { name: 'الإعدادات', path: '/admin', icon: LayoutDashboard },
-    { name: 'الإحصائيات', path: '/admin/statistics', icon: BarChart3 },
-    { name: 'العروض', path: '/admin/offers', icon: Tags },
-    { name: 'الأقسام', path: '/admin/sections', icon: Component },
-    { name: 'إدارة المستخدمين', path: '/admin/users', icon: Users },
+
+  let nav = [
+    { name: 'الإعدادات', path: '/admin', icon: LayoutDashboard, superOnly: true },
+    { name: 'الإحصائيات', path: '/admin/statistics', icon: BarChart3, superOnly: true },
+    { name: 'العروض', path: '/admin/offers', icon: Tags, superOnly: false },
+    { name: 'الأقسام', path: '/admin/sections', icon: Component, superOnly: false },
+    { name: 'إدارة المستخدمين', path: '/admin/users', icon: Users, superOnly: true },
   ];
+  
+  if (role === 'sub_admin') {
+    nav = nav.filter(item => !item.superOnly);
+  }
+
 
   return (
     <LockScreen>
