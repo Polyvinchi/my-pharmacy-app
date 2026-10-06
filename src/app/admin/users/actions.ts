@@ -4,6 +4,9 @@ import { supabaseAdmin } from '@/utils/supabase/admin'
 import { createClient } from '@/utils/supabase/server'
 
 async function checkIsSuperAdmin() {
+  if (!process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY === 'dummy_key') {
+    throw new Error("SUPABASE_SERVICE_ROLE_KEY is missing in environment variables. Please add it to your Vercel project settings.");
+  }
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) throw new Error("Unauthorized");

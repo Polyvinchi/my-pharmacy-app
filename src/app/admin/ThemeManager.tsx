@@ -18,6 +18,7 @@ export default function ThemeManager({ initialData }: { initialData: any }) {
   const [primaryColor, setPrimaryColor] = useState(initialData.theme_config?.primaryColor || '#1e40af')
   
   // Splash Screen settings
+  const [splashEnabled, setSplashEnabled] = useState(initialData.theme_config?.splash_enabled !== false)
   const [splashText, setSplashText] = useState(initialData.theme_config?.splash_text || initialData.name || 'صيدلية د. إيمان عبد الوهاب')
   const [tabTitle, setTabTitle] = useState(initialData.title_tag || initialData.name || '')
   const [facadeTitle, setFacadeTitle] = useState(initialData.theme_config?.facade_title || initialData.name || '')
@@ -100,6 +101,7 @@ export default function ThemeManager({ initialData }: { initialData: any }) {
       const themeConfig = { 
         ...initialData.theme_config, 
         primaryColor, 
+        splash_enabled: splashEnabled,
         splash_text: splashText, 
         splash_animation: splashAnimation,
         status_mode: statusMode,
@@ -282,23 +284,51 @@ export default function ThemeManager({ initialData }: { initialData: any }) {
         </div>
 
         {/* شاشة البداية */}
-        <div className="border-t pt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label className="block text-sm font-medium mb-2">نص شاشة البداية (Splash Text)</label>
-            <input type="text" value={splashText} onChange={e => setSplashText(e.target.value)} className="w-full border rounded-lg p-3 outline-none focus:border-blue-500" />
+        <div className="border-t pt-6">
+          <h3 className="text-lg font-bold mb-4 text-slate-700">إعدادات شاشة البداية (الانترو)</h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+            <div>
+              <label className="block text-sm font-medium mb-2">تفعيل شاشة الانترو</label>
+              <select value={splashEnabled ? "true" : "false"} onChange={e => setSplashEnabled(e.target.value === "true")} className="w-full border rounded-lg p-3 outline-none focus:border-blue-500">
+                <option value="true">مفعل (تظهر عند الدخول)</option>
+                <option value="false">معطل (الدخول للموقع مباشرة)</option>
+              </select>
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium mb-2">أنيميشن اللوجو (حركة اللوجو)</label>
+              <select value={splashAnimation} onChange={e => setSplashAnimation(e.target.value)} className="w-full border rounded-lg p-3 outline-none focus:border-blue-500" dir="ltr">
+                <option value="pulse">نبض (Pulse)</option>
+                <option value="bounce">قفز (Bounce)</option>
+                <option value="spin">دوران (Spin)</option>
+                <option value="up">يصعد لأعلى (Up)</option>
+                <option value="down">ينزل لأسفل (Down)</option>
+                <option value="left">يتحرك لليسار (Left)</option>
+                <option value="right">يتحرك لليمين (Right)</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-2">شكل لوجو الانترو</label>
+              <select value={splashLogoShape} onChange={e => setSplashLogoShape(e.target.value)} className="w-full border rounded-lg p-3 outline-none focus:border-blue-500" dir="ltr">
+                <option value="rounded-full">دائرة (Circle)</option>
+                <option value="rounded-3xl">مربع بحواف مدورة جداً</option>
+                <option value="rounded-xl">مربع بحواف مدورة</option>
+                <option value="rounded-none">مربع حاد (Square)</option>
+              </select>
+            </div>
           </div>
-          <div>
-            <label className="block text-sm font-medium mb-2">أنيميشن اللوجو في البداية</label>
-            <select value={splashAnimation} onChange={e => setSplashAnimation(e.target.value)} className="w-full border rounded-lg p-3 outline-none focus:border-blue-500" dir="ltr">
-              <option value="pulse">نبض (Pulse)</option>
-              <option value="bounce">قفز (Bounce)</option>
-              <option value="spin">دوران (Spin)</option>
-            </select>
-          </div>
-          <div className="md:col-span-2">
-            <h3 className="text-sm font-bold mb-2">لوجو شاشة البداية (اختياري - إذا كان مختلف عن اللوجو الأساسي)</h3>
-            <ImageUploader onUpload={setSplashLogoUrl} currentImage={splashLogoUrl} label="ارفع لوجو الانترو" folder="logos" aspect={1} shape="round" />
-          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-sm font-medium mb-2">نص شاشة البداية (Splash Text)</label>
+              <input type="text" value={splashText} onChange={e => setSplashText(e.target.value)} className="w-full border rounded-lg p-3 outline-none focus:border-blue-500" />
+            </div>
+            <div className="md:col-span-2">
+              <h3 className="text-sm font-bold mb-2">لوجو شاشة البداية (اختياري - إذا كان مختلف عن اللوجو الأساسي)</h3>
+              <ImageUploader onUpload={setSplashLogoUrl} currentImage={splashLogoUrl} label="ارفع لوجو الانترو" folder="logos" aspect={1} shape="round" />
+            </div>
           <div className="md:col-span-2">
             <h3 className="text-sm font-bold mb-2 mt-4">صورة خلفية الانترو (اختياري - بدل اللون السادة)</h3>
             <ImageUploader onUpload={setSplashBgImage} currentImage={splashBgImage} label="ارفع خلفية الانترو" folder="covers" aspect={9/16} shape="rect" />

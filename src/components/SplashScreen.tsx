@@ -5,28 +5,32 @@ import { useEffect, useState } from 'react';
 
 export default function SplashScreen({ onComplete, settings }: { onComplete: () => void, settings?: any }) {
   const [isVisible, setIsVisible] = useState(true);
+  const splashEnabled = settings?.theme_config?.splash_enabled !== false;
 
   useEffect(() => {
+    if (!splashEnabled) {
+      setIsVisible(false);
+      onComplete();
+      return;
+    }
     // Hide splash after 1.8s
     const timer = setTimeout(() => {
       setIsVisible(false);
       onComplete(); // Trigger the next phase (the tour)
     }, 1800);
     return () => clearTimeout(timer);
-  }, [onComplete]);
+  }, [onComplete, splashEnabled]);
 
   // Read settings
   const splashLogo = settings?.theme_config?.splash_logo_url || settings?.logo_url || "/logo.png";
   const splashText = settings?.theme_config?.splash_text || settings?.theme_config?.facade_title || settings?.name || "صيدلية د. إيمان عبد الوهاب";
   const bgColor = settings?.theme_config?.splash_bg_color || settings?.theme_config?.primaryColor || "#0D47A1";
   const bgImage = settings?.theme_config?.splash_bg_image || settings?.splash_bg_image;
-  const animationType = settings?.splash_animation || "pulse"; // pulse, spin, bounce
+  const animationType = settings?.theme_config?.splash_animation || settings?.splash_animation || "pulse"; // pulse, spin, bounce, up, down, left, right
   const logoShape = settings?.theme_config?.splash_logo_shape || "rounded-3xl";
-  const logoX = settings?.theme_config?.splash_logo_x || 0;
-  const logoY = settings?.theme_config?.splash_logo_y || 0;
 
   // Determine Logo Animation
-  let logoAnimate: any = { scale: 1, opacity: 1 };
+  let logoAnimate: any = { scale: 1, opacity: 1, x: 0, y: 0 };
   let logoTransition: any = { duration: 0.8 };
   
   if (animationType === "pulse") {
@@ -38,7 +42,21 @@ export default function SplashScreen({ onComplete, settings }: { onComplete: () 
   } else if (animationType === "bounce") {
     logoAnimate = { y: [0, -20, 0], scale: 1, opacity: 1 };
     logoTransition = { duration: 0.8, ease: "easeOut" };
+  } else if (animationType === "up") {
+    logoAnimate = { y: [50, 0], opacity: [0, 1] };
+    logoTransition = { duration: 0.8, ease: "easeOut" };
+  } else if (animationType === "down") {
+    logoAnimate = { y: [-50, 0], opacity: [0, 1] };
+    logoTransition = { duration: 0.8, ease: "easeOut" };
+  } else if (animationType === "left") {
+    logoAnimate = { x: [50, 0], opacity: [0, 1] };
+    logoTransition = { duration: 0.8, ease: "easeOut" };
+  } else if (animationType === "right") {
+    logoAnimate = { x: [-50, 0], opacity: [0, 1] };
+    logoTransition = { duration: 0.8, ease: "easeOut" };
   }
+
+  if (!splashEnabled) return null;
 
   return (
     <AnimatePresence>
@@ -55,7 +73,7 @@ export default function SplashScreen({ onComplete, settings }: { onComplete: () 
             initial={{ scale: 0.5, opacity: 0 }}
             animate={logoAnimate}
             transition={logoTransition}
-            className="w-40 h-40 bg-transparent flex items-center justify-center relative overflow-hidden"
+            className={`w-40 h-40 bg-white flex items-center justify-center relative overflow-hidden shadow-xl ${logoShape}`}
           >
             {/* Shimmer sweep */}
             <motion.div 
