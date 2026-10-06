@@ -21,6 +21,9 @@ export default function SplashScreen({ onComplete, settings }: { onComplete: () 
   const bgColor = settings?.theme_config?.splash_bg_color || settings?.theme_config?.primaryColor || "#0D47A1";
   const bgImage = settings?.theme_config?.splash_bg_image || settings?.splash_bg_image;
   const animationType = settings?.splash_animation || "pulse"; // pulse, spin, bounce
+  const logoShape = settings?.theme_config?.splash_logo_shape || "rounded-3xl";
+  const logoX = settings?.theme_config?.splash_logo_x || 0;
+  const logoY = settings?.theme_config?.splash_logo_y || 0;
 
   // Determine Logo Animation
   let logoAnimate: any = { scale: 1, opacity: 1 };

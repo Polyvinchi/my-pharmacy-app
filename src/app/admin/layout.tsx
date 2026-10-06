@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { createClient } from '@/utils/supabase/client';
 import { useRouter } from 'next/navigation';
-import { LayoutDashboard, Tags, Component, LogOut, BarChart3, Stethoscope, Menu } from 'lucide-react';
+import { LayoutDashboard, Tags, Component, LogOut, BarChart3, Stethoscope, Menu, Users } from 'lucide-react';
 import { useState } from 'react';
 import LockScreen from '@/components/LockScreen';
 
@@ -25,6 +25,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     { name: 'الإحصائيات', path: '/admin/statistics', icon: BarChart3 },
     { name: 'العروض', path: '/admin/offers', icon: Tags },
     { name: 'الأقسام', path: '/admin/sections', icon: Component },
+    { name: 'إدارة المستخدمين', path: '/admin/users', icon: Users },
   ];
 
   return (

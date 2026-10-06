@@ -40,6 +40,9 @@ export default function ThemeManager({ initialData }: { initialData: any }) {
   const [splashLogoUrl, setSplashLogoUrl] = useState(initialData.theme_config?.splash_logo_url || '')
   const [splashBgColor, setSplashBgColor] = useState(initialData.theme_config?.splash_bg_color || '#0D47A1')
   const [splashBgImage, setSplashBgImage] = useState(initialData.theme_config?.splash_bg_image || '')
+  const [splashLogoShape, setSplashLogoShape] = useState(initialData.theme_config?.splash_logo_shape || 'rounded-3xl')
+  const [splashLogoX, setSplashLogoX] = useState(initialData.theme_config?.splash_logo_x || 0)
+  const [splashLogoY, setSplashLogoY] = useState(initialData.theme_config?.splash_logo_y || 0)
   
   const defaultSizes = { logo: 100, sections: 100, icons: 100, buttons: 100, images: 100 };
   const [sizes, setSizes] = useState(initialData.theme_config?.sizes || defaultSizes);
@@ -108,6 +111,9 @@ export default function ThemeManager({ initialData }: { initialData: any }) {
         splash_logo_url: splashLogoUrl,
         splash_bg_color: splashBgColor,
           splash_bg_image: splashBgImage,
+      splash_logo_shape: splashLogoShape,
+      splash_logo_x: splashLogoX,
+      splash_logo_y: splashLogoY,
         text_color: textColor,
         facade_title: facadeTitle,
         facade_subtitle: facadeSubtitle,
