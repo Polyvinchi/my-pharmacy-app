@@ -19,6 +19,7 @@ export default function SplashScreen({ onComplete, settings }: { onComplete: () 
   const splashLogo = settings?.theme_config?.splash_logo_url || settings?.logo_url || "/logo.png";
   const splashText = settings?.theme_config?.splash_text || settings?.theme_config?.facade_title || settings?.name || "صيدلية د. إيمان عبد الوهاب";
   const bgColor = settings?.theme_config?.splash_bg_color || settings?.theme_config?.primaryColor || "#0D47A1";
+  const bgImage = settings?.theme_config?.splash_bg_image || settings?.splash_bg_image;
   const animationType = settings?.splash_animation || "pulse"; // pulse, spin, bounce
 
   // Determine Logo Animation
@@ -44,20 +45,20 @@ export default function SplashScreen({ onComplete, settings }: { onComplete: () 
           exit={{ opacity: 0, y: -50 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
           className="absolute inset-0 z-[100] flex flex-col items-center justify-center"
-          style={{ backgroundColor: bgColor }}
+          style={{ backgroundColor: bgColor, backgroundImage: bgImage ? `url(${bgImage})` : 'none', backgroundSize: 'cover', backgroundPosition: 'center' }}
         >
           {/* Logo */}
           <motion.div 
             initial={{ scale: 0.5, opacity: 0 }}
             animate={logoAnimate}
             transition={logoTransition}
-            className="w-32 h-32 bg-white rounded-full flex items-center justify-center shadow-2xl p-2 relative overflow-hidden"
+            className="w-40 h-40 bg-transparent flex items-center justify-center relative overflow-hidden"
           >
             {/* Shimmer sweep */}
             <motion.div 
               animate={{ x: ['-100%', '200%'] }}
               transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
-              className="absolute top-0 bottom-0 w-1/2 bg-gradient-to-r from-transparent via-white/80 to-transparent skew-x-12 z-20"
+              className="absolute top-0 bottom-0 w-1/2 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12 z-20"
             />
             
             <img 

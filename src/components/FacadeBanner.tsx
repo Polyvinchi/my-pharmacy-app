@@ -101,7 +101,8 @@ export default function FacadeBanner({ onShareClick, settings }: FacadeBannerPro
         </div>
 
         <div className={`flex flex-col relative z-20 mt-2 ${settings?.theme_config?.logo_position === "right" ? "items-start" : settings?.theme_config?.logo_position === "left" ? "items-end" : "items-center"}`}>
-          {settings?.theme_config?.show_logo !== false && (<div className={`w-28 h-28 bg-transparent ${settings?.theme_config?.logo_shape || "rounded-full"} mb-3 flex items-center justify-center overflow-hidden border border-white/30`}>
+          {settings?.theme_config?.show_logo !== false && (<div className={`bg-transparent ${settings?.theme_config?.logo_shape || "rounded-full"} flex items-center justify-center overflow-hidden border border-white/30`}
+            style={{ width: `calc(7rem * var(--scale-logo))`, height: `calc(7rem * var(--scale-logo))`, marginBottom: `calc(0.75rem * var(--space-logo))` }}>
             <img src={settings?.logo_url || "/logo.png"} alt="Logo" className="w-full h-full object-contain drop-shadow-md" />
           </div>)}
           

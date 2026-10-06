@@ -16,6 +16,24 @@ export default function ClientApp({ initialData }: { initialData?: any }) {
   const [isShareOpen, setIsShareOpen] = useState(false);
   const [isMapOpen, setIsMapOpen] = useState(false);
 
+  const sizes = initialData?.settings?.sizes || { logo: 100, sections: 100, icons: 100, buttons: 100 };
+  
+  // Element scale = 70% of variation, Spacing scale = 30% of variation
+  const getScale = (percent: number) => 1 + ((percent - 100) / 100) * 0.7;
+  const getSpacing = (percent: number) => 1 + ((percent - 100) / 100) * 0.3;
+
+  const dynamicStyles = {
+    '--scale-logo': getScale(sizes.logo),
+    '--space-logo': getSpacing(sizes.logo),
+    '--scale-sections': getScale(sizes.sections),
+    '--space-sections': getSpacing(sizes.sections),
+    '--scale-icons': getScale(sizes.icons),
+    '--space-icons': getSpacing(sizes.icons),
+    '--scale-buttons': getScale(sizes.buttons),
+    '--space-buttons': getSpacing(sizes.buttons),
+  } as React.CSSProperties;
+
+
   useEffect(() => {
     trackAction('page_view');
   }, []);
@@ -33,7 +51,7 @@ export default function ClientApp({ initialData }: { initialData?: any }) {
   };
 
   return (
-    <div className="min-h-screen bg-transparent flex items-center justify-center p-0 sm:p-4 font-sans text-slate-900 relative">
+    <div style={dynamicStyles} className="min-h-screen bg-transparent flex items-center justify-center p-0 sm:p-4 font-sans text-slate-900 relative">
       
       {tourStep === 'splash' && <SplashScreen onComplete={startTour} settings={initialData?.settings} />}
 
@@ -45,7 +63,7 @@ export default function ClientApp({ initialData }: { initialData?: any }) {
         <ActionGrid activeTourStep={tourStep} onMapClick={() => setIsMapOpen(true)} settings={initialData?.settings} services={initialData?.services} sections={initialData?.sections} />
 
         {/* Fixed Bottom Button (Offers) */}
-        <div className="absolute bottom-0 left-0 w-full px-3 pt-1 pb-2 z-50">
+        <div className="absolute bottom-0 left-0 w-full px-3 pt-1 pb-2 z-50" style={{ transform: `scale(var(--scale-buttons))`, transformOrigin: "bottom center", paddingBottom: `calc(0.5rem * var(--space-buttons))` }}>
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}

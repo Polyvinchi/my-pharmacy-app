@@ -68,7 +68,7 @@ export default function ActionGrid({ activeTourStep, onMapClick, settings, servi
   };
 
   // cell with no bg, no border - vivid solid color on hover
-  const cell = () => 'flex flex-col items-center justify-center bg-transparent rounded-xl p-1 group/btn transition-all h-[72px] cursor-pointer hover:bg-blue-500/15 active:bg-blue-500/15 hover:border-2 hover:border-blue-500 active:border-2 active:border-blue-500 border-2 border-transparent';
+  const cell = () => 'flex flex-col items-center justify-center bg-transparent rounded-xl group/btn transition-all cursor-pointer hover:bg-blue-500/15 active:bg-blue-500/15 hover:border-2 hover:border-blue-500 active:border-2 active:border-blue-500 border-2 border-transparent';
   const svcIcon = 'text-blue-500 group-hover/btn:scale-110 group-active/btn:scale-110 transition-all';
   const svcLabel = 'text-[9px] font-bold text-slate-500 whitespace-nowrap mt-0.5';
 
@@ -140,17 +140,17 @@ export default function ActionGrid({ activeTourStep, onMapClick, settings, servi
       <button 
         key={item.id}
         onClick={handleAction}
-        style={{ gridColumn: `span ${colSpan}` }}
-        className={`flex ${layout === 'row' ? 'flex-row-reverse gap-1.5' : 'flex-col gap-1'} items-center justify-center rounded-xl p-2 group/btn hover:bg-slate-50 transition-all ${bgColor} border-2 border-slate-100 hover:border-slate-300 min-h-[58px]`}
+        className={`flex ${layout === 'row' ? 'flex-row-reverse' : 'flex-col'} items-center justify-center rounded-xl group/btn hover:bg-slate-50 transition-all ${bgColor} border-2 border-slate-100 hover:border-slate-300`}
+        style={{ gridColumn: `span ${colSpan}`, minHeight: `calc(58px * var(--scale-sections))`, gap: `calc(0.25rem * var(--space-sections))`, padding: `calc(0.5rem * var(--space-sections))` }}
       >
         {layout === 'row' ? (
           <>
             <span className={`text-[11px] font-bold ${textColor}`}>{item.label}</span>
-            <IconComp size={24} className={`${textColor} group-hover/btn:scale-110 transition-transform`} />
+            <IconComp size={24} className={`${textColor} group-hover/btn:scale-110 transition-transform`} style={{ transform: `scale(var(--scale-icons))` }} />
           </>
         ) : (
           <>
-            <IconComp size={24} className={`${textColor} group-hover/btn:scale-110 transition-transform`} />
+            <IconComp size={24} className={`${textColor} group-hover/btn:scale-110 transition-transform`} style={{ transform: `scale(var(--scale-icons))` }} />
             <span className={`text-[9px] font-bold ${textColor}`}>{item.label}</span>
           </>
         )}
@@ -186,8 +186,8 @@ export default function ActionGrid({ activeTourStep, onMapClick, settings, servi
           <AnimatePresence>
             {activeTourStep === 'services' && (<motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="absolute -top-3.5 right-4 z-50"><div className="text-[10px] font-bold text-blue-700 bg-blue-100 px-3 py-1 rounded-full shadow-md border border-blue-200">خدماتنا الطبية</div></motion.div>)}
           </AnimatePresence>
-          <div className={`w-full bg-white rounded-xl border-2 ${activeTourStep === 'services' ? 'border-blue-300 shadow-lg' : 'border-slate-100 shadow-sm'} p-2 transition-all duration-300`}>
-                          <div className="grid grid-cols-4 gap-1.5">
+          <div className={`w-full bg-white rounded-xl border-2 ${activeTourStep === 'services' ? 'border-blue-300 shadow-lg' : 'border-slate-100 shadow-sm'} transition-all duration-300`} style={{ padding: `calc(0.5rem * var(--space-sections))` }}>
+                          <div className="grid grid-cols-4" style={{ gap: `calc(0.375rem * var(--space-sections))` }}>
                 {(() => {
                   const servicesItems = sections?.find((s: any) => s.section_key === 'services')?.section_items || [];
                   if (servicesItems.length > 0) {
@@ -203,8 +203,8 @@ export default function ActionGrid({ activeTourStep, onMapClick, settings, servi
                       
                       const IconComp = (Icons as any)[svc.icon_name] || Icons.Activity;
                       return (
-                        <button key={svc.id} onTouchStart={() => {}} className={cell()}>
-                          <IconComp size={27} strokeWidth={2} className={svcIcon} />
+                        <button key={svc.id} onTouchStart={() => {}} className={cell()} style={{ height: `calc(72px * var(--scale-sections))`, padding: `calc(0.25rem * var(--space-sections))` }}>
+                          <IconComp size={27} strokeWidth={2} className={svcIcon} style={{ transform: `scale(var(--scale-icons))` }} />
                           <span className={svcLabel}>{svc.label}</span>
                         </button>
                       );

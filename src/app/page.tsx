@@ -65,6 +65,8 @@ export default async function Home() {
       logo_url: pharmacy?.logo_url || null,
       cover_url: pharmacy?.cover_url || null,
       splash_text: pharmacy?.theme_config?.splash_text || pharmacy?.name || 'صيدلية د. ايمان عبد الوهاب | حسن محمد - فيصل',
+      splash_bg_image: pharmacy?.theme_config?.splash_bg_image || null,
+      sizes: pharmacy?.theme_config?.sizes || { logo: 100, sections: 100, icons: 100, buttons: 100 },
       splash_animation: pharmacy?.theme_config?.splash_animation || 'pulse',
       status_mode: pharmacy?.theme_config?.status_mode || 'always_open',
       open_time: pharmacy?.theme_config?.open_time || '09:00',

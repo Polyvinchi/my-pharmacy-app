@@ -39,6 +39,10 @@ export default function ThemeManager({ initialData }: { initialData: any }) {
   const [logoShape, setLogoShape] = useState(initialData.theme_config?.logo_shape || 'rounded-full')
   const [splashLogoUrl, setSplashLogoUrl] = useState(initialData.theme_config?.splash_logo_url || '')
   const [splashBgColor, setSplashBgColor] = useState(initialData.theme_config?.splash_bg_color || '#0D47A1')
+  const [splashBgImage, setSplashBgImage] = useState(initialData.theme_config?.splash_bg_image || '')
+  
+  const defaultSizes = { logo: 100, sections: 100, icons: 100, buttons: 100 };
+  const [sizes, setSizes] = useState(initialData.theme_config?.sizes || defaultSizes);
   const [textColor, setTextColor] = useState(initialData.theme_config?.text_color || '#ffffff')
 
   const [loading, setLoading] = useState(false)
@@ -62,9 +66,11 @@ export default function ThemeManager({ initialData }: { initialData: any }) {
         logo_shape: logoShape,
         splash_logo_url: splashLogoUrl,
         splash_bg_color: splashBgColor,
+          splash_bg_image: splashBgImage,
         text_color: textColor,
         facade_title: facadeTitle,
-        facade_subtitle: facadeSubtitle
+        facade_subtitle: facadeSubtitle,
+          sizes: sizes
       }
       const socialLinks = { 
         ...initialData.social_links, 
@@ -110,36 +116,32 @@ export default function ThemeManager({ initialData }: { initialData: any }) {
 
   return (
     <>
-      {/* Success Toast */}
-      {savedMsg && (
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-emerald-600 text-white px-6 py-3 rounded-2xl shadow-xl font-bold text-sm flex items-center gap-2 animate-bounce-once">
-          <Check size={18} /> تم حفظ الإعدادات بنجاح ✅
-        </div>
-      )}
-      <div className="flex justify-between items-center mb-6">
-        <p className="text-slate-500">إدارة كافة تفاصيل الصيدلية ومعلوماتها وشاشة البداية ومواعيد العمل.</p>
-        <button onClick={async () => {
-          const pass = prompt('تحذير: هذا الإجراء سيمسح بياناتك ويرجع الموقع لحالته الأولى. أدخل الباسورد للتأكيد:');
-          if (pass === 'wer123@#TYXCQ!5550') {
-            if(confirm('هل أنت متأكد تماماً من إرجاع الإعدادات الافتراضية؟')) {
-              await injectPharmacyAndOffers();
-              window.location.reload();
-            }
-          } else if (pass !== null) {
-            alert('كلمة المرور غير صحيحة!');
-          }
-        }} type="button" className="bg-red-50 text-red-600 hover:bg-red-100 px-4 py-2 rounded-lg font-bold transition border border-red-200 shadow-sm flex items-center gap-2">
-          إرجاع الإعدادات الافتراضية
-        </button>
-      </div>
-      
       <form onSubmit={handleSave} className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-8">
-        
         {/* اسم الصيدلية */}
         <div>
-          <label className="block text-sm font-medium mb-2">اسم الصيدلية</label>
+          <label className="block text-sm font-medium mb-2">اسم الصيدلية (الداخلي)</label>
           <input type="text" value={name} onChange={e => setName(e.target.value)} required className="w-full border rounded-lg p-3 outline-none focus:border-blue-500" />
         </div>
+
+        {/* نصوص الواجهة والمتصفح */}
+        <div className="border-t pt-6">
+          <h3 className="text-lg font-bold mb-4 text-slate-700">نصوص الواجهة الرئيسية والمتصفح</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium mb-2">اسم التبويبة في المتصفح (Browser Tab Title)</label>
+              <input type="text" value={tabTitle} onChange={e => setTabTitle(e.target.value)} className="w-full border rounded-lg p-3 outline-none focus:border-blue-500" placeholder="مثال: صيدلية د. إيمان عبد الوهاب | فيصل" />
+            </div>
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium mb-2">العنوان الرئيسي في واجهة الموقع (البانر)</label>
+              <input type="text" value={facadeTitle} onChange={e => setFacadeTitle(e.target.value)} className="w-full border rounded-lg p-3 outline-none focus:border-blue-500" placeholder="مثال: صيدلية د. إيمان عبد الوهاب" />
+            </div>
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium mb-2">الوصف الفرعي في واجهة الموقع (البانر)</label>
+              <input type="text" value={facadeSubtitle} onChange={e => setFacadeSubtitle(e.target.value)} className="w-full border rounded-lg p-3 outline-none focus:border-blue-500" placeholder="مثال: صيدلية متكاملة - عروض حصرية وتوصيل سريع" />
+            </div>
+          </div>
+        </div>
+
 
         {/* حالة الصيدلية ومواعيد العمل */}
         <div className="border-t pt-6 bg-slate-50 -mx-6 px-6 pb-6">
@@ -213,7 +215,11 @@ export default function ThemeManager({ initialData }: { initialData: any }) {
           </div>
           <div className="md:col-span-2">
             <h3 className="text-sm font-bold mb-2">لوجو شاشة البداية (اختياري - إذا كان مختلف عن اللوجو الأساسي)</h3>
-            <ImageUploader onUpload={setSplashLogoUrl} currentImage={splashLogoUrl} label="ارفع لوجو الإنترو" folder="logos" aspect={1} shape="round" />
+            <ImageUploader onUpload={setSplashLogoUrl} currentImage={splashLogoUrl} label="ارفع لوجو الانترو" folder="logos" aspect={1} shape="round" />
+          </div>
+          <div className="md:col-span-2">
+            <h3 className="text-sm font-bold mb-2 mt-4">صورة خلفية الانترو (اختياري - بدل اللون السادة)</h3>
+            <ImageUploader onUpload={setSplashBgImage} currentImage={splashBgImage} label="ارفع خلفية الانترو" folder="covers" aspect={9/16} shape="rect" />
           </div>
         </div>
 
@@ -258,7 +264,46 @@ export default function ThemeManager({ initialData }: { initialData: any }) {
             </div>
           </div>
         </div>
-<div className="border-t pt-6">
+
+        {/* التحكم في الأحجام */}
+        <div className="border-t pt-6">
+          <div className="flex justify-between items-center mb-6">
+            <h3 className="text-lg font-bold text-slate-700">التحكم في أحجام العناصر (تكبير وتصغير)</h3>
+            <button type="button" onClick={() => setSizes(defaultSizes)} className="text-sm text-blue-600 hover:text-blue-800 font-bold px-3 py-1 bg-blue-50 rounded-lg">إعادة للافتراضي</button>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <div className="flex justify-between mb-2">
+                <label className="text-sm font-medium">حجم اللوجو</label>
+                <span className="text-sm font-bold text-blue-600">{sizes.logo}%</span>
+              </div>
+              <input type="range" min="50" max="150" value={sizes.logo} onChange={e => setSizes({...sizes, logo: parseInt(e.target.value)})} className="w-full accent-blue-600" />
+            </div>
+            <div>
+              <div className="flex justify-between mb-2">
+                <label className="text-sm font-medium">حجم الأقسام (الخدمات)</label>
+                <span className="text-sm font-bold text-blue-600">{sizes.sections}%</span>
+              </div>
+              <input type="range" min="50" max="150" value={sizes.sections} onChange={e => setSizes({...sizes, sections: parseInt(e.target.value)})} className="w-full accent-blue-600" />
+            </div>
+            <div>
+              <div className="flex justify-between mb-2">
+                <label className="text-sm font-medium">حجم الأيقونات (داخل الأقسام)</label>
+                <span className="text-sm font-bold text-blue-600">{sizes.icons}%</span>
+              </div>
+              <input type="range" min="50" max="150" value={sizes.icons} onChange={e => setSizes({...sizes, icons: parseInt(e.target.value)})} className="w-full accent-blue-600" />
+            </div>
+            <div>
+              <div className="flex justify-between mb-2">
+                <label className="text-sm font-medium">حجم الزر الرئيسي (العروض/الروشتة)</label>
+                <span className="text-sm font-bold text-blue-600">{sizes.buttons}%</span>
+              </div>
+              <input type="range" min="50" max="150" value={sizes.buttons} onChange={e => setSizes({...sizes, buttons: parseInt(e.target.value)})} className="w-full accent-blue-600" />
+            </div>
+          </div>
+        </div>
+
+        <div className="border-t pt-6">
           <button type="submit" disabled={loading} className="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold flex items-center gap-2 hover:bg-blue-700 transition-colors disabled:opacity-50">
             {loading ? <Loader2 className="animate-spin" size={20} /> : <Save size={20} />}
             حفظ التغييرات
