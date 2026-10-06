@@ -128,8 +128,13 @@ export default function ActionGrid({ activeTourStep, onMapClick, settings, servi
         alert('تم النسخ: ' + val);
       } else if (item.action_type === 'link' || ['FacebookNative', 'InstagramNative'].includes(item.icon_name)) {
         trackAction(item.icon_name + '_click');
-        if (val?.startsWith('tel:')) window.location.href = val;
-        else window.open(val, '_blank');
+        if (val === 'map' || val === '/map') {
+          onMapClick();
+        } else if (val?.startsWith('tel:')) {
+          window.location.href = val;
+        } else {
+          window.open(val, '_blank');
+        }
       } else if (item.action_type === 'talabat' || ['TalabatNative', 'Talabat'].includes(item.icon_name)) {
         trackAction('talabat_click');
         window.open(val, '_blank');
@@ -289,10 +294,23 @@ export default function ActionGrid({ activeTourStep, onMapClick, settings, servi
                 <div className="w-8 h-8 group-hover/btn:scale-110 group-active/btn:scale-110 transition-transform"><svg viewBox="0 0 24 24" className="w-full h-full"><defs><linearGradient id="ig3" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stopColor="#f09433" /><stop offset="50%" stopColor="#dc2743" /><stop offset="100%" stopColor="#bc1888" /></linearGradient></defs><rect width="24" height="24" rx="6" fill="url(#ig3)" /><path fill="white" d="M12 7.7a4.3 4.3 0 1 0 0 8.6 4.3 4.3 0 0 0 0-8.6zm0 7.1a2.8 2.8 0 1 1 0-5.6 2.8 2.8 0 0 1 0 5.6z" /><circle fill="white" cx="17.3" cy="6.7" r="1.1" /><path fill="white" d="M17.3 3.5H6.7A3.2 3.2 0 0 0 3.5 6.7v10.6A3.2 3.2 0 0 0 6.7 20.5h10.6a3.2 3.2 0 0 0 3.2-3.2V6.7a3.2 3.2 0 0 0-3.2-3.2zM19 17.3a1.7 1.7 0 0 1-1.7 1.7H6.7A1.7 1.7 0 0 1 5 17.3V6.7A1.7 1.7 0 0 1 6.7 5h10.6a1.7 1.7 0 0 1 1.7 1.7v10.6z" /></svg></div>
                 <span className="text-[9px] font-bold text-slate-500 ">{getItemValue('socials', 'InstagramNative', 'إنستا', 'label')}</span>
               </a>
-              <a href={getItemValue('socials', 'GoogleMapsNative', s?.social_links?.location_url || 'https://maps.google.com', 'action_value')} target="_blank" onClick={() => trackAction('location_click')} onTouchStart={() => {}} className="flex flex-col items-center justify-center gap-1 bg-transparent rounded-xl p-1 group/btn hover:border-[#EA4335] active:border-[#EA4335] hover:bg-[#EA4335]/10 active:bg-[#EA4335]/10 transition-all h-[58px] bg-white border-2 border-slate-100">
-                <div className="group-hover/btn:scale-110 group-active/btn:scale-110 transition-transform"><svg viewBox="0 0 24 24" className="w-8 h-8"><path fill="#EA4335" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" /></svg></div>
-                <span className="text-[9px] font-bold text-slate-500 ">الموقع</span>
-              </a>
+              {(() => {
+                const mapVal = getItemValue('socials', 'GoogleMapsNative', s?.social_links?.location_url || 'https://maps.google.com', 'action_value');
+                if (mapVal === 'map' || mapVal === '/map') {
+                  return (
+                    <button onClick={() => { trackAction('location_click'); onMapClick(); }} onTouchStart={() => {}} className="flex flex-col items-center justify-center gap-1 bg-transparent rounded-xl p-1 group/btn hover:border-[#EA4335] active:border-[#EA4335] hover:bg-[#EA4335]/10 active:bg-[#EA4335]/10 transition-all h-[58px] bg-white border-2 border-slate-100">
+                      <div className="group-hover/btn:scale-110 group-active/btn:scale-110 transition-transform"><svg viewBox="0 0 24 24" className="w-8 h-8"><path fill="#EA4335" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" /></svg></div>
+                      <span className="text-[9px] font-bold text-slate-500 ">الموقع</span>
+                    </button>
+                  );
+                }
+                return (
+                  <a href={mapVal} target="_blank" onClick={() => trackAction('location_click')} onTouchStart={() => {}} className="flex flex-col items-center justify-center gap-1 bg-transparent rounded-xl p-1 group/btn hover:border-[#EA4335] active:border-[#EA4335] hover:bg-[#EA4335]/10 active:bg-[#EA4335]/10 transition-all h-[58px] bg-white border-2 border-slate-100">
+                    <div className="group-hover/btn:scale-110 group-active/btn:scale-110 transition-transform"><svg viewBox="0 0 24 24" className="w-8 h-8"><path fill="#EA4335" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" /></svg></div>
+                    <span className="text-[9px] font-bold text-slate-500 ">الموقع</span>
+                  </a>
+                );
+              })()}
               <button onClick={handleInstallClick} onTouchStart={() => {}} className="flex flex-col items-center justify-center gap-1 bg-transparent rounded-xl p-1 group/btn hover:border-slate-400 active:border-slate-400 hover:bg-slate-500/10 active:bg-slate-500/10 transition-all h-[58px] relative bg-white border-2 border-slate-100">
                 <div className="absolute top-1 right-1 w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse" />
                 <div className="w-6 h-6 group-hover/btn:scale-110 group-active/btn:scale-110 transition-transform "><img src="/logo.png" alt="Logo" className="w-full h-full object-contain" /></div>
