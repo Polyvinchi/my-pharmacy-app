@@ -48,7 +48,7 @@ export default function FacadeBanner({ onShareClick, settings }: FacadeBannerPro
   
   return (
     <div className="w-full relative z-30 shrink-0">
-      <div className="pt-8 pb-6 px-4 relative overflow-hidden rounded-b-[1.25rem] shadow-md border-b border-white/20">
+      <div className="pt-16 pb-6 px-4 relative overflow-hidden rounded-b-[1.25rem] shadow-md border-b border-white/20">
         
         {/* Background Image or Color */}
         {settings?.cover_url ? (
@@ -100,9 +100,9 @@ export default function FacadeBanner({ onShareClick, settings }: FacadeBannerPro
           </button>
         </div>
 
-        <div className={`flex flex-col relative z-20 mt-4 ${settings?.theme_config?.logo_position === "right" ? "items-start" : settings?.theme_config?.logo_position === "left" ? "items-end" : "items-center"}`}>
-          {settings?.theme_config?.show_logo !== false && (<div className={`w-24 h-24 bg-white/95 backdrop-blur-sm ${settings?.theme_config?.logo_shape || "rounded-full"} shadow-xl mb-3 flex items-center justify-center overflow-hidden p-2 border-2 border-white/60`}>
-            <img src={settings?.logo_url || "/logo.png"} alt="Logo" className="w-[85%] h-[85%] object-contain drop-shadow-sm" />
+        <div className={`flex flex-col relative z-20 mt-2 ${settings?.theme_config?.logo_position === "right" ? "items-start" : settings?.theme_config?.logo_position === "left" ? "items-end" : "items-center"}`}>
+          {settings?.theme_config?.show_logo !== false && (<div className={`w-28 h-28 bg-transparent ${settings?.theme_config?.logo_shape || "rounded-full"} mb-3 flex items-center justify-center overflow-hidden border border-white/30`}>
+            <img src={settings?.logo_url || "/logo.png"} alt="Logo" className="w-full h-full object-contain drop-shadow-md" />
           </div>)}
           
           <div className={`w-full ${settings?.theme_config?.logo_position === "right" ? "text-right" : settings?.theme_config?.logo_position === "left" ? "text-left" : "text-center"}`}>
