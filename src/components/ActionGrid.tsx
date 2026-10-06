@@ -121,7 +121,7 @@ export default function ActionGrid({ activeTourStep, onMapClick, settings, servi
 
       if (item.action_type === 'whatsapp' || item.icon_name === 'WhatsappNative') {
         trackAction('whatsapp_click');
-        window.open(https://wa.me/, '_blank');
+        window.open('https://wa.me/' + val.replace(/\D/g, ''), '_blank');
       } else if (item.action_type === 'copy' || item.icon_name === 'InstapayNative' || item.icon_name === 'Wallet') {
         trackAction(item.icon_name + '_copy');
         navigator.clipboard.writeText(val);
@@ -138,28 +138,6 @@ export default function ActionGrid({ activeTourStep, onMapClick, settings, servi
         onMapClick();
       } else if (item.action_type === 'modal' && val === 'install') {
         handleInstallClick();
-      }
-      return;
-        trackAction('whatsapp_click');
-        window.open(`https://wa.me/${item.action_value}`, '_blank');
-      } else if (item.action_type === 'link') {
-        trackAction(item.icon_name + '_click');
-        if (item.action_value?.startsWith('tel:')) {
-          window.location.href = item.action_value;
-        } else {
-          window.open(item.action_value, '_blank');
-        }
-      } else if (item.action_type === 'modal' && item.action_value === 'map') {
-        trackAction('location_click');
-        onMapClick();
-      } else if (item.action_type === 'modal' && item.action_value === 'install') {
-        handleInstallClick();
-      } else if (item.action_type === 'copy') {
-        navigator.clipboard.writeText(item.action_value);
-        alert('تم النسخ: ' + item.action_value);
-      } else if (item.action_type === 'talabat') {
-        trackAction('talabat_click');
-        window.open(item.action_value, '_blank');
       }
     };
 

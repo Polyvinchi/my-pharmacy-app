@@ -338,6 +338,7 @@ export default function ThemeManager({ initialData }: { initialData: any }) {
             <ImageUploader onUpload={setSplashBgImage} currentImage={splashBgImage} label="ارفع خلفية الانترو" folder="covers" aspect={9/16} shape="rect" />
           </div>
         </div>
+        </div>
 
         {/* إعدادات اللوجو والصور */}
         <div className="border-t pt-6">

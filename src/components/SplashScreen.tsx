@@ -27,7 +27,7 @@ export default function SplashScreen({ onComplete, settings }: { onComplete: () 
   const bgColor = settings?.theme_config?.splash_bg_color || settings?.theme_config?.primaryColor || "#0D47A1";
   const bgImage = settings?.theme_config?.splash_bg_image || settings?.splash_bg_image;
   const animationType = settings?.theme_config?.splash_animation || settings?.splash_animation || "pulse"; // pulse, spin, bounce, up, down, left, right
-  const logoShape = settings?.theme_config?.splash_logo_shape || "rounded-3xl";
+  const logoShape = settings?.theme_config?.splash_logo_shape || "rounded-full";
 
   // Determine Logo Animation
   let logoAnimate: any = { scale: 1, opacity: 1, x: 0, y: 0 };
@@ -73,7 +73,7 @@ export default function SplashScreen({ onComplete, settings }: { onComplete: () 
             initial={{ scale: 0.5, opacity: 0 }}
             animate={logoAnimate}
             transition={logoTransition}
-            className={`w-40 h-40 bg-transparent flex items-center justify-center relative overflow-hidden ${logoShape}`}
+            className={`w-40 h-40 bg-white shadow-xl flex items-center justify-center relative overflow-hidden ${logoShape} p-1`}
           >
             {/* Shimmer sweep */}
             <motion.div 
@@ -85,7 +85,7 @@ export default function SplashScreen({ onComplete, settings }: { onComplete: () 
             <img 
               src={splashLogo} 
               alt="Logo" 
-              className="w-full h-full object-contain z-10 p-1"
+              className={`w-full h-full object-contain z-10 ${logoShape}`}
             />
           </motion.div>
           
