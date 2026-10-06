@@ -167,7 +167,7 @@ export default function SectionsManager({ initialSections, initialItems, canEdit
     <div className="space-y-6 pb-28">
 
       {/* ── Floating Save Bar (shows only when there are pending changes) ── */}
-      {hasChanges && (
+      {hasChanges && canEdit && (
         <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-sm">
           <div className="bg-slate-900 text-white rounded-2xl shadow-2xl px-5 py-3 flex items-center justify-between gap-4 border border-slate-700">
             <span className="text-sm font-bold">⚠️ يوجد تعديلات لم تُحفظ</span>
@@ -198,9 +198,11 @@ export default function SectionsManager({ initialSections, initialItems, canEdit
       )}
 
       <div className="bg-white p-4 sm:p-6 rounded-2xl shadow-sm border border-slate-100">
-        <p className="text-slate-500 text-sm mb-5">
-          اضغط على <Eye size={14} className="inline" /> لإخفاء/إظهار أي قسم أو عنصر، ثم اضغط <strong>حفظ التعديلات</strong>.
-        </p>
+        {canEdit && (
+          <p className="text-slate-500 text-sm mb-5">
+            اضغط على <Eye size={14} className="inline" /> لإخفاء/إظهار أي قسم أو عنصر، ثم اضغط <strong>حفظ التعديلات</strong>.
+          </p>
+        )}
 
         <div className="space-y-3">
           {sections.map((sec) => {
@@ -240,16 +242,18 @@ export default function SectionsManager({ initialSections, initialItems, canEdit
                   </button>
 
                   {/* Section visibility toggle button */}
-                  <button
-                    onClick={() => toggleSectionVisibility(sec.id)}
-                    className={`shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-lg font-bold text-xs sm:text-sm transition-all border-2 ${
-                      sec.is_visible
-                        ? 'bg-blue-50 border-blue-200 text-blue-700 hover:bg-blue-100'
-                        : 'bg-slate-100 border-slate-200 text-slate-500 hover:bg-slate-200'
-                    }`}
-                  >
-                    {sec.is_visible ? <><Check size={14} /> ظاهر</> : <><X size={14} /> مخفي</>}
-                  </button>
+                  {canEdit && (
+                    <button
+                      onClick={() => toggleSectionVisibility(sec.id)}
+                      className={`shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-lg font-bold text-xs sm:text-sm transition-all border-2 ${
+                        sec.is_visible
+                          ? 'bg-blue-50 border-blue-200 text-blue-700 hover:bg-blue-100'
+                          : 'bg-slate-100 border-slate-200 text-slate-500 hover:bg-slate-200'
+                      }`}
+                    >
+                      {sec.is_visible ? <><Check size={14} /> ظاهر</> : <><X size={14} /> مخفي</>}
+                    </button>
+                  )}
                 </div>
 
                 {/* Expanded: items list */}
@@ -257,12 +261,14 @@ export default function SectionsManager({ initialSections, initialItems, canEdit
                   <div className="border-t p-3 bg-slate-50/60 space-y-2">
                     <div className="flex justify-between items-center mb-2">
                       <span className="text-xs font-bold text-slate-500">العناصر الداخلية ({secItems.length})</span>
-                      <button
-                        onClick={() => openItemModal(sec.id)}
-                        className="text-xs bg-blue-600 text-white px-3 py-1.5 rounded-lg flex items-center gap-1 hover:bg-blue-700 transition"
-                      >
-                        <Plus size={13} /> إضافة زر
-                      </button>
+                      {canEdit && (
+                        <button
+                          onClick={() => openItemModal(sec.id)}
+                          className="text-xs bg-blue-600 text-white px-3 py-1.5 rounded-lg flex items-center gap-1 hover:bg-blue-700 transition"
+                        >
+                          <Plus size={13} /> إضافة زر
+                        </button>
+                      )}
                     </div>
 
                     {secItems.length === 0 ? (
@@ -295,31 +301,33 @@ export default function SectionsManager({ initialSections, initialItems, canEdit
                           </div>
 
                           {/* Item action buttons */}
-                          <div className="flex items-center gap-1 shrink-0">
-                            <button
-                              onClick={() => toggleItemVisibility(item.id)}
-                              title={item.is_visible !== false ? 'اخفِ' : 'أظهر'}
-                              className={`p-1.5 rounded-lg transition border ${
-                                item.is_visible !== false
-                                  ? 'border-transparent text-slate-300 hover:text-blue-600 hover:border-blue-200 hover:bg-blue-50'
-                                  : 'border-orange-200 text-orange-500 bg-orange-50'
-                              }`}
-                            >
-                              {item.is_visible !== false ? <Eye size={14} /> : <EyeOff size={14} />}
-                            </button>
-                            <button
-                              onClick={() => openItemModal(sec.id, item)}
-                              className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-lg transition border border-transparent hover:border-blue-200"
-                            >
-                              <Edit2 size={14} />
-                            </button>
-                            <button
-                              onClick={() => handleDeleteItem(item.id)}
-                              className="p-1.5 text-red-500 hover:bg-red-50 rounded-lg transition border border-transparent hover:border-red-200"
-                            >
-                              <Trash2 size={14} />
-                            </button>
-                          </div>
+                          {canEdit && (
+                            <div className="flex items-center gap-1 shrink-0">
+                              <button
+                                onClick={() => toggleItemVisibility(item.id)}
+                                title={item.is_visible !== false ? 'اخفِ' : 'أظهر'}
+                                className={`p-1.5 rounded-lg transition border ${
+                                  item.is_visible !== false
+                                    ? 'border-transparent text-slate-300 hover:text-blue-600 hover:border-blue-200 hover:bg-blue-50'
+                                    : 'border-orange-200 text-orange-500 bg-orange-50'
+                                }`}
+                              >
+                                {item.is_visible !== false ? <Eye size={14} /> : <EyeOff size={14} />}
+                              </button>
+                              <button
+                                onClick={() => openItemModal(sec.id, item)}
+                                className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-lg transition border border-transparent hover:border-blue-200"
+                              >
+                                <Edit2 size={14} />
+                              </button>
+                              <button
+                                onClick={() => handleDeleteItem(item.id)}
+                                className="p-1.5 text-red-500 hover:bg-red-50 rounded-lg transition border border-transparent hover:border-red-200"
+                              >
+                                <Trash2 size={14} />
+                              </button>
+                            </div>
+                          )}
                         </div>
                       ))
                     )}
