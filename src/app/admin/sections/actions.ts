@@ -1,4 +1,5 @@
 "use server"
+import { requirePermission } from "@/utils/rbac"
 import { createClient } from "@/utils/supabase/server"
 import { revalidatePath } from "next/cache"
 

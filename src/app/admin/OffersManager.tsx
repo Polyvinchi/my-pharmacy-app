@@ -135,7 +135,7 @@ export default function OffersManager({ initialOffers, canEdit = true }: { initi
         <h3 className="text-xl font-black text-slate-800 flex items-center gap-2">
           إدارة العروض <span className="bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full text-sm">{initialOffers.length}</span>
         </h3>
-        <button onClick={openAddModal} className="bg-blue-600 text-white px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 hover:bg-blue-700 transition shadow-sm active:scale-95">
+        {canEdit && <button onClick={openAddModal} className="bg-blue-600 text-white px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 hover:bg-blue-700 transition shadow-sm active:scale-95">
           <Plus size={20} /> إضافة عرض جديد
         </button>}
       </div>
@@ -184,7 +184,7 @@ export default function OffersManager({ initialOffers, canEdit = true }: { initi
                 </div>
                 
                 <div className="flex justify-end gap-2 mt-3 border-t pt-3">
-                  <button onClick={() => handleEditClick(offer)} className="flex-1 text-xs text-slate-600 bg-slate-50 border border-slate-200 hover:bg-slate-100 py-1.5 rounded-lg transition font-bold active:scale-95">
+                  {canEdit && <button onClick={() => handleEditClick(offer)} className="flex-1 text-xs text-slate-600 bg-slate-50 border border-slate-200 hover:bg-slate-100 py-1.5 rounded-lg transition font-bold active:scale-95">
                     تعديل
                   </button>}
                   {canEdit && <button onClick={() => handleDelete(offer.id)} className="flex-1 text-xs text-red-600 bg-red-50 hover:bg-red-100 py-1.5 rounded-lg transition font-bold active:scale-95">
@@ -201,7 +201,7 @@ export default function OffersManager({ initialOffers, canEdit = true }: { initi
         <div className="text-center py-20 bg-slate-50 border border-dashed border-slate-200 rounded-2xl">
           <Package2 size={48} className="mx-auto text-slate-300 mb-4" />
           <h3 className="text-lg font-bold text-slate-500 mb-2">لا توجد عروض حالياً</h3>
-          <button onClick={openAddModal} className="text-blue-600 font-bold hover:underline">أضف عرضك الأول الآن</button>
+          {canEdit && <button onClick={openAddModal} className="text-blue-600 font-bold hover:underline">أضف عرضك الأول الآن</button>}
         </div>
       )}
 
