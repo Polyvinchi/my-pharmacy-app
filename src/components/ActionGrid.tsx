@@ -62,8 +62,6 @@ export default function ActionGrid({ activeTourStep, onMapClick, settings, servi
     navigator.clipboard.writeText(num).then(() => {
       setToast(type === 'instapay' ? `تم نسخ رقم إنستاباي ${num} ✅` : `تم نسخ محفظة كاش ${num} ✅`);
       setTimeout(() => setToast(null), 2500);
-      if (type === 'instapay') setTimeout(() => { try { window.location.href = 'instapay://'; } catch(e){} }, 1000);
-      else setTimeout(() => { window.location.href = `tel:${num}`; }, 1000);
     });
   };
 
@@ -112,7 +110,36 @@ export default function ActionGrid({ activeTourStep, onMapClick, settings, servi
     const bgColor = item.style_config?.bg || 'bg-white';
 
     const handleAction = () => {
-      if (item.action_type === 'whatsapp') {
+      let val = item.action_value;
+      if (item.icon_name === 'WhatsappNative' || item.action_type === 'whatsapp') val = s?.social_links?.whatsapp || val;
+      if (item.icon_name === 'FacebookNative') val = s?.social_links?.facebook || val;
+      if (item.icon_name === 'InstagramNative') val = s?.social_links?.instagram || val;
+      if (item.icon_name === 'TalabatNative' || item.icon_name === 'Talabat') val = s?.social_links?.talabat || val;
+      if (item.icon_name === 'InstapayNative') val = s?.social_links?.instapay || val;
+      if (item.icon_name === 'Wallet') val = s?.social_links?.wallet || val;
+      if (item.icon_name === 'Phone' || (item.action_type === 'link' && val?.startsWith('tel:'))) val = 'tel:' + (s?.social_links?.phone || val?.replace('tel:', ''));
+
+      if (item.action_type === 'whatsapp' || item.icon_name === 'WhatsappNative') {
+        trackAction('whatsapp_click');
+        window.open(https://wa.me/, '_blank');
+      } else if (item.action_type === 'copy' || item.icon_name === 'InstapayNative' || item.icon_name === 'Wallet') {
+        trackAction(item.icon_name + '_copy');
+        navigator.clipboard.writeText(val);
+        alert('تم النسخ: ' + val);
+      } else if (item.action_type === 'link' || ['FacebookNative', 'InstagramNative'].includes(item.icon_name)) {
+        trackAction(item.icon_name + '_click');
+        if (val?.startsWith('tel:')) window.location.href = val;
+        else window.open(val, '_blank');
+      } else if (item.action_type === 'talabat' || ['TalabatNative', 'Talabat'].includes(item.icon_name)) {
+        trackAction('talabat_click');
+        window.open(val, '_blank');
+      } else if (item.action_type === 'modal' && val === 'map') {
+        trackAction('location_click');
+        onMapClick();
+      } else if (item.action_type === 'modal' && val === 'install') {
+        handleInstallClick();
+      }
+      return;
         trackAction('whatsapp_click');
         window.open(`https://wa.me/${item.action_value}`, '_blank');
       } else if (item.action_type === 'link') {
@@ -194,7 +221,7 @@ export default function ActionGrid({ activeTourStep, onMapClick, settings, servi
                     return servicesItems.filter((s: any) => s.is_visible !== false).sort((a: any, b: any) => (a.sort_order || 0) - (b.sort_order || 0)).map((svc: any) => {
                       if (svc.icon_name?.toLowerCase() === 'talabatnative' || svc.icon_name?.toLowerCase() === 'talabat') {
                         return (
-                          <a key={svc.id} href={svc.action_value || "https://www.talabat.com"} target="_blank" onClick={() => trackAction('talabat_click')} onTouchStart={() => {}} className="flex flex-col items-center justify-center bg-transparent rounded-xl p-1.5 group/btn transition-all h-[72px] cursor-pointer hover:bg-[#FF5A00]/15 active:bg-[#FF5A00]/15 border-2 border-transparent hover:border-[#FF5A00] active:border-[#FF5A00]">
+                          <a key={svc.id} href={s?.social_links?.talabat || svc.action_value || "https://www.talabat.com"} target="_blank" onClick={() => trackAction('talabat_click')} onTouchStart={() => {}} className="flex flex-col items-center justify-center bg-transparent rounded-xl p-1.5 group/btn transition-all h-[72px] cursor-pointer hover:bg-[#FF5A00]/15 active:bg-[#FF5A00]/15 border-2 border-transparent hover:border-[#FF5A00] active:border-[#FF5A00]">
                             <div className="w-9 h-9 flex items-center justify-center mb-0.5 group-hover/btn:scale-110 group-active/btn:scale-110 transition-transform"><div className="bg-[#FF5A00] text-white rounded-md w-10 h-10 flex items-center justify-center font-black text-[10px] italic">talabat</div></div>
                             <span className="text-[9px] font-bold text-slate-500 whitespace-nowrap mt-0.5 group-hover/btn:text-white group-active/btn:text-white transition-colors">{svc.label}</span>
                           </a>
@@ -260,27 +287,27 @@ export default function ActionGrid({ activeTourStep, onMapClick, settings, servi
           </AnimatePresence>
           <div className={`w-full bg-white rounded-xl border-2 ${activeTourStep === 'socials' ? 'border-[#5D9CFF] shadow-lg' : 'border-slate-100 shadow-sm'} p-2 pt-3 transition-all duration-300`}>
             <div className="grid grid-cols-3 gap-1.5 mb-1.5">
-              <a href={`tel:${getItemValue('socials', 'Phone', s?.social_links?.phone || '01000000000', 'action_value').replace('tel:', '')}`} onClick={() => trackAction('call_mobile')} onTouchStart={() => {}} className="flex flex-row-reverse items-center justify-center gap-1.5 bg-transparent rounded-xl p-2 group/subbtn hover:border-blue-500 active:border-blue-500 hover:bg-blue-500/10 active:bg-blue-500/10 transition-all h-12 bg-white border-2 border-slate-100">
+              <a href={`tel:${(s?.social_links?.phone || getItemValue('socials', 'Phone', '01000000000', 'action_value')).replace('tel:', '')}`} onClick={() => trackAction('call_mobile')} onTouchStart={() => {}} className="flex flex-row-reverse items-center justify-center gap-1.5 bg-transparent rounded-xl p-2 group/subbtn hover:border-blue-500 active:border-blue-500 hover:bg-blue-500/10 active:bg-blue-500/10 transition-all h-12 bg-white border-2 border-slate-100">
                 <span className="text-[11px] font-bold text-blue-600 ">{getItemValue('socials', 'Phone', 'موبايل', 'label')}</span>
                 <Phone size={24} className="text-blue-500  group-hover/subbtn:scale-110 group-active/subbtn:scale-110 transition-all" />
               </a>
-              <a href={`https://wa.me/${getItemValue('socials', 'WhatsappNative', s?.whatsapp_number || '201000000000', 'action_value')}`} target="_blank" onClick={() => trackAction('whatsapp_click')} onTouchStart={() => {}} className="flex flex-row-reverse items-center justify-center gap-1.5 bg-transparent rounded-xl p-2 group/subbtn hover:border-[#25D366] active:border-[#25D366] hover:bg-[#25D366]/10 active:bg-[#25D366]/10 transition-all h-12 bg-white border-2 border-slate-100">
+              <a href={`https://wa.me/${(s?.social_links?.whatsapp || getItemValue('socials', 'WhatsappNative', '201000000000', 'action_value'))}`} target="_blank" onClick={() => trackAction('whatsapp_click')} onTouchStart={() => {}} className="flex flex-row-reverse items-center justify-center gap-1.5 bg-transparent rounded-xl p-2 group/subbtn hover:border-[#25D366] active:border-[#25D366] hover:bg-[#25D366]/10 active:bg-[#25D366]/10 transition-all h-12 bg-white border-2 border-slate-100">
                 <span className="text-[11px] font-bold text-green-700 ">{getItemValue('socials', 'WhatsappNative', 'واتساب', 'label')}</span>
                 <div className="w-6 h-6 shrink-0 group-hover/subbtn:scale-110 group-active/subbtn:scale-110 transition-transform">
                   <svg viewBox="0 0 175.216 175.552" className="w-full h-full"><path fill="#25D366" d="M87.608 0C39.254 0 0 39.254 0 87.608c0 15.484 4.069 29.992 11.191 42.534L0 175.552l46.849-11.023C58.86 171.5 72.803 175.216 87.608 175.216c48.354 0 87.608-39.254 87.608-87.608S135.962 0 87.608 0z"/><path fill="#FEFEFE" d="M130.6 113.2c-1.9 5.4-9.4 9.9-15.5 11.2-4.1.9-9.5 1.6-27.6-5.9-23.2-9.7-38.1-33.3-39.3-34.8-1.2-1.6-9.7-12.9-9.7-24.6 0-11.7 6.1-17.4 8.3-19.8 1.9-2.1 5-3.1 8-3.1.9 0 1.8 0 2.6.1 2.3.1 3.4.2 4.9 3.8 1.9 4.5 6.5 16.2 7.1 17.4.6 1.2 1.2 2.8.3 4.4-.8 1.7-1.5 2.4-2.7 3.8-1.2 1.4-2.3 2.4-3.5 3.9-1.1 1.2-2.3 2.6-1 4.8 1.3 2.2 5.8 9.6 12.5 15.5 8.6 7.7 15.8 10.1 18.2 11.2 1.8.8 3.9.6 5.3-.9 1.7-1.9 3.8-5.1 5.9-8.2 1.5-2.2 3.4-2.5 5.4-1.7 2 .8 12.8 6 15 7.1 2.2 1 3.7 1.5 4.2 2.5.6.9.6 5.3-1.3 10.6z"/></svg>
                 </div>
               </a>
-              <a href={`tel:${getItemValue('socials', 'Phone', s?.social_links?.landline || '0220000000', 'action_value', 2).replace('tel:', '')}`} onClick={() => trackAction('call_landline')} onTouchStart={() => {}} className="flex flex-row-reverse items-center justify-center gap-1.5 bg-transparent rounded-xl p-2 group/subbtn hover:border-slate-400 active:border-slate-400 hover:bg-slate-500/10 active:bg-slate-500/10 transition-all h-12 bg-white border-2 border-slate-100">
+              <a href={`tel:${(s?.social_links?.landline || getItemValue('socials', 'Phone', '0220000000', 'action_value', 2)).replace('tel:', '')}`} onClick={() => trackAction('call_landline')} onTouchStart={() => {}} className="flex flex-row-reverse items-center justify-center gap-1.5 bg-transparent rounded-xl p-2 group/subbtn hover:border-slate-400 active:border-slate-400 hover:bg-slate-500/10 active:bg-slate-500/10 transition-all h-12 bg-white border-2 border-slate-100">
                 <span className="text-[11px] font-bold text-slate-600 ">{getItemValue('socials', 'Phone', 'أرضي', 'label', 2)}</span>
                 <Phone size={24} className="text-slate-500  group-hover/subbtn:scale-110 group-active/subbtn:scale-110 transition-all" />
               </a>
             </div>
             <div className="grid grid-cols-4 gap-1.5">
-              <a href={getItemValue('socials', 'FacebookNative', s?.social_links?.facebook || 'https://facebook.com', 'action_value')} target="_blank" onClick={() => trackAction('facebook_click')} onTouchStart={() => {}} className="flex flex-col items-center justify-center gap-1 bg-transparent rounded-xl p-1 group/btn hover:border-[#1877F2] active:border-[#1877F2] hover:bg-[#1877F2]/10 active:bg-[#1877F2]/10 transition-all h-[58px] bg-white border-2 border-slate-100">
+              <a href={s?.social_links?.facebook || getItemValue('socials', 'FacebookNative', 'https://facebook.com', 'action_value')} target="_blank" onClick={() => trackAction('facebook_click')} onTouchStart={() => {}} className="flex flex-col items-center justify-center gap-1 bg-transparent rounded-xl p-1 group/btn hover:border-[#1877F2] active:border-[#1877F2] hover:bg-[#1877F2]/10 active:bg-[#1877F2]/10 transition-all h-[58px] bg-white border-2 border-slate-100">
                 <div className="w-8 h-8 group-hover/btn:scale-110 group-active/btn:scale-110 transition-transform"><svg viewBox="0 0 24 24" className="w-full h-full"><circle cx="12" cy="12" r="12" fill="#1877F2" /><path fill="white" d="M15.4 12l.5-3.3h-3.2V6.5c0-.9.4-1.8 1.9-1.8h1.4V1.8S14.8 1.6 13.5 1.6c-2.6 0-4.3 1.6-4.3 4.5v2.6H6.4V12h2.8v8h3.7v-8h2.5z" /></svg></div>
                 <span className="text-[9px] font-bold text-slate-500 ">{getItemValue('socials', 'FacebookNative', 'فيسبوك', 'label')}</span>
               </a>
-              <a href={getItemValue('socials', 'InstagramNative', s?.social_links?.instagram || 'https://instagram.com', 'action_value')} target="_blank" onClick={() => trackAction('instagram_click')} onTouchStart={() => {}} className="flex flex-col items-center justify-center gap-1 bg-transparent rounded-xl p-1 group/btn hover:border-[#cc2366] active:border-[#cc2366] hover:bg-[#cc2366]/10 active:bg-[#cc2366]/10 transition-all h-[58px] bg-white border-2 border-slate-100">
+              <a href={s?.social_links?.instagram || getItemValue('socials', 'InstagramNative', 'https://instagram.com', 'action_value')} target="_blank" onClick={() => trackAction('instagram_click')} onTouchStart={() => {}} className="flex flex-col items-center justify-center gap-1 bg-transparent rounded-xl p-1 group/btn hover:border-[#cc2366] active:border-[#cc2366] hover:bg-[#cc2366]/10 active:bg-[#cc2366]/10 transition-all h-[58px] bg-white border-2 border-slate-100">
                 <div className="w-8 h-8 group-hover/btn:scale-110 group-active/btn:scale-110 transition-transform"><svg viewBox="0 0 24 24" className="w-full h-full"><defs><linearGradient id="ig3" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stopColor="#f09433" /><stop offset="50%" stopColor="#dc2743" /><stop offset="100%" stopColor="#bc1888" /></linearGradient></defs><rect width="24" height="24" rx="6" fill="url(#ig3)" /><path fill="white" d="M12 7.7a4.3 4.3 0 1 0 0 8.6 4.3 4.3 0 0 0 0-8.6zm0 7.1a2.8 2.8 0 1 1 0-5.6 2.8 2.8 0 0 1 0 5.6z" /><circle fill="white" cx="17.3" cy="6.7" r="1.1" /><path fill="white" d="M17.3 3.5H6.7A3.2 3.2 0 0 0 3.5 6.7v10.6A3.2 3.2 0 0 0 6.7 20.5h10.6a3.2 3.2 0 0 0 3.2-3.2V6.7a3.2 3.2 0 0 0-3.2-3.2zM19 17.3a1.7 1.7 0 0 1-1.7 1.7H6.7A1.7 1.7 0 0 1 5 17.3V6.7A1.7 1.7 0 0 1 6.7 5h10.6a1.7 1.7 0 0 1 1.7 1.7v10.6z" /></svg></div>
                 <span className="text-[9px] font-bold text-slate-500 ">{getItemValue('socials', 'InstagramNative', 'إنستا', 'label')}</span>
               </a>

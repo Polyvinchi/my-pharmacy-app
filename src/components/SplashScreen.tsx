@@ -73,7 +73,7 @@ export default function SplashScreen({ onComplete, settings }: { onComplete: () 
             initial={{ scale: 0.5, opacity: 0 }}
             animate={logoAnimate}
             transition={logoTransition}
-            className={`w-40 h-40 bg-white flex items-center justify-center relative overflow-hidden shadow-xl ${logoShape}`}
+            className={`w-40 h-40 bg-transparent flex items-center justify-center relative overflow-hidden ${logoShape}`}
           >
             {/* Shimmer sweep */}
             <motion.div 
