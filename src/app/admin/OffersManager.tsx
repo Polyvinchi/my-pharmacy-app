@@ -26,7 +26,7 @@ export type Offer = {
   sort_order?: number;
 };
 
-export default function OffersManager({ initialOffers }: { initialOffers: Offer[] }) {
+export default function OffersManager({ initialOffers, canEdit = true }: { initialOffers: Offer[], canEdit?: boolean }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -137,7 +137,7 @@ export default function OffersManager({ initialOffers }: { initialOffers: Offer[
         </h3>
         <button onClick={openAddModal} className="bg-blue-600 text-white px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 hover:bg-blue-700 transition shadow-sm active:scale-95">
           <Plus size={20} /> إضافة عرض جديد
-        </button>
+        </button>}
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -186,10 +186,10 @@ export default function OffersManager({ initialOffers }: { initialOffers: Offer[
                 <div className="flex justify-end gap-2 mt-3 border-t pt-3">
                   <button onClick={() => handleEditClick(offer)} className="flex-1 text-xs text-slate-600 bg-slate-50 border border-slate-200 hover:bg-slate-100 py-1.5 rounded-lg transition font-bold active:scale-95">
                     تعديل
-                  </button>
-                  <button onClick={() => handleDelete(offer.id)} className="flex-1 text-xs text-red-600 bg-red-50 hover:bg-red-100 py-1.5 rounded-lg transition font-bold active:scale-95">
+                  </button>}
+                  {canEdit && <button onClick={() => handleDelete(offer.id)} className="flex-1 text-xs text-red-600 bg-red-50 hover:bg-red-100 py-1.5 rounded-lg transition font-bold active:scale-95">
                     حذف
-                  </button>
+                  </button>}
                 </div>
               </div>
             </div>

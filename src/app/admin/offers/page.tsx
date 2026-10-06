@@ -1,8 +1,10 @@
 import { createClient } from "@/utils/supabase/server"
+import { hasPermission } from "@/utils/rbac"
 import OffersManager from "../OffersManager"
 
 export default async function OffersPage() {
   const supabase = await createClient()
+  const canEdit = await hasPermission('offers:edit');
   // Fetch offers
   const { data: offers, error } = await supabase
     .from('offers')
@@ -16,7 +18,7 @@ export default async function OffersPage() {
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold text-slate-800">إدارة العروض</h1>
       </div>
-      <OffersManager initialOffers={offers || []} />
+      <OffersManager initialOffers={offers || []} canEdit={canEdit} />
     </div>
   )
 }

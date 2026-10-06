@@ -157,6 +157,7 @@ export async function injectBeautifulDefaults() {
 }
 
 export async function addSection(display_name: string) {
+  await requirePermission('sections:edit');
   const supabase = await createClient()
   const { data: pharmacy } = await supabase.from('pharmacies').select('id').limit(1).single()
   if (!pharmacy) throw new Error("No pharmacy found")
@@ -178,6 +179,7 @@ export async function addSection(display_name: string) {
 }
 
 export async function deleteSection(id: string) {
+  await requirePermission('sections:edit');
   const supabase = await createClient()
   await supabase.from('page_sections').delete().eq('id', id)
   revalidatePath('/', 'layout')

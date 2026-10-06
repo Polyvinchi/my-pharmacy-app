@@ -1,8 +1,10 @@
 import { createClient } from "@/utils/supabase/server"
+import { hasPermission } from "@/utils/rbac"
 import SectionsManager from "./SectionsManager"
 
 export default async function SectionsPage() {
   const supabase = await createClient()
+  const canEdit = await hasPermission('sections:edit');
   
   // Fetch sections
   const { data: sections } = await supabase
@@ -19,7 +21,7 @@ export default async function SectionsPage() {
   return (
     <div>
       <h1 className="text-2xl font-bold text-slate-800 mb-6">إدارة الأقسام وترتيبها</h1>
-      <SectionsManager initialSections={sections || []} initialItems={items || []} />
+      <SectionsManager initialSections={sections || []} initialItems={items || []} canEdit={canEdit} />
     </div>
   )
 }

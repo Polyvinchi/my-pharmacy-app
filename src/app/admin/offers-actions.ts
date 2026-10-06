@@ -1,9 +1,12 @@
 'use server';
 
+import { requirePermission } from '@/utils/rbac';
 import { createClient } from '@/utils/supabase/server';
 import { revalidatePath } from 'next/cache';
 
 export async function addOffer(formData: FormData) {
+  await requirePermission('offers:edit');
+  await requirePermission('offers:edit');
   const title = formData.get('title') as string;
   const price = formData.get('price') as string;
   const oldPrice = formData.get('oldPrice') as string;
@@ -75,6 +78,8 @@ export async function addOffer(formData: FormData) {
 }
 
 export async function deleteOffer(id: string) {
+  await requirePermission('offers:edit');
+  await requirePermission('offers:edit');
   const supabase = await createClient();
   const { error } = await supabase.from('offers').delete().eq('id', id);
   if (error) return { error: error.message };
@@ -85,6 +90,8 @@ export async function deleteOffer(id: string) {
 }
 
 export async function editOffer(formData: FormData) {
+  await requirePermission('offers:edit');
+  await requirePermission('offers:edit');
   const id = formData.get('id') as string;
   const title = formData.get('title') as string;
   const price = formData.get('price') as string;

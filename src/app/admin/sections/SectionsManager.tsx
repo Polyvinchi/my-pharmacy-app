@@ -6,7 +6,7 @@ import ImageUploader from '@/components/ImageUploader'
 import { saveSectionItem, deleteSectionItem, addSection, deleteSection } from './actions'
 import { clearAppCache } from '../actions'
 
-export default function SectionsManager({ initialSections, initialItems }: { initialSections: any[], initialItems: any[] }) {
+export default function SectionsManager({ initialSections, initialItems, canEdit = true }: { initialSections: any[], initialItems: any[], canEdit?: boolean }) {
   const [sections, setSections] = useState(initialSections)
   const [items, setItems] = useState(initialItems)
   const [saving, setSaving] = useState(false)

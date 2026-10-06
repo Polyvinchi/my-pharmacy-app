@@ -218,6 +218,41 @@ export default function ThemeManager({ initialData }: { initialData: any }) {
           </div>
         </div>
 
+                {/* روابط التواصل */}
+        <div className="border-t pt-6">
+          <h3 className="text-lg font-bold mb-4 text-slate-700">أرقام التواصل والروابط (Contact & Social)</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-sm font-medium mb-1">رقم الموبايل</label>
+              <input type="text" value={phone} onChange={e => setPhone(e.target.value)} className="w-full border rounded-lg p-2.5 outline-none focus:border-blue-500 text-left" dir="ltr" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">واتساب (بالكود الدولي مثل 2010...)</label>
+              <input type="text" value={whatsapp} onChange={e => setWhatsapp(e.target.value)} className="w-full border rounded-lg p-2.5 outline-none focus:border-blue-500 text-left" dir="ltr" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">الرقم الأرضي</label>
+              <input type="text" value={landline} onChange={e => setLandline(e.target.value)} className="w-full border rounded-lg p-2.5 outline-none focus:border-blue-500 text-left" dir="ltr" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">محفظة كاش (فودافون/إنستاباي/اتصالات)</label>
+              <input type="text" value={wallet} onChange={e => setWallet(e.target.value)} className="w-full border rounded-lg p-2.5 outline-none focus:border-blue-500 text-left" dir="ltr" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">رابط فيسبوك</label>
+              <input type="url" value={facebook} onChange={e => setFacebook(e.target.value)} className="w-full border rounded-lg p-2.5 outline-none focus:border-blue-500 text-left" dir="ltr" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">رابط انستجرام</label>
+              <input type="url" value={instagram} onChange={e => setInstagram(e.target.value)} className="w-full border rounded-lg p-2.5 outline-none focus:border-blue-500 text-left" dir="ltr" />
+            </div>
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium mb-1">رابط طلبات (Talabat)</label>
+              <input type="url" value={talabat} onChange={e => setTalabat(e.target.value)} className="w-full border rounded-lg p-2.5 outline-none focus:border-blue-500 text-left" dir="ltr" />
+            </div>
+          </div>
+        </div>
+
         {/* الألوان */}
         <div className="border-t pt-6">
           <h3 className="text-lg font-bold mb-4 text-slate-700">ألوان التطبيق</h3>
@@ -359,10 +394,14 @@ export default function ThemeManager({ initialData }: { initialData: any }) {
           </div>
         </div>
 
-        <div className="border-t pt-6">
-          <button type="submit" disabled={loading} className="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold flex items-center gap-2 hover:bg-blue-700 transition-colors disabled:opacity-50">
+        <div className="border-t pt-6 flex flex-col md:flex-row gap-4 items-center justify-between">
+          <button type="submit" disabled={loading} className="w-full md:w-auto bg-blue-600 text-white px-8 py-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-blue-700 transition-colors disabled:opacity-50">
             {loading ? <Loader2 className="animate-spin" size={20} /> : <Save size={20} />}
             حفظ التغييرات
+          </button>
+          
+          <button type="button" onClick={handleFactoryReset} disabled={loading} className="w-full md:w-auto text-red-600 bg-red-50 hover:bg-red-100 px-6 py-3 rounded-xl font-bold flex items-center justify-center transition-colors disabled:opacity-50">
+            حذف كل التعديلات (عودة للافتراضي)
           </button>
         </div>
       </form>
