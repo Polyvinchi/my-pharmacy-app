@@ -35,10 +35,15 @@ export default function UsersManager() {
   const loadUsers = async () => {
     setLoading(true)
     try {
-      const data = await getUsers()
-      setUsers(data)
+      const res = await getUsers()
+      if (res.ok) {
+        setUsers(res.data)
+        setError('')
+      } else {
+        setError(res.error)
+      }
     } catch (err: any) {
-      setError(err.message)
+      setError(err?.message || 'تعذر الاتصال بالسيرفر')
     } finally {
       setLoading(false)
     }
@@ -56,7 +61,8 @@ export default function UsersManager() {
     }
     setCreating(true)
     try {
-      await createUser(newEmail, newPassword, selectedPermissions)
+      const res = await createUser(newEmail, newPassword, selectedPermissions)
+      if (!res.ok) throw new Error(res.error)
       setNewEmail('')
       setNewPassword('')
       setSelectedPermissions([])
@@ -72,7 +78,8 @@ export default function UsersManager() {
   const handleDelete = async (id: string, email: string) => {
     if (!confirm(`هل أنت متأكد من حذف المستخدم ${email}؟`)) return
     try {
-      await deleteUser(id)
+      const res = await deleteUser(id)
+      if (!res.ok) throw new Error(res.error)
       await loadUsers()
     } catch (err: any) {
       alert("خطأ: " + err.message)
@@ -87,7 +94,8 @@ export default function UsersManager() {
       return
     }
     try {
-      await updateUserPassword(id, newPass)
+      const res = await updateUserPassword(id, newPass)
+      if (!res.ok) throw new Error(res.error)
       alert("تم تغيير كلمة المرور بنجاح")
     } catch (err: any) {
       alert("خطأ: " + err.message)
@@ -162,7 +170,7 @@ export default function UsersManager() {
                     </div>
                     <div>
                       <div className="font-bold text-slate-800" dir="ltr">{u.email}</div>
-                      <div className="text-xs text-slate-400">تاريخ الانضمام: {new Date(u.created_at).toLocaleDateString('ar-EG')}</div>
+                      <div className="text-xs text-slate-400">تاريخ الانضمام: {u.created_at ? new Date(u.created_at).toLocaleDateString('ar-EG', { timeZone: 'Africa/Cairo' }) : '-'}</div>
                     </div>
                   </div>
                 </td>
