@@ -49,7 +49,48 @@ export default function ThemeManager({ initialData }: { initialData: any }) {
   const [savedMsg, setSavedMsg] = useState(false)
   const supabase = createClient()
 
+
+  const handleFactoryReset = async () => {
+    if (!confirm('هل أنت متأكد تماماً من إرجاع جميع الإعدادات لحالتها الافتراضية الأصلية؟ (هذا الإجراء سيحذف اللوجو والألوان وكل التعديلات)')) return;
+    
+    const pass = prompt('تحذير: هذا الإجراء سيمسح بيانات الثيم بالكامل. أدخل الباسورد الخاص بك للتأكيد:');
+    if (!pass) return;
+
+    setLoading(true);
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user?.email) throw new Error("المستخدم غير مسجل");
+
+      const { error: authError } = await supabase.auth.signInWithPassword({
+        email: user.email,
+        password: pass
+      });
+
+      if (authError) {
+        throw new Error("كلمة المرور غير صحيحة، تم الإلغاء.");
+      }
+
+      if (initialData.id) {
+        const payload = {
+          theme_config: {},
+          logo_url: null,
+          cover_url: null,
+          social_links: {}
+        };
+        await supabase.from('pharmacies').update(payload).eq('id', initialData.id);
+        await clearAppCache();
+        alert('تم العودة للافتراضي بنجاح! سيتم إعادة تحميل الصفحة.');
+        window.location.reload();
+      }
+    } catch (err: any) {
+      alert(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleSave = async (e: React.FormEvent) => {
+
     e.preventDefault()
     setLoading(true)
     try {
