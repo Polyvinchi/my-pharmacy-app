@@ -13,11 +13,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const supabase = createClient();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [role, setRole] = useState<string>('super_admin');
+  const [permissions, setPermissions] = useState<string[]>([]);
   
   useEffect(() => {
     supabase.auth.getUser().then(({ data: { user } }) => {
       if (user) {
         setRole(user.user_metadata?.role || user.app_metadata?.role || 'super_admin');
+        setPermissions(user.user_metadata?.permissions || user.app_metadata?.permissions || []);
       }
     });
   }, []);
@@ -29,17 +31,16 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     router.push('/admin/login');
   };
 
-
   let nav = [
-    { name: 'الإعدادات', path: '/admin', icon: LayoutDashboard, superOnly: true },
-    { name: 'الإحصائيات', path: '/admin/statistics', icon: BarChart3, superOnly: true },
-    { name: 'العروض', path: '/admin/offers', icon: Tags, superOnly: false },
-    { name: 'الأقسام', path: '/admin/sections', icon: Component, superOnly: false },
+    { name: 'الإعدادات', path: '/admin', icon: LayoutDashboard, perm: 'settings:view' },
+    { name: 'الإحصائيات', path: '/admin/statistics', icon: BarChart3, perm: 'stats:view' },
+    { name: 'العروض', path: '/admin/offers', icon: Tags, perm: 'offers:view' },
+    { name: 'الأقسام', path: '/admin/sections', icon: Component, perm: 'sections:view' },
     { name: 'إدارة المستخدمين', path: '/admin/users', icon: Users, superOnly: true },
   ];
   
   if (role === 'sub_admin') {
-    nav = nav.filter(item => !item.superOnly);
+    nav = nav.filter(item => !item.superOnly && permissions.includes(item.perm));
   }
 
 

@@ -237,8 +237,12 @@ export default function ThemeManager({ initialData }: { initialData: any }) {
               <input type="text" value={landline} onChange={e => setLandline(e.target.value)} className="w-full border rounded-lg p-2.5 outline-none focus:border-blue-500 text-left" dir="ltr" />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1">محفظة كاش (فودافون/إنستاباي/اتصالات)</label>
+              <label className="block text-sm font-medium mb-1">محفظة كاش (فودافون/اتصالات)</label>
               <input type="text" value={wallet} onChange={e => setWallet(e.target.value)} className="w-full border rounded-lg p-2.5 outline-none focus:border-blue-500 text-left" dir="ltr" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">حساب إنستاباي (Instapay)</label>
+              <input type="text" value={instapay} onChange={e => setInstapay(e.target.value)} className="w-full border rounded-lg p-2.5 outline-none focus:border-blue-500 text-left" dir="ltr" />
             </div>
             <div>
               <label className="block text-sm font-medium mb-1">رابط فيسبوك</label>
