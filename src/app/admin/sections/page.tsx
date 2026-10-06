@@ -1,10 +1,16 @@
 import { createClient } from "@/utils/supabase/server"
-import { hasPermission } from "@/utils/rbac"
+import { getAccess, firstAllowedPage } from "@/utils/rbac"
 import SectionsManager from "./SectionsManager"
+import NoAccess from "@/components/NoAccess"
+import { redirect } from "next/navigation"
 
 export default async function SectionsPage() {
+  const access = await getAccess()
+  if (!access.userId) redirect('/admin/login')
+  if (!access.can('sections:view')) return <NoAccess fallback={firstAllowedPage(access)} />
+
   const supabase = await createClient()
-  const canEdit = await hasPermission('sections:edit');
+  const canEdit = access.can('sections:edit');
   
   // Fetch sections
   const { data: sections } = await supabase

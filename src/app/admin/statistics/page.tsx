@@ -1,7 +1,14 @@
 import { createClient } from '@/utils/supabase/server';
 import { BarChart3, Activity, Download, MousePointerClick, Smartphone, Search, Map, Phone } from 'lucide-react';
+import { getAccess, firstAllowedPage } from '@/utils/rbac';
+import NoAccess from '@/components/NoAccess';
+import { redirect } from 'next/navigation';
 
 export default async function StatisticsPage() {
+  const access = await getAccess();
+  if (!access.userId) redirect('/admin/login');
+  if (!access.can('stats:view')) return <NoAccess fallback={firstAllowedPage(access)} />;
+
   const supabase = await createClient();
   
   // Fetch stats from action_logs if it exists

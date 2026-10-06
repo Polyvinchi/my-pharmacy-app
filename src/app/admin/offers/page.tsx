@@ -1,10 +1,16 @@
 import { createClient } from "@/utils/supabase/server"
-import { hasPermission } from "@/utils/rbac"
+import { getAccess, firstAllowedPage } from "@/utils/rbac"
 import OffersManager from "../OffersManager"
+import NoAccess from "@/components/NoAccess"
+import { redirect } from "next/navigation"
 
 export default async function OffersPage() {
+  const access = await getAccess()
+  if (!access.userId) redirect('/admin/login')
+  if (!access.can('offers:view')) return <NoAccess fallback={firstAllowedPage(access)} />
+
   const supabase = await createClient()
-  const canEdit = await hasPermission('offers:edit');
+  const canEdit = access.can('offers:edit');
   // Fetch offers
   const { data: offers, error } = await supabase
     .from('offers')

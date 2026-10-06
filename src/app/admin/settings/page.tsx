@@ -1,9 +1,16 @@
 import { createClient } from '@/lib/supabase/server';
 import SettingsManager from './SettingsManager';
+import { getAccess, firstAllowedPage } from '@/utils/rbac';
+import NoAccess from '@/components/NoAccess';
+import { redirect } from 'next/navigation';
 
 export const revalidate = 0;
 
 export default async function SettingsPage() {
+  const access = await getAccess();
+  if (!access.userId) redirect('/admin/login');
+  if (!access.can('settings:view')) return <NoAccess fallback={firstAllowedPage(access)} />;
+
   const supabase = await createClient();
   
   const { data: settings, error } = await supabase

@@ -4,45 +4,93 @@ import { usePathname } from 'next/navigation';
 import { createClient } from '@/utils/supabase/client';
 import { useRouter } from 'next/navigation';
 import { LayoutDashboard, Tags, Component, LogOut, BarChart3, Stethoscope, Menu, Users } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import LockScreen from '@/components/LockScreen';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
-  const supabase = createClient();
+  const [supabase] = useState(() => createClient());
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [role, setRole] = useState<string>('super_admin');
+  // null = still loading. NEVER default to super_admin, otherwise a sub admin
+  // briefly sees (and can click) pages they don't have access to.
+  const [role, setRole] = useState<string | null>(null);
   const [permissions, setPermissions] = useState<string[]>([]);
-  
+
+  const loadAccess = useCallback(async () => {
+    // getUser() asks the Supabase auth server, so it always returns the
+    // latest permissions (not a stale cached session).
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) {
+      setRole(null);
+      setPermissions([]);
+      return;
+    }
+    const r = user.user_metadata?.role || user.app_metadata?.role || 'super_admin';
+    const raw = user.user_metadata?.permissions;
+    setRole(r);
+    setPermissions(Array.isArray(raw) ? raw : []);
+  }, [supabase]);
+
+  // Re-check on every page change (the layout stays mounted between pages,
+  // including after logging out and in with another account).
   useEffect(() => {
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      if (user) {
-        setRole(user.user_metadata?.role || user.app_metadata?.role || 'super_admin');
-        setPermissions(user.user_metadata?.permissions || user.app_metadata?.permissions || []);
+    loadAccess();
+  }, [pathname, loadAccess]);
+
+  // Re-check when the auth state changes or the tab regains focus.
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
+      if (event === 'SIGNED_IN' || event === 'SIGNED_OUT' || event === 'USER_UPDATED') {
+        loadAccess();
+        router.refresh();
       }
     });
-  }, []);
+    const onFocus = () => loadAccess();
+    window.addEventListener('focus', onFocus);
+    return () => {
+      subscription.unsubscribe();
+      window.removeEventListener('focus', onFocus);
+    };
+  }, [supabase, loadAccess, router]);
 
   if (pathname.includes('/login')) return <>{children}</>;
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
-    router.push('/admin/login');
+    setRole(null);
+    setPermissions([]);
+    router.replace('/admin/login');
+    router.refresh();
   };
 
-  let nav = [
+  const can = (perm?: string) => {
+    if (!perm) return false;
+    if (permissions.includes(perm)) return true;
+    return perm.endsWith(':view') && permissions.includes(perm.replace(':view', ':edit'));
+  };
+
+  const allNav = [
     { name: 'الإعدادات', path: '/admin', icon: LayoutDashboard, perm: 'settings:view' },
     { name: 'الإحصائيات', path: '/admin/statistics', icon: BarChart3, perm: 'stats:view' },
     { name: 'العروض', path: '/admin/offers', icon: Tags, perm: 'offers:view' },
     { name: 'الأقسام', path: '/admin/sections', icon: Component, perm: 'sections:view' },
     { name: 'إدارة المستخدمين', path: '/admin/users', icon: Users, superOnly: true },
   ];
-  
-  if (role === 'sub_admin') {
-    nav = nav.filter(item => !item.superOnly && permissions.includes(item.perm));
-  }
 
+  const nav = role === null
+    ? []
+    : role === 'sub_admin'
+      ? allNav.filter(item => !item.superOnly && can(item.perm))
+      : allNav;
+
+  const navSkeleton = role === null && (
+    <div className="space-y-2">
+      {[0, 1, 2].map(i => (
+        <div key={i} className="h-11 rounded-xl bg-slate-100 animate-pulse" />
+      ))}
+    </div>
+  );
 
   return (
     <LockScreen>
@@ -58,6 +106,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         
         {mobileMenuOpen && (
           <div className="flex flex-col gap-2 bg-slate-50 p-3 rounded-xl border border-slate-200 shadow-sm animate-in fade-in slide-in-from-top-4">
+            {navSkeleton}
             {nav.map(item => {
               const Icon = item.icon;
               const active = pathname === item.path;
@@ -82,6 +131,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <h2 className="text-xl font-black text-blue-700">اللوحة الإدارية</h2>
         </div>
         <nav className="flex-1 p-4 space-y-2">
+          {navSkeleton}
           {nav.map(item => {
             const Icon = item.icon;
             const active = pathname === item.path;
