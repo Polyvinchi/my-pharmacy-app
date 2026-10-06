@@ -138,15 +138,31 @@ export default function OffersDrawer({ isOpen, handleClose, offers, whatsapp }: 
                       />
                       
                       {selectedOffer.images && selectedOffer.images.length > 1 && (
-                        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 bg-black/20 backdrop-blur-md px-3 py-1.5 rounded-full">
-                          {selectedOffer.images.map((_: any, i: number) => (
-                            <div 
-                              key={i} 
-                              onClick={() => setCurrentImgIndex(i)}
-                              className={`w-2 h-2 rounded-full cursor-pointer transition-all ${i === currentImgIndex ? 'bg-white scale-110' : 'bg-white/50 hover:bg-white/75'}`}
-                            />
-                          ))}
-                        </div>
+                        <>
+                          <button
+                            onClick={(e) => { e.stopPropagation(); setCurrentImgIndex((prev) => (prev === selectedOffer.images.length - 1 ? 0 : prev + 1)); }}
+                            className="absolute top-1/2 left-2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-white/70 hover:bg-white rounded-full shadow-md text-slate-800 backdrop-blur-sm z-10 transition-colors"
+                          >
+                            <ArrowLeft size={18} />
+                          </button>
+                          
+                          <button
+                            onClick={(e) => { e.stopPropagation(); setCurrentImgIndex((prev) => (prev === 0 ? selectedOffer.images.length - 1 : prev - 1)); }}
+                            className="absolute top-1/2 right-2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-white/70 hover:bg-white rounded-full shadow-md text-slate-800 backdrop-blur-sm z-10 transition-colors"
+                          >
+                            <ArrowRight size={18} />
+                          </button>
+
+                          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 bg-black/20 backdrop-blur-md px-3 py-1.5 rounded-full z-10">
+                            {selectedOffer.images.map((_: any, i: number) => (
+                              <div 
+                                key={i} 
+                                onClick={(e) => { e.stopPropagation(); setCurrentImgIndex(i); }}
+                                className={`w-2 h-2 rounded-full cursor-pointer transition-all ${i === currentImgIndex ? 'bg-white scale-110' : 'bg-white/50 hover:bg-white/75'}`}
+                              />
+                            ))}
+                          </div>
+                        </>
                       )}
                     </div>
                     
