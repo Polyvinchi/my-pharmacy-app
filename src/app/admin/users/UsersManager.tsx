@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { getUsers, createUser, deleteUser, updateUserPassword, updateUserPermissions } from './actions'
-import { UserPlus, Trash2, KeyRound, Loader2, ShieldAlert, User, ShieldCheck } from 'lucide-react'
+import { UserPlus, Trash2, KeyRound, Loader2, ShieldAlert, User, ShieldCheck, Edit, X, Save } from 'lucide-react'
 
 export default function UsersManager() {
   const [users, setUsers] = useState<any[]>([])
@@ -16,6 +16,11 @@ export default function UsersManager() {
   // Permissions State
   const [selectedPermissions, setSelectedPermissions] = useState<string[]>([])
 
+  // Edit Permissions State
+  const [editingUserId, setEditingUserId] = useState<string | null>(null)
+  const [editPermissions, setEditPermissions] = useState<string[]>([])
+  const [savingPermissions, setSavingPermissions] = useState(false)
+
   const availablePermissions = [
     { id: 'settings:view', label: 'رؤية الإعدادات الأساسية' },
     { id: 'settings:edit', label: 'تعديل الإعدادات الأساسية' },
@@ -26,10 +31,12 @@ export default function UsersManager() {
     { id: 'stats:view', label: 'رؤية الإحصائيات' }
   ]
 
-  const togglePermission = (id: string) => {
-    setSelectedPermissions(prev => 
-      prev.includes(id) ? prev.filter(p => p !== id) : [...prev, id]
-    )
+  const togglePermission = (id: string, isEditMode = false) => {
+    if (isEditMode) {
+      setEditPermissions(prev => prev.includes(id) ? prev.filter(p => p !== id) : [...prev, id])
+    } else {
+      setSelectedPermissions(prev => prev.includes(id) ? prev.filter(p => p !== id) : [...prev, id])
+    }
   }
 
   const loadUsers = async () => {
@@ -102,10 +109,26 @@ export default function UsersManager() {
     }
   }
 
+  const handleSavePermissions = async () => {
+    if (!editingUserId) return
+    setSavingPermissions(true)
+    try {
+      const res = await updateUserPermissions(editingUserId, editPermissions)
+      if (!res.ok) throw new Error(res.error)
+      alert("تم تحديث الصلاحيات بنجاح")
+      setEditingUserId(null)
+      await loadUsers()
+    } catch (err: any) {
+      alert("خطأ: " + err.message)
+    } finally {
+      setSavingPermissions(false)
+    }
+  }
+
   if (loading) return <div className="flex justify-center p-10"><Loader2 className="animate-spin text-blue-600" size={32} /></div>
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 relative">
       {error && <div className="bg-red-50 text-red-600 p-4 rounded-xl border border-red-200">{error}</div>}
       
       <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
@@ -199,6 +222,11 @@ export default function UsersManager() {
                 </td>
                 <td className="p-4 text-center">
                   <div className="flex items-center justify-center gap-2">
+                    {u.role !== 'super_admin' && (
+                      <button onClick={() => { setEditingUserId(u.id); setEditPermissions(u.permissions || []) }} className="p-2 text-slate-500 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors" title="تعديل الصلاحيات">
+                        <Edit size={18} />
+                      </button>
+                    )}
                     <button onClick={() => handleResetPassword(u.id)} className="p-2 text-slate-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors" title="تغيير كلمة المرور">
                       <KeyRound size={18} />
                     </button>
@@ -214,6 +242,45 @@ export default function UsersManager() {
           </tbody>
         </table>
       </div>
+
+      {editingUserId && (
+        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-2xl shadow-xl w-full max-w-3xl overflow-hidden animate-in fade-in zoom-in duration-200">
+            <div className="flex justify-between items-center p-6 border-b border-slate-100">
+              <h3 className="text-xl font-bold text-slate-800">تعديل صلاحيات الموظف</h3>
+              <button onClick={() => setEditingUserId(null)} className="p-2 text-slate-400 hover:bg-slate-100 rounded-full transition-colors">
+                <X size={20} />
+              </button>
+            </div>
+            
+            <div className="p-6 bg-slate-50">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {availablePermissions.map(perm => (
+                  <label key={perm.id} className="flex items-center gap-3 p-4 bg-white border border-slate-200 rounded-xl cursor-pointer hover:border-blue-300 transition-colors shadow-sm">
+                    <input 
+                      type="checkbox" 
+                      checked={editPermissions.includes(perm.id)} 
+                      onChange={() => togglePermission(perm.id, true)}
+                      className="w-5 h-5 text-blue-600 accent-blue-600 rounded"
+                    />
+                    <span className="font-medium text-slate-700">{perm.label}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex justify-end gap-3 p-6 border-t border-slate-100">
+              <button onClick={() => setEditingUserId(null)} className="px-6 py-2.5 rounded-xl font-bold text-slate-600 hover:bg-slate-100 transition-colors">
+                إلغاء
+              </button>
+              <button onClick={handleSavePermissions} disabled={savingPermissions} className="bg-blue-600 text-white px-8 py-2.5 rounded-xl font-bold flex items-center gap-2 hover:bg-blue-700 transition-colors disabled:opacity-50 shadow-md shadow-blue-600/20">
+                {savingPermissions ? <Loader2 className="animate-spin" size={20} /> : <Save size={20} />}
+                حفظ التعديلات
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
