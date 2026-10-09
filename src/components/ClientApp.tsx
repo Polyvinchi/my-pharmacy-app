@@ -38,6 +38,12 @@ export default function ClientApp({ initialData }: { initialData?: any }) {
 
   useEffect(() => {
     trackAction('page_view');
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('map') === 'true') {
+        setIsMapOpen(true);
+      }
+    }
   }, []);
 
   const startTour = () => {
